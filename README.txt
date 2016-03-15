@@ -1,2 +1,1 @@
-# Fuck
-Hi motherfucker! 
+Hi
