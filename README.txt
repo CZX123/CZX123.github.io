@@ -1,1 +1,2 @@
-Hi
+This is my first repository.
+Trying Github Pages...
