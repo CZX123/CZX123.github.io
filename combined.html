@@ -753,7 +753,6 @@ function navDragging() {
 			$html.style.overflow = 'hidden';
 		}
 		if (ripplebug) ripplebug = false;
-		console.log(iterations, start, -start, total);
 	}
 }
 function startDrag(e) {
@@ -763,7 +762,6 @@ function startDrag(e) {
 		actualX = previousNavX = navX = Math.round(e.touches[0].clientX*10)/10;
 		requestAnimationFrame(navDragging);
 		$navdrawer.classList.add('active');
-		$html.style.overflow = 'hidden';
 	}
 	if (navAppear) {
 		dragging = 'started';
@@ -785,6 +783,7 @@ function mainDrag(e) {
 		else navX = actualX;
 		diffX = navX - previousNavX;
 		previousNavX = navX;
+		$html.style.overflow = 'hidden';
 	}
 	if (navAppear) {
 		dragging = true;
