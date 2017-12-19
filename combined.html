@@ -730,6 +730,7 @@ function navDragging() {
 			$navdrawer.removeAttribute('style');
 			$scrim.removeAttribute('style');
 			$navdrawer.classList.remove('active');
+			$html.removeAttribute('style');
 		}
 	}
 	// When dragging the nav drawer into view and force is enough OR dragging it out of view but force is not enough
@@ -749,6 +750,7 @@ function navDragging() {
 			iterations = 0;
 			$navdrawer.removeAttribute('style');
 			$scrim.removeAttribute('style');
+			$html.style.overflow = 'hidden';
 		}
 		if (ripplebug) ripplebug = false;
 		console.log(iterations, start, -start, total);
