@@ -273,6 +273,16 @@ section.text {
 	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
 }
+@media (max-width: 767px) {
+section.text {
+	padding: 16px 72px;
+}
+}
+@media (max-width: 450px) {
+section.text {
+	padding: 16px;
+}
+}
 section.text h1 {
 	margin: 24px 0;
 	color: rgba(0,0,0,.54);
@@ -516,7 +526,8 @@ section.parallax-wrapper .carousel {
 var $parallax = document.getElementsByClassName('carousel')[0], $body = document.getElementsByTagName('body')[0], p, latestY = window.pageYOffset, previousY, resize, windowHeight = window.innerHeight, mousemove, timer;
 
 // Ripple + Nav
-var $navbar = document.getElementsByClassName('navbar')[0],
+var $html = document.getElementsByTagName('html')[0],
+	$navbar = document.getElementsByClassName('navbar')[0],
 	$menu = document.getElementsByClassName('menu')[0],
 	$navdrawer = document.getElementsByClassName('nav-drawer')[0],
 	$dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a'), d,
@@ -585,12 +596,14 @@ $menu.addEventListener('click', function() {
 	$navdrawer.classList.add('active');
 	$navdrawer.removeAttribute('style');
 	$scrim.removeAttribute('style');
+	$html.style.overflow = 'hidden';
 });
 $scrim.addEventListener('click', function() {
 	navAppear = false;
 	$navdrawer.classList.remove('active');
 	$navdrawer.removeAttribute('style');
 	$scrim.removeAttribute('style');
+	$html.removeAttribute('style');
 });
 
 for (var d = 0; d < $dropdown.length; d++) {
@@ -748,6 +761,7 @@ function startDrag(e) {
 		actualX = previousNavX = navX = Math.round(e.touches[0].clientX*10)/10;
 		requestAnimationFrame(navDragging);
 		$navdrawer.classList.add('active');
+		$html.style.overflow = 'hidden';
 	}
 	if (navAppear) {
 		dragging = 'started';
