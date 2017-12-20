@@ -274,22 +274,28 @@ section.text {
 	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
 }
+section.text h1 {
+	margin: 48px 0;
+	color: rgba(0,0,0,.54);
+	font-family: 'Roboto Slab', serif;
+	font-size: 48px;
+	line-height: 1.5;
+}
 @media (max-width: 767px) {
 section.text {
 	padding: 16px 72px;
+}
+section.text h1 {
+	font-size: 44px;
 }
 }
 @media (max-width: 450px) {
 section.text {
 	padding: 16px;
 }
-}
 section.text h1 {
-	margin: 32px 0;
-	color: rgba(0,0,0,.54);
-	font-family: 'Roboto Slab', serif;
-	font-size: 48px;
-	font-weight: 700;
+	font-size: 40px;
+}
 }
 section.text p {
 	margin: 24px 0;
@@ -298,18 +304,16 @@ section.text p {
 }
 section.text blockquote {
 	position: relative;
-	padding-left: 24px;
+	padding-left: 72px;
 	font-style: italic;
 }
-section.text blockquote::before {
-	content: '';
+section.text blockquote .quote-symbol {
 	display: block;
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	width: 4px;
-	background: #3F51B5;
+	top: -20px;
+	left: -20px;
+	fill: rgba(0,0,0,.38);
+	height: 96px;
 }
 section.text blockquote .quote {
 	margin-bottom: 8px;
@@ -529,6 +533,9 @@ section.parallax-wrapper .carousel {
 		<p>Last, but not the least, always remember your duty as a member of NPCC, to be active citizens and community leaders, to actively help make Singapore the safest place in the world, and to always offer help to those in need throughout the course of the year!</p>
 		<p>I would like to leave you with a quote:</p>
 		<blockquote>
+			<svg class="quote-symbol" viewBox="0 0 24 24">
+    			<path d="M10,7L8,11H11V17H5V11L7,7H10M18,7L16,11H19V17H13V11L15,7H18Z" />
+			</svg>
 			<p class="quote">‘Try’ is a little word but big things – victory and glory – can be found within it.</p>
 			<p class="author">~ Daisaku Ikeda</p>
 		</blockquote>
@@ -552,7 +559,9 @@ var $html = document.getElementsByTagName('html')[0],
 
 var flkty = new Flickity($parallax, {
 	wrapAround: true,
-	prevNextButtons: false
+	prevNextButtons: false,
+	imagesLoaded: true,
+	percentPosition: false
 });
 
 window.addEventListener('resize', function() {
