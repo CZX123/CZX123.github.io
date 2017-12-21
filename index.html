@@ -7,321 +7,8 @@
 <title>Home | HCINPCC Unit Website</title>
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"><!--flickity.min.css-->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Slab">
+<link rel="stylesheet" type="text/css" href="style.css">
 <style>
-* {
-	margin: 0;
-	border: 0;
-	padding: 0;
-	box-sizing: border-box;
-	color: rgba(0,0,0,.87);
-	font-family: Roboto, sans-serif;
-	font-size: 14px;
-	line-height: 1.8;
-}
-body {
-	position: relative;
-	min-height: 100vh;
-}
-.navbar {
-	display: inline-block;
-	position: fixed;
-	height: 64px;
-	top: 16px;
-	left: 50%;
-	border-radius: 32px;
-	padding-right: 28px;
-	background: #FFF;
-	box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-	transform: translateX(-50%);
-	transition: transform .4s cubic-bezier(.4,0,.2,1);
-	white-space: nowrap;
-	z-index: 6;
-}
-.nav-gradient {
-	position: fixed;
-	top: 0;
-	right: 0;
-	left: 0;
-	height: 56px;
-	background: linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,0));
-	transition: opacity .4s;
-	z-index: 5;
-}
-.navbar.hide {
-	transform: translate(-50%,-88px);
-}
-.navbar.hide + .nav-gradient {
-	opacity: 0;
-	transition: opacity .3s;
-}
-.navbar .menu {
-	height: 64px;
-	width: 64px;
-	outline: 0;
-	border: 0;
-	border-radius: 50%;
-	vertical-align: top;
-	background: transparent;
-	cursor: pointer;
-	transition: background .2s;
-	overflow: hidden;
-	-webkit-tap-highlight-color: transparent;
-}
-.navbar .menu > div {
-	position: relative;
-	padding: 20px;
-}
-.navbar .menu svg {
-	height: 24px;
-	width: 24px;
-	fill: rgba(0,0,0,.54);
-}
-.navbar .menu.hover {
-	background: #F5F5F5;
-}
-.navbar .menu:active {
-	background: #EEE;
-}
-.navbar img {
-	height: 40px;
-	margin: 12px 8px;
-}
-.nav-drawer {
-	position: fixed;
-	height: 100vh;
-	width: 300px;
-	max-width: calc(100% - 56px);
-	top: 0;
-	left: 0;
-	background: #FFF;
-	box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
-	overflow: hidden;
-	opacity: 0;
-	transform: translate3d(-100%,0,0);
-	transition: visibility 0s .9s, opacity .2s .4s, transform .4s;
-	transition-timing-function: cubic-bezier(.3,.3,0,1);
-	visibility: hidden;
-	z-index: 16;
-}
-.nav-drawer.active {
-	visibility: visible;
-	opacity: 1;
-	transform: translate3d(0,0,0);
-	transition: transform .4s, opacity .2s;
-}
-.nav-drawer > .scrollbar-animate {
-	height: 100%;
-	overflow-x: hidden;
-	overflow-y: auto;
-}
-@media (min-width: 768px) {
-.nav-drawer > * {
-	width: 320px;
-	transform: none;
-	transition: transform .2s 1s;
-}
-.nav-drawer > * > * {
-	width: 300px;
-	transform: none;
-	transition: transform .2s 1s;
-}
-.nav-drawer:hover > * {
-	transform: translateX(-20px);
-	transition-delay: 0s;
-}
-.nav-drawer:hover > * > * {
-	transform: translateX(20px);
-	transition-delay: 0s;
-}
-}
-.nav-drawer .logo {
-	display: none; /* TODO */
-}
-.nav-drawer ul {
-	list-style: none;
-	padding: 8px 0;
-}
-.nav-drawer ul li {
-	display: block;
-	position: relative;
-	height: 48px;
-	overflow: hidden;
-}
-.nav-drawer ul li svg {
-	position: absolute;
-	height: 24px;
-	width: 24px;
-	top: 50%;
-	left: 20px;
-	fill: rgba(0,0,0,.54);
-	transform: translateY(-50%);
-	z-index: 1;
-	pointer-events: none;
-}
-.nav-drawer ul li a {
-	display: block;
-	padding: 14px 16px 14px 72px;
-	color: rgba(0,0,0,.87);
-	line-height: 20px;
-	font-weight: 500;
-	text-decoration: none;
-	transition: background .4s;
-	-webkit-tap-highlight-color: transparent;
-}
-.nav-drawer ul li a.hover, .nav-drawer ul li a:active {
-	background: #F5F5F5;
-	transition: background .2s;
-}
-.nav-drawer ul li.active svg {
-	fill: #3F51B5;
-}
-.nav-drawer ul li.active a {
-	background: #EEE;
-	color: #3F51B5;
-}
-.nav-drawer ul li.dropdown a {
-	padding: 14px 72px;
-	cursor: pointer;
-}
-.nav-drawer ul li.dropdown .caret {
-	position: absolute;
-	height: 24px;
-	width: 24px;
-	top: 50%;
-	right: 16px;
-	transform: translateY(-50%);
-	transition: transform .3s cubic-bezier(.4,0,.2,1);
-	transform-origin: center;
-	pointer-events: none;
-	z-index: 1;
-}
-.nav-drawer ul li.dropdown .caret svg {
-	position: static;
-	top: auto;
-	left: auto;
-	transform: none;
-	fill: rgba(0,0,0,.54);
-}
-.nav-drawer ul li.dropdown.dropdown-open .caret {
-	transform: translateY(-50%) rotateX(180deg);
-}
-.nav-drawer ul li.dropdown + ul.dropdown-content {
-	position: relative;
-	padding: 0;
-	overflow: hidden;
-}
-.nav-drawer ul li.dropdown + ul.dropdown-content li {
-	margin-top: -40px;
-	height: 40px;
-	transition: margin .3s cubic-bezier(.4,0,.2,1);
-}
-.nav-drawer ul li.dropdown.dropdown-open + ul.dropdown-content li {
-	margin-top: 0;
-}
-.nav-drawer ul li.dropdown + ul.dropdown-content li a {
-	padding: 10px 16px 10px 80px;
-	line-height: 20px;
-	font-weight: 500;
-}
-.scrim {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(0,0,0,.5);
-	opacity: 0;
-	transition: opacity .4s, visibility 0s .4s;
-	transition-timing-function: cubic-bezier(.3,.3,0,1);
-	visibility: hidden;
-	z-index: 14;
-}
-.nav-drawer.active ~ .scrim {
-	visibility: visible;
-	opacity: 1;
-	transition-delay: 0s;
-}
-.drag-nav-drawer {
-	position: absolute;
-	width: 16px;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 12;
-}
-.ripple {
-	position: absolute;
-	border-radius: 50%;
-	background: rgba(0,0,0,.08);
-	opacity: 0;
-	transform: translate(-50%,-50%) scale(0);
-	pointer-events: none;
-}
-.ripple.appear {
-	opacity: 1;
-	transform: translate(-50%,-50%) scale(1);
-	transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .2s;
-}
-.ripple.finish.fade-out {
-	opacity: 0;
-	transform: translate(-50%,-50%) scale(1);
-	transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .5s;
-}
-section.text {
-	position: relative;
-	padding: 16px 20%;
-	background: #FFF;
-	box-shadow: 0 0 60px rgba(0,0,0,.2);
-	z-index: 1;
-}
-section.text h1 {
-	margin: 48px 0;
-	color: rgba(0,0,0,.54);
-	font-family: 'Roboto Slab', serif;
-	font-size: 48px;
-	line-height: 1.5;
-}
-@media (max-width: 767px) {
-section.text {
-	padding: 16px 72px;
-}
-section.text h1 {
-	font-size: 44px;
-}
-}
-@media (max-width: 450px) {
-section.text {
-	padding: 16px;
-}
-section.text h1 {
-	font-size: 40px;
-}
-}
-section.text p {
-	margin: 24px 0;
-	font-family: 'Roboto Slab', serif;
-	font-size: 18px;
-}
-section.text blockquote {
-	position: relative;
-	padding-left: 72px;
-	font-style: italic;
-}
-section.text blockquote .quote-symbol {
-	display: block;
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	fill: rgba(0,0,0,.38);
-	height: 96px;
-}
-section.text blockquote .quote {
-	margin-bottom: 8px;
-}
-section.text blockquote .author {
-	margin: 0;
-	text-align: right;
-}
 section.parallax-wrapper {
 	position: relative;
 	height: 100vh;
@@ -387,12 +74,9 @@ section.parallax-wrapper .carousel {
 	border-radius: 50%;
 	padding: 0;
 	background: rgba(0,0,0,0);
-	cursor: pointer;
-    overflow: hidden;
     transform: translateY(-50%);
 	opacity: 0;
 	transition: all .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
-	-webkit-tap-highlight-color: transparent;
 }
 .flickity-custom-button .ripple {
     background: rgba(0,0,0,.2);
@@ -436,11 +120,7 @@ section.parallax-wrapper .carousel {
 	<div class="nav-gradient"></div>
 	<div class="nav-drawer">
 		<div class="scrollbar-animate">
-			<div class="logo">
-				<header>
-					<h1>HCINPCC</h1>
-				</header>
-			</div>
+			<div class="wrapper">
 			<ul>
 				<li class="active">
 					<svg viewBox="0 0 24 24">
@@ -477,7 +157,14 @@ section.parallax-wrapper .carousel {
 					</div>
 				</li>
 				<ul class="dropdown-content">
-					<li><a href="#">Articles</a></li>
+					<li>
+						<a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
+						<div class="external">
+							<svg viewBox="0 0 24 24">
+    							<path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+							</svg>
+						</div>
+					</li>
 					<li><a href="#">Annual Chronicles</a></li>
 				</ul>
 				<li class="dropdown">
@@ -496,6 +183,18 @@ section.parallax-wrapper .carousel {
 					<li><a href="#">Useful Links</a></li>
 				</ul>
 			</ul>
+			<ul class="social-media-icons">
+				<li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
+					<svg viewBox="0 0 408.788 408.788">
+						<path d="M353.701 0H55.087C24.665 0 .002 24.662.002 55.085v298.616c0 30.423 24.662 55.085 55.085 55.085h147.275l.251-146.078h-37.951a8.954 8.954 0 0 1-8.954-8.92l-.182-47.087a8.955 8.955 0 0 1 8.955-8.989h37.882v-45.498c0-52.8 32.247-81.55 79.348-81.55h38.65a8.955 8.955 0 0 1 8.955 8.955v39.704a8.955 8.955 0 0 1-8.95 8.955l-23.719.011c-25.615 0-30.575 12.172-30.575 30.035v39.389h56.285c5.363 0 9.524 4.683 8.892 10.009l-5.581 47.087a8.955 8.955 0 0 1-8.892 7.901h-50.453l-.251 146.078h87.631c30.422 0 55.084-24.662 55.084-55.084V55.085C408.786 24.662 384.124 0 353.701 0z"/>
+					</svg>
+				</a></li>
+				<li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
+					<img src="instagram-black.svg">
+					<img src="instagram-color.svg">
+				</a></li>
+			</ul>
+			</div>
 		</div>
 	</div>
 	<div class="scrim"></div>
