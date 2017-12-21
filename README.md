@@ -4,4 +4,4 @@ View it at https://czx123.github.io
 
 ### Instructions
 
-(There's a lot so still under construction)
+I can't think of any for now but will be updated in the future.
