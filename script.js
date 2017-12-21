@@ -160,6 +160,7 @@ function startDrag(e) {
     // If user's touch is on the left edge on the screen
 	if (e.target == $dragnavdrawer) {
 		dragging = true;
+		$navdrawer.classList.add('dragging'); // This class is to enable the CSS to create an element that covers the links in the nav drawer to prevent accidental touches
 		navdrawerwidth = $navdrawer.offsetWidth;
 		actualX = previousNavX = navX = Math.round(e.touches[0].clientX*10)/10;
 		requestAnimationFrame(navDragging);
@@ -204,11 +205,13 @@ function mainDrag(e) {
 function endDrag(e) {
 	if (e.target == $dragnavdrawer) {
 		dragging = false;
+        $navdrawer.classList.remove('dragging');
 		if (diffX >= 2 || -2 < diffX && diffX < 2 && navX > navdrawerwidth/2) navAppear = true;
 	}
 	if (navAppear) {
 		if (dragging = 'started') ripplebug = true;
 		dragging = false;
+        $navdrawer.classList.remove('dragging');
 		if (diffX < -2 || -2 < diffX && diffX < 2 && navX <= navdrawerwidth/2) navAppear = false;
 	}
 }

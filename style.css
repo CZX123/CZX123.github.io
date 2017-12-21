@@ -131,6 +131,14 @@ button > div {
 	transform: translate3d(0,0,0);
 	transition: transform .4s, opacity .2s;
 }
+.nav-drawer.dragging::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+}
 .nav-drawer > .scrollbar-animate {
 	height: 100%;
 	overflow-x: hidden;
