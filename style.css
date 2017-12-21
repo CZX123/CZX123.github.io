@@ -404,7 +404,7 @@ section.text blockquote .quote-symbol {
 	height: 96px;
 }
 section.text blockquote .quote {
-	margin-bottom: 8px;
+	margin: 0 0 8px;
 }
 section.text blockquote .author {
 	margin: 0;
