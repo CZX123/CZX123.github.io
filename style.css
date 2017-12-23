@@ -131,6 +131,14 @@ button > div {
 	transform: translate3d(0,0,0);
 	transition: transform .4s, opacity .2s;
 }
+.nav-drawer.dragging::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+}
 .nav-drawer > .scrollbar-animate {
 	height: 100%;
 	overflow-x: hidden;
@@ -282,12 +290,8 @@ button > div {
 .nav-drawer .social-media-icons .facebook .hover svg, .nav-drawer .social-media-icons .facebook :active svg {
     fill: #475993;
 }
-.nav-drawer .social-media-icons .facebook .ripple {
-    background: rgba(255,255,255,.1);
-    z-index: 1;
-}
 .nav-drawer .social-media-icons .instagram {
-    border-radius: 19.066px;
+    border-radius: 14px;
 }
 .nav-drawer .social-media-icons .instagram a > img {
     height: 100%;
@@ -302,6 +306,10 @@ button > div {
 }
 .nav-drawer .social-media-icons .instagram .hover > img:last-child, .nav-drawer .social-media-icons .instagram :active > img:last-child {
     opacity: 1;
+}
+.nav-drawer .social-media-icons .ripple {
+    background: rgba(0,0,0,.15);
+    z-index: 1;
 }
 
 /* The scrim is the dark area when the navigation drawer opens */
