@@ -9,25 +9,39 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Slab">
 <link rel="stylesheet" type="text/css" href="style.css">
 <style>
-div.gallery {
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 300px;
-}
+.gallery button a {
+    display: block;
 
-div.gallery:hover {
-    border: 1px solid #777;
 }
-
-div.gallery img {
+.gallery button a img {
+    display: block;
     width: 100%;
-    height: 200px;
+	height: 160px;
+
+}
+.gallery button a .desc {
+    padding: 0 10px;
+    background: #F5F5F5;
+    font-size: 16px;
+    line-height: 30px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-div.desc {
-    padding: 15px;
-    text-align: center;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 </style>
 </head>
@@ -127,32 +141,39 @@ div.desc {
 	<div class="drag-nav-drawer"></div>
 	<section class="main">
 		<h1>Useful Websites</h1>
-		<div class="gallery">
-		<a target="_blank" href="https://www.police.gov.sg/">
-		<img src="http://www.police.gov.sg/~/media/spf/images/logo/spf_fb.jpg" alt="2017" width="400" height="600">
-		<div class="desc">Singapore Police Force</div>
+			<div class="gallery">
+		<button>
+				<a target="_blank" href="https://www.police.gov.sg/">
+				<img src="http://www.police.gov.sg/~/media/spf/images/logo/spf_fb.jpg" alt="2017" width="400" height="600">		
+				<div class="desc">Singapore Police Force</div>
 		</a>
-  </div>
-		<div class="gallery">
-		<a target="_blank" href="https://www.sgsecure.sg">
-		<img src="https://www.police.gov.sg/sgsecure/~/media/sgsecure/images/sgsecure_logo_v2.png?la=en" alt="2017" width="600" height="500">
-		<div class="desc">SGSecure</div>
+		</button>
+
+		<button>
+			<a target="_blank" href="https://www.sgsecure.sg">
+			<img src="https://www.police.gov.sg/sgsecure/~/media/sgsecure/images/sgsecure_logo_v2.png?la=en" alt="2017" width="600" height="500">
+			<div class="desc">SGSecure</div>
 		</a>
+		</button>
   </div>
   		<div class="gallery">
-		<a target="_blank" href="http://www.npcc.org.sg/">
-		<img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="2017" width="400" height="600">
-		<div class="desc">NPCC Official Website</div>
+		<button>
+			<a target="_blank" href="http://www.npcc.org.sg/">
+			<img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="2017" width="400" height="600">
+			<div class="desc">NPCC Official Website</div>
 		</a>
-  </div>
-    	<div class="gallery">
-		<a target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
-		<img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="2017" width="400" height="600">
-		<div class="desc">NPCC Hub</div>
+		</button>
+
+		<button>
+			<a target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
+			<img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="2017" width="400" height="600">
+			<div class="desc">NPCC Hub</div>
 		</a>
+		</button>
   </div>
   <p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p><p>
   <h1> Other Units </h1>
+  
 
 
 
