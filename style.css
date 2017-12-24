@@ -187,6 +187,7 @@ button > div {
 	left: 20px;
 	fill: rgba(0,0,0,.54);
 	transform: translateY(-50%);
+	transition: fill .2s;
 	z-index: 1;
 	pointer-events: none;
 }
@@ -197,11 +198,12 @@ button > div {
 	line-height: 20px;
 	font-weight: 500;
 	text-decoration: none;
-	transition: background .4s;
+	transition: background .4s, color .2s;
 }
-.nav-drawer ul li a.hover, .nav-drawer ul li a:active {
+.nav-drawer ul li a.hover, .nav-drawer ul li a:active,
+.nav-drawer ul li.dropdown.dropdown-open.active a.hover, .nav-drawer ul li.dropdown.dropdown-open.active a:active {
 	background: #F5F5F5;
-	transition: background .2s;
+	transition: background .2s, color .2s;
 }
 .nav-drawer ul li.active svg {
 	fill: #3F51B5;
@@ -209,6 +211,13 @@ button > div {
 .nav-drawer ul li.active a {
 	background: #EEE;
 	color: #3F51B5;
+}
+.nav-drawer ul li.dropdown.dropdown-open.active svg {
+	fill: rgba(0,0,0,.54);
+}
+.nav-drawer ul li.dropdown.dropdown-open.active a {
+	background: transparent;
+	color: rgba(0,0,0,.87);
 }
 .nav-drawer ul li.dropdown a {
 	padding: 14px 72px;
@@ -363,15 +372,35 @@ button > div {
 }
 
 /* Text Styles */
+section.title {
+	position: relative;
+	background: #3F51B5;
+	z-index: 2;
+}
+section.title h1 {
+	padding: 160px 20% 96px;
+	color: #FFF;
+	font-family: 'Roboto Slab', serif;
+	font-size: 56px;
+	line-height: 1.5;
+}
+section.title::after {
+	content: '';
+	position: absolute;
+	height: 800px;
+	right: 0;
+	bottom: -800px;
+	left: 0;
+	background: #FFF;
+	transform: skewY(-3deg);
+	transform-origin: left;
+}
 section.text {
 	position: relative;
 	padding: 16px 20%;
 	background: #FFF;
 	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
-}
-section.text:first-of-type {
-	padding: 96px 20% 16px;
 }
 section.text h1 {
 	margin: 48px 0;
@@ -384,16 +413,22 @@ section.text h1 {
 section.text {
 	padding: 16px 72px;
 }
-section.text h1 {
+section.text h1, section.title h1 {
 	font-size: 44px;
+}
+section.title h1 {
+	padding: 160px 72px 96px;
 }
 }
 @media (max-width: 450px) {
 section.text {
 	padding: 16px;
 }
-section.text h1 {
+section.text h1, section.title h1 {
 	font-size: 40px;
+}
+section.title h1 {
+	padding: 160px 16px 96px;
 }
 }
 section.text p {
