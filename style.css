@@ -37,7 +37,7 @@ button, a {
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
 }
-button > div {
+button > * {
 	position: relative;
 	height: 100%;
 	overflow: visible; /* Needed for ripple effect to work */
@@ -384,7 +384,6 @@ section.title h1 {
 	font-size: 64px;
 	line-height: 1.5;
 }
-
 section.title::after {
 	content: '';
 	position: absolute;
@@ -396,14 +395,17 @@ section.title::after {
 	transform: skewY(-3deg);
 	transform-origin: left;
 }
-section.text {
+section.main {
 	position: relative;
-	padding: 16px 20%;
+	padding: 16px 20% 32px;
 	background: #FFF;
 	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
 }
-section.text h1 {
+section.title + section.main {
+	padding-top: 48px;
+}
+section.main h1 {
 	margin: 48px 0;
 	color: rgba(0,0,0,.54);
 	font-family: 'Roboto Slab', serif;
@@ -411,10 +413,10 @@ section.text h1 {
 	line-height: 1.5;
 }
 @media (max-width: 767px) {
-section.text {
-	padding: 16px 72px;
+section.main {
+	padding: 16px 72px 32px;
 }
-section.text h1, section.title h1 {
+section.main h1, section.title h1 {
 	font-size: 44px;
 }
 section.title h1 {
@@ -422,27 +424,27 @@ section.title h1 {
 }
 }
 @media (max-width: 450px) {
-section.text {
-	padding: 16px;
+section.main {
+	padding: 16px 16px 32px;
 }
-section.text h1, section.title h1 {
+section.main h1, section.title h1 {
 	font-size: 40px;
 }
 section.title h1 {
 	padding: 160px 16px 96px;
 }
 }
-section.text p {
+section.main p {
 	margin: 24px 0;
 	font-family: 'Roboto Slab', serif;
 	font-size: 18px;
 }
-section.text blockquote {
+section.main blockquote {
 	position: relative;
 	padding-left: 72px;
 	font-style: italic;
 }
-section.text blockquote .quote-symbol {
+section.main blockquote .quote-symbol {
 	display: block;
 	position: absolute;
 	top: -20px;
@@ -450,10 +452,10 @@ section.text blockquote .quote-symbol {
 	fill: rgba(0,0,0,.38);
 	height: 96px;
 }
-section.text blockquote .quote {
+section.main blockquote .quote {
 	margin: 0 0 8px;
 }
-section.text blockquote .author {
+section.main blockquote .author {
 	margin: 0;
 	text-align: right;
 }
