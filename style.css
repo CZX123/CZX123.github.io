@@ -370,6 +370,9 @@ section.text {
 	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
 }
+section.text:first-of-type {
+	padding: 96px 20% 16px;
+}
 section.text h1 {
 	margin: 48px 0;
 	color: rgba(0,0,0,.54);
