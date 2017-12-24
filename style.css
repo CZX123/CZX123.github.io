@@ -381,9 +381,10 @@ section.title h1 {
 	padding: 160px 20% 96px;
 	color: #FFF;
 	font-family: 'Roboto Slab', serif;
-	font-size: 56px;
+	font-size: 64px;
 	line-height: 1.5;
 }
+
 section.title::after {
 	content: '';
 	position: absolute;
