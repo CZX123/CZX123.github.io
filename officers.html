@@ -9,21 +9,34 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Slab">
 <link rel="stylesheet" type="text/css" href="style.css">
 <style>
+section * {
+    text-align: center;
+}
+.grid {
+    justify-content: center;
+}
+section.main .grid > * {
+    max-width: 200px;
+}
 .grid button a {
     display: block;
-	margin: 0;
-
 }
 .grid button a img {
     display: block;
     width: 100%;
-
 }
 .grid button a .desc {
-    padding: 0 10px;
+    padding: 12px 16px;
     background: #F5F5F5;
     font-size: 16px;
-    line-height: 30px;
+    font-weight: 500;
+    line-height: 24px;
+}
+.grid button .ripple.appear {
+	transition: transform .7s cubic-bezier(.4,0,.2,1), opacity .3s;
+}
+.grid button .ripple.finish.fade-out {
+	transition: transform .7s cubic-bezier(.4,0,.2,1), opacity .5s;
 }
 </style>
 </head>
@@ -126,7 +139,6 @@
 	</section>
 	<section class="main">
 		<h1>Teacher Officers</h1>
-			<section class="main">
 		<div class="grid">
             <button>
                 <a target="_blank" href="">
@@ -164,23 +176,16 @@
                 </a>
             </button>
 		</div>
-
-			</section>
-
 		<h1>Honourary Officer</h1>
-			<section class="main">
 		<div class="grid">
 			<button>
 				<a target="_blank" href="">
 					<img src="https://media.discordapp.net/attachments/379974652572860416/394505879564713984/chiayw.jpg">
-					<div class="desc"> H/ASP (NPCC) Dr Chia Yew Woon (Honorary Officer) </div>
+					<div class="desc"> H/ASP (NPCC) Dr Chia Yew Woon</div>
 				</a>
 			</button>
 		</div>
-			</section>
-
-		<h1>Cadet Inspector(s)</h1>
-						<section class="main">
+		<h1>Cadet Inspectors</h1>
 		<div class="grid">
 			<button>
 				<a target="_blank" href="">
@@ -195,9 +200,7 @@
 				</a>
 			</button>
 		</div>
-			</section>
-
-
+    </section>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
