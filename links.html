@@ -9,23 +9,34 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Slab">
 <link rel="stylesheet" type="text/css" href="style.css">
 <style>
+section.main .grid > * {
+    flex-basis: calc(50% - 24px);
+}
+@media (max-width: 600px) {
+section.main .grid > * {
+    flex-basis: 100%;
+}
+}
 .grid button a {
     display: block;
-
 }
 .grid button a img {
     display: block;
     width: 100%;
-	height: 160px;
-
 }
 .grid button a .desc {
-    padding: 0 10px;
+    padding: 0 16px;
     background: #F5F5F5;
     font-size: 16px;
-    line-height: 30px;
+    font-weight: 500;
+    line-height: 48px;
 }
-
+.grid button .ripple.appear {
+	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .28s;
+}
+.grid button .ripple.finish.fade-out {
+	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .5s;
+}
 </style>
 </head>
 
@@ -122,46 +133,40 @@
 	</div>
 	<div class="scrim"></div>
 	<div class="drag-nav-drawer"></div>
+	<section class="title">
+		<h1>Useful Links</h1>
+	</section>
 	<section class="main">
-		<h1>Useful Websites</h1>
-			<div class="grid">
-		<button>
+		<h1>Other Websites</h1>
+		<div class="grid">
+            <button>
 				<a target="_blank" href="https://www.police.gov.sg/">
-				<img src="http://www.police.gov.sg/~/media/spf/images/logo/spf_fb.jpg" alt="2017" width="400" height="600">
-				<div class="desc">Singapore Police Force</div>
-		</a>
-		</button>
+                    <img src="http://www.police.gov.sg/~/media/spf/images/logo/spf_fb.jpg" alt="SPF">
+                    <div class="desc">Singapore Police Force</div>
+                </a>
+            </button>
+            <button>
+                <a target="_blank" href="https://www.sgsecure.sg">
+                    <img src="sgsecure.png" alt="SGSecure">
+                    <div class="desc">SGSecure</div>
+                </a>
+            </button>
+            <button>
+                <a target="_blank" href="https://www.sgsecure.sg">
+                    <img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="NPCC Website">
+                    <div class="desc">NPCC Official Website</div>
+                </a>
+            </button>
+    		<button>
+    			<a target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
+                    <img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="NPCC Hub">
+                    <div class="desc">NPCC Hub</div>
+                </a>
+    		</button>
+        </div>
+        <h1>Other Units</h1>
 
-		<button>
-			<a target="_blank" href="https://www.sgsecure.sg">
-			<img src="https://www.police.gov.sg/sgsecure/~/media/sgsecure/images/sgsecure_logo_v2.png?la=en" alt="2017" width="600" height="500">
-			<div class="desc">SGSecure</div>
-		</a>
-		</button>
-  </div>
-  		<div class="grid">
-		<button>
-			<a target="_blank" href="http://www.npcc.org.sg/">
-			<img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="2017" width="400" height="600">
-			<div class="desc">NPCC Official Website</div>
-		</a>
-		</button>
-
-		<button>
-			<a target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
-			<img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="2017" width="400" height="600">
-			<div class="desc">NPCC Hub</div>
-		</a>
-		</button>
-  </div>
-  <p>
-  <h1> Other Units </h1>
-
-
-
-
-
-  </section>
+    </section>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>

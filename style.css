@@ -406,6 +406,9 @@ section.main {
 section.title + section.main {
 	padding-top: 48px;
 }
+section.title + section.main h1:first-of-type {
+	margin-top: 0;
+}
 section.main .grid {
     display: flex;
     align-items: baseline;
