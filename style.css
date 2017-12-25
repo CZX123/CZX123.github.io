@@ -406,13 +406,13 @@ section.main {
 section.title + section.main {
 	padding-top: 48px;
 }
-section.main .gallery {
+section.main .grid {
     display: flex;
-    align-items: flex-start;
+    align-items: baseline;
     flex-wrap: wrap;
     margin: 0 -12px;
 }
-section.main .gallery > * {
+section.main .grid > * {
     display: block;
     flex-basis: calc((100% - 72px) / 3);
     margin: 12px;
@@ -425,7 +425,7 @@ section.main h1 {
 	line-height: 1.5;
 }
 @media (max-width: 880px) {
-section.main .gallery > * {
+section.main .grid > * {
     flex-basis: calc(50% - 24px);
 }
 }
@@ -452,7 +452,7 @@ section.title h1 {
 }
 }
 @media (max-width: 400px) {
-section.main .gallery > * {
+section.main .grid > * {
     flex-basis: 100%;
 }
 }
