@@ -5,7 +5,7 @@ Simply paste the original HTML markup into The Advanced Form, and after that rep
 
 Since the new JavaScript code is unreadable by humans, it is necessary to paste the original HTML markup code here, for reference. If anything wrong happens (e.g. the emails have changed), please edit the HTML markup below first, and then head to the website and encrypt it.
 
-Note: Only this part: <a href="mailto:someone@hci.edu.sg"> needs to be encrypted and replaced with the encrypted JavaScript code. The rest is untouched. Look at the 'officers.html' file for reference.
+Note: Only this part: <a href="mailto:someone@hci.edu.sg"> needs to be encrypted and replaced with the encrypted JavaScript code. The rest is untouched. Look at the 'officers.html' file for reference. Also, DO NOT upload this text file onto the official HCINPCC github website.
 
 Here is the original HTML code before encryption, starting from the main section:
 
