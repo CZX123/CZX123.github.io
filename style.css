@@ -432,7 +432,7 @@ section.main h1 {
 	line-height: 1.5;
 }
 section.main h2 {
-	margin: 24px 0 0;
+	margin: 24px 0 12px;
 	font-family: 'Roboto Slab', serif;
 	font-size: 28px;
 	line-height: 1.5;
