@@ -13,4 +13,4 @@ View it at https://czx123.github.io
   - Theme color: #3F51B5
   - More values can be accessed here: https://material-components-web.appspot.com/
 - No dividers or borders at all. Make use of whitespace or coloured backgrounds to structure or separate information
-- Ripple effects by default would work on all <button> elements. Simply make sure that all elements in the button are all 'display:block', and the ripple should work just fine.
+- Ripple effects by default would work on all `<button>` elements. Simply make sure that all elements in the button are all `display:block;`, and the ripple should work just fine.
