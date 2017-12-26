@@ -73,6 +73,30 @@ section.main .grid p {
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
 }
+section.main button {
+	width: 100%;
+	margin-top: 40px;
+}
+section.main button a {
+    display: block;
+}
+section.main button a img {
+    display: block;
+    width: 100%;
+}
+section.main button a .desc {
+    padding: 12px 16px;
+    background: #F5F5F5;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+section.main button .ripple.appear {
+	transition: transform .7s cubic-bezier(.4,0,.2,1), opacity .3s;
+}
+section.main button .ripple.finish.fade-out {
+	transition: transform .7s cubic-bezier(.4,0,.2,1), opacity .5s;
+}
 @media (max-width: 1084px) {
 section.main {
 	padding: 16px 10% 32px;
@@ -332,6 +356,12 @@ section.main .grid.fi > * {
 				<p>Soh Wei Kiat</p>
 			</div>
 		</div>
+		<button>
+			<a target="_blank" href="https://cdn.discordapp.com/attachments/379974652572860416/394057197841285120/ExCo_Chart.jpg">
+				<img src="https://cdn.discordapp.com/attachments/379974652572860416/394057197841285120/ExCo_Chart.jpg" alt="ExCo Chart">
+				<div class="desc">ExCo Chart</div>
+			</a>
+		</button>
 	</section>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
