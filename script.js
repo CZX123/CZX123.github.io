@@ -235,7 +235,6 @@ for (var d = 0; d < $dropdown.length; d++) {
 }
 function dropdownTransition(e) {
     var $dropdowncontent = e.parentElement.nextElementSibling.children[0];
-    console.log($dropdowncontent);
     if (e.parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
     else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 }
