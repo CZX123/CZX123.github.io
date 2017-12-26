@@ -19,11 +19,36 @@ window.addEventListener('resize', function() {
 	windowHeight = window.innerHeight;
 });
 
+
+// Toggle class when a dropdown is clicked
+// This is placed in front so that the function can be called when window resizes
+var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a, section.main button.dropdown > div'),
+    d; // d is the number of dropdowns - 1
+// Selects all dropdowns and adds a click listener
+for (var d = 0; d < $dropdown.length; d++) {
+    dropdownTransition($dropdown[d]);
+	$dropdown[d].addEventListener('click', function() {
+        this.parentElement.classList.toggle('dropdown-open');
+        dropdownTransition(this);
+	});
+}
+function dropdownTransition(e) {
+    var $dropdowncontent = e.parentElement.nextElementSibling.children[0];
+    if (e.parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
+    else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
+}
+
+
 // The scrolling function that gets called 60 times a second to ensure smooth performance. The $parallax refers to the top element which would have a parallax effect when scrolling down. $parallax needs to be initialised separately for each individual page which needs it
 function scrolling() {
 	latestY = window.pageYOffset;
 	if (latestY != previousY || resize) {
-		if (resize) resize = false;
+		if (resize) {
+            resize = false;
+            for (var d = 0; d < $dropdown.length; d++) {
+                dropdownTransition($dropdown[d]);
+            }
+        }
 		if ($parallax && latestY <= windowHeight && isIE == false) {
 			$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
 		}
@@ -218,25 +243,6 @@ function endDrag(e) {
         $navdrawer.classList.remove('dragging');
 		if (diffX < -2 || -2 < diffX && diffX < 2 && navX <= navdrawerwidth/2) navAppear = false;
 	}
-}
-
-// Toggle class when a dropdown is clicked
-var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a, section.main button.dropdown > div'),
-    d; // d is the number of dropdowns - 1
-// Selects all dropdowns and adds a click listener
-for (var d = 0; d < $dropdown.length; d++) {
-
-    dropdownTransition($dropdown[d]);
-
-	$dropdown[d].addEventListener('click', function() {
-        this.parentElement.classList.toggle('dropdown-open');
-        dropdownTransition(this);
-	});
-}
-function dropdownTransition(e) {
-    var $dropdowncontent = e.parentElement.nextElementSibling.children[0];
-    if (e.parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
-    else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 }
 
 

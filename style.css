@@ -401,6 +401,7 @@ section.title::after {
 }
 section.main {
 	position: relative;
+	min-height: calc(100vh - 300px);
 	padding: 16px 20% 32px;
 	background: #FFF;
 	box-shadow: 0 0 60px rgba(0,0,0,.2);
@@ -456,6 +457,9 @@ section.main h1, section.title h1 {
 section.title h1 {
 	padding: 160px 16px 96px;
 }
+section.main button.dropdown {
+	border-radius: 0;
+}
 }
 @media (max-width: 400px) {
 section.main .grid > * {
@@ -500,7 +504,7 @@ section.main button.hover, section.main button:active {
 section.main button.dropdown {
 	display: block;
 	height: 48px;
-	width: 100%;
+	width: calc(100% + 32px);
 	margin: 0 -16px;
 	text-align: left;
 	box-shadow: none;
