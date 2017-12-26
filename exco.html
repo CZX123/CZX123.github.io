@@ -5,106 +5,97 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#000">
 <title>Unit Hierarchy | HCINPCC Unit Website</title>
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"><!--flickity.min.css-->
+<script>
+function filterFeatureDetect(enableWebkit) {
+	if (enableWebkit === undefined) enableWebkit = false;
+	var el = document.createElement('div');
+	el.style.cssText = (enableWebkit?'-webkit-':'') + 'filter: blur(2px)';
+	test1 = (el.style.length != 0);
+	test2 = document.documentMode === undefined || document.documentMode > 9;
+	return test1 && test2;
+}
+</script>
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Slab">
 <link rel="stylesheet" type="text/css" href="style.css">
 <style>
-section.parallax-wrapper {
-	position: relative;
-	height: 100vh;
-	overflow: hidden;
+section {
+	text-align: center;
 }
-section.parallax-wrapper .carousel {
+section.parallax-wrapper {
+	height: 100vh;
+	background: #000;
+}
+section.parallax-wrapper .parallax {
+	position: relative;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 100vh;
+}
+section.parallax-wrapper .exco-image, section.parallax-wrapper .exco-background {
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: #000;
+	background: url(https://cdn.discordapp.com/attachments/379974652572860416/394058395461877774/ExCo_Photo.jpeg) center no-repeat;
+	background-size: contain;
+	z-index: 1;
 }
-.carousel .flickity-slider {
-	overflow: visible;
+section.parallax-wrapper .exco-background {
+	background-size: cover;
+	-webkit-filter: blur(15px);
+	filter: blur(15px);
+	transform: scale(1.2);
 }
-.carousel img {
-	display: block;
-	height: 100vh;
+section.main .grid {
+	justify-content: center;
+	align-items: center;
 }
-.flickity-page-dots {
-	display: inline-block;
-	visibility: hidden;
-	width: auto;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	opacity: 0;
-	transition: opacity .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
+section.main .grid > * {
+	flex-basis: calc(50% - 24px);
+	padding: 10px 0;
 }
-.mousemove .flickity-page-dots {
-	visibility: visible;
-	opacity: 1;
-	transition-delay: 0s;
+section.main .grid.fi > * {
+	flex-basis: calc((100% - 72px) / 3);
 }
-.flickity-page-dots .dot {
-	height: 17px;
-	width: 17px;
+section.main .grid h2 {
+	margin-bottom: 10px;
+	color: rgba(0,0,0,.87);
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.3;
+}
+section.main .grid p {
 	margin: 0;
-	background: transparent;
-	opacity: 1;
+	font-family: 'Roboto', sans-serif;
 }
-.flickity-page-dots .dot::after {
-	content: '';
-	display: block;
-	height: 7px;
-	width: 7px;
-	margin: 5px;
-	border-radius: 50%;
-	background: #FFF;
-	opacity: .8;
-	transition: all .3s cubic-bezier(0,0,.2,1);
-	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+@media (max-width: 1084px) {
+section.main {
+	padding: 16px 10% 32px;
 }
-.flickity-page-dots .dot.is-selected::after {
-	opacity: 1;
-	transform: scale(1.5);
 }
-.flickity-custom-button {
-	position: absolute;
-	visibility: hidden;
-	height: 48px;
-	width: 48px;
-	top: 50%;
-	outline: 0;
-	border-radius: 50%;
-	padding: 0;
-	background: rgba(0,0,0,0);
-    transform: translateY(-50%);
-	opacity: 0;
-	transition: all .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
+@media (max-width: 816px) {
+section.main {
+	padding: 16px 3.6% 32px;
 }
-.flickity-custom-button .ripple {
-    background: rgba(0,0,0,.2);
 }
-.mousemove ~ .flickity-custom-button {
-	visibility: visible;
-	opacity: 1;
-	transition-delay: 0s;
+@media (max-width: 638px) {
+section.main .grid > * {
+	flex-basis: 100%;
+	max-width: 310px;
 }
-.flickity-custom-button.hover, .flickity-custom-button:active {
-	background: rgba(0,0,0,.2);
+section.main .grid.fi > * {
+	flex-basis: calc(50% - 24px);
 }
-.flickity-custom-button.flickity-prev {
-	left: 12px;
 }
-.flickity-custom-button.flickity-next {
-	right: 12px;
+@media (max-width: 410px) {
+section.main .grid.fi > * {
+	flex-basis: 100%;
 }
-.flickity-custom-button > div {
-	padding: 10px;
-}
-.flickity-custom-button svg {
-	height: 28px;
-	width: 28px;
-	fill: #FFF;
 }
 </style>
 </head>
@@ -209,314 +200,162 @@ section.parallax-wrapper .carousel {
 	<div class="scrim"></div>
 	<div class="drag-nav-drawer"></div>
 	<section class="parallax-wrapper">
-		<div class="carousel">
-			<img src="https://cdn.discordapp.com/attachments/379974652572860416/394058395461877774/ExCo_Photo.jpeg">
-			<img src="https://cdn.discordapp.com/attachments/379974652572860416/394057197841285120/ExCo_Chart.jpg">
-			<img src="https://cdn.discordapp.com/attachments/379974652572860416/394058395461877774/ExCo_Photo.jpeg">
-			<img src="https://cdn.discordapp.com/attachments/379974652572860416/394057197841285120/ExCo_Chart.jpg">
+		<div class="parallax">
+			<div class="exco-background"></div>
+			<script>
+			if (!filterFeatureDetect()) document.getElementsByClassName('exco-background')[0].style.backgroundImage = 'url(exco-blurred.jpg)';
+			</script>
+			<div class="exco-image"></div>
 		</div>
-		<button class="flickity-custom-button flickity-prev">
-			<div>
-				<svg viewBox="0 0 24 24">
-					<path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/>
-				</svg>
-			</div>
-		</button>
-		<button class="flickity-custom-button flickity-next">
-			<div>
-				<svg viewBox="0 0 24 24">
-					<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
-				</svg>
-			</div>
-		</button>
 	</section>
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script><!--flickity.pkgd.min.js-->
-<script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script><!--pep.min.js-->
+	<section class="main">
+		<h1>Unit Hierarchy</h1>
+		<h2>ExCo</h2>
+		<div class="grid">
+			<div>
+				<h2>Executive Committee Chairman</h2>
+				<p>Pang Ren Jie, Adriale</p>
+			</div>
+		</div>
+		<div class="grid">
+			<div>
+				<h2>Support Services Division Chairman</h2>
+				<p>Xiang Yang</p>
+			</div>
+		</div>
+		<div class="grid">
+			<div>
+				<h2>Publications Department</h2>
+				<p>Head: Soh Wei Kiat</p>
+				<p>Cai Zhouxuan</p>
+				<p>Lim Yik Jin</p>
+			</div>
+			<div>
+				<h2>Logistics Department</h2>
+				<p>Head: Ong Zong Jun</p>
+				<p>Zhang Zelin</p>
+			</div>
+		</div>
+		<div class="grid">
+			<div>
+				<h2>Unit Policies Division Chairman</h2>
+				<p>Yeo Choon Wee</p>
+			</div>
+		</div>
+		<div class="grid">
+			<div>
+				<h2>Training Department</h2>
+				<p>Head (Development): Woi Youyang</p>
+				<p>Head (Training): Dominic Yeo Kian</p>
+			</div>
+			<div>
+				<h2>Assessments and Awards Department</h2>
+				<p>Head: Koh Jun Wei</p>
+				<p>Leong Sze Wei, Joseph</p>
+				<p>Loh Jay Hon, Giggs</p>
+			</div>
+		</div>
+		<div class="grid">
+			<div>
+				<h2>External Affairs Division Chairman</h2>
+				<p>Chan Yu Cher</p>
+			</div>
+		</div>
+		<div class="grid">
+			<div>
+				<h2>Operations Department</h2>
+				<p>Head: Tan Yu Hang</p>
+				<p>Wei Kai Zhe, Joshua</p>
+				<p>Yiow Meng Loong</p>
+			</div>
+			<div>
+				<h2>Community Service and Skills Development Department</h2>
+				<p>Head: Lim Kong Kiat</p>
+				<p>Ho Xu Wen</p>
+				<p>Yau Chun En</p>
+			</div>
+		</div>
+		<h2>Field Instructors</h2>
+		<div class="grid fi">
+			<div>
+				<h2>Weapons Training</h2>
+				<p>Lim Yik Jin</p>
+				<p>Soh Wei Kiat</p>
+			</div>
+			<div>
+				<h2>Physical Training</h2>
+				<p>Yau Chun En</p>
+				<p>Yiow Meng Loong</p>
+			</div>
+			<div>
+				<h2>Drill</h2>
+				<p>Chan Yu Cher</p>
+				<p>Pang Ren Jie, Adriale</p>
+			</div>
+			<div>
+				<h2>Campcraft</h2>
+				<p>Xiang Yang</p>
+				<p>Yeo Choon Wee</p>
+			</div>
+			<div>
+				<h2>Survival</h2>
+				<p>Dominic Yeo Kian</p>
+				<p>Koh Jun Wei</p>
+			</div>
+		</div>
+		<h2>Squad NCOs</h2>
+		<div class="grid">
+			<div>
+				<h2>Secondary 1</h2>
+				<p>Lim Kong Kiat</p>
+				<p>Woi Youyang</p>
+				<p>Yau Chun En</p>
+				<p>Yeo Choon Wee</p>
+			</div>
+			<div>
+				<h2>Secondary 2</h2>
+				<p>Chan Yu Cher</p>
+				<p>Leong Sze Wei, Joseph</p>
+				<p>Low Jay Hon, Giggs</p>
+				<p>Yiow Meng Loong</p>
+			</div>
+			<div>
+				<h2>Secondary 3</h2>
+				<p>Dominic Yeo Kian</p>
+				<p>Koh Jun Wei</p>
+				<p>Pang Ren Jie, Adriale</p>
+				<p>Xiang Yang</p>
+			</div>
+			<div>
+				<h2>Secondary 4</h2>
+				<p>Ho Xu Wen</p>
+				<p>Soh Wei Kiat</p>
+			</div>
+		</div>
+	</section>
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
+<script src="script.js"></script>
 <script>
-var $parallax = document.getElementsByClassName('carousel')[0], $body = document.getElementsByTagName('body')[0], p, latestY = window.pageYOffset, previousY, resize, windowHeight = window.innerHeight, mousemove, timer;
+// Code for the exco image
+var $parallax = document.getElementsByClassName('parallax')[0],
+    timer;
 
-// Ripple + Nav
-var $html = document.getElementsByTagName('html')[0],
-	$navbar = document.getElementsByClassName('navbar')[0],
-	$menu = document.getElementsByClassName('menu')[0],
-	$navdrawer = document.getElementsByClassName('nav-drawer')[0],
-	$dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a'), d,
-	$scrim = document.getElementsByClassName('scrim')[0],
-	$dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0], initialX = 0, actualX = 0, navX = 0, previousNavX = 0, diffX = 0, dragging = false, navdrawerwidth = $navdrawer.offsetWidth, navAppear = false, navTranslate, iterations = 0, start, total, ripplebug,
-	$ripplelist = document.querySelectorAll('.nav-drawer ul li a, button'), rippledown = false, x, y, rippletimer = 0;
-
-var flkty = new Flickity($parallax, {
-	wrapAround: true,
-	prevNextButtons: false,
-	imagesLoaded: true,
-	percentPosition: false
-});
-
-window.addEventListener('resize', function() {
-	resize = true;
-	windowHeight = window.innerHeight;
-});
-function scrolling() {
-	latestY = window.pageYOffset;
-	if (latestY != previousY || resize) {
-		if (resize) resize = false;
-		if (latestY <= windowHeight) {
-			$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
-		}
-	}
-	if (mousemove && latestY < 10) {
-		$navbar.classList.remove('hide');
-		$parallax.classList.add('mousemove');
-	}
-	else {
-		if (!mousemove && latestY < 10) $navbar.classList.add('hide');
-		$parallax.classList.remove('mousemove');
-	}
-	if (latestY > previousY && latestY >= 10) {
-		$navbar.classList.add('hide');
-	}
-	if (latestY >= 10 && latestY < previousY || latestY != previousY && previousY == null) {
-		$navbar.classList.remove('hide');
-	}
-	previousY = latestY;
-	requestAnimationFrame(scrolling);
+$parallax.style.opacity = 1 - latestY/windowHeight;
+if (isIE) {
+	$parallax.style.position = 'fixed';
 }
-scrolling();
+else {
+	$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
+}
 
 $parallax.addEventListener('mousemove', carouselActive);
 $parallax.addEventListener('click', carouselActive);
-flkty.on('select', carouselActive);
 
 function carouselActive() {
 	mousemove = true;
 	clearTimeout(timer);
 	timer = setTimeout(function(){mousemove = false;}, 1500);
-}
-
-var $prevbutton = document.getElementsByClassName('flickity-prev')[0],
-	$nextbutton = document.getElementsByClassName('flickity-next')[0];
-
-$prevbutton.addEventListener('click', function(){
-	flkty.previous(true);
-});
-$nextbutton.addEventListener('click', function(){
-	flkty.next(true);
-});
-
-$menu.addEventListener('click', function() {
-	navAppear = true;
-	$navdrawer.classList.add('active');
-	$navdrawer.removeAttribute('style');
-	$scrim.removeAttribute('style');
-	$html.style.overflow = 'hidden';
-});
-$scrim.addEventListener('click', function() {
-	navAppear = false;
-	$navdrawer.classList.remove('active');
-	$navdrawer.removeAttribute('style');
-	$scrim.removeAttribute('style');
-	$html.removeAttribute('style');
-});
-
-for (var d = 0; d < $dropdown.length; d++) {
-	$dropdown[d].addEventListener('click', function() {
-		this.parentElement.classList.toggle('dropdown-open');
-	});
-}
-
-// Activate the ripple
-for (var i = 0; i < $ripplelist.length; i++) {
-	var $div = document.createElement('DIV');
-	$div.className = 'ripple';
-	if ($ripplelist[i].tagName == 'A') $ripplelist[i].parentElement.appendChild($div);
-	else $ripplelist[i].children[0].appendChild($div);
-	$ripplelist[i].addEventListener('pointerdown', function(e) {
-		rippleDown(this, e);
-	});
-	$ripplelist[i].addEventListener('pointerup', function(e) {
-		rippleUp(this, e);
-	});
-	$ripplelist[i].addEventListener('pointerleave', function(e) {
-		rippleUp(this, e);
-		hover(this, e, 'leave');
-	});
-	$ripplelist[i].addEventListener('pointerenter', function(e) {
-		hover(this, e, 'enter');
-	});
-}
-function hover(element, e, direction) {
-	if (e.pointerType == 'touch') return false;
-	if (direction == 'enter') element.classList.add('hover');
-	else element.classList.remove('hover');
-}
-function rippleDown(element, e) {
-	rippledown = true;
-	if (element.tagName == 'A') var target = element.parentElement.lastElementChild;
-	else var target = element.children[0].lastElementChild;
-	if (rippletimer) {
-		clearTimeout(rippletimer);
-		timer2 = rippletimer;
-		target.classList.remove('appear');
-	}
-	target.classList.remove('fade-out', 'finish');
-	x = Math.round(e.clientX - element.getBoundingClientRect().left);
-	y = Math.round(e.clientY - element.getBoundingClientRect().top);
-	var radius = Math.max(Math.sqrt(x*x + y*y),
-	                      Math.sqrt(x*x + (element.offsetHeight-y)*(element.offsetHeight-y)),
-					      Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + y*y),
-				 	      Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + (element.offsetHeight-y)*(element.offsetHeight-y)));
-	target.style.height = target.style.width = radius * 2 + 'px';
-	target.style.top = y + 'px';
-	target.style.left = x + 'px';
-	target.classList.add('appear');
-	rippletimer = setTimeout(function() {
-		target.classList.add('finish');
-		if (target.classList.contains('fade-out')) target.classList.remove('appear');
-		rippletimer = 0;
-	}, 400);
-}
-function rippleUp(element, e) {
-	rippledown = false;
-	if (element.tagName == 'A') var target = element.parentElement.lastElementChild;
-	else var target = element.children[0].lastElementChild;
-	target.classList.add('fade-out');
-	if (!rippletimer) target.classList.remove('appear');
-	setTimeout(function() {
-		if (rippledown == false && target.classList.contains('appear')) {
-			target.classList.add('finish');
-			target.classList.remove('appear');
-		}
-	}, 400);
-}
-
-// Draggable nav drawer
-var supportsPassive = false;
-document.createElement("div").addEventListener("test", function() {}, {
-	get passive() {
-		supportsPassive = true;
-		return false;
-	}
-});
-if (supportsPassive) {
-	document.addEventListener('touchstart', startDrag, {passive: true});
-	document.addEventListener('touchmove', mainDrag, {passive: true});
-	document.addEventListener('touchend', endDrag, {passive: true});
-	document.addEventListener('touchcancel', endDrag, {passive: true});
-}
-else {
-	document.addEventListener('touchstart', startDrag);
-	document.addEventListener('touchmove', mainDrag);
-	document.addEventListener('touchend', endDrag);
-	document.addEventListener('touchcancel', endDrag);
-}
-function easeOutCubic(t, b, c, d) {
-	return Math.round((-c*((t=t/d-1)*t*t*t - 1) + b)*10)/10;
-}
-function navDragging() {
-	if (dragging == 'started') {
-		requestAnimationFrame(navDragging);
-		return false;
-	}
-	if (dragging) navTranslate = navX - navdrawerwidth;
-	$navdrawer.style.transform = 'translate3d(' + navTranslate + 'px,0,0)';
-	$scrim.style.opacity = Math.round((navTranslate + navdrawerwidth)/navdrawerwidth*1e2)/1e2;
-	if (dragging) {
-		iterations = 0;
-		requestAnimationFrame(navDragging);
-	}
-	// When dragging the nav drawer into view but force is not enough OR dragging it out of view and force is enough
-	else if (diffX <= -2 || -2 < diffX && diffX < 2 && navX < navdrawerwidth/2) {
-		start = navTranslate;
-		// End of x: -navdrawerwidth
-		// Difference: -navdrawerwidth - navTranslate
-		// Duration: 4 seconds
-		// Total iterations: 4 * 60 = 240
-		total = 220;
-		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
-		if (diffX >= 100 || diffX <= -100) total = 20;
-		navTranslate = easeOutCubic(iterations, start, 0 - navdrawerwidth - start, total);
-		iterations++;
-		if (iterations < total && start != -navdrawerwidth) requestAnimationFrame(navDragging);
-		else {
-			iterations = 0;
-			$navdrawer.removeAttribute('style');
-			$scrim.removeAttribute('style');
-			$navdrawer.classList.remove('active');
-			$html.removeAttribute('style');
-		}
-	}
-	// When dragging the nav drawer into view and force is enough OR dragging it out of view but force is not enough
-	else {
-		start = navTranslate;
-		// End of x: 0
-		// Difference: -navTranslate
-		// Duration: 4 seconds
-		// Total iterations: 4 * 60 = 240
-		total = 220;
-		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
-		if (diffX >= 100 || diffX <= -100) total = 20;
-		navTranslate = easeOutCubic(iterations, start, -start, total);
-		iterations++;
-		if (iterations < total && start != 0 && !ripplebug) requestAnimationFrame(navDragging);
-		else {
-			iterations = 0;
-			$navdrawer.removeAttribute('style');
-			$scrim.removeAttribute('style');
-		}
-		if (ripplebug) ripplebug = false;
-	}
-}
-function startDrag(e) {
-	if (e.target == $dragnavdrawer) {
-		dragging = true;
-		navdrawerwidth = $navdrawer.offsetWidth;
-		actualX = previousNavX = navX = Math.round(e.touches[0].clientX*10)/10;
-		requestAnimationFrame(navDragging);
-		$navdrawer.classList.add('active');
-	}
-	if (navAppear) {
-		dragging = 'started';
-		navdrawerwidth = $navdrawer.offsetWidth;
-		actualX = initialX = Math.round(e.touches[0].clientX*10)/10;
-		// previousNavX = navX = Math.round(e.touches[0].clientX*10)/10 - initialX + navdrawerwidth; Simplified
-		previousNavX = navX = navdrawerwidth;
-		diffX = 0;
-		cancelAnimationFrame(navDragging);
-		navDragging();
-	}
-}
-function mainDrag(e) {
-	if (e.target == $dragnavdrawer) {
-		$navdrawer.style.transition = 'none';
-		$scrim.style.transition = 'none';
-		actualX = Math.round(e.touches[0].clientX*10)/10;
-		if (actualX >= navdrawerwidth) navX = navdrawerwidth;
-		else navX = actualX;
-		diffX = navX - previousNavX;
-		previousNavX = navX;
-		$html.style.overflow = 'hidden';
-	}
-	if (navAppear) {
-		dragging = true;
-		$navdrawer.style.transition = 'none';
-		$scrim.style.transition = 'none';
-		actualX = Math.round(e.touches[0].clientX*10)/10;
-		if (actualX >= initialX) navX = navdrawerwidth;
-		else navX = Math.round(e.touches[0].clientX*10)/10 - initialX + navdrawerwidth;
-		diffX = navX - previousNavX;
-		previousNavX = navX;
-	}
-}
-function endDrag(e) {
-	if (e.target == $dragnavdrawer) {
-		dragging = false;
-		if (diffX >= 2 || -2 < diffX && diffX < 2 && navX > navdrawerwidth/2) navAppear = true;
-	}
-	if (navAppear) {
-		if (dragging = 'started') ripplebug = true;
-		dragging = false;
-		if (diffX < -2 || -2 < diffX && diffX < 2 && navX <= navdrawerwidth/2) navAppear = false;
-	}
 }
 </script>
 </body>

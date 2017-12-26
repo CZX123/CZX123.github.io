@@ -431,6 +431,12 @@ section.main h1 {
 	font-size: 48px;
 	line-height: 1.5;
 }
+section.main h2 {
+	margin: 24px 0 0;
+	font-family: 'Roboto Slab', serif;
+	font-size: 28px;
+	line-height: 1.5;
+}
 @media (max-width: 880px) {
 section.main .grid > * {
     flex-basis: calc(50% - 24px);
