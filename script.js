@@ -239,7 +239,7 @@ for (var i = 0; i < $ripplelist.length; i++) {
 	var $div = document.createElement('DIV');
 	$div.className = 'ripple';
 	if ($ripplelist[i].tagName == 'A') $ripplelist[i].parentElement.appendChild($div);
-	else $ripplelist[i].children[0].appendChild($div);
+	else $ripplelist[i].lastElementChild.appendChild($div);
 	$ripplelist[i].addEventListener('pointerdown', function(e) {
 		rippleDown(this, e);
 	});
@@ -263,7 +263,7 @@ function hover(element, e, direction) {
 function rippleDown(element, e) {
 	rippledown = true;
 	if (element.tagName == 'A') var target = element.parentElement.lastElementChild;
-	else var target = element.children[0].lastElementChild;
+	else var target = element.lastElementChild.lastElementChild;
 	if (rippletimer) {
 		clearTimeout(rippletimer);
 		timer2 = rippletimer;
@@ -289,7 +289,7 @@ function rippleDown(element, e) {
 function rippleUp(element, e) {
 	rippledown = false;
 	if (element.tagName == 'A') var target = element.parentElement.lastElementChild;
-	else var target = element.children[0].lastElementChild;
+	else var target = element.lastElementChild.lastElementChild;
 	target.classList.add('fade-out');
 	if (!rippletimer) target.classList.remove('appear');
 	setTimeout(function() {
