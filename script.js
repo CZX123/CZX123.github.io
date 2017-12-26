@@ -221,13 +221,23 @@ function endDrag(e) {
 }
 
 // Toggle class when a dropdown is clicked
-var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a'),
+var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a, section.main button.dropdown > div'),
     d; // d is the number of dropdowns - 1
 // Selects all dropdowns and adds a click listener
 for (var d = 0; d < $dropdown.length; d++) {
+
+    dropdownTransition($dropdown[d]);
+
 	$dropdown[d].addEventListener('click', function() {
-		this.parentElement.classList.toggle('dropdown-open');
+        this.parentElement.classList.toggle('dropdown-open');
+        dropdownTransition(this);
 	});
+}
+function dropdownTransition(e) {
+    var $dropdowncontent = e.parentElement.nextElementSibling.children[0];
+    console.log($dropdowncontent);
+    if (e.parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
+    else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 }
 
 
