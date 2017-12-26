@@ -9,6 +9,7 @@ var $navbar = document.getElementsByClassName('navbar')[0],
     previousY,
     windowHeight = window.innerHeight,
     resize,
+    isIE = navigator.userAgent.indexOf("Edge") > -1 || navigator.userAgent.indexOf("Trident/7.0") > -1,
     mousemove = true,
     $parallax = false; // By default there is no $parallax element and mousemove variable for the carousel. Add the $parallax element in the script tag on pages with the element. There is no need to define mousemove though.
 
@@ -23,9 +24,12 @@ function scrolling() {
 	latestY = window.pageYOffset;
 	if (latestY != previousY || resize) {
 		if (resize) resize = false;
-		if ($parallax && latestY <= windowHeight) {
+		if ($parallax && latestY <= windowHeight && isIE == false) {
 			$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
 		}
+        if ($parallax && latestY <= windowHeight) {
+			$parallax.style.opacity = 1 - latestY/windowHeight;
+        }
 	}
 	if (mousemove && latestY < 10) {
 		$navbar.classList.remove('hide');

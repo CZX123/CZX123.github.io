@@ -472,10 +472,11 @@ section.main blockquote {
 section.main blockquote .quote-symbol {
 	display: block;
 	position: absolute;
+	height: 96px;
+	width: 96px;
 	top: -20px;
 	left: -20px;
 	fill: rgba(0,0,0,.38);
-	height: 96px;
 }
 section.main blockquote .quote {
 	margin: 0 0 8px;

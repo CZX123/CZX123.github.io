@@ -13,6 +13,7 @@ section.parallax-wrapper {
 	position: relative;
 	height: 100vh;
 	overflow: hidden;
+	background: #000;
 }
 section.parallax-wrapper .carousel {
 	position: absolute;
@@ -20,7 +21,6 @@ section.parallax-wrapper .carousel {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: #000;
 }
 .carousel .flickity-slider {
 	overflow: visible;
@@ -278,6 +278,10 @@ $prevbutton.addEventListener('click', function(){
 $nextbutton.addEventListener('click', function(){
 	flkty.next(true);
 });
+
+if (isIE) {
+	$parallax.style.position = 'fixed';
+}
 </script>
 </body>
 </html>
