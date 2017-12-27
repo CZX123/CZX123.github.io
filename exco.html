@@ -84,7 +84,7 @@ section.main .grid p {
 }
 section.main button {
 	width: 100%;
-	margin-top: 40px;
+	margin: 40px 0 20px;
 }
 section.main button a {
     display: block;
@@ -108,12 +108,14 @@ section.main button .ripple.finish.fade-out {
 }
 @media (max-width: 1084px) {
 section.main {
-	padding: 16px 10% 32px;
+	padding-left: 10%;
+	padding-right: 10%;
 }
 }
 @media (max-width: 816px) {
 section.main {
-	padding: 16px 3.6% 32px;
+	padding-left: 3.6%;
+	padding-right: 3.6%;
 }
 }
 @media (max-width: 638px) {
@@ -123,6 +125,15 @@ section.main .grid > * {
 }
 section.main .grid.fi > * {
 	flex-basis: calc(50% - 24px);
+}
+}
+@media (max-width: 450px) {
+section.main {
+	padding-left: 16px;
+	padding-right: 16px;
+}
+section.main .grid > * {
+	max-width: 100%;
 }
 }
 @media (max-width: 410px) {
