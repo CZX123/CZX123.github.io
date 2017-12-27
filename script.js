@@ -3,23 +3,6 @@ var $html = document.getElementsByTagName('html')[0],
     $body = document.getElementsByTagName('body')[0];
 
 
-// Scrolling listener for stuff like the navbar hide action and parallax effect (if have)
-var $navbar = document.getElementsByClassName('navbar')[0],
-    latestY = window.pageYOffset,
-    previousY,
-    windowHeight = window.innerHeight,
-    resize,
-    isIE = navigator.userAgent.indexOf("Edge") > -1 || navigator.userAgent.indexOf("Trident/7.0") > -1,
-    mousemove = true,
-    $parallax = false; // By default there is no $parallax element and mousemove variable for the carousel. Add the $parallax element in the script tag on pages with the element. There is no need to define mousemove though.
-
-// Resize listener to detect window size changes
-window.addEventListener('resize', function() {
-	resize = true;
-	windowHeight = window.innerHeight;
-});
-
-
 // Toggle class when a dropdown is clicked
 // This is placed in front so that the function can be called when window resizes
 var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a, section.main button.dropdown > div'),
@@ -38,7 +21,38 @@ function dropdownTransition(e) {
     else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 }
 
+// Scrolling listener for stuff like the navbar hide action and parallax effect (if have)
+var $navbar = document.getElementsByClassName('navbar')[0],
+    latestY = window.pageYOffset,
+    previousY,
+    windowHeight = window.innerHeight,
+    resize,
+    isIE = navigator.userAgent.indexOf("Edge") > -1 || navigator.userAgent.indexOf("Trident/7.0") > -1,
+    mousemove = true,
+    $parallax = false; // By default there is no $parallax element and mousemove variable for the carousel. Add the $parallax element in the script tag on pages with the element. There is no need to define mousemove though.
 
+// Resize listener to detect window size changes
+window.addEventListener('resize', function() {
+	resize = true;
+	windowHeight = window.innerHeight;
+});
+
+// Detect if mouse is hovering above the navbar or if mouse is aroung the spot of the navbar if navbar is hidden
+var $navdetecthover = document.getElementsByClassName('nav-detect-hover')[0],
+    navhover = false;
+$navbar.addEventListener('pointerenter', navEnter);
+$navdetecthover.addEventListener('pointerenter', navEnter);
+function navEnter(e) {
+    if (e.pointerType == 'touch') return false;
+    navhover = true;
+    $navbar.classList.remove('hide');
+}
+$navbar.addEventListener('pointerleave', navLeave);
+$navdetecthover.addEventListener('pointerleave', navLeave);
+function navLeave(e) {
+    if (e.pointerType == 'touch' && document.getElementsByClassName('carousel')[0]) $parallax.click();
+    navhover = false;
+}
 // The scrolling function that gets called 60 times a second to ensure smooth performance. The $parallax refers to the top element which would have a parallax effect when scrolling down. $parallax needs to be initialised separately for each individual page which needs it
 function scrolling() {
 	latestY = window.pageYOffset;
@@ -61,10 +75,10 @@ function scrolling() {
 		if ($parallax) $parallax.classList.add('mousemove');
 	}
 	else {
-		if (!mousemove && latestY < 10) $navbar.classList.add('hide');
+		if (!mousemove && latestY < 10 && !navhover) $navbar.classList.add('hide');
 		if ($parallax) $parallax.classList.remove('mousemove');
 	}
-	if (latestY > previousY && latestY >= 10) {
+	if (latestY > previousY && latestY >= 10 && !navhover) {
 		$navbar.classList.add('hide');
 	}
 	if (latestY >= 10 && latestY < previousY || latestY != previousY && previousY == null) {

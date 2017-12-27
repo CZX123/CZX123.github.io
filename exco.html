@@ -134,6 +134,7 @@ section.main .grid.fi > * {
 </head>
 
 <body>
+	<div class="nav-detect-hover"></div>
 	<div class="navbar">
 		<button class="menu">
 			<div>
@@ -378,7 +379,8 @@ section.main .grid.fi > * {
 <script>
 // Code for the exco image
 var $parallax = document.getElementsByClassName('parallax')[0],
-    timer;
+    timer,
+	touch;
 
 $parallax.style.opacity = 1 - latestY/windowHeight;
 if (isIE) {
@@ -388,10 +390,21 @@ else {
 	$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
 }
 
-$parallax.addEventListener('mousemove', carouselActive);
-$parallax.addEventListener('click', carouselActive);
-
-function carouselActive() {
+$parallax.addEventListener('touchstart', function() {
+	touch = true;
+});
+$parallax.addEventListener('mousemove', function() {
+	if (!touch) imgActive();
+	touch = false;
+});
+$parallax.addEventListener('click', function() {
+	if (!mousemove) imgActive();
+	else {
+		clearTimeout(timer);
+		mousemove = false;
+	}
+});
+function imgActive() {
 	mousemove = true;
 	clearTimeout(timer);
 	timer = setTimeout(function(){mousemove = false;}, 1500);

@@ -109,6 +109,7 @@ section.parallax-wrapper .carousel {
 </head>
 
 <body>
+	<div class="nav-detect-hover"></div>
 	<div class="navbar">
 		<button class="menu">
 			<div>
@@ -249,6 +250,11 @@ section.parallax-wrapper .carousel {
 		<p>All the best for your endeavours this year! May all of us look back fondly on the memories we will forge in the year of 2018.</p>
 		<p><br>SSG (NPCC) Pang Ren Jie, Adriale <br>Executive Committee Chairman <br>Hwa Chong Institution National Police Cadet Corps</p>
 	</section>
+	<section class="footer">
+		<footer>
+			<p>© 2018 Hwa Chong Institution National Police Cadet Corps</p>
+		</footer>
+	</section>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
@@ -264,11 +270,46 @@ var flkty = new Flickity($parallax, {
 	percentPosition: false
 });
 
-$parallax.addEventListener('mousemove', carouselActive);
-$parallax.addEventListener('click', carouselActive);
+var $hoverlist = document.querySelectorAll('.flickity-custom-button, .flickity-page-dots'),
+    carouselhover = false,
+	touch = false,
+	touchtimer,
+    h;
+
+for (h = 0; h < $hoverlist.length; h++) {
+	$hoverlist[h].addEventListener('pointerenter', function() {
+		carouselhover = true;
+		clearTimeout(timer);
+		clearTimeout(touchtimer);
+		mousemove = true;
+	});
+	$hoverlist[h].addEventListener('pointerleave', function(e) {
+		if (e.pointerType == 'touch') {
+			touchtimer = setTimeout(function(){carouselhover = false;}, 300);
+			timer = setTimeout(function(){mousemove = false;}, 1500);
+		}
+		else carouselhover = false;
+	});
+}
+
+$parallax.addEventListener('touchstart', function() {
+	touch = true;
+});
+$parallax.addEventListener('mousemove', function() {
+	if (!touch) carouselActive();
+	touch = false;
+});
+$parallax.addEventListener('click', function() {
+	if (!mousemove) carouselActive();
+	else if (!carouselhover) {
+		clearTimeout(timer);
+		mousemove = false;
+	}
+});
 flkty.on('select', carouselActive);
 
 function carouselActive() {
+	if (carouselhover) return false;
 	mousemove = true;
 	clearTimeout(timer);
 	timer = setTimeout(function(){mousemove = false;}, 1500);

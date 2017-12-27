@@ -30,6 +30,7 @@ html {
 body {
 	position: relative;
 	min-height: 100vh;
+	padding-bottom: 96px;
 }
 ol, ul {
 	list-style: none;
@@ -45,7 +46,7 @@ button > * {
 }
 
 /* Navbar styles */
-.navbar {
+.navbar, .nav-detect-hover {
 	display: inline-block;
 	position: fixed;
 	height: 64px;
@@ -60,6 +61,16 @@ button > * {
 	white-space: nowrap;
 	z-index: 6;
 }
+.nav-detect-hover {
+	width: 187px;
+	background: transparent;
+	box-shadow: none;
+}
+@media (max-width: 767px) {
+.nav-detect-hover {
+	display: none;
+}
+}
 .nav-gradient {
 	position: fixed;
 	top: 0;
@@ -67,6 +78,7 @@ button > * {
 	left: 0;
 	height: 56px;
 	background: linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,0));
+	pointer-events: none;
 	transition: opacity .4s;
 	z-index: 5;
 }
@@ -413,6 +425,22 @@ section.title + section.main {
 section.title + section.main h1:first-of-type {
 	margin-top: 0;
 }
+section.footer {
+	position: absolute;
+	height: 96px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #212121;
+	z-index: 1;
+}
+section.footer footer p {
+	padding: 36px 20% 36px;
+	color: #FFF;
+	font-size: 16px;
+	line-height: 24px;
+}
+
 section.main .grid {
     display: flex;
     align-items: baseline;
