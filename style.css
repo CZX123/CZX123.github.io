@@ -502,8 +502,8 @@ section.main .grid > * {
 }
 section.main p {
 	margin: 24px 0;
-	font-family: 'Roboto Slab', serif;
-	font-size: 18px;
+	font-family: Lato, Roboto, sans-serif;
+	font-size: 19px;
 }
 section.main blockquote {
 	position: relative;
