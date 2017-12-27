@@ -30,7 +30,6 @@ html {
 body {
 	position: relative;
 	min-height: 100vh;
-	padding-bottom: 96px;
 }
 ol, ul {
 	list-style: none;
@@ -414,7 +413,7 @@ section.title::after {
 section.main {
 	position: relative;
 	min-height: calc(100vh - 300px);
-	padding: 16px 20% 32px;
+	padding: 16px 20% 212px;
 	background: #FFF;
 	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
@@ -427,20 +426,34 @@ section.title + section.main h1:first-of-type {
 }
 section.footer {
 	position: absolute;
-	height: 96px;
 	right: 0;
 	bottom: 0;
 	left: 0;
+	padding: calc(108px + 2vw - 24px) 20% 56px;
 	background: #212121;
 	z-index: 1;
 }
-section.footer footer p {
-	padding: 36px 20% 36px;
-	color: #FFF;
+section.footer footer, section.footer span {
+	display: block;
+	color: rgba(255,255,255,.87);
 	font-size: 16px;
 	line-height: 24px;
+	text-align: center;
 }
-
+section.footer footer::before {
+	content: '';
+	position: absolute;
+	height: 800px;
+	right: 0;
+	top: -800px;
+	left: 0;
+	background: #FFF;
+	transform: skewY(-3deg);
+	transform-origin: right;
+}
+section.footer span:last-of-type {
+	display: none;
+}
 section.main .grid {
     display: flex;
     align-items: baseline;
@@ -471,25 +484,29 @@ section.main .grid > * {
 }
 }
 @media (max-width: 767px) {
-section.main {
-	padding: 16px 72px 32px;
+section.title h1, section.main, section.footer {
+	padding-left: 72px;
+	padding-right: 72px;
 }
 section.main h1, section.title h1 {
 	font-size: 44px;
 }
-section.title h1 {
-	padding: 160px 72px 96px;
+}
+@media (max-width: 520px) {
+section.footer span:first-of-type {
+	display: none;
+}
+section.footer span:last-of-type {
+	display: block;
 }
 }
 @media (max-width: 450px) {
-section.main {
-	padding: 16px 16px 32px;
+section.title h1, section.main, section.footer {
+	padding-left: 16px;
+	padding-right: 16px;
 }
 section.main h1, section.title h1 {
 	font-size: 40px;
-}
-section.title h1 {
-	padding: 160px 16px 96px;
 }
 section.main button.dropdown {
 	border-radius: 0;
