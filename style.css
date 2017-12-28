@@ -413,7 +413,7 @@ section.title::after {
 section.main {
 	position: relative;
 	min-height: calc(100vh - 300px);
-	padding: 16px 20% 212px;
+	padding: 16px 20% 220px;
 	background: #FFF;
 	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
@@ -429,13 +429,13 @@ section.footer {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	padding: calc(70px + 2vw) 20% 56px;
+	padding: calc(68px + 2.3vw) 20% 56px;
 	background: #212121;
 	z-index: 1;
 }
 section.footer footer, section.footer span {
 	display: block;
-	color: rgba(255,255,255,.87);
+	color: rgba(255,255,255,.38);
 	font-size: 16px;
 	line-height: 24px;
 	text-align: center;
