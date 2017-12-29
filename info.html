@@ -9,28 +9,60 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Lato">
 <link rel="stylesheet" type="text/css" href="style.css">
 <style>
-div.gallery {
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 200px;
+b {
+    display: block;
+    font-size: 19px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
 }
-
-div.gallery:hover {
-    border: 1px solid #777;
+section.main h1 {
+    margin: 44px 0 28px;
+    font-size: 40px;
 }
-
-div.gallery img {
-    width: 100%;
-    height: 300px;
+section.main p {
+    line-height: 1.8;
 }
-
-div.desc {
-    padding: 15px;
-    text-align: center;
+.carousel-wrapper {
+	position: relative;
 }
-.example {
-  text-align: right;
+.carousel .flickity-slider {
+	overflow: visible;
+}
+.carousel .carousel-cell {
+	display: block;
+	height: 100%;
+}
+.flickity-custom-button {
+	position: absolute;
+	visibility: hidden;
+	height: 48px;
+	width: 48px;
+	top: 50%;
+	outline: 0;
+	border-radius: 50% !important;
+	padding: 0;
+    transform: translateY(-50%);
+	opacity: 0;
+	transition: all .3s cubic-bezier(0,0,.2,1), visibility 0s .3s, box-shadow .2s;
+}
+.mousemove ~ .flickity-custom-button {
+	visibility: visible;
+	opacity: 1;
+	transition-delay: 0s;
+}
+.flickity-custom-button.flickity-prev {
+	left: 12px;
+}
+.flickity-custom-button.flickity-next {
+	right: 12px;
+}
+.flickity-custom-button > div {
+	padding: 10px;
+}
+.flickity-custom-button svg {
+	height: 28px;
+	width: 28px;
+	fill: rgba(0,0,0,.54);
 }
 </style>
 </head>
@@ -139,20 +171,57 @@ div.desc {
 		<h1>About NPCC</h1>
 	</section>
 	<section class= "main">
-		<h1> Mission </h1>
-		<p>  To develop our members to be active citizens and community leaders, </p>
-		<p>  by working in partnership with Singapore Police Force to fight crime and keep Singapore safe. </p>
-
-		<h1> Vision </h1>
-		<p> To become the best youth organisation in Singapore, </p>
-		<p> one that actively helps to make Singapore the safest place in the world. </p>
-
-		<h1> Pledge </h1>
-		<p> We, the members of the National Police Cadet Corps, do here and now solemnly and sincerely pledge that: </p>
-		<p> We will always bear true faith and allegiance to the President and our Republic of Singapore. </p>
-		<p> We will always be loyal and true to our country, our people and the government. </p>
-		<p> We will always be prepared to serve our country and the community. </p>
-		<p> We will always preserve the peace and uphold the law. </p>
+		<h1>Our Mission</h1>
+		<p>To develop our members to be active citizens and community leaders,<br>by working in partnership with Singapore Police Force to fight crime and keep Singapore safe.</p>
+		<h1>Our Vision</h1>
+		<p>To become the best youth organisation in Singapore,<br>one that actively helps to make Singapore the safest place in the world.</p>
+		<h1>NPCC Pledge</h1>
+		<p>We, the members of the National Police Cadet Corps, do here and now solemnly and sincerely pledge that: </p>
+		<p>We will always bear true faith and allegiance to the President and our Republic of Singapore. </p>
+		<p>We will always be loyal and true to our country, our people and the government. </p>
+		<p>We will always be prepared to serve our country and the community. </p>
+		<p>We will always preserve the peace and uphold the law.</p>
+        <h1>NPCC Song - NPCC March</h1>
+        <p>We will be faithful and always steadfast
+        <br>Loyalty and service that's our aim
+        <br>To serve with pride, ever looking forward
+        <br>Marching onward all the time</p>
+        <p>Between all races, there is no barrier
+        <br>In NPCC we all join hands
+        <br>To stand by Singapore in her endeavours
+        <br>Serving our land all the time</p>
+        <p><b>Chorus</b>NPCC! Let's join hands
+        <br>Uphold the law preserve the peace
+        <br>NPCC! Let's join hands
+        <br>Marching onward all the time<b>Chorus (×2)</b></p>
+        <h1>NPCC History</h1>
+        <div class="carousel-wrapper">
+            <div class="carousel">
+                <div class="carousel-cell">
+                    1
+                </div>
+                <div class="carousel-cell">
+                    2
+                </div>
+                <div class="carousel-cell">
+                    3
+                </div>
+            </div>
+    		<button class="flickity-custom-button flickity-prev">
+    			<div>
+    				<svg viewBox="0 0 24 24">
+    					<path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/>
+    				</svg>
+    			</div>
+    		</button>
+    		<button class="flickity-custom-button flickity-next">
+    			<div>
+    				<svg viewBox="0 0 24 24">
+    					<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+    				</svg>
+    			</div>
+    		</button>
+        </div>
     </section>
 	<section class="footer">
 		<footer>
@@ -164,5 +233,77 @@ div.desc {
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
+<script>
+// Code for the carousel
+var $carousel = document.getElementsByClassName('carousel')[0],
+	timer;
+
+var flkty = new Flickity($carousel, {
+	prevNextButtons: false,
+    pageDots: false,
+	setGallerySize: false,
+	percentPosition: false
+});
+
+$carousel.style.height = $carousel.offsetWidth/4*3 + 'px';
+window.addEventListener('resize', function() {
+	$carousel.style.height = $carousel.offsetWidth/4*3 + 'px';
+});
+
+var $hoverlist = document.getElementsByClassName('flickity-custom-button'),
+    carouselhover = false,
+	touch = false,
+	touchtimer,
+    h;
+
+for (h = 0; h < $hoverlist.length; h++) {
+	$hoverlist[h].addEventListener('pointerenter', function() {
+		carouselhover = true;
+		clearTimeout(timer);
+		clearTimeout(touchtimer);
+		mousemove = true;
+	});
+	$hoverlist[h].addEventListener('pointerleave', function(e) {
+		if (e.pointerType == 'touch') {
+			touchtimer = setTimeout(function(){carouselhover = false;}, 300);
+			timer = setTimeout(function(){mousemove = false;}, 1500);
+		}
+		else carouselhover = false;
+	});
+}
+
+$carousel.addEventListener('touchstart', function() {
+	touch = true;
+});
+$carousel.addEventListener('mousemove', function() {
+	if (!touch) carouselActive();
+	touch = false;
+});
+$carousel.addEventListener('click', function() {
+	if (!mousemove) carouselActive();
+	else if (!carouselhover) {
+		clearTimeout(timer);
+		mousemove = false;
+	}
+});
+flkty.on('select', carouselActive);
+
+function carouselActive() {
+	if (carouselhover) return false;
+	mousemove = true;
+	clearTimeout(timer);
+	timer = setTimeout(function(){mousemove = false;}, 1500);
+}
+
+var $prevbutton = document.getElementsByClassName('flickity-prev')[0],
+	$nextbutton = document.getElementsByClassName('flickity-next')[0];
+
+$prevbutton.addEventListener('click', function(){
+	flkty.previous(true);
+});
+$nextbutton.addEventListener('click', function(){
+	flkty.next(true);
+});
+</script>
 </body>
 </html>

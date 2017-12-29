@@ -70,13 +70,13 @@ function scrolling() {
 			$parallax.style.opacity = 1 - latestY/windowHeight;
         }
 	}
-	if (mousemove && latestY < 10) {
+	if (mousemove && latestY < 10 && $parallax) {
 		$navbar.classList.remove('hide');
-		if ($parallax) $parallax.classList.add('mousemove');
+		$parallax.classList.add('mousemove');
 	}
-	else {
+	else if ($parallax) {
 		if (!mousemove && latestY < 10 && !navhover) $navbar.classList.add('hide');
-		if ($parallax) $parallax.classList.remove('mousemove');
+		$parallax.classList.remove('mousemove');
 	}
 	if (latestY > previousY && latestY >= 10 && !navhover) {
 		$navbar.classList.add('hide');
