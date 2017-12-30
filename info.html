@@ -25,36 +25,42 @@ section.main p {
 .carousel-wrapper {
 	position: relative;
 }
-.carousel .flickity-slider {
+.carousel-wrapper, .flickity-slider {
 	overflow: visible;
+}
+.carousel {
+    border-radius: 12px;
 }
 .carousel .carousel-cell {
 	display: block;
 	height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    margin-right: 12px;
+}
+.carousel .carousel-cell:last-of-type {
+    margin-right: 0;
 }
 .flickity-custom-button {
 	position: absolute;
-	visibility: hidden;
 	height: 48px;
 	width: 48px;
 	top: 50%;
 	outline: 0;
 	border-radius: 50% !important;
 	padding: 0;
-    transform: translateY(-50%);
-	opacity: 0;
-	transition: all .3s cubic-bezier(0,0,.2,1), visibility 0s .3s, box-shadow .2s;
+    transform: translateY(-50%) scale(1);
+	transition: all .3s cubic-bezier(0,0,.2,1), visibility 0s .3s, transform .2s, box-shadow .2s !important;
 }
-.mousemove ~ .flickity-custom-button {
-	visibility: visible;
-	opacity: 1;
-	transition-delay: 0s;
+.first-cell ~ .flickity-prev, .last-cell ~ .flickity-next {
+    transform: translateY(-50%) scale(0);
+    pointer-events: none;
 }
 .flickity-custom-button.flickity-prev {
-	left: 12px;
+	left: -24px;
 }
 .flickity-custom-button.flickity-next {
-	right: 12px;
+	right: -24px;
 }
 .flickity-custom-button > div {
 	padding: 10px;
@@ -197,15 +203,11 @@ section.main p {
         <h1>NPCC History</h1>
         <div class="carousel-wrapper">
             <div class="carousel">
-                <div class="carousel-cell">
-                    1
-                </div>
-                <div class="carousel-cell">
-                    2
-                </div>
-                <div class="carousel-cell">
-                    3
-                </div>
+                <div class="carousel-cell" style="background:url(http://www.npcc.org.sg/images/newphotos/history/1959.jpg) center no-repeat;background-size:cover;"></div>
+                <div class="carousel-cell" style="background:url(http://www.npcc.org.sg/images/newphotos/history/1969.jpg) center no-repeat;background-size:cover;"></div>
+                <div class="carousel-cell" style="background:url(http://www.npcc.org.sg/images/newphotos/history/1979.jpg) center no-repeat;background-size:cover;"></div>
+                <div class="carousel-cell" style="background:url(http://www.npcc.org.sg/images/newphotos/history/1989.jpg) center no-repeat;background-size:cover;"></div>
+                <div class="carousel-cell" style="background:url(http://www.npcc.org.sg/images/newphotos/history/1999.jpg) center no-repeat;background-size:cover;"></div>
             </div>
     		<button class="flickity-custom-button flickity-prev">
     			<div>
@@ -235,8 +237,7 @@ section.main p {
 <script src="script.js"></script>
 <script>
 // Code for the carousel
-var $carousel = document.getElementsByClassName('carousel')[0],
-	timer;
+var $carousel = document.getElementsByClassName('carousel')[0];
 
 var flkty = new Flickity($carousel, {
 	prevNextButtons: false,
@@ -250,59 +251,32 @@ window.addEventListener('resize', function() {
 	$carousel.style.height = $carousel.offsetWidth/4*3 + 'px';
 });
 
-var $hoverlist = document.getElementsByClassName('flickity-custom-button'),
-    carouselhover = false,
-	touch = false,
-	touchtimer,
-    h;
-
-for (h = 0; h < $hoverlist.length; h++) {
-	$hoverlist[h].addEventListener('pointerenter', function() {
-		carouselhover = true;
-		clearTimeout(timer);
-		clearTimeout(touchtimer);
-		mousemove = true;
-	});
-	$hoverlist[h].addEventListener('pointerleave', function(e) {
-		if (e.pointerType == 'touch') {
-			touchtimer = setTimeout(function(){carouselhover = false;}, 300);
-			timer = setTimeout(function(){mousemove = false;}, 1500);
-		}
-		else carouselhover = false;
-	});
-}
-
-$carousel.addEventListener('touchstart', function() {
-	touch = true;
-});
-$carousel.addEventListener('mousemove', function() {
-	if (!touch) carouselActive();
-	touch = false;
-});
-$carousel.addEventListener('click', function() {
-	if (!mousemove) carouselActive();
-	else if (!carouselhover) {
-		clearTimeout(timer);
-		mousemove = false;
-	}
-});
-flkty.on('select', carouselActive);
-
-function carouselActive() {
-	if (carouselhover) return false;
-	mousemove = true;
-	clearTimeout(timer);
-	timer = setTimeout(function(){mousemove = false;}, 1500);
+flkty.on('select', checkCell);
+checkCell();
+function checkCell() {
+    var activecell = document.getElementsByClassName('carousel-cell is-selected')[0];
+    if (!activecell.previousElementSibling) {
+        $carousel.classList.add('first-cell');
+        $carousel.classList.remove('last-cell');
+    }
+    else if (!activecell.nextElementSibling) {
+        $carousel.classList.remove('first-cell');
+        $carousel.classList.add('last-cell');
+    }
+    else {
+        $carousel.classList.remove('first-cell');
+        $carousel.classList.remove('last-cell');
+    }
 }
 
 var $prevbutton = document.getElementsByClassName('flickity-prev')[0],
 	$nextbutton = document.getElementsByClassName('flickity-next')[0];
 
 $prevbutton.addEventListener('click', function(){
-	flkty.previous(true);
+	flkty.previous();
 });
 $nextbutton.addEventListener('click', function(){
-	flkty.next(true);
+	flkty.next();
 });
 </script>
 </body>
