@@ -60,10 +60,20 @@ section.main .dropdown-grid .dropdown-content button {
 }
 section.main .dropdown-grid .dropdown-content button a {
     display: block;
-    padding: 10px 16px;
+    padding: 10px 24px;
     font-size: 16px;
     line-height: 20px;
     text-align: left;
+}
+section.main .dropdown-grid .dropdown-content button[disabled] {
+    background: transparent !important;
+}
+section.main .dropdown-grid .dropdown-content button[disabled] a {
+    color: rgba(0,0,0,.38);
+    cursor: not-allowed;
+}
+section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
+    display: none;
 }
 .grid button a {
     display: block;
