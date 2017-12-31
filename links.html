@@ -9,13 +9,61 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab">
 <link rel="stylesheet" type="text/css" href="style.css">
 <style>
-section.main .grid > * {
+section.main .grid.two-column > * {
     flex-basis: calc(50% - 24px);
 }
 @media (max-width: 600px) {
-section.main .grid > * {
+section.main .grid.two-column > * {
     flex-basis: 100%;
 }
+}
+section.main .dropdown-grid {
+    overflow: visible;
+    margin: 0 -20px;
+}
+section.main .dropdown-grid > div {
+    overflow: visible;
+    margin: 0 4px;
+    flex-basis: calc((100% - 24px) / 3);
+}
+@media (max-width: 880px) {
+section.main .dropdown-grid > div {
+    flex-basis: calc(50% - 8px);
+}
+}
+@media (max-width: 600px) {
+section.main .dropdown-grid > div {
+    flex-basis: 100%;
+}
+}
+section.main .dropdown-grid button.dropdown {
+    margin: 0;
+    width: 100%;
+}
+section.main .dropdown-grid button.dropdown + .dropdown-content .wrapper {
+    padding: 0;
+}
+section.main .dropdown-grid .dropdown-content button {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: none !important;
+    transition: background .2s;
+}
+section.main .dropdown-grid .dropdown-content button:hover, section.main .dropdown-grid .dropdown-content button.active {
+    background: #F5F5F5;
+}
+@media (max-width: 450px) {
+section.main .dropdown-grid .dropdown-content button {
+    border-radius: 0;
+}
+}
+section.main .dropdown-grid .dropdown-content button a {
+    display: block;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: left;
 }
 .grid button a {
     display: block;
@@ -145,7 +193,7 @@ section.main .grid > * {
 	</section>
 	<section class="main">
 		<h1>Police Websites</h1>
-		<div class="grid">
+		<div class="grid two-column">
             <button>
 				<a target="_blank" href="https://www.police.gov.sg/">
                     <img src="https://www.police.gov.sg/~/media/spf/images/logo/spf_fb.jpg" alt="SPF">
@@ -172,7 +220,194 @@ section.main .grid > * {
     		</button>
         </div>
         <h1>Other Units</h1>
-
+        <div class="grid dropdown-grid">
+            <div>
+                <button class="dropdown">
+                    <div>
+                        <a>Area 1</a>
+                        <div class="caret">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+            	<div class="dropdown-content">
+                    <div class="wrapper">
+                        <button>
+                            <a target="_blank" href="https://www.google.com">Google</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="dropdown">
+                    <div>
+                        <a>Area 2</a>
+                        <div class="caret">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+            	<div class="dropdown-content">
+                    <div class="wrapper">
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="dropdown">
+                    <div>
+                        <a>Area 3</a>
+                        <div class="caret">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+            	<div class="dropdown-content">
+                    <div class="wrapper">
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="dropdown">
+                    <div>
+                        <a>Area 4</a>
+                        <div class="caret">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+            	<div class="dropdown-content">
+                    <div class="wrapper">
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="dropdown">
+                    <div>
+                        <a>Area 5</a>
+                        <div class="caret">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+            	<div class="dropdown-content">
+                    <div class="wrapper">
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="dropdown">
+                    <div>
+                        <a>Area 6</a>
+                        <div class="caret">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+            	<div class="dropdown-content">
+                    <div class="wrapper">
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                        <button>
+                            <a>Lorem ipsum</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 	<section class="footer">
 		<footer>
