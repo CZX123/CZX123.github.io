@@ -216,7 +216,7 @@ $main.addEventListener('click', function(e) {
 var $dropdownrequest = new XMLHttpRequest();
 $dropdownrequest.onreadystatechange = function() {
 	if (this.readyState == 4 && this.status == 200) {
-		console.log($dropdownrequest.responseXML);
+		console.log($dropdownrequest.responseText);
 	}
 };
 $dropdownrequest.open("GET", "2017.html");
