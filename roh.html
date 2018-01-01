@@ -202,5 +202,16 @@
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
+<script>
+var $main = document.getElementsByClassName('main')[0];
+$main.addEventListener('click', function(e) {
+	var $elem = e.target;
+	while ($elem && !$elem.classList.contains('dropdown')) {
+		$elem = $elem.parentElement;
+	}
+	if (!$elem) return false;
+	console.log($elem);
+});
+</script>
 </body>
 </html>
