@@ -245,7 +245,7 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
             	<div class="dropdown-content">
                     <div class="wrapper">
                         <button>
-                            <a>Christ Church Secondary School</a>
+                            <a href="http://chrnpcc.weebly.com/">Christ Church Secondary School</a>
                         </button>
                         <button>
                             <a>Fuchun Secondary School</a>
@@ -766,22 +766,22 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
             	<div class="dropdown-content">
                     <div class="wrapper">
                         <button>
-                            <a target="_blank" href="https://sites.google.com/a/acsbr.org/national-police-cadet-corps/">Anglo-Chinese School (Barker Road)</a>
+                            <a href="https://sites.google.com/a/acsbr.org/national-police-cadet-corps/">Anglo-Chinese School (Barker Road)</a>
                         </button>
                         <button>
-                            <a target="_blank" href="http://hcinpcc.github.io">Hwa Chong Institution</a>
+                            <a href="http://hcinpcc.github.io">Hwa Chong Institution</a>
                         </button>
                         <button>
-                            <a target="_blank" href="http://nynpcc.blogspot.sg/">Nanyang Girls' High School</a>
+                            <a href="http://nynpcc.blogspot.sg/">Nanyang Girls' High School</a>
                         </button>
                         <button>
-                            <a target="_blank" href="http://queensway-np-peeps.blogspot.sg/">Queensway Secondary School</a>
+                            <a href="http://queensway-np-peeps.blogspot.sg/">Queensway Secondary School</a>
                         </button>
                         <button>
-                            <a target="_blank" href="http://rgsnpcc.weebly.com/">Raffles Girs' School (Secondary) [Sea]</a>
+                            <a href="http://rgsnpcc.weebly.com/">Raffles Girs' School (Secondary) [Sea]</a>
                         </button>
                         <button>
-                            <a target="_blank" href="http://sjinpcc.blogspot.sg/">St. Joseph's Institution</a>
+                            <a href="http://sjinpcc.blogspot.sg/">St. Joseph's Institution</a>
                         </button>
 						<button>
                             <a>St. Margaret's Secondary School</a>
@@ -994,6 +994,7 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
 var $links = document.querySelectorAll('.main .dropdown-content a'), l;
 for (l = 0; l < $links.length; l++) {
     if (!$links[l].hasAttribute('href')) $links[l].parentElement.setAttribute('disabled','');
+    else $links[l].setAttribute('target','_blank');
 }
 </script>
 </body>
