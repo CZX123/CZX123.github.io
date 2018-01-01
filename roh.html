@@ -203,22 +203,23 @@
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
 <script>
-var $dropdownbuttons = document.querySelectorAll('.main .dropdown');
-for (var b = 0; b < $dropdownbuttons.length; b++) {
-	$dropdownbuttons[i].addEventListener('click', function(e) {
-		e.preventDefault();
-		var $elem = this;
-		var $dropdownrequest = new XMLHttpRequest();
-		$dropdownrequest.open("GET", "2017.html");
-		$dropdownrequest.send();
-		$dropdownrequest.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var $wrapper = $elem.nextElementSibling.children[0];
-				$wrapper.innerHTML = $dropdownrequest.responseText;
-			}
-		};
-	});
-}
+var $main = document.getElementsByClassName('main')[0];
+$main.addEventListener('click', function(e) {
+	var $elem = e.target;
+	while ($elem && !$elem.classList.contains('dropdown')) {
+		$elem = $elem.parentElement;
+	}
+	if (!$elem) return false;
+	var $dropdownrequest = new XMLHttpRequest();
+	$dropdownrequest.open("GET", "2017.html");
+	$dropdownrequest.send();
+	$dropdownrequest.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var $wrapper = $elem.nextElementSibling.children[0];
+			$wrapper.innerHTML = $dropdownrequest.responseText;
+		}
+	};
+});
 
 </script>
 </body>
