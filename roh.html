@@ -212,6 +212,15 @@ $main.addEventListener('click', function(e) {
 	if (!$elem) return false;
 	console.log($elem);
 });
+
+var $dropdownrequest = new XMLHttpRequest();
+$dropdownrequest.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		console.log($dropdownrequest.responseXML);
+	}
+};
+$dropdownrequest.open("GET", "2017.html");
+$dropdownrequest.send();
 </script>
 </body>
 </html>
