@@ -219,7 +219,6 @@ $main.addEventListener('click', function(e) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
-	$elem.classList.add('loading');
 	$dropdowncontent.style.transition = 'none';
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
@@ -230,7 +229,6 @@ $main.addEventListener('click', function(e) {
 			$dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 			$elem.removeAttribute('data-fetch');
 			setTimeout(function() {
-				$elem.classList.remove('loading');
 				$dropdowncontent.style.transition = '';
 				$elem.children[0].click();
 			}, 300);

@@ -1,153 +1,182 @@
-<!doctype html>
-<html>
+<!--
+ Copyright 2018 HCINPCC. All rights reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#000">
-<title>Officers | HCINPCC Unit Website</title>
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab">
-<link rel="stylesheet" type="text/css" href="style.css">
-<style>
-section * {
-    text-align: center;
-}
-.grid {
-    justify-content: center;
-}
-section.main .grid > * {
-    max-width: 200px;
-}
-.grid button a {
-    display: block;
-}
-.grid button a img {
-    display: block;
-    width: 100%;
-}
-.grid button a .desc {
-    padding: 12px 16px;
-    background: #F5F5F5;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-}
-.grid button .ripple.appear {
-	transition: transform .7s cubic-bezier(.4,0,.2,1), opacity .3s;
-}
-.grid button .ripple.finish.fade-out {
-	transition: transform .7s cubic-bezier(.4,0,.2,1), opacity .5s;
-}
-</style>
+  <meta charset="utf-8">
+  <title>Officers | HCINPCC Unit Website</title>
+  <meta name="author" content="HCINPCC">
+  <meta name="description" content="Official HCINPCC Unit Website">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3F51B5">
+  <link rel="icon" href="hci.png">
+  <link rel="shortcut icon" href="hci.png">
+  <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab" type="text/css" rel="stylesheet">
+  <link href="style.css" type="text/css" rel="stylesheet">
+
+  <style>
+    section * {
+      text-align: center;
+    }
+
+    .grid {
+      justify-content: center;
+    }
+
+    section.main .grid>* {
+      max-width: 200px;
+    }
+
+    .grid button a {
+      display: block;
+    }
+
+    .grid button a img {
+      display: block;
+      width: 100%;
+    }
+
+    .grid button a .desc {
+      padding: 12px 16px;
+      background: #F5F5F5;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    .grid button .ripple.appear {
+      transition: transform .7s cubic-bezier(.4, 0, .2, 1), opacity .3s;
+    }
+
+    .grid button .ripple.finish.fade-out {
+      transition: transform .7s cubic-bezier(.4, 0, .2, 1), opacity .5s;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="nav-detect-hover"></div>
-	<div class="navbar">
-		<button class="menu">
+  <div class="nav-detect-hover"></div>
+  <div class="navbar">
+    <button class="menu">
 			<div>
 				<svg viewBox="0 0 24 24">
     				<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
 				</svg>
 			</div>
 		</button>
-		<img src="https://hcinpcc.files.wordpress.com/2017/07/npcc1.jpg?w=657" alt="HCINPCC Logo">
-	</div>
-	<div class="nav-gradient"></div>
-	<div class="nav-drawer">
-		<div class="scrollbar-animate">
-			<div class="wrapper">
-			<ul>
-				<li>
-					<svg viewBox="0 0 24 24">
+    <img src="https://hcinpcc.files.wordpress.com/2017/07/npcc1.jpg?w=657" alt="HCINPCC Logo">
+  </div>
+  <div class="nav-gradient"></div>
+  <div class="nav-drawer">
+    <div class="scrollbar-animate">
+      <div class="wrapper">
+        <ul>
+          <li>
+            <svg viewBox="0 0 24 24">
     					<path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
 					</svg>
-					<a href="index.html">Home</a>
-				</li>
-				<li class="dropdown dropdown-open active">
-					<svg viewBox="0 0 24 24">
+            <a href="index.html">Home</a>
+          </li>
+          <li class="dropdown dropdown-open active">
+            <svg viewBox="0 0 24 24">
     					<path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
 					</svg>
-					<a>About HCINPCC</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
+            <a>About HCINPCC</a>
+            <div class="caret">
+              <svg viewBox="0 0 24 24">
 							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
 						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-                    <ul>
-                        <li><a href="info.html">NPCC Information</a></li>
-                        <li><a href="roh.html">Roll Of Honour</a></li>
-                        <li class="active"><a href="officers.html">Officers</a></li>
-                        <li><a href="exco.html">Unit Hierarchy</a></li>
-                    </ul>
-                </div>
-				<li class="dropdown">
-					<svg viewBox="0 0 24 24">
+            </div>
+          </li>
+          <div class="dropdown-content">
+            <ul>
+              <li><a href="info.html">NPCC Information</a></li>
+              <li><a href="roh.html">Roll Of Honour</a></li>
+              <li class="active"><a href="officers.html">Officers</a></li>
+              <li><a href="exco.html">Unit Hierarchy</a></li>
+            </ul>
+          </div>
+          <li class="dropdown">
+            <svg viewBox="0 0 24 24">
     					<path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
 					</svg>
-					<a>Publications</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
+            <a>Publications</a>
+            <div class="caret">
+              <svg viewBox="0 0 24 24">
 							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
 						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li>
-							<a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
-							<div class="external">
-								<svg viewBox="0 0 24 24">
+            </div>
+          </li>
+          <div class="dropdown-content">
+            <ul>
+              <li>
+                <a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
+                <div class="external">
+                  <svg viewBox="0 0 24 24">
     								<path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
 								</svg>
-							</div>
-						</li>
-						<li><a href="ac.html">Annual Chronicles</a></li>
-					</ul>
-				</div>
-				<li class="dropdown">
-					<svg viewBox="0 0 24 24">
+                </div>
+              </li>
+              <li><a href="ac.html">Annual Chronicles</a></li>
+            </ul>
+          </div>
+          <li class="dropdown">
+            <svg viewBox="0 0 24 24">
     					<path d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
 					</svg>
-					<a>Help</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
+            <a>Help</a>
+            <div class="caret">
+              <svg viewBox="0 0 24 24">
 							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
 						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li><a href="contact.html">Contact Us</a></li>
-						<li><a href="links.html">Useful Links</a></li>
-					</ul>
-				</div>
-			</ul>
-			<ul class="social-media-icons">
-				<li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
+            </div>
+          </li>
+          <div class="dropdown-content">
+            <ul>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="links.html">Useful Links</a></li>
+            </ul>
+          </div>
+        </ul>
+        <ul class="social-media-icons">
+          <li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
 					<svg viewBox="0 0 408.788 408.788">
 						<path d="M353.701 0H55.087C24.665 0 .002 24.662.002 55.085v298.616c0 30.423 24.662 55.085 55.085 55.085h147.275l.251-146.078h-37.951a8.954 8.954 0 0 1-8.954-8.92l-.182-47.087a8.955 8.955 0 0 1 8.955-8.989h37.882v-45.498c0-52.8 32.247-81.55 79.348-81.55h38.65a8.955 8.955 0 0 1 8.955 8.955v39.704a8.955 8.955 0 0 1-8.95 8.955l-23.719.011c-25.615 0-30.575 12.172-30.575 30.035v39.389h56.285c5.363 0 9.524 4.683 8.892 10.009l-5.581 47.087a8.955 8.955 0 0 1-8.892 7.901h-50.453l-.251 146.078h87.631c30.422 0 55.084-24.662 55.084-55.084V55.085C408.786 24.662 384.124 0 353.701 0z"/>
 					</svg>
 				</a></li>
-				<li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
+          <li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
 					<img src="instagram-black.svg">
 					<img src="instagram-color.svg">
 				</a></li>
-			</ul>
-			</div>
-		</div>
-	</div>
-	<div class="scrim"></div>
-	<div class="drag-nav-drawer"></div>
-	<section class="title">
-		<h1>Officers</h1>
-	</section>
-	<section class="main">
-		<h1>Teacher Officers</h1>
-		<div class="grid">
-            <button>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+  <div class="drag-nav-drawer"></div>
+  <section class="title">
+    <h1>Officers</h1>
+  </section>
+  <section class="main">
+    <h1>Teacher Officers</h1>
+    <div class="grid">
+      <button>
                 <script type="text/javascript">
                     //<![CDATA[
                     <!--
@@ -160,9 +189,9 @@ section.main .grid > * {
                     <div class="desc">DSP (NPCC) Mr Tan Chee Wee</div>
                 </a>
             </button>
-		</div>
-		<div class="grid">
-			<button>
+    </div>
+    <div class="grid">
+      <button>
                 <script type="text/javascript">
                     //<![CDATA[
                     <!--
@@ -175,7 +204,7 @@ section.main .grid > * {
                     <div class="desc">ASP (NPCC) Mrs Yeong-Loke Lai Fun</div>
                 </a>
             </button>
-			<button>
+      <button>
                 <script type="text/javascript">
                     //<![CDATA[
                     <!--
@@ -188,9 +217,9 @@ section.main .grid > * {
                     <div class="desc">ASP (NPCC) Ms G. Kalavathi</div>
                 </a>
 			</button>
-		</div>
-		<div class="grid">
-			<button>
+    </div>
+    <div class="grid">
+      <button>
                 <script type="text/javascript">
                     //<![CDATA[
                     <!--
@@ -203,7 +232,7 @@ section.main .grid > * {
                     <div class="desc">Insp (NPCC) Mr Tan Hui Kuan</div>
                 </a>
             </button>
-			<button>
+      <button>
                 <script type="text/javascript">
                     //<![CDATA[
                     <!--
@@ -216,10 +245,10 @@ section.main .grid > * {
                     <div class="desc">Insp (NPCC) Ms Joyce Tan Yu Hui</div>
                 </a>
             </button>
-		</div>
-		<h1>Honourary Officer</h1>
-		<div class="grid">
-			<button>
+    </div>
+    <h1>Honourary Officer</h1>
+    <div class="grid">
+      <button>
                 <script type="text/javascript">
                     //<![CDATA[
                     <!--
@@ -232,10 +261,10 @@ section.main .grid > * {
 					<div class="desc">H/ASP (NPCC) Dr Chia Yew Woon</div>
 				</a>
 			</button>
-		</div>
-		<h1>Cadet Inspectors</h1>
-		<div class="grid">
-			<button>
+    </div>
+    <h1>Cadet Inspectors</h1>
+    <div class="grid">
+      <button>
                 <script type="text/javascript">
                     //<![CDATA[
                     <!--
@@ -248,7 +277,7 @@ section.main .grid > * {
 					<div class="desc">CI (NPCC) Tan Jin An </div>
 				</a>
 			</button>
-			<button>
+      <button>
                 <script type="text/javascript">
                     //<![CDATA[
                     <!--
@@ -261,17 +290,18 @@ section.main .grid > * {
 					<div class="desc">CI (NPCC) Lee Jia Liang </div>
 				</a>
 			</button>
-		</div>
-    </section>
-	<section class="footer">
-		<footer>
-			© 2018
-			<span>Hwa Chong Institution National Police Cadet Corps</span>
-			<span>HCINPCC</span>
-		</footer>
-	</section>
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-<script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
-<script src="script.js"></script>
+    </div>
+  </section>
+  <section class="footer">
+    <footer>
+      © 2018
+      <span>Hwa Chong Institution National Police Cadet Corps</span>
+      <span>HCINPCC</span>
+    </footer>
+  </section>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
