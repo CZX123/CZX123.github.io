@@ -209,7 +209,7 @@ $main.addEventListener('click', function(e) {
 	while ($elem && !$elem.hasAttribute('data-fetch')) {
 		$elem = $elem.parentElement;
 	}
-	if (!$elem) return false;
+	if (!$elem || !$elem.hasAttribute('data-fetch')) return false;
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $elem.getAttribute('data-fetch');
 	$dropdownrequest.open("GET", 'ac/' + filename);
