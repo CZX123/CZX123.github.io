@@ -6,20 +6,39 @@ var $html = document.getElementsByTagName('html')[0],
 // Toggle class when a dropdown is clicked
 // This is placed in front so that the function can be called when window resizes
 var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a, section.main button.dropdown > div'),
-    d; // d is the number of dropdowns - 1
+    $dropdowncontent,
+    d, // d is the number of dropdowns - 1
+    dragiterations = 0; // for the draggin transition
+// An easing function for use in the dropdown transition and opening or closing the navdrawer after the user lifts off his finger after dragging
+function easeOutCubic(t, b, c, d) {
+	return Math.round((-c*((t=t/d-1)*t*t*t - 1) + b)*10)/10;
+}
 // Selects all dropdowns and adds a click listener
 for (var d = 0; d < $dropdown.length; d++) {
-    dropdownTransition($dropdown[d]);
+    $dropdowncontent = $dropdown[d].parentElement.nextElementSibling.children[0];
+    if ($dropdown[d].parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
+    else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 	$dropdown[d].addEventListener('click', function() {
+        $dropdowncontent = this.parentElement.nextElementSibling.children[0];
         if (this.parentElement.hasAttribute('data-fetch')) return false;
         this.parentElement.classList.toggle('dropdown-open');
-        dropdownTransition(this);
+        if (this.parentElement.classList.contains('dropdown-open')) dropdownTransition($dropdowncontent,-$dropdowncontent.offsetHeight,0);
+        else dropdownTransition($dropdowncontent,0,-$dropdowncontent.offsetHeight);
 	});
 }
-function dropdownTransition(e) {
-    var $dropdowncontent = e.parentElement.nextElementSibling.children[0];
-    if (e.parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
-    else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
+function dropdownTransition($elem,start,end) {
+    var total = 220
+        diff = end - start;
+    dragiterations++;
+    $elem.style.marginTop = easeOutCubic(dragiterations, start, diff, total) + 'px';
+    if (dragiterations < total) {
+        requestAnimationFrame(function() {
+            dropdownTransition($elem,start,end);
+        });
+    }
+    else {
+        dragiterations = 0;
+    }
 }
 
 // Scrolling listener for stuff like the navbar hide action and parallax effect (if have)
@@ -147,10 +166,6 @@ else {
 	document.addEventListener('touchmove', mainDrag);
 	document.addEventListener('touchend', endDrag);
 	document.addEventListener('touchcancel', endDrag);
-}
-// An easing function for use in opening or closing the navdrawer after the user lifts off his finger after dragging
-function easeOutCubic(t, b, c, d) {
-	return Math.round((-c*((t=t/d-1)*t*t*t - 1) + b)*10)/10;
 }
 // The dragging function. Runs 60 times a second
 function navDragging() {
