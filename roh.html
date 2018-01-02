@@ -225,7 +225,7 @@ $main.addEventListener('click', function(e) {
 			var $wrapper = $elem.nextElementSibling.children[0];
 			$wrapper.innerHTML = $dropdownrequest.responseText;
 			$elem.removeAttribute('data-fetch');
-			$elem.children[0].click();
+			setTimeout(function(){$elem.children[0].click();},100);
 		}
 	};
 });
