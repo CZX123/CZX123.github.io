@@ -219,7 +219,6 @@ $main.addEventListener('click', function(e) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
-	$dropdowncontent.style.transition = 'none';
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
@@ -228,10 +227,7 @@ $main.addEventListener('click', function(e) {
 			$wrapper.innerHTML = $dropdownrequest.responseText;
 			$dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 			$elem.removeAttribute('data-fetch');
-			setTimeout(function() {
-				$dropdowncontent.style.transition = '';
-				$elem.children[0].click();
-			}, 300);
+			$elem.children[0].click();
 		}
 	};
 });
