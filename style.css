@@ -266,7 +266,6 @@ button > * {
 .nav-drawer ul li.dropdown + .dropdown-content ul {
 	margin-top: -1000vh;
 	padding: 0;
-	transition: margin .3s cubic-bezier(.4,0,.2,1);
 }
 .nav-drawer ul li.dropdown.dropdown-open + .dropdown-content ul {
 	margin-top: 0;
