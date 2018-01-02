@@ -1,240 +1,281 @@
-<!doctype html>
-<html>
+<!--
+ Copyright 2018 HCINPCC. All rights reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#000">
-<title>Useful Links | HCINPCC Unit Website</title>
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab">
-<link rel="stylesheet" type="text/css" href="style.css">
-<style>
-section.main .grid.two-column > * {
-    flex-basis: calc(50% - 24px);
-}
-@media (max-width: 600px) {
-section.main .grid.two-column > * {
-    flex-basis: 100%;
-}
-}
-section.main .dropdown-grid {
-    overflow: visible;
-    margin: 0 -20px;
-}
-section.main .dropdown-grid > div {
-    overflow: visible;
-    margin: 0 4px;
-    flex-basis: calc((100% - 24px) / 3);
-}
-@media (max-width: 880px) {
-section.main .dropdown-grid > div {
-    flex-basis: calc(50% - 8px);
-}
-}
-@media (max-width: 600px) {
-section.main .dropdown-grid > div {
-    flex-basis: 100%;
-}
-}
-section.main .dropdown-grid button.dropdown {
-    margin: 0;
-    width: 100%;
-}
-section.main .dropdown-grid button.dropdown + .dropdown-content .wrapper {
-    padding: 0;
-}
-section.main .dropdown-grid .dropdown-content button {
-    display: block;
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: none !important;
-    transition: background .2s;
-}
-section.main .dropdown-grid .dropdown-content button.hover, section.main .dropdown-grid .dropdown-content button:active {
-    background: #F5F5F5;
-}
-@media (max-width: 450px) {
-section.main .dropdown-grid .dropdown-content button {
-    border-radius: 0;
-}
-}
-section.main .dropdown-grid .dropdown-content button a {
-    display: block;
-    padding: 10px 24px;
-    font-size: 16px;
-    line-height: 20px;
-    text-align: left;
-}
-section.main .dropdown-grid .dropdown-content button[disabled] {
-    background: transparent !important;
-}
-section.main .dropdown-grid .dropdown-content button[disabled] a {
-    color: rgba(0,0,0,.54);
-    cursor: default;
-}
-section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
-    display: none;
-}
-.grid button a {
-    display: block;
-}
-.grid button a img {
-    display: block;
-    width: 100%;
-}
-.grid button a .desc {
-    padding: 12px 16px;
-    background: #F5F5F5;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-}
-.grid button .ripple.appear {
-	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .28s;
-}
-.grid button .ripple.finish.fade-out {
-	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .5s;
-}
-</style>
+  <meta charset="utf-8">
+  <title>Useful Links | HCINPCC Unit Website</title>
+  <meta name="author" content="HCINPCC">
+  <meta name="description" content="Official HCINPCC Unit Website">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3F51B5">
+  <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab" type="text/css" rel="stylesheet">
+  <link href="style.css" type="text/css" rel="stylesheet">
+
+  <style>
+    section.main .grid.two-column>* {
+      flex-basis: calc(50% - 24px);
+    }
+
+    @media (max-width: 600px) {
+      section.main .grid.two-column>* {
+        flex-basis: 100%;
+      }
+    }
+
+    section.main .dropdown-grid {
+      overflow: visible;
+      margin: 0 -20px;
+    }
+
+    section.main .dropdown-grid>div {
+      overflow: visible;
+      margin: 0 4px;
+      flex-basis: calc((100% - 24px) / 3);
+    }
+
+    @media (max-width: 880px) {
+      section.main .dropdown-grid>div {
+        flex-basis: calc(50% - 8px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      section.main .dropdown-grid>div {
+        flex-basis: 100%;
+      }
+    }
+
+    section.main .dropdown-grid button.dropdown {
+      margin: 0;
+      width: 100%;
+    }
+
+    section.main .dropdown-grid button.dropdown+.dropdown-content .wrapper {
+      padding: 0;
+    }
+
+    section.main .dropdown-grid .dropdown-content button {
+      display: block;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: none !important;
+      transition: background .2s;
+    }
+
+    section.main .dropdown-grid .dropdown-content button.hover,
+    section.main .dropdown-grid .dropdown-content button:active {
+      background: #F5F5F5;
+    }
+
+    @media (max-width: 450px) {
+      section.main .dropdown-grid .dropdown-content button {
+        border-radius: 0;
+      }
+    }
+
+    section.main .dropdown-grid .dropdown-content button a {
+      display: block;
+      padding: 10px 24px;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: left;
+    }
+
+    section.main .dropdown-grid .dropdown-content button[disabled] {
+      background: transparent !important;
+    }
+
+    section.main .dropdown-grid .dropdown-content button[disabled] a {
+      color: rgba(0, 0, 0, .54);
+      cursor: default;
+    }
+
+    section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
+      display: none;
+    }
+
+    .grid button a {
+      display: block;
+    }
+
+    .grid button a img {
+      display: block;
+      width: 100%;
+    }
+
+    .grid button a .desc {
+      padding: 12px 16px;
+      background: #F5F5F5;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    .grid button .ripple.appear {
+      transition: transform .6s cubic-bezier(.4, 0, .2, 1), opacity .28s;
+    }
+
+    .grid button .ripple.finish.fade-out {
+      transition: transform .6s cubic-bezier(.4, 0, .2, 1), opacity .5s;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="nav-detect-hover"></div>
-	<div class="navbar">
-		<button class="menu">
+  <div class="nav-detect-hover"></div>
+  <div class="navbar">
+    <button class="menu">
 			<div>
 				<svg viewBox="0 0 24 24">
     				<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
 				</svg>
 			</div>
 		</button>
-		<img src="https://hcinpcc.files.wordpress.com/2017/07/npcc1.jpg?w=657" alt="HCINPCC Logo">
-	</div>
-	<div class="nav-gradient"></div>
-	<div class="nav-drawer">
-		<div class="scrollbar-animate">
-			<div class="wrapper">
-			<ul>
-				<li>
-					<svg viewBox="0 0 24 24">
+    <img src="https://hcinpcc.files.wordpress.com/2017/07/npcc1.jpg?w=657" alt="HCINPCC Logo">
+  </div>
+  <div class="nav-gradient"></div>
+  <div class="nav-drawer">
+    <div class="scrollbar-animate">
+      <div class="wrapper">
+        <ul>
+          <li>
+            <svg viewBox="0 0 24 24">
     					<path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
 					</svg>
-					<a href="index.html">Home</a>
-				</li>
-				<li class="dropdown">
-					<svg viewBox="0 0 24 24">
+            <a href="index.html">Home</a>
+          </li>
+          <li class="dropdown">
+            <svg viewBox="0 0 24 24">
     					<path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
 					</svg>
-					<a>About HCINPCC</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
+            <a>About HCINPCC</a>
+            <div class="caret">
+              <svg viewBox="0 0 24 24">
 							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
 						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li><a href="info.html">NPCC Information</a></li>
-						<li><a href="roh.html">Roll Of Honour</a></li>
-						<li><a href="officers.html">Officers</a></li>
-						<li><a href="exco.html">Unit Hierarchy</a></li>
-					</ul>
-				</div>
-				<li class="dropdown">
-					<svg viewBox="0 0 24 24">
+            </div>
+          </li>
+          <div class="dropdown-content">
+            <ul>
+              <li><a href="info.html">NPCC Information</a></li>
+              <li><a href="roh.html">Roll Of Honour</a></li>
+              <li><a href="officers.html">Officers</a></li>
+              <li><a href="exco.html">Unit Hierarchy</a></li>
+            </ul>
+          </div>
+          <li class="dropdown">
+            <svg viewBox="0 0 24 24">
     					<path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
 					</svg>
-					<a>Publications</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
+            <a>Publications</a>
+            <div class="caret">
+              <svg viewBox="0 0 24 24">
 							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
 						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li>
-							<a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
-							<div class="external">
-								<svg viewBox="0 0 24 24">
+            </div>
+          </li>
+          <div class="dropdown-content">
+            <ul>
+              <li>
+                <a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
+                <div class="external">
+                  <svg viewBox="0 0 24 24">
     								<path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
 								</svg>
-							</div>
-						</li>
-						<li><a href="ac.html">Annual Chronicles</a></li>
-					</ul>
-				</div>
-				<li class="dropdown dropdown-open active">
-					<svg viewBox="0 0 24 24">
+                </div>
+              </li>
+              <li><a href="ac.html">Annual Chronicles</a></li>
+            </ul>
+          </div>
+          <li class="dropdown dropdown-open active">
+            <svg viewBox="0 0 24 24">
     					<path d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
 					</svg>
-					<a>Help</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
+            <a>Help</a>
+            <div class="caret">
+              <svg viewBox="0 0 24 24">
 							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
 						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li><a href="contact.html">Contact Us</a></li>
-						<li class="active"><a href="links.html">Useful Links</a></li>
-					</ul>
-				</div>
-			</ul>
-			<ul class="social-media-icons">
-				<li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
+            </div>
+          </li>
+          <div class="dropdown-content">
+            <ul>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li class="active"><a href="links.html">Useful Links</a></li>
+            </ul>
+          </div>
+        </ul>
+        <ul class="social-media-icons">
+          <li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
 					<svg viewBox="0 0 408.788 408.788">
 						<path d="M353.701 0H55.087C24.665 0 .002 24.662.002 55.085v298.616c0 30.423 24.662 55.085 55.085 55.085h147.275l.251-146.078h-37.951a8.954 8.954 0 0 1-8.954-8.92l-.182-47.087a8.955 8.955 0 0 1 8.955-8.989h37.882v-45.498c0-52.8 32.247-81.55 79.348-81.55h38.65a8.955 8.955 0 0 1 8.955 8.955v39.704a8.955 8.955 0 0 1-8.95 8.955l-23.719.011c-25.615 0-30.575 12.172-30.575 30.035v39.389h56.285c5.363 0 9.524 4.683 8.892 10.009l-5.581 47.087a8.955 8.955 0 0 1-8.892 7.901h-50.453l-.251 146.078h87.631c30.422 0 55.084-24.662 55.084-55.084V55.085C408.786 24.662 384.124 0 353.701 0z"/>
 					</svg>
 				</a></li>
-				<li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
+          <li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
 					<img src="instagram-black.svg">
 					<img src="instagram-color.svg">
 				</a></li>
-			</ul>
-			</div>
-		</div>
-	</div>
-	<div class="scrim"></div>
-	<div class="drag-nav-drawer"></div>
-	<section class="title">
-		<h1>Useful Links</h1>
-	</section>
-	<section class="main">
-		<h1>Police Websites</h1>
-		<div class="grid two-column">
-            <button>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+  <div class="drag-nav-drawer"></div>
+  <section class="title">
+    <h1>Useful Links</h1>
+  </section>
+  <section class="main">
+    <h1>Police Websites</h1>
+    <div class="grid two-column">
+      <button>
 				<a target="_blank" href="https://www.police.gov.sg/">
                     <img src="https://www.police.gov.sg/~/media/spf/images/logo/spf_fb.jpg" alt="SPF">
                     <div class="desc">Singapore Police Force</div>
                 </a>
             </button>
-            <button>
+      <button>
                 <a target="_blank" href="https://www.sgsecure.sg">
                     <img src="sgsecure.png" alt="SGSecure">
                     <div class="desc">SGSecure</div>
                 </a>
             </button>
-            <button>
+      <button>
                 <a target="_blank" href="http://www.npcc.org.sg">
                     <img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="NPCC Website">
                     <div class="desc">NPCC Official Website</div>
                 </a>
             </button>
-    		<button>
+      <button>
     			<a target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
                     <img src="http://www.npcc.org.sg/images/npccblank.jpg" alt="NPCC Hub">
                     <div class="desc">NPCC Hub</div>
                 </a>
     		</button>
-        </div>
-		<h1>Unit Calendar</h1>
-		<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23FFFFFF&src=561sqnajivfdm927m70mk8pbmg@group.calendar.google.com&color=%235229A3&src=rld57lvh6cjcd21p7qmlqohfn4@group.calendar.google.com&color=%232F6309&src=vjl921toghftiv9hjn0r7vdf80@group.calendar.google.com&color=%23B1365F&src=4ur6hnursm8mqr9ri7hi8kok78@group.calendar.google.com&color=%23B1440E&src=plomulgh1jfnmo6dt70uqii3s8@group.calendar.google.com&color=%23875509&ctz=Asia/Singapore&pli=1" frameborder="0" width="900" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-		<h1>Other Units</h1>
-        <div class="grid dropdown-grid">
-            <div>
-                <button class="dropdown">
+    </div>
+    <h1>Unit Calendar</h1>
+    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23FFFFFF&src=561sqnajivfdm927m70mk8pbmg@group.calendar.google.com&color=%235229A3&src=rld57lvh6cjcd21p7qmlqohfn4@group.calendar.google.com&color=%232F6309&src=vjl921toghftiv9hjn0r7vdf80@group.calendar.google.com&color=%23B1365F&src=4ur6hnursm8mqr9ri7hi8kok78@group.calendar.google.com&color=%23B1440E&src=plomulgh1jfnmo6dt70uqii3s8@group.calendar.google.com&color=%23875509&ctz=Asia/Singapore&pli=1"
+      frameborder="0" width="900" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    <h1>Other Units</h1>
+    <div class="grid dropdown-grid">
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 1</a>
                         <div class="caret">
@@ -244,31 +285,31 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a href="http://chrnpcc.weebly.com/">Christ Church Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Fuchun Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Marsiling Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Woodgrove Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Woodlands Ring Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Woodlands Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 2</a>
                         <div class="caret">
@@ -278,34 +319,34 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Chung Cheng High School (Yishun)</a>
                         </button>
-                        <button>
+            <button>
                             <a>Naval Base Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Northbrooks Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Northland Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Orchid Park Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Yishun Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Yishun Town Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 3</a>
                         <div class="caret">
@@ -315,34 +356,34 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Ang Mo Kio Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>CHIJ St. Nicholas Girls' School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Chong Boon Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Deyi Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Mayflower Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Presbyterian High School</a>
                         </button>
-						<button>
+            <button>
                             <a>Yio Chu Kang Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 4</a>
                         <div class="caret">
@@ -352,37 +393,37 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Beatty Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Bishan Park Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Catholic High School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Guangyang Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Kuo Chuan Presbyterian Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Peirce Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Raffles Institution</a>
                         </button>
-						<button>
+            <button>
                             <a>Whitley Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 5</a>
                         <div class="caret">
@@ -392,34 +433,34 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Bartley Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Cedar Girls' Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Maris Stella High School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Paya Lebar Methodist Girls' School (Secondary)</a>
                         </button>
-                        <button>
+            <button>
                             <a>St. Gabriel's Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Yuying Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Zhonghua Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 6</a>
                         <div class="caret">
@@ -429,40 +470,40 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Anderson Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Bowen Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Holy Innocent's High School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Hougang Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Montfort Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Peicai Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Serangoon Garden Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Serangoon Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Xinmin Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 7</a>
                         <div class="caret">
@@ -472,40 +513,40 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>CHIJ St. Joseph's Convent</a>
                         </button>
-                        <button>
+            <button>
                             <a>Compassvale Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Edgefield Secondary School [Sea]</a>
                         </button>
-                        <button>
+            <button>
                             <a>Greendale Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Nan Chiau High School</a>
                         </button>
-						<button>
+            <button>
                             <a>North Vista Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Pei Hwa Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Punggol Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Seng Kang Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 8</a>
                         <div class="caret">
@@ -515,34 +556,34 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Meridian Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Dunman Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>East View Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Greenview Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Hai Sing Catholic School</a>
                         </button>
-						<button>
+            <button>
                             <a>Loyang Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Pasir Ris Crest Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 9</a>
                         <div class="caret">
@@ -552,37 +593,37 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Changkat Changi Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>East Spring Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Junyuan Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Ngee Ann Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Pasir Ris Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Springfield Secondary School [Sea]</a>
                         </button>
-						<button>
+            <button>
                             <a>St. Hilda's Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Tampines Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 10</a>
                         <div class="caret">
@@ -592,34 +633,34 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Anglican High School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Bedok Green Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Bedok South Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Bedok View Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Damai Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Ping Yi Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Temasek Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 11</a>
                         <div class="caret">
@@ -629,31 +670,31 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Broadrick Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Chung Cheng High School (Main)</a>
                         </button>
-                        <button>
+            <button>
                             <a>St. Patrick's Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Tanjong Katong Girls' School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Tanjong Katong Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Victoria School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 12</a>
                         <div class="caret">
@@ -663,31 +704,31 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Bedok North Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Bendemeer Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Dunman High School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Geylang Methodist School (Secondary)</a>
                         </button>
-                        <button>
+            <button>
                             <a>Manjusri Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>St. Andrew's Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 13</a>
                         <div class="caret">
@@ -697,31 +738,31 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Admiralty Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Ahmad Ibrahim Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Canberra Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Evergreen Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Riverside Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Sembawang Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 14</a>
                         <div class="caret">
@@ -731,31 +772,31 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>CHIJ St. Theresa's Convent</a>
                         </button>
-                        <button>
+            <button>
                             <a>Crescent Girls’ School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Gan Eng Seng School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Bukit Merah Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Outram Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Queenstown Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 15</a>
                         <div class="caret">
@@ -765,34 +806,34 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a href="https://sites.google.com/a/acsbr.org/national-police-cadet-corps/">Anglo-Chinese School (Barker Road)</a>
                         </button>
-                        <button>
+            <button>
                             <a href="http://hcinpcc.github.io">Hwa Chong Institution</a>
                         </button>
-                        <button>
+            <button>
                             <a href="http://nynpcc.blogspot.sg/">Nanyang Girls' High School</a>
                         </button>
-                        <button>
+            <button>
                             <a href="http://queensway-np-peeps.blogspot.sg/">Queensway Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a href="http://rgsnpcc.weebly.com/">Raffles Girs' School (Secondary) [Sea]</a>
                         </button>
-                        <button>
+            <button>
                             <a href="http://sjinpcc.blogspot.sg/">St. Joseph's Institution</a>
                         </button>
-						<button>
+            <button>
                             <a>St. Margaret's Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 16</a>
                         <div class="caret">
@@ -802,31 +843,31 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Anglo-Chinese School (Independent)</a>
                         </button>
-                        <button>
+            <button>
                             <a>Clementi Town Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Kent Ridge Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Nan Hua High School</a>
                         </button>
-                        <button>
+            <button>
                             <a>New Town Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Tanglin Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 17</a>
                         <div class="caret">
@@ -836,34 +877,34 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Boon Lay Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Jurong Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Jurong West Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>River Valley High School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Westwood Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Yuan Ching Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Yuhua Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 18</a>
                         <div class="caret">
@@ -873,37 +914,37 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Bukit Batok Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Bukit View Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Commonwealth Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Fuhua Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Hong Kah Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Hua Yi Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Jurongville Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Shuqun Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 19</a>
                         <div class="caret">
@@ -913,34 +954,34 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Assumption English School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Dunearn Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Fajar Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Greenridge Secondary</a>
                         </button>
-                        <button>
+            <button>
                             <a>Hillgrove Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Swiss Cottage Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Yusof Ishak Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <button class="dropdown">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="dropdown">
                     <div>
                         <a>Area 20</a>
                         <div class="caret">
@@ -950,54 +991,56 @@ section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
                         </div>
                     </div>
                 </button>
-            	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+        <div class="dropdown-content">
+          <div class="wrapper">
+            <button>
                             <a>Bukit Panjang Government High School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Choa Chu Kang Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Kranji Secondary School</a>
                         </button>
-                        <button>
+            <button>
                             <a>Regent Secondary School	</a>
                         </button>
-                        <button>
+            <button>
                             <a>Teck Whye Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Unity Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>West Spring Secondary School</a>
                         </button>
-						<button>
+            <button>
                             <a>Zhenghua Secondary School</a>
                         </button>
-                    </div>
-                </div>
-            </div>
-
+          </div>
         </div>
-    </section>
-	<section class="footer">
-		<footer>
-			© 2018
-			<span>Hwa Chong Institution National Police Cadet Corps</span>
-			<span>HCINPCC</span>
-		</footer>
-	</section>
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-<script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
-<script src="script.js"></script>
-<script>
-var $links = document.querySelectorAll('.main .dropdown-content a'), l;
-for (l = 0; l < $links.length; l++) {
-    if (!$links[l].hasAttribute('href')) $links[l].parentElement.setAttribute('disabled','');
-    else $links[l].setAttribute('target','_blank');
-}
-</script>
+      </div>
+
+    </div>
+  </section>
+  <section class="footer">
+    <footer>
+      © 2018
+      <span>Hwa Chong Institution National Police Cadet Corps</span>
+      <span>HCINPCC</span>
+    </footer>
+  </section>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    var $links = document.querySelectorAll('.main .dropdown-content a'),
+      l;
+    for (l = 0; l < $links.length; l++) {
+      if (!$links[l].hasAttribute('href')) $links[l].parentElement.setAttribute('disabled', '');
+      else $links[l].setAttribute('target', '_blank');
+    }
+  </script>
 </body>
+
 </html>
