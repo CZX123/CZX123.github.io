@@ -206,7 +206,7 @@
 var $main = document.getElementsByClassName('main')[0];
 $main.addEventListener('click', function(e) {
 	var $elem = e.target;
-	while ($elem && !$elem.classList.contains('dropdown')) {
+	while ($elem && !$elem.hasAttribute('data-fetch')) {
 		$elem = $elem.parentElement;
 	}
 	if (!$elem) return false;
