@@ -11,6 +11,7 @@ var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a, secti
 for (var d = 0; d < $dropdown.length; d++) {
     dropdownTransition($dropdown[d]);
 	$dropdown[d].addEventListener('click', function() {
+        if (this.parentElement.hasAttribute('data-fetch')) return false;
         this.parentElement.classList.toggle('dropdown-open');
         dropdownTransition(this);
 	});
