@@ -210,8 +210,9 @@ $main.addEventListener('click', function(e) {
 		$elem = $elem.parentElement;
 	}
 	if (!$elem) return false;
-	var $dropdownrequest = new XMLHttpRequest();
-	$dropdownrequest.open("GET", 'ac/' + $elem.getAttribute('data-fetch'));
+	var $dropdownrequest = new XMLHttpRequest(),
+	    filename = $elem.getAttribute('data-fetch');
+	$dropdownrequest.open("GET", 'ac/' + filename);
 	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
