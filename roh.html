@@ -127,9 +127,7 @@
             </div>
         </button>
     	<div class="dropdown-content">
-            <div class="wrapper">
-                <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTiBa910XUGETuTbvR90aH5ktz7FiCdjsXVyGq3hxcbSHh06Ci6kei4oOL68_hk6cp05hl9MeCk12Jw/embed?start=true&loop=true&delayms=5000" frameborder="0" width="900" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-            </div>
+            <div class="wrapper"></div>
         </div>
         <button class="dropdown" data-fetch="2016.html">
             <div>
@@ -142,9 +140,7 @@
             </div>
         </button>
     	<div class="dropdown-content">
-            <div class="wrapper">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
+            <div class="wrapper"></div>
         </div>
         <button class="dropdown" data-fetch="2015.html">
             <div>
@@ -157,9 +153,7 @@
             </div>
         </button>
     	<div class="dropdown-content">
-            <div class="wrapper">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
+            <div class="wrapper"></div>
         </div>
         <button class="dropdown" data-fetch="2014.html">
             <div>
@@ -172,9 +166,7 @@
             </div>
         </button>
     	<div class="dropdown-content">
-            <div class="wrapper">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
+            <div class="wrapper"></div>
         </div>
         <button class="dropdown" data-fetch="2013.html">
             <div>
@@ -187,9 +179,7 @@
             </div>
         </button>
     	<div class="dropdown-content">
-            <div class="wrapper">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
+            <div class="wrapper"></div>
         </div>
 	</section>
 	<section class="footer">
@@ -203,7 +193,24 @@
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
 <script>
-var $main = document.getElementsByClassName('main')[0];
+var $main = document.getElementsByClassName('main')[0],
+    $preload = document.querySelector('.dropdown-open[data-fetch]');
+
+if ($preload) {
+	var $dropdownrequest = new XMLHttpRequest(),
+	    filename = $preload.getAttribute('data-fetch');
+	$dropdownrequest.open("GET", 'ac/' + filename);
+	$dropdownrequest.send();
+	$dropdownrequest.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var $wrapper = $preload.nextElementSibling.children[0];
+			$wrapper.innerHTML = $dropdownrequest.responseText;
+			$preload.removeAttribute('data-fetch');
+			$preload.children[0].click();
+		}
+	};
+}
+
 $main.addEventListener('click', function(e) {
 	var $elem = e.target;
 	while ($elem && !$elem.hasAttribute('data-fetch')) {
