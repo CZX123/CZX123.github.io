@@ -601,7 +601,6 @@ section.main button.dropdown .ripple.finish.fade-out {
 section.main button.dropdown + .dropdown-content .wrapper {
 	padding: 16px 0;
 	margin-top: -1000vh;
-	transition: margin .4s cubic-bezier(.4,0,.2,1);
 }
 section.main button.dropdown.dropdown-open + .dropdown-content .wrapper {
 	margin-top: 0;

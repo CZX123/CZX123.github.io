@@ -32,6 +32,7 @@ function dropdownTransition(iterations,$elem,start,end) {
         diff = end - start;
     iterations++;
     $elem.style.marginTop = easeOutCubic(iterations, start, diff, dropdowntotal) + 'px';
+    console.log(iterations, start, diff, dropdowntotal);
     if (iterations < dropdowntotal) {
         animation = requestAnimationFrame(function() {
             dropdownTransition(iterations,$elem,start,end);
@@ -83,7 +84,9 @@ function scrolling() {
 		if (resize) {
             resize = false;
             for (var d = 0; d < $dropdown.length; d++) {
-                dropdownTransition($dropdown[d]);
+                $dropdowncontent = $dropdown[d].parentElement.nextElementSibling.children[0];
+                if ($dropdown[d].parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
+                else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
             }
         }
 		if ($parallax && latestY <= windowHeight && isIE == false) {
