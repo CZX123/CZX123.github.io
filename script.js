@@ -33,7 +33,6 @@ function dropdownTransition(iterations,$elem,start,end) {
     if ($elem.tagName == 'UL') dropdowntotal = 24;
     iterations++;
     $elem.style.marginTop = easeOutCubic(iterations, start, diff, dropdowntotal) + 'px';
-    console.log(iterations, start, diff, dropdowntotal);
     if (iterations < dropdowntotal) {
         animation = requestAnimationFrame(function() {
             dropdownTransition(iterations,$elem,start,end);
