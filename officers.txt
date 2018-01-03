@@ -14,7 +14,7 @@ Here is the original HTML code before encryption, starting from the main section
     <div class="grid">
         <button>
             <a href="mailto:tancw@hci.edu.sg">
-                <img src="https://media.discordapp.net/attachments/379974652572860416/394492507750400004/Officer_TanCW.jpg" alt="Mr Tan CW">
+                <img src="officers/officer-tancw.jpg" alt="Mr Tan CW">
                 <div class="desc">DSP (NPCC) Mr Tan Chee Wee</div>
             </a>
         </button>
@@ -22,13 +22,13 @@ Here is the original HTML code before encryption, starting from the main section
     <div class="grid">
         <button>
             <a href="mailto:lokelf@hci.edu.sg">
-                <img src="https://media.discordapp.net/attachments/379974652572860416/394492506278068225/Officer_Loke.jpg" alt="Mdm Loke">
+                <img src="officers/officer-loke.jpg" alt="Mdm Loke">
                 <div class="desc">ASP (NPCC) Mrs Yeong-Loke Lai Fun</div>
             </a>
         </button>
             <button>
             <a href="mailto:kala@hci.edu.sg">
-                <img src="https://media.discordapp.net/attachments/379974652572860416/394492505044811787/Officer_Kala.jpg" alt="Ms Kala">
+                <img src="officers/officer-kala.jpg" alt="Ms Kala">
                 <div class="desc">ASP (NPCC) Ms G. Kalavathi</div>
             </a>
             </button>
@@ -36,13 +36,13 @@ Here is the original HTML code before encryption, starting from the main section
     <div class="grid">
         <button>
             <a href="mailto:tanhk@hci.edu.sg">
-                <img src="https://media.discordapp.net/attachments/379974652572860416/394492509549756426/Officer_TanHK.jpg" alt="Mr Tan HK">
+                <img src="officers/officer-tanhk.jpg" alt="Mr Tan HK">
                 <div class="desc">Insp (NPCC) Mr Tan Hui Kuan</div>
             </a>
         </button>
         <button>
             <a href="mailto:joyce@hci.edu.sg">
-                <img src="https://media.discordapp.net/attachments/379974652572860416/394492503643914242/Officer_JoyceTan.jpg" alt="Ms Tan">
+                <img src="officers/officer-joyce.jpg" alt="Ms Tan">
                 <div class="desc">Insp (NPCC) Ms Joyce Tan Yu Hui</div>
             </a>
         </button>
@@ -51,7 +51,7 @@ Here is the original HTML code before encryption, starting from the main section
     <div class="grid">
         <button>
             <a href="mailto:yew_woon@yahoo.com.sg">
-                <img src="https://media.discordapp.net/attachments/379974652572860416/394505879564713984/chiayw.jpg">
+                <img src="officers/officer-chiayw.jpg">
                 <div class="desc">H/ASP (NPCC) Dr Chia Yew Woon</div>
             </a>
         </button>
@@ -59,8 +59,14 @@ Here is the original HTML code before encryption, starting from the main section
     <h1>Cadet Inspectors</h1>
     <div class="grid">
         <button>
+            <a href="mailto:lowjiefeng1998@gmail.com">
+                <img src="officers/ci-jiefeng.jpg">
+                <div class="desc">CI (NPCC) Low Jie Feng </div>
+            </a>
+        </button>
+        <button>
             <a href="mailto:tanjinan27@gmail.com">
-                <img src="https://media.discordapp.net/attachments/379974652572860416/394492499768377355/Officer_CI_Jinan.jpg">
+                <img src="officers/ci-jinan.jpg">
                 <div class="desc">CI (NPCC) Tan Jin An </div>
             </a>
         </button>
