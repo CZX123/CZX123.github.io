@@ -18,11 +18,15 @@ function easeOutCubic(t, b, c, d) {
 for (var d = 0; d < $dropdown.length; d++) {
     $dropdowncontent = $dropdown[d].parentElement.nextElementSibling.children[0];
     if ($dropdown[d].parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
-    else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
+    else {
+        $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
+        $dropdowncontent.style.visibility = 'hidden';
+    }
 	$dropdown[d].addEventListener('click', function() {
         $dropdowncontent = this.parentElement.nextElementSibling.children[0];
         if (this.parentElement.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
         this.parentElement.classList.toggle('dropdown-open');
+        $dropdowncontent.style.visibility = '';
         if (this.parentElement.classList.contains('dropdown-open')) dropdownTransition(0,$dropdowncontent,-$dropdowncontent.offsetHeight,0);
         else dropdownTransition(0,$dropdowncontent,0,-$dropdowncontent.offsetHeight);
 	});
@@ -40,6 +44,7 @@ function dropdownTransition(iterations,$elem,start,end) {
         $currentelement = $elem;
     }
     else {
+        if (end != 0) $dropdowncontent.style.visibility = 'hidden';
         $currentelement = false;
         animation = false;
     }
