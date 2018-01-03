@@ -30,6 +30,7 @@ for (var d = 0; d < $dropdown.length; d++) {
 function dropdownTransition(iterations,$elem,start,end) {
     var dropdowntotal = 36,
         diff = end - start;
+    if ($elem.tagName == 'UL') dropdowntotal = 24;
     iterations++;
     $elem.style.marginTop = easeOutCubic(iterations, start, diff, dropdowntotal) + 'px';
     console.log(iterations, start, diff, dropdowntotal);
