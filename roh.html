@@ -404,7 +404,7 @@ $main.addEventListener('click', function(e) {
 		$dropdowncontent = $elem.nextElementSibling.children[0];
     $elem.classList.add('loading');
     $dropdownrequest.onprogress = function(e) {
-        console.log(e.lengthComputable);
+        console.log(e.lengthComputable,e.loaded,e.total);
     };
     $dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
