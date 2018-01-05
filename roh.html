@@ -18,7 +18,7 @@ section.main button.dropdown + .dropdown-content .wrapper {
 	padding: 0;
 }
 section.main .dropdown-content .grid:last-of-type {
-    margin-bottom: 0;
+    margin-bottom: 16px;
 }
 section.main .dropdown-content .grid > :nth-child(odd) {
     flex-basis: calc(100% - 72px);
@@ -220,6 +220,7 @@ section.main .dropdown-content .grid > p {
 			<span>HCINPCC</span>
 		</footer>
 	</section>
+    <div class="error">An error occured. Please try again later.</div>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
@@ -237,6 +238,10 @@ if ($preload) {
 		$wrapper.innerHTML = $dropdownrequest.responseText;
 		$preload.removeAttribute('data-fetch');
 	};
+	$dropdownrequest.onerror = function() {
+        error();
+        $preload.classList.remove('dropdown-open');
+    };
 }
 
 $main.addEventListener('click', function(e) {
@@ -256,9 +261,9 @@ $main.addEventListener('click', function(e) {
 		$dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 		$elem.removeAttribute('data-fetch');
 		$elem.children[0].click();
+        console.log('fff');
 	};
-	$dropdownrequest.onerror = function() {
-    };
+	$dropdownrequest.addEventListener('error', error);
 });
 
 </script>

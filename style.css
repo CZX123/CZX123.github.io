@@ -477,6 +477,30 @@ section.main h2 {
 	font-size: 28px;
 	line-height: 1.5;
 }
+.error {
+	display: inline-block;
+	position: fixed;
+	bottom: 24px;
+	left: 50%;
+	border-radius: 4px;
+	padding: 16px 24px;
+	background: #323232;
+	color: transparent;
+	font-size: 14px;
+	line-height: 24px;
+	white-space: nowrap;
+	box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+	transform: translate(-50%,82px);
+	transition: transform .3s cubic-bezier(.4,0,.2,1), visibility 0s .3s, color .3s .1s;
+	visibility: hidden;
+	z-index: 20;
+}
+.error.show {
+	color: #FFF;
+	transform: translate(-50%,0);
+	transition: transform .3s cubic-bezier(.4,0,.2,1), visibility 0s, color .3s .1s;
+	visibility: visible;
+}
 @media (max-width: 880px) {
 section.main .grid > * {
     flex-basis: calc(50% - 24px);
@@ -509,6 +533,20 @@ section.main h1, section.title h1 {
 }
 section.main button.dropdown {
 	border-radius: 0;
+}
+.error {
+	display: block;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-radius: 0;
+	padding: 16px;
+	line-height: 16px;
+	transform: translateY(52px);
+}
+.error.show {
+	transform: translateY(0);
 }
 }
 @media (max-width: 400px) {

@@ -359,3 +359,21 @@ function rippleUp(element, e) {
 		}
 	}, 400);
 }
+
+var $error = document.getElementsByClassName('error')[0],
+    errortimer;
+
+function error() {
+    if (errortimer) {
+        $error.classList.remove('show');
+        setTimeout(function() {
+            $error.classList.add('show');
+        }, 240);
+    }
+    else $error.classList.add('show');
+    clearTimeout(errortimer);
+    errortimer = setTimeout(function() {
+        $error.classList.remove('show');
+        errortimer = 0;
+    }, 3000);
+}
