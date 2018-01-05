@@ -40,11 +40,116 @@ section.main .dropdown-content .grid > p {
 	font-size: 18px;
     line-height: 24px;
 }
-.progress {
+section.main button.dropdown .progress {
     position: absolute;
+    height: 4px;
     right: 0;
     bottom: 0;
     left: 0;
+    border-radius: 2px;
+    padding: 0;
+    background: #e6e6e6;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity .3s, visibility 0s .3s;
+}
+section.main button.dropdown.loading .progress {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+section.main button.dropdown .progress > div {
+    position: relative;
+    height: 100%;
+    padding: 0;
+}
+section.main button.dropdown .progress > div > div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: -145.166611%;
+    padding: 0;
+    animation: primary-progress 2s infinite linear;
+}
+section.main button.dropdown .progress > div > div:last-child {
+    left: -54.888891%;
+    animation: secondary-progress 2s infinite linear;
+}
+@keyframes primary-progress {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        animation-timing-function: cubic-bezier(0.5, 0, 0.70173, 0.49582);
+        transform: translateX(0);
+    }
+    59.15% {
+        animation-timing-function: cubic-bezier(0.30244, 0.38135, 0.55, 0.95635);
+        transform: translateX(83.67142%);
+    }
+    100% {
+        transform: translateX(200.61106%);
+    }
+}
+@keyframes secondary-progress {
+    0% {
+        animation-timing-function: cubic-bezier(0.15, 0, 0.51506, 0.40969);
+        transform: translateX(0);
+    }
+    25% {
+        animation-timing-function: cubic-bezier(0.31033, 0.28406, 0.8, 0.73371);
+        transform: translateX(37.65191%);
+    }
+    48.35% {
+        aanimation-timing-function: cubic-bezier(0.4, 0.62704, 0.6, 0.90203);
+        transform: translateX(84.38617%);
+    }
+    100% {
+        transform: translateX(160.27778%);
+    }
+}
+section.main button.dropdown .progress > div > div > span {
+    display: block;
+    height: 100%;
+    background: #3F51B5;
+    animation: primary-progress-span 2s infinite linear;
+}
+section.main button.dropdown .progress > div > div:last-child > span {
+    animation: secondary-progress-span 2s infinite linear;
+}
+@keyframes primary-progress-span {
+    0% {
+        transform: scaleX(0.08);
+    }
+    36.65% {
+        animation-timing-function: cubic-bezier(0.33473, 0.12482, 0.78584, 1);
+        transform: scaleX(0.08);
+    }
+    69.15% {
+        animation-timing-function: cubic-bezier(0.06, 0.11, 0.6, 1);
+        transform: scaleX(0.66148);
+    }
+    100% {
+        transform: scaleX(0.08);
+    }
+}
+@keyframes secondary-progress-span {
+    0% {
+        animation-timing-function: cubic-bezier(0.20503, 0.05705, 0.57661, 0.45397);
+        transform: scaleX(0.08);
+    }
+    19.15% {
+        animation-timing-function: cubic-bezier(0.15231, 0.19643, 0.64837, 1.00432);
+        transform: scaleX(0.4571);
+    }
+    44.15% {
+        animation-timing-function: cubic-bezier(0.25776, -0.00316, 0.21176, 1.38179);
+        transform: scaleX(0.72796);
+    }
+    100% {
+        transform: scaleX(0.08);
+    }
 }
 </style>
 </head>
@@ -162,7 +267,10 @@ section.main .dropdown-content .grid > p {
                     </svg>
                 </div>
                 <div class="progress">
-                    <div></div>
+                    <div>
+                        <div><span></span></div>
+                        <div><span></span></div>
+                    </div>
                 </div>
             </div>
         </button>
@@ -177,6 +285,12 @@ section.main .dropdown-content .grid > p {
                         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
                     </svg>
                 </div>
+                <div class="progress">
+                    <div>
+                        <div><span></span></div>
+                        <div><span></span></div>
+                    </div>
+                </div>
             </div>
         </button>
     	<div class="dropdown-content">
@@ -189,6 +303,12 @@ section.main .dropdown-content .grid > p {
                     <svg viewBox="0 0 24 24">
                         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
                     </svg>
+                </div>
+                <div class="progress">
+                    <div>
+                        <div><span></span></div>
+                        <div><span></span></div>
+                    </div>
                 </div>
             </div>
         </button>
@@ -203,6 +323,12 @@ section.main .dropdown-content .grid > p {
                         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
                     </svg>
                 </div>
+                <div class="progress">
+                    <div>
+                        <div><span></span></div>
+                        <div><span></span></div>
+                    </div>
+                </div>
             </div>
         </button>
     	<div class="dropdown-content">
@@ -215,6 +341,12 @@ section.main .dropdown-content .grid > p {
                     <svg viewBox="0 0 24 24">
                         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
                     </svg>
+                </div>
+                <div class="progress">
+                    <div>
+                        <div><span></span></div>
+                        <div><span></span></div>
+                    </div>
                 </div>
             </div>
         </button>
@@ -240,27 +372,18 @@ var $main = document.getElementsByClassName('main')[0],
 if ($preload) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $preload.getAttribute('data-fetch');
-    $dropdownrequest.onprogress = function(e) {
-        $preload.classList.add('loading');
-        if (e.lengthComputable) {
-            var percentcomplete = e.loaded/e.total;
-            console.log(percentcomplete);
-        }
-        else $preload.classList.add('indeterminate');
-    };
+    $preload.classList.add('loading');
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $preload.classList.remove('loading');
-            $preload.classList.remove('indeterminate');
             var $wrapper = $preload.nextElementSibling.children[0];
             $wrapper.innerHTML = $dropdownrequest.responseText;
             $preload.removeAttribute('data-fetch');
         }
         else if (this.readyState == 4) {
             $preload.classList.remove('loading');
-            $preload.classList.remove('indeterminate');
             error();
             $preload.classList.remove('dropdown-open');
         }
@@ -276,20 +399,12 @@ $main.addEventListener('click', function(e) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
-    $dropdownrequest.onprogress = function(e) {
-        $elem.classList.add('loading');
-        if (e.lengthComputable) {
-            var percentcomplete = e.loaded/e.total;
-            console.log(percentcomplete);
-        }
-        else $elem.classList.add('indeterminate');
-    };
+    $elem.classList.add('loading');
     $dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            $preload.classList.remove('loading');
-            $preload.classList.remove('indeterminate');
+            $elem.classList.remove('loading');
     		var $wrapper = $elem.nextElementSibling.children[0];
             $wrapper.innerHTML = $dropdownrequest.responseText;
             $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
@@ -297,8 +412,7 @@ $main.addEventListener('click', function(e) {
             $elem.children[0].click();
         }
         else if (this.readyState == 4) {
-            $preload.classList.remove('loading');
-            $preload.classList.remove('indeterminate');
+            $elem.classList.remove('loading');
             error();
         }
 	};
