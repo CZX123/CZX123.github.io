@@ -455,7 +455,6 @@ section.footer span:last-of-type {
 }
 section.main .grid {
     display: flex;
-    align-items: baseline;
     flex-wrap: wrap;
     margin: 0 -12px;
 }
@@ -511,7 +510,10 @@ section.title h1, section.main, section.footer {
 	padding-left: 72px;
 	padding-right: 72px;
 }
-section.main h1, section.title h1 {
+section.title h1 {
+	font-size: 56px;
+}
+section.main h1 {
 	font-size: 44px;
 }
 }
@@ -528,7 +530,10 @@ section.title h1, section.main, section.footer {
 	padding-left: 16px;
 	padding-right: 16px;
 }
-section.main h1, section.title h1 {
+section.title h1 {
+	font-size: 48px;
+}
+section.main h1 {
 	font-size: 40px;
 }
 section.main button.dropdown {

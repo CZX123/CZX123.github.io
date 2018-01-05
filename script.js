@@ -5,7 +5,7 @@ var $html = document.getElementsByTagName('html')[0],
 
 // Toggle class when a dropdown is clicked
 // This is placed in front so that the function can be called when window resizes
-var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown > a, section.main button.dropdown > div'),
+var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.main button.dropdown'),
     $dropdowncontent,
     d, // d is the number of dropdowns - 1
     $currentelement,
@@ -16,18 +16,19 @@ function easeOutCubic(t, b, c, d) {
 }
 // Selects all dropdowns and adds a click listener
 for (var d = 0; d < $dropdown.length; d++) {
-    $dropdowncontent = $dropdown[d].parentElement.nextElementSibling.children[0];
-    if ($dropdown[d].parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
+    $dropdowncontent = $dropdown[d].nextElementSibling.children[0];
+    if ($dropdown[d].classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
     else {
         $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
         $dropdowncontent.style.visibility = 'hidden';
     }
 	$dropdown[d].addEventListener('click', function() {
-        $dropdowncontent = this.parentElement.nextElementSibling.children[0];
-        if (this.parentElement.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
-        this.parentElement.classList.toggle('dropdown-open');
+        console.log('ánimate');
+        $dropdowncontent = this.nextElementSibling.children[0];
+        if (this.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
+        this.classList.toggle('dropdown-open');
         $dropdowncontent.style.visibility = '';
-        if (this.parentElement.classList.contains('dropdown-open')) dropdownTransition(0,$dropdowncontent,-$dropdowncontent.offsetHeight,0);
+        if (this.classList.contains('dropdown-open')) dropdownTransition(0,$dropdowncontent,-$dropdowncontent.offsetHeight,0);
         else dropdownTransition(0,$dropdowncontent,0,-$dropdowncontent.offsetHeight);
 	});
 }
@@ -89,8 +90,8 @@ function scrolling() {
 		if (resize) {
             resize = false;
             for (var d = 0; d < $dropdown.length; d++) {
-                $dropdowncontent = $dropdown[d].parentElement.nextElementSibling.children[0];
-                if ($dropdown[d].parentElement.classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
+                $dropdowncontent = $dropdown[d].nextElementSibling.children[0];
+                if ($dropdown[d].classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
                 else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
             }
         }

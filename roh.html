@@ -374,7 +374,7 @@ if ($preload) {
 	    filename = $preload.getAttribute('data-fetch');
     $preload.classList.add('loading');
     $dropdownrequest.onprogress = function(e) {
-        console.log(e.lengthComputable);
+        console.log(e.lengthComputable,e.loaded,e.total);
     };
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
