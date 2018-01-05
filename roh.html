@@ -15,7 +15,10 @@ section.main .grid {
     margin: 0;
 }
 section.main button.dropdown + .dropdown-content .wrapper {
-	padding: 0 0 16px;
+	padding: 0;
+}
+section.main .dropdown-content .grid:last-of-type {
+    margin-bottom: 0;
 }
 section.main .dropdown-content .grid > :nth-child(odd) {
     flex-basis: calc(100% - 72px);
@@ -229,12 +232,10 @@ if ($preload) {
 	    filename = $preload.getAttribute('data-fetch');
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
-	$dropdownrequest.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var $wrapper = $preload.nextElementSibling.children[0];
-			$wrapper.innerHTML = $dropdownrequest.responseText;
-			$preload.removeAttribute('data-fetch');
-		}
+	$dropdownrequest.onload = function() {
+		var $wrapper = $preload.nextElementSibling.children[0];
+		$wrapper.innerHTML = $dropdownrequest.responseText;
+		$preload.removeAttribute('data-fetch');
 	};
 }
 
@@ -249,15 +250,15 @@ $main.addEventListener('click', function(e) {
 		$dropdowncontent = $elem.nextElementSibling.children[0];
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
-	$dropdownrequest.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var $wrapper = $elem.nextElementSibling.children[0];
-			$wrapper.innerHTML = $dropdownrequest.responseText;
-			$dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
-			$elem.removeAttribute('data-fetch');
-			$elem.children[0].click();
-		}
+	$dropdownrequest.onload = function() {
+		var $wrapper = $elem.nextElementSibling.children[0];
+		$wrapper.innerHTML = $dropdownrequest.responseText;
+		$dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
+		$elem.removeAttribute('data-fetch');
+		$elem.children[0].click();
 	};
+	$dropdownrequest.onerror = function() {
+    };
 });
 
 </script>
