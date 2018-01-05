@@ -64,7 +64,7 @@ section.main button.dropdown .progress > div {
     height: 100%;
     padding: 0;
 }
-section.main button.dropdown .progress > div > div {
+section.main button.dropdown.activate-loading .progress > div > div {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -72,7 +72,7 @@ section.main button.dropdown .progress > div > div {
     padding: 0;
     animation: primary-progress 2s infinite linear;
 }
-section.main button.dropdown .progress > div > div:last-child {
+section.main button.dropdown.activate-loading .progress > div > div:last-child {
     left: -54.888891%;
     animation: secondary-progress 2s infinite linear;
 }
@@ -109,13 +109,13 @@ section.main button.dropdown .progress > div > div:last-child {
         transform: translateX(160.27778%);
     }
 }
-section.main button.dropdown .progress > div > div > span {
+section.main button.dropdown.activate-loading .progress > div > div > span {
     display: block;
     height: 100%;
     background: #3F51B5;
     animation: primary-progress-span 2s infinite linear;
 }
-section.main button.dropdown .progress > div > div:last-child > span {
+section.main button.dropdown.activate-loading .progress > div > div:last-child > span {
     animation: secondary-progress-span 2s infinite linear;
 }
 @keyframes primary-progress-span {
@@ -372,6 +372,7 @@ var $main = document.getElementsByClassName('main')[0],
 if ($preload) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $preload.getAttribute('data-fetch');
+    $preload.classList.add('activate-loading');
     $preload.classList.add('loading');
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
@@ -399,6 +400,7 @@ $main.addEventListener('click', function(e) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
+    $elem.classList.add('activate-loading');
     $elem.classList.add('loading');
     $dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
