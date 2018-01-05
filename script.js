@@ -23,7 +23,6 @@ for (var d = 0; d < $dropdown.length; d++) {
         $dropdowncontent.style.visibility = 'hidden';
     }
 	$dropdown[d].addEventListener('click', function() {
-        console.log('ánimate');
         $dropdowncontent = this.nextElementSibling.children[0];
         if (this.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
         this.classList.toggle('dropdown-open');

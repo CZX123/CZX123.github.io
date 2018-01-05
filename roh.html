@@ -373,9 +373,6 @@ if ($preload) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $preload.getAttribute('data-fetch');
     $preload.classList.add('loading');
-    $dropdownrequest.onprogress = function(e) {
-        console.log(e.lengthComputable,e.loaded,e.total);
-    };
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
@@ -403,9 +400,6 @@ $main.addEventListener('click', function(e) {
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
     $elem.classList.add('loading');
-    $dropdownrequest.onprogress = function(e) {
-        console.log(e.lengthComputable,e.loaded,e.total);
-    };
     $dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
