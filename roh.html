@@ -240,8 +240,6 @@ var $main = document.getElementsByClassName('main')[0],
 if ($preload) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $preload.getAttribute('data-fetch');
-	$dropdownrequest.open("GET", 'roh/' + filename);
-	$dropdownrequest.send();
     $dropdownrequest.onprogress = function(e) {
         $preload.classList.add('loading');
         if (e.lengthComputable) {
@@ -250,6 +248,8 @@ if ($preload) {
         }
         else $preload.classList.add('indeterminate');
     };
+	$dropdownrequest.open("GET", 'roh/' + filename);
+	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $preload.classList.remove('loading');
@@ -276,8 +276,6 @@ $main.addEventListener('click', function(e) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
-	$dropdownrequest.open("GET", 'roh/' + filename);
-	$dropdownrequest.send();
     $dropdownrequest.onprogress = function(e) {
         $elem.classList.add('loading');
         if (e.lengthComputable) {
@@ -286,6 +284,8 @@ $main.addEventListener('click', function(e) {
         }
         else $elem.classList.add('indeterminate');
     };
+    $dropdownrequest.open("GET", 'roh/' + filename);
+	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $preload.classList.remove('loading');
