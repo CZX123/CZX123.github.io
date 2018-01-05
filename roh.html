@@ -40,6 +40,12 @@ section.main .dropdown-content .grid > p {
 	font-size: 18px;
     line-height: 24px;
 }
+.progress {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
 </style>
 </head>
 
@@ -155,6 +161,9 @@ section.main .dropdown-content .grid > p {
                         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
                     </svg>
                 </div>
+                <div class="progress">
+                    <div></div>
+                </div>
             </div>
         </button>
     	<div class="dropdown-content">
@@ -233,13 +242,25 @@ if ($preload) {
 	    filename = $preload.getAttribute('data-fetch');
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
+    $dropdownrequest.onprogress = function(e) {
+        $preload.classList.add('loading');
+        if (e.lengthComputable) {
+            var percentcomplete = e.loaded/e.total;
+            console.log(percentcomplete);
+        }
+        else $preload.classList.add('indeterminate');
+    };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            $preload.classList.remove('loading');
+            $preload.classList.remove('indeterminate');
             var $wrapper = $preload.nextElementSibling.children[0];
             $wrapper.innerHTML = $dropdownrequest.responseText;
             $preload.removeAttribute('data-fetch');
         }
         else if (this.readyState == 4) {
+            $preload.classList.remove('loading');
+            $preload.classList.remove('indeterminate');
             error();
             $preload.classList.remove('dropdown-open');
         }
@@ -257,15 +278,29 @@ $main.addEventListener('click', function(e) {
 		$dropdowncontent = $elem.nextElementSibling.children[0];
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
+    $dropdownrequest.onprogress = function(e) {
+        $preload.classList.add('loading');
+        if (e.lengthComputable) {
+            var percentcomplete = e.loaded/e.total;
+            console.log(percentcomplete);
+        }
+        else $preload.classList.add('indeterminate');
+    };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            $preload.classList.remove('loading');
+            $preload.classList.remove('indeterminate');
     		var $wrapper = $elem.nextElementSibling.children[0];
             $wrapper.innerHTML = $dropdownrequest.responseText;
             $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
             $elem.removeAttribute('data-fetch');
             $elem.children[0].click();
         }
-        else if (this.readyState == 4) error();
+        else if (this.readyState == 4) {
+            $preload.classList.remove('loading');
+            $preload.classList.remove('indeterminate');
+            error();
+        }
 	};
 });
 
