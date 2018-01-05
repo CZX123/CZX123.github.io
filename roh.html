@@ -279,12 +279,12 @@ $main.addEventListener('click', function(e) {
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
     $dropdownrequest.onprogress = function(e) {
-        $preload.classList.add('loading');
+        $elem.classList.add('loading');
         if (e.lengthComputable) {
             var percentcomplete = e.loaded/e.total;
             console.log(percentcomplete);
         }
-        else $preload.classList.add('indeterminate');
+        else $elem.classList.add('indeterminate');
     };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
