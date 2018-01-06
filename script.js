@@ -22,6 +22,7 @@ document.addEventListener('click', function(e) {
 	while ($elem && !$elem.classList.contains('dropdown') && !$elem.classList.contains('menu') && !$elem.classList.contains('scrim') && (!$elem.tagName == 'A' || $elem.target || !$elem.href)) {
 		$elem = $elem.parentElement;
 	}
+    if (!$elem) return false;
     if ($elem.tagName == 'A' && !$elem.target && $elem.href) {
         if ($elem.href.substring(0,4) == 'http') return false;
         if (navigator.userAgent.indexOf('Mac OS X') != -1) {
@@ -36,7 +37,7 @@ document.addEventListener('click', function(e) {
         }
         console.log('Click');
     }
-    if ($elem.classList) {
+    else if ($elem.classList) {
         // Click the menu to open the nav drawer
         if ($elem.classList.contains('menu')) {
             navAppear = true;
