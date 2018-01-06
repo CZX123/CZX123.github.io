@@ -19,32 +19,48 @@ var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.m
 // All click listeners combined into one single one
 document.addEventListener('click', function(e) {
 	var $elem = e.target;
-	while ($elem && !$elem.classList.contains('dropdown') && !$elem.classList.contains('menu') && !$elem.classList.contains('scrim')) {
+	while ($elem && !$elem.classList.contains('dropdown') && !$elem.classList.contains('menu') && !$elem.classList.contains('scrim') && (!$elem.tagName == 'A' || $elem.target || !$elem.href)) {
 		$elem = $elem.parentElement;
 	}
-    // Click the menu to open the nav drawer
-    if ($elem.classList.contains('menu')) {
-    	navAppear = true;
-    	$navdrawer.classList.add('active');
-    	$navdrawer.removeAttribute('style');
-    	$scrim.removeAttribute('style');
-    	$html.style.overflow = 'hidden';
+    if ($elem.tagName == 'A' && !$elem.target && $elem.href) {
+        if ($elem.href.substring(0,4) == 'http') return false;
+        if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+            if (e.metaKey) {
+                console.log('Command + Click on Mac');
+                return false;
+            }
+        }
+        else if (e.ctrlKey) {
+            console.log('Control + Click on Windows');
+            return false;
+        }
+        console.log('Click');
     }
-    // Click the scrim to close the nav drawer
-    else if ($elem.classList.contains('scrim')) {
-    	navAppear = false;
-    	$navdrawer.classList.remove('active');
-    	$navdrawer.removeAttribute('style');
-    	$scrim.removeAttribute('style');
-    	$html.removeAttribute('style');
-    }
-    else if ($elem.classList.contains('dropdown')) {
-        $dropdowncontent = $elem.nextElementSibling.children[0];
-        if ($elem.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
-        $elem.classList.toggle('dropdown-open');
-        $dropdowncontent.style.visibility = '';
-        if ($elem.classList.contains('dropdown-open')) dropdownTransition(0,$dropdowncontent,-$dropdowncontent.offsetHeight,0);
-        else dropdownTransition(0,$dropdowncontent,0,-$dropdowncontent.offsetHeight);
+    if ($elem.classList) {
+        // Click the menu to open the nav drawer
+        if ($elem.classList.contains('menu')) {
+            navAppear = true;
+            $navdrawer.classList.add('active');
+        	$navdrawer.removeAttribute('style');
+        	$scrim.removeAttribute('style');
+        	$html.style.overflow = 'hidden';
+        }
+        // Click the scrim to close the nav drawer
+        else if ($elem.classList.contains('scrim')) {
+        	navAppear = false;
+        	$navdrawer.classList.remove('active');
+        	$navdrawer.removeAttribute('style');
+        	$scrim.removeAttribute('style');
+        	$html.removeAttribute('style');
+        }
+        else if ($elem.classList.contains('dropdown')) {
+            $dropdowncontent = $elem.nextElementSibling.children[0];
+            if ($elem.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
+            $elem.classList.toggle('dropdown-open');
+            $dropdowncontent.style.visibility = '';
+            if ($elem.classList.contains('dropdown-open')) dropdownTransition(0,$dropdowncontent,-$dropdowncontent.offsetHeight,0);
+            else dropdownTransition(0,$dropdowncontent,0,-$dropdowncontent.offsetHeight);
+        }
     }
 });
 // An easing function for use in the dropdown transition and opening or closing the navdrawer after the user lifts off his finger after dragging
