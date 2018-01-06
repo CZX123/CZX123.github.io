@@ -3,6 +3,11 @@ var $html = document.getElementsByTagName('html')[0],
     $body = document.getElementsByTagName('body')[0];
 
 
+// Basic Nav Drawer interactions
+var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
+    $scrim = document.getElementsByClassName('scrim')[0],
+    navAppear = false; // check if nav drawer is currently in view
+
 // Toggle class when a dropdown is clicked
 // This is placed in front so that the function can be called when window resizes
 var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.main button.dropdown'),
@@ -10,11 +15,43 @@ var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.m
     d, // d is the number of dropdowns - 1
     $currentelement,
     animation;
+
+// All click listeners combined into one single one
+document.addEventListener('click', function(e) {
+	var $elem = e.target;
+	while ($elem && !$elem.classList.contains('dropdown') && !$elem.classList.contains('menu') && !$elem.classList.contains('scrim')) {
+		$elem = $elem.parentElement;
+	}
+    // Click the menu to open the nav drawer
+    if ($elem.classList.contains('menu')) {
+    	navAppear = true;
+    	$navdrawer.classList.add('active');
+    	$navdrawer.removeAttribute('style');
+    	$scrim.removeAttribute('style');
+    	$html.style.overflow = 'hidden';
+    }
+    // Click the scrim to close the nav drawer
+    else if ($elem.classList.contains('scrim')) {
+    	navAppear = false;
+    	$navdrawer.classList.remove('active');
+    	$navdrawer.removeAttribute('style');
+    	$scrim.removeAttribute('style');
+    	$html.removeAttribute('style');
+    }
+    else if ($elem.classList.contains('dropdown')) {
+        $dropdowncontent = $elem.nextElementSibling.children[0];
+        if ($elem.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
+        $elem.classList.toggle('dropdown-open');
+        $dropdowncontent.style.visibility = '';
+        if ($elem.classList.contains('dropdown-open')) dropdownTransition(0,$dropdowncontent,-$dropdowncontent.offsetHeight,0);
+        else dropdownTransition(0,$dropdowncontent,0,-$dropdowncontent.offsetHeight);
+    }
+});
 // An easing function for use in the dropdown transition and opening or closing the navdrawer after the user lifts off his finger after dragging
 function easeOutCubic(t, b, c, d) {
 	return Math.round((-c*((t=t/d-1)*t*t*t - 1) + b)*10)/10;
 }
-// Selects all dropdowns and adds a click listener
+// Selects all dropdowns and checks for class of dropdown-open, then adds the respective styles
 for (var d = 0; d < $dropdown.length; d++) {
     $dropdowncontent = $dropdown[d].nextElementSibling.children[0];
     if ($dropdown[d].classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
@@ -22,14 +59,6 @@ for (var d = 0; d < $dropdown.length; d++) {
         $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
         $dropdowncontent.style.visibility = 'hidden';
     }
-	$dropdown[d].addEventListener('click', function() {
-        $dropdowncontent = this.nextElementSibling.children[0];
-        if (this.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
-        this.classList.toggle('dropdown-open');
-        $dropdowncontent.style.visibility = '';
-        if (this.classList.contains('dropdown-open')) dropdownTransition(0,$dropdowncontent,-$dropdowncontent.offsetHeight,0);
-        else dropdownTransition(0,$dropdowncontent,0,-$dropdowncontent.offsetHeight);
-	});
 }
 function dropdownTransition(iterations,$elem,start,end) {
     var dropdowntotal = 36,
@@ -120,28 +149,6 @@ function scrolling() {
 }
 scrolling();
 
-
-// Basic Nav Drawer interactions
-var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
-    $menu = document.getElementsByClassName('menu')[0],
-    $scrim = document.getElementsByClassName('scrim')[0],
-    navAppear = false; // check if nav drawer is currently in view
-// Click the menu to open the nav drawer
-$menu.addEventListener('click', function() {
-	navAppear = true;
-	$navdrawer.classList.add('active');
-	$navdrawer.removeAttribute('style');
-	$scrim.removeAttribute('style');
-	$html.style.overflow = 'hidden';
-});
-// Click the scrim to close the nav drawer
-$scrim.addEventListener('click', function() {
-	navAppear = false;
-	$navdrawer.classList.remove('active');
-	$navdrawer.removeAttribute('style');
-	$scrim.removeAttribute('style');
-	$html.removeAttribute('style');
-});
 
 // Draggable nav drawer
 var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
