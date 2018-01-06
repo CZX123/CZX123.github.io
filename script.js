@@ -24,7 +24,7 @@ document.addEventListener('click', function(e) {
 	}
     if (!$elem) return false;
     if ($elem.tagName == 'A' && !$elem.target && $elem.href) {
-        if ($elem.href.substring(0,4) == 'http') return false;
+        if ($elem.getAttribute('href').substring(0,4) == 'http') return false;
         if (navigator.userAgent.indexOf('Mac OS X') != -1) {
             if (e.metaKey) {
                 console.log('Command + Click on Mac');
