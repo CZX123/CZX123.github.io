@@ -189,18 +189,10 @@ document.createElement("div").addEventListener("test", function() {}, {
 		return false;
 	}
 });
-if (supportsPassive) {
-	document.addEventListener('touchstart', startDrag, {passive: true});
-	document.addEventListener('touchmove', mainDrag, {passive: true});
-	document.addEventListener('touchend', endDrag, {passive: true});
-	document.addEventListener('touchcancel', endDrag, {passive: true});
-}
-else {
-	document.addEventListener('touchstart', startDrag);
-	document.addEventListener('touchmove', mainDrag);
-	document.addEventListener('touchend', endDrag);
-	document.addEventListener('touchcancel', endDrag);
-}
+document.addEventListener('touchstart', startDrag, supportsPassive ? {passive: true} : false);
+document.addEventListener('touchmove', mainDrag, supportsPassive ? {passive: true} : false);
+document.addEventListener('touchend', endDrag, supportsPassive ? {passive: true} : false);
+document.addEventListener('touchcancel', endDrag, supportsPassive ? {passive: true} : false);
 // The dragging function. Runs 60 times a second
 function navDragging() {
 	if (dragging == 'started') {

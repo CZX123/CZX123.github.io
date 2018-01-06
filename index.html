@@ -300,7 +300,7 @@ for (h = 0; h < $hoverlist.length; h++) {
 
 $parallax.addEventListener('touchstart', function() {
 	touch = true;
-});
+}, supportsPassive ? {passive: true} : false);
 $parallax.addEventListener('mousemove', function() {
 	if (!touch) carouselActive();
 	touch = false;

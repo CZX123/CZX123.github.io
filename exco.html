@@ -413,7 +413,7 @@ else {
 
 $parallax.addEventListener('touchstart', function() {
 	touch = true;
-});
+}, supportsPassive ? {passive: true} : false);
 $parallax.addEventListener('mousemove', function() {
 	if (!touch) imgActive();
 	touch = false;
