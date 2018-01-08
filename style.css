@@ -438,14 +438,14 @@ body.loading > .progress, .loading > div > .progress {
     position: relative;
     height: 100%;
 }
-.activate-loading .progress > div > div, .activate-loading > div > .progress > div > div {
+.activate-loading > .progress > div > div, .activate-loading > div > .progress > div > div {
     position: absolute;
     height: 100%;
     width: 100%;
     left: -145.166611%;
     animation: primary-progress 1.6s infinite linear;
 }
-.activate-loading .progress > div > div:last-child, .activate-loading > div > .progress > div > div:last-child {
+.activate-loading > .progress > div > div:last-child, .activate-loading > div > .progress > div > div:last-child {
     left: -54.888891%;
     animation: secondary-progress 1.6s infinite linear;
 }
