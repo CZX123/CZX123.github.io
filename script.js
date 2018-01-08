@@ -82,6 +82,16 @@ function changeContent() {
     $ajaxcontent = $newcontent;
     $ajaxstyle = $newstyle;
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
+    var split = window.location.href.split('/'),
+        filename = split.pop(),
+        $currentactive = $navdrawer.getElementsByClassName('active'),
+        $newactive = $navdrawer.querySelector('a[href="' + filename + '"]');
+    for (var c = 0, l = $currentactive.length; c < l; c++) {
+        $currentactive[c].classList.remove('active');
+    }
+    $newactive.parentElement.classList.add('active');
+    var $activedropdown = $newactive.parentElement.parentElement.parentElement.previousElementSibling;
+    if ($activedropdown) $activedropdown.classList.add('active');
     dropdownCheck();
     rippleCheck();
 }
