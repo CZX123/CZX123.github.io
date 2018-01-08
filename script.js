@@ -67,6 +67,7 @@ function changeContent() {
     $body.classList.remove('loading');
     $ajaxcontent.style.position = 'absolute';
     $ajaxcontent.insertAdjacentElement('afterend', $newcontent);
+    $newcontent.classList.add('show');
     $ajaxcontent.parentNode.removeChild($ajaxcontent);
     $ajaxstyle.insertAdjacentElement('afterend', $newstyle);
     $ajaxstyle.parentNode.removeChild($ajaxstyle);
@@ -78,7 +79,6 @@ function changeContent() {
     $ajaxcontent = $newcontent;
     $ajaxstyle = $newstyle;
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
-    $ajaxcontent.classList.add('show');
     dropdownCheck();
     rippleCheck();
 }
