@@ -43,9 +43,6 @@ function changePage(url) {
     xhr.send();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            window.onpopstate = function() {
-                changePage(window.location.href);
-            };
             if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
             var $wrapper = document.createElement('div');
             $wrapper.innerHTML = xhr.responseText;
@@ -83,7 +80,11 @@ function changeContent() {
     $ajaxcontent = $newcontent;
     $ajaxtop = $newtop;
     $ajaxbottom = $newbottom;
+    console.log('why?');
 }
+window.onpopstate = function() {
+    changePage(window.location.href);
+};
 function removeListener() {} // Empty function to be changed int the page itselt
 
 // All click listeners combined into one single one
