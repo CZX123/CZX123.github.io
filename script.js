@@ -384,7 +384,7 @@ function rippleCheck() {
         if ($ripplelist[i].tagName == 'A') var $ripple = $ripplelist[i].parentElement.lastElementChild;
         else var $ripple = $ripplelist[i].lastElementChild.lastElementChild;
         if ($ripple.classList) {
-            if ($ripple.classList.contains('ripple')) return false;
+            if ($ripple.classList.contains('ripple')) continue;
         }
         var $div = document.createElement('DIV');
         $div.className = 'ripple';
