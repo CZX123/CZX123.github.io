@@ -27,14 +27,13 @@ var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.m
     animation;
 
 function changePage(url) {
+    filerequested = false;
+    animationcomplete = false;
     $ajaxcontent.classList.add('hide');
     $body.classList.add('loading');
     // Animation completion code below
     setTimeout(function() {
-        if (filerequested) {
-            filerequested = false;
-            changeContent();
-        }
+        if (filerequested) changeContent();
         animationcomplete = true;
     }, 720);
     // XMLHttpRequest below to fetch the other page
@@ -50,10 +49,7 @@ function changePage(url) {
             $newtop = $wrapper.getElementsByClassName('ajax-top')[0],
             $newbottom = $wrapper.getElementsByClassName('ajax-bottom')[0];
             filerequested = true;
-            if (animationcomplete) {
-                animationcomplete = false;
-                changeContent();
-            }
+            if (animationcomplete) changeContent();
         }
         else if (this.readyState == 4) {
             error();
