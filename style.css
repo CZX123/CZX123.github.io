@@ -387,15 +387,22 @@ button > * {
 
 /* AJAX navigation animation */
 .ajax-content {
+	animation: slide-in .7s cubic-bezier(0,0,.2,1) forwards;
 	opacity: 0;
 	transform: translateY(100vh);
 	transition: transform .7s cubic-bezier(0,0,.2,1), opacity .6s;
 }
-.ajax-content.show {
-	opacity: 1;
-	transform: none;
+@keyframes slide-in {
+	90% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+		transform: none;
+	}
 }
 .ajax-content.hide {
+	animation: none;
 	opacity: 0;
 	transform: translateY(-100vh);
 }

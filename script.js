@@ -11,8 +11,6 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     $newtop,
     $newbottom;
 
-$ajaxcontent.classList.add('show');
-
 // Basic Nav Drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
     $scrim = document.getElementsByClassName('scrim')[0],
@@ -67,7 +65,6 @@ function changeContent() {
     $body.classList.remove('loading');
     $ajaxcontent.style.position = 'absolute';
     $ajaxcontent.insertAdjacentElement('afterend', $newcontent);
-    $newcontent.classList.add('show');
     $ajaxcontent.parentNode.removeChild($ajaxcontent);
     $ajaxstyle.insertAdjacentElement('afterend', $newstyle);
     $ajaxstyle.parentNode.removeChild($ajaxstyle);
