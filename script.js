@@ -50,6 +50,7 @@ function changePage(url) {
             newtitle = $wrapper.getElementsByTagName('title')[0].innerText;
             if (!$newcontent) {
                 error();
+                $body.classList.remove('loading');
                 $ajaxcontent.classList.remove('hide');
                 return false;
             }
