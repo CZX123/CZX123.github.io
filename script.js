@@ -86,6 +86,7 @@ function changeContent() {
         filename = split.pop(),
         $currentactive = $navdrawer.getElementsByClassName('active'),
         $newactive = $navdrawer.querySelector('a[href="' + filename + '"]');
+    console.log($currentactive,$newactive);
     for (var c = 0, l = $currentactive.length; c < l; c++) {
         $currentactive[c].classList.remove('active');
     }
