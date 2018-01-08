@@ -35,7 +35,7 @@ function changePage(url) {
     setTimeout(function() {
         if (filerequested) changeContent();
         animationcomplete = true;
-    }, 720);
+    }, 620);
     // XMLHttpRequest below to fetch the other page
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
