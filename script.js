@@ -2,6 +2,16 @@
 var $html = document.getElementsByTagName('html')[0],
     $body = document.getElementsByTagName('body')[0];
 
+var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
+    $ajaxtop = document.getElementsByClassName('ajax-top')[0],
+    $ajaxbottom = document.getElementsByClassName('ajax-bottom')[0],
+    animationcomplete = false,
+    filerequested = false,
+    $newcontent,
+    $newtop,
+    $newbottom;
+
+$ajaxcontent.classList.add('show');
 
 // Basic Nav Drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
@@ -16,6 +26,66 @@ var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.m
     $currentelement,
     animation;
 
+function changePage(url) {
+    $ajaxcontent.classList.add('hide');
+    $body.classList.add('loading');
+    // Animation completion code below
+    setTimeout(function() {
+        if (filerequested) {
+            filerequested = false;
+            changeContent();
+        }
+        animationcomplete = true;
+    }, 720);
+    // XMLHttpRequest below to fetch the other page
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.send();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            window.onpopstate = function() {
+                changePage(window.location.href);
+            };
+            if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
+            var $wrapper = document.createElement('div');
+            $wrapper.innerHTML = xhr.responseText;
+            $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
+            $newtop = $wrapper.getElementsByClassName('ajax-top')[0],
+            $newbottom = $wrapper.getElementsByClassName('ajax-bottom')[0];
+            filerequested = true;
+            if (animationcomplete) {
+                animationcomplete = false;
+                changeContent();
+            }
+        }
+        else if (this.readyState == 4) {
+            error();
+            $ajaxcontent.classList.remove('hide');
+            $body.classList.remove('loading');
+        }
+    };
+}
+function changeContent() {
+    $body.classList.remove('loading');
+    if (!$newcontent) {
+        error();
+        $ajaxcontent.classList.remove('hide');
+        return false;
+    }
+    $ajaxcontent.style.position = 'absolute';
+    $ajaxcontent.insertAdjacentElement('afterend', $newcontent);
+    $ajaxtop.insertAdjacentElement('afterend', $newtop);
+    $ajaxbottom.insertAdjacentElement('afterend', $newbottom);
+    $newcontent.classList.add('show');
+    $ajaxcontent.parentNode.removeChild($ajaxcontent);
+    $ajaxtop.parentNode.removeChild($ajaxtop);
+    $ajaxbottom.parentNode.removeChild($ajaxbottom);
+    $ajaxcontent = $newcontent;
+    $ajaxtop = $newtop;
+    $ajaxbottom = $newbottom;
+}
+function removeListener() {} // Empty function to be changed int the page itselt
+
 // All click listeners combined into one single one
 document.addEventListener('click', function(e) {
 	var $elem = e.target;
@@ -26,16 +96,13 @@ document.addEventListener('click', function(e) {
     if ($elem.tagName == 'A' && !$elem.target && $elem.href) {
         if ($elem.getAttribute('href').substring(0,4) == 'http') return false;
         if (navigator.userAgent.indexOf('Mac OS X') != -1) {
-            if (e.metaKey) {
-                console.log('Command + Click on Mac');
-                return false;
-            }
+            if (e.metaKey) return false;
         }
-        else if (e.ctrlKey) {
-            console.log('Control + Click on Windows');
-            return false;
-        }
-        console.log('Click');
+        else if (e.ctrlKey) return false;
+        e.preventDefault();
+        removeListener(); // This function is to remove all existing listeners on the current page since AJAX navigation makes the site a single page application and javascript does not change. By default, the function is empty, so redefine it in the script section of the HTML page.
+        $scrim.click(); // To close the nav drawer
+        changePage($elem.getAttribute('href'));
     }
     else if ($elem.classList) {
         // Click the menu to open the nav drawer

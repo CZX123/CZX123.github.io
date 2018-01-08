@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Lato:400,400i">
 <link rel="stylesheet" type="text/css" href="style.css">
+
+<div class="ajax-top">
 <script>
 function filterFeatureDetect(enableWebkit) {
 	if (enableWebkit === undefined) enableWebkit = false;
@@ -144,108 +146,119 @@ section.main .grid.fi > * {
 }
 }
 </style>
+</div>
+
 </head>
 
 <body>
-	<div class="nav-detect-hover"></div>
-	<div class="navbar">
-		<button class="menu">
-			<div>
+
+<div class="progress">
+    <div>
+        <div><span></span></div>
+        <div><span></span></div>
+    </div>
+</div>
+<div class="nav-detect-hover"></div>
+<div class="navbar">
+	<button class="menu">
+		<div>
+			<svg viewBox="0 0 24 24">
+				<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+			</svg>
+		</div>
+	</button>
+	<img src="https://hcinpcc.files.wordpress.com/2017/07/npcc1.jpg?w=657" alt="HCINPCC Logo">
+</div>
+<div class="nav-gradient"></div>
+<div class="nav-drawer">
+	<div class="scrollbar-animate">
+		<div class="wrapper">
+		<ul>
+			<li>
 				<svg viewBox="0 0 24 24">
-    				<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					<path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
 				</svg>
+				<a href="/">Home</a>
+			</li>
+			<li class="dropdown dropdown-open active">
+				<svg viewBox="0 0 24 24">
+					<path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+				</svg>
+				<a>About HCINPCC</a>
+				<div class="caret">
+					<svg viewBox="0 0 24 24">
+						<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+					</svg>
+				</div>
+			</li>
+			<div class="dropdown-content">
+				<ul>
+					<li><a href="info">NPCC Information</a></li>
+					<li><a href="roh">Roll Of Honour</a></li>
+					<li><a href="officers">Officers</a></li>
+					<li class="active"><a href="exco">Unit Hierarchy</a></li>
+				</ul>
 			</div>
-		</button>
-		<img src="https://hcinpcc.files.wordpress.com/2017/07/npcc1.jpg?w=657" alt="HCINPCC Logo">
-	</div>
-	<div class="nav-gradient"></div>
-	<div class="nav-drawer">
-		<div class="scrollbar-animate">
-			<div class="wrapper">
-			<ul>
-				<li>
+			<li class="dropdown">
+				<svg viewBox="0 0 24 24">
+					<path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
+				</svg>
+				<a>Publications</a>
+				<div class="caret">
 					<svg viewBox="0 0 24 24">
-    					<path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
+						<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
 					</svg>
-					<a href="/">Home</a>
-				</li>
-				<li class="dropdown dropdown-open active">
-					<svg viewBox="0 0 24 24">
-    					<path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
-					</svg>
-					<a>About HCINPCC</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
-							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li><a href="info">NPCC Information</a></li>
-						<li><a href="roh">Roll Of Honour</a></li>
-						<li><a href="officers">Officers</a></li>
-						<li class="active"><a href="exco">Unit Hierarchy</a></li>
-					</ul>
 				</div>
-				<li class="dropdown">
-					<svg viewBox="0 0 24 24">
-    					<path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
-					</svg>
-					<a>Publications</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
-							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li>
-							<a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
-							<div class="external">
-								<svg viewBox="0 0 24 24">
-    								<path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-								</svg>
-							</div>
-						</li>
-						<li><a href="ac">Annual Chronicles</a></li>
-					</ul>
-				</div>
-				<li class="dropdown">
-					<svg viewBox="0 0 24 24">
-    					<path d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
-					</svg>
-					<a>Help</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
-							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li><a href="contact">Contact Us</a></li>
-						<li><a href="links">Useful Links</a></li>
-					</ul>
-				</div>
-			</ul>
-			<ul class="social-media-icons">
-				<li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
-					<svg viewBox="0 0 408.788 408.788">
-						<path d="M353.701 0H55.087C24.665 0 .002 24.662.002 55.085v298.616c0 30.423 24.662 55.085 55.085 55.085h147.275l.251-146.078h-37.951a8.954 8.954 0 0 1-8.954-8.92l-.182-47.087a8.955 8.955 0 0 1 8.955-8.989h37.882v-45.498c0-52.8 32.247-81.55 79.348-81.55h38.65a8.955 8.955 0 0 1 8.955 8.955v39.704a8.955 8.955 0 0 1-8.95 8.955l-23.719.011c-25.615 0-30.575 12.172-30.575 30.035v39.389h56.285c5.363 0 9.524 4.683 8.892 10.009l-5.581 47.087a8.955 8.955 0 0 1-8.892 7.901h-50.453l-.251 146.078h87.631c30.422 0 55.084-24.662 55.084-55.084V55.085C408.786 24.662 384.124 0 353.701 0z"/>
-					</svg>
-				</a></li>
-				<li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
-					<img src="instagram-black.svg">
-					<img src="instagram-color.svg">
-				</a></li>
-			</ul>
+			</li>
+			<div class="dropdown-content">
+				<ul>
+					<li>
+						<a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
+						<div class="external">
+							<svg viewBox="0 0 24 24">
+								<path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+							</svg>
+						</div>
+					</li>
+					<li><a href="ac">Annual Chronicles</a></li>
+				</ul>
 			</div>
+			<li class="dropdown">
+				<svg viewBox="0 0 24 24">
+					<path d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
+				</svg>
+				<a>Help</a>
+				<div class="caret">
+					<svg viewBox="0 0 24 24">
+						<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+					</svg>
+				</div>
+			</li>
+			<div class="dropdown-content">
+				<ul>
+					<li><a href="contact">Contact Us</a></li>
+					<li><a href="links">Useful Links</a></li>
+				</ul>
+			</div>
+		</ul>
+		<ul class="social-media-icons">
+			<li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
+				<svg viewBox="0 0 408.788 408.788">
+					<path d="M353.701 0H55.087C24.665 0 .002 24.662.002 55.085v298.616c0 30.423 24.662 55.085 55.085 55.085h147.275l.251-146.078h-37.951a8.954 8.954 0 0 1-8.954-8.92l-.182-47.087a8.955 8.955 0 0 1 8.955-8.989h37.882v-45.498c0-52.8 32.247-81.55 79.348-81.55h38.65a8.955 8.955 0 0 1 8.955 8.955v39.704a8.955 8.955 0 0 1-8.95 8.955l-23.719.011c-25.615 0-30.575 12.172-30.575 30.035v39.389h56.285c5.363 0 9.524 4.683 8.892 10.009l-5.581 47.087a8.955 8.955 0 0 1-8.892 7.901h-50.453l-.251 146.078h87.631c30.422 0 55.084-24.662 55.084-55.084V55.085C408.786 24.662 384.124 0 353.701 0z"/>
+				</svg>
+			</a></li>
+			<li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
+				<img src="instagram-black.svg">
+				<img src="instagram-color.svg">
+			</a></li>
+		</ul>
 		</div>
 	</div>
-	<div class="scrim"></div>
-	<div class="drag-nav-drawer"></div>
+</div>
+<div class="scrim"></div>
+<div class="drag-nav-drawer"></div>
+
+<div class="ajax-content">
 	<section class="parallax-wrapper">
 		<div class="parallax">
 			<div class="exco-background"></div>
@@ -393,11 +406,12 @@ section.main .grid.fi > * {
 			<span>HCINPCC</span>
 		</footer>
 	</section>
-    <div class="error">An error occured. Please try again later.</div>
+</div>
+<div class="error">An error occured. Please try again later.</div>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
-<script>
+<script class="ajax-bottom">
 // Code for the exco image
 var $parallax = document.getElementsByClassName('parallax')[0],
     timer,
@@ -411,14 +425,14 @@ else {
 	$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
 }
 
-$parallax.addEventListener('touchstart', function() {
+$parallax.addEventListener('touchstart', function parallaxTouch() {
 	touch = true;
 }, supportsPassive ? {passive: true} : false);
-$parallax.addEventListener('mousemove', function() {
+$parallax.addEventListener('mousemove', function parallaxMousemove() {
 	if (!touch) imgActive();
 	touch = false;
 });
-$parallax.addEventListener('click', function() {
+$parallax.addEventListener('click', function parallaxClick() {
 	if (!mousemove) imgActive();
 	else {
 		clearTimeout(timer);
@@ -430,6 +444,12 @@ function imgActive() {
 	clearTimeout(timer);
 	timer = setTimeout(function(){mousemove = false;}, 1500);
 }
+removeListener = function() {
+	$parallax.removeEventListener('touchstart', parallaxTouch);
+	$parallax.removeEventListener('mousemove', parallaxMousemove);
+	$parallax.removeEventListener('click', parallaxClick);
+}
+
 </script>
 </body>
 </html>
