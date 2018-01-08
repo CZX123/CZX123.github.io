@@ -11,18 +11,7 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Lato:400,400i">
 <link rel="stylesheet" type="text/css" href="style.css">
 
-<div class="ajax-top">
-<script>
-function filterFeatureDetect(enableWebkit) {
-	if (enableWebkit === undefined) enableWebkit = false;
-	var el = document.createElement('div');
-	el.style.cssText = (enableWebkit?'-webkit-':'') + 'filter: blur(2px)';
-	test1 = (el.style.length != 0);
-	test2 = document.documentMode === undefined || document.documentMode > 9;
-	return test1 && test2;
-}
-</script>
-<style>
+<style class="ajax-style">
 section {
 	text-align: center;
 }
@@ -146,7 +135,6 @@ section.main .grid.fi > * {
 }
 }
 </style>
-</div>
 
 </head>
 
@@ -262,9 +250,6 @@ section.main .grid.fi > * {
 	<section class="parallax-wrapper">
 		<div class="parallax">
 			<div class="exco-background"></div>
-			<script>
-			if (!filterFeatureDetect()) document.getElementsByClassName('exco-background')[0].style.backgroundImage = 'url(exco/exco-blurred.jpg)';
-			</script>
 			<div class="exco-image"></div>
 		</div>
 	</section>
@@ -411,8 +396,19 @@ section.main .grid.fi > * {
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
-<script class="ajax-bottom">
-$ajaxbottom = document.getElementsByClassName('ajax-bottom')[0];
+<script class="ajax-script">
+$ajaxscript = document.getElementsByClassName('ajax-script')[0];
+
+function filterFeatureDetect(enableWebkit) {
+	if (enableWebkit === undefined) enableWebkit = false;
+	var el = document.createElement('div');
+	el.style.cssText = (enableWebkit?'-webkit-':'') + 'filter: blur(2px)';
+	test1 = (el.style.length != 0);
+	test2 = document.documentMode === undefined || document.documentMode > 9;
+	return test1 && test2;
+}
+if (!filterFeatureDetect()) document.getElementsByClassName('exco-background')[0].style.backgroundImage = 'url(exco/exco-blurred.jpg)';
+
 // Code for the exco image
 var $parallax = document.getElementsByClassName('parallax')[0],
     timer,

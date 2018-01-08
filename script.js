@@ -3,8 +3,8 @@ var $html = document.getElementsByTagName('html')[0],
     $body = document.getElementsByTagName('body')[0];
 
 var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
-    $ajaxtop = document.getElementsByClassName('ajax-top')[0],
-    $ajaxbottom,
+    $ajaxstyle = document.getElementsByClassName('ajax-style')[0],
+    $ajaxscript,
     animationcomplete = false,
     filerequested = false,
     $newcontent,
@@ -46,8 +46,8 @@ function changePage(url) {
             var $wrapper = document.createElement('div');
             $wrapper.innerHTML = xhr.responseText;
             $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
-            $newtop = $wrapper.getElementsByClassName('ajax-top')[0],
-            $newbottom = $wrapper.getElementsByClassName('ajax-bottom')[0];
+            $newstyle = $wrapper.getElementsByClassName('ajax-style')[0],
+            $newscript = $wrapper.getElementsByClassName('ajax-script')[0];
             filerequested = true;
             if (animationcomplete) changeContent();
         }
@@ -67,15 +67,18 @@ function changeContent() {
     }
     $ajaxcontent.style.position = 'absolute';
     $ajaxcontent.insertAdjacentElement('afterend', $newcontent);
-    $ajaxtop.insertAdjacentElement('afterend', $newtop);
-    $ajaxbottom.insertAdjacentElement('afterend', $newbottom);
-    $newcontent.classList.add('show');
     $ajaxcontent.parentNode.removeChild($ajaxcontent);
-    $ajaxtop.parentNode.removeChild($ajaxtop);
-    $ajaxbottom.parentNode.removeChild($ajaxbottom);
+    $ajaxstyle.insertAdjacentElement('afterend', $newstyle);
+    $ajaxstyle.parentNode.removeChild($ajaxstyle);
+    var script = document.createElement('script');
+    script.classList.add('ajax-script');
+    script.innerHTML = $newscript.innerText;
+    $body.appendChild(script);
+    $ajaxscript.parentNode.removeChild($ajaxscript);
     $ajaxcontent = $newcontent;
-    $ajaxtop = $newtop;
-    $ajaxbottom = $newbottom;
+    $ajaxstyle = $newstyle;
+    $ajaxscript = document.getElementsByClassName('ajax-script')[0];
+    $ajaxcontent.classList.add('show');
     console.log('why?');
 }
 window.onpopstate = function() {
