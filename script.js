@@ -28,6 +28,7 @@ function changePage(url) {
     filerequested = false;
     animationcomplete = false;
     $ajaxcontent.classList.add('hide');
+    $body.classList.add('activate-loading');
     $body.classList.add('loading');
     // Animation completion code below
     setTimeout(function() {
