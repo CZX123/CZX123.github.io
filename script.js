@@ -4,7 +4,7 @@ var $html = document.getElementsByTagName('html')[0],
 
 var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     $ajaxtop = document.getElementsByClassName('ajax-top')[0],
-    $ajaxbottom = document.getElementsByClassName('ajax-bottom')[0],
+    $ajaxbottom,
     animationcomplete = false,
     filerequested = false,
     $newcontent,
