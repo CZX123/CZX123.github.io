@@ -9,7 +9,8 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     filerequested = false,
     $newcontent,
     $newtop,
-    $newbottom;
+    $newbottom,
+    newtitle;
 
 // Basic Nav Drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
@@ -46,6 +47,7 @@ function changePage(url) {
             $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
             $newstyle = $wrapper.getElementsByClassName('ajax-style')[0],
             $newscript = $wrapper.getElementsByClassName('ajax-script')[0];
+            newtitle = $wrapper.getElementsByTagName('title')[0].innerText;
             if (!$newcontent) {
                 error();
                 $ajaxcontent.classList.remove('hide');
@@ -63,6 +65,8 @@ function changePage(url) {
     };
 }
 function changeContent() {
+    window.scrollTo(0,0);
+    document.title = newtitle;
     $body.classList.remove('loading');
     $ajaxcontent.style.position = 'absolute';
     $ajaxcontent.insertAdjacentElement('afterend', $newcontent);
