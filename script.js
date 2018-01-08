@@ -80,6 +80,7 @@ function changeContent() {
 }
 window.onpopstate = function() {
     changePage(window.location.href);
+    console.log('pop');
 };
 function removeListener() {} // Empty function to be changed int the page itselt
 
