@@ -302,7 +302,8 @@ if ($preload) {
 	};
 }
 
-$main.addEventListener('click', function dropdownClick(e) {
+$main.addEventListener('click', dropdownClick);
+function dropdownClick(e) {
 	var $elem = e.target;
 	while ($elem && !$elem.hasAttribute('data-fetch')) {
 		$elem = $elem.parentElement;
@@ -329,7 +330,7 @@ $main.addEventListener('click', function dropdownClick(e) {
             error();
         }
 	};
-});
+}
 removeListener = function() {
 	$main.removeEventListener('click', dropdownClick);
 }

@@ -425,20 +425,23 @@ else {
 	$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
 }
 
-$parallax.addEventListener('touchstart', function parallaxTouch() {
+$parallax.addEventListener('touchstart', parallaxTouch, supportsPassive ? {passive: true} : false);
+function parallaxTouch() {
 	touch = true;
-}, supportsPassive ? {passive: true} : false);
-$parallax.addEventListener('mousemove', function parallaxMousemove() {
+}
+$parallax.addEventListener('mousemove', parallaxMousemove);
+function parallaxMousemove() {
 	if (!touch) imgActive();
 	touch = false;
-});
-$parallax.addEventListener('click', function parallaxClick() {
+}
+$parallax.addEventListener('click', parallaxClick);
+function parallaxClick() {
 	if (!mousemove) imgActive();
 	else {
 		clearTimeout(timer);
 		mousemove = false;
 	}
-});
+}
 function imgActive() {
 	mousemove = true;
 	clearTimeout(timer);
