@@ -402,9 +402,18 @@ button > * {
 	}
 }
 .ajax-content.hide {
-	animation: none;
-	opacity: 0;
-	transform: translateY(-100vh);
+	animation: slide-out .7s cubic-bezier(.4,0,1,1) forwards;
+	opacity: 1;
+	transform: none;
+}
+@keyframes slide-in {
+	90% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-100vh);
+	}
 }
 .progress {
     position: fixed;
