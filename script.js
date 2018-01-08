@@ -79,11 +79,11 @@ function changeContent() {
     $ajaxstyle = $newstyle;
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
     $ajaxcontent.classList.add('show');
-    console.log('why?');
+    dropdownCheck();
+    rippleCheck();
 }
 window.onpopstate = function() {
     changePage(window.location.href);
-    console.log('pop');
 };
 function removeListener() {} // Empty function to be changed int the page itselt
 
@@ -137,12 +137,15 @@ function easeOutCubic(t, b, c, d) {
 	return Math.round((-c*((t=t/d-1)*t*t*t - 1) + b)*10)/10;
 }
 // Selects all dropdowns and checks for class of dropdown-open, then adds the respective styles
-for (var d = 0; d < $dropdown.length; d++) {
-    $dropdowncontent = $dropdown[d].nextElementSibling.children[0];
-    if ($dropdown[d].classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
-    else {
-        $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
-        $dropdowncontent.style.visibility = 'hidden';
+function dropdownCheck() {
+    $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.main button.dropdown');
+    for (var d = 0; d < $dropdown.length; d++) {
+        $dropdowncontent = $dropdown[d].nextElementSibling.children[0];
+        if ($dropdown[d].classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
+        else {
+            $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
+            $dropdowncontent.style.visibility = 'hidden';
+        }
     }
 }
 function dropdownTransition(iterations,$elem,start,end) {
@@ -202,11 +205,7 @@ function scrolling() {
 	if (latestY != previousY || resize) {
 		if (resize) {
             resize = false;
-            for (var d = 0; d < $dropdown.length; d++) {
-                $dropdowncontent = $dropdown[d].nextElementSibling.children[0];
-                if ($dropdown[d].classList.contains('dropdown-open')) $dropdowncontent.style.marginTop = '0';
-                else $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
-            }
+            dropdownCheck();
         }
 		if ($parallax && latestY <= windowHeight && isIE == false) {
 			$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
@@ -379,24 +378,32 @@ var $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button'), // T
     rippletimer = 0; // To prevent the ripple from disappearing to fast if the click was very fast
 
 // Activate the ripple effect be adding a 'div' with the class of 'ripple' to every element in the $ripplelist. Also adds the event listeners.
-for (var i = 0; i < $ripplelist.length; i++) {
-	var $div = document.createElement('DIV');
-	$div.className = 'ripple';
-	if ($ripplelist[i].tagName == 'A') $ripplelist[i].parentElement.appendChild($div);
-	else $ripplelist[i].lastElementChild.appendChild($div);
-	$ripplelist[i].addEventListener('pointerdown', function(e) {
-		rippleDown(this, e);
-	});
-	$ripplelist[i].addEventListener('pointerup', function(e) {
-		rippleUp(this, e);
-	});
-	$ripplelist[i].addEventListener('pointerleave', function(e) {
-		rippleUp(this, e);
-		hover(this, e, 'leave');
-	});
-	$ripplelist[i].addEventListener('pointerenter', function(e) {
-		hover(this, e, 'enter');
-	});
+function rippleCheck() {
+    $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button');
+    for (var i = 0; i < $ripplelist.length; i++) {
+        if ($ripplelist[i].tagName == 'A') var $ripple = $ripplelist[i].parentElement.lastElementChild;
+        else var $ripple = $ripplelist[i].lastElementChild.lastElementChild;
+        if ($ripple.classList) {
+            if ($ripple.classList.contains('ripple')) return false;
+        }
+        var $div = document.createElement('DIV');
+        $div.className = 'ripple';
+    	if ($ripplelist[i].tagName == 'A') $ripplelist[i].parentElement.appendChild($div);
+    	else $ripplelist[i].lastElementChild.appendChild($div);
+    	$ripplelist[i].addEventListener('pointerdown', function(e) {
+    		rippleDown(this, e);
+    	});
+    	$ripplelist[i].addEventListener('pointerup', function(e) {
+    		rippleUp(this, e);
+    	});
+    	$ripplelist[i].addEventListener('pointerleave', function(e) {
+    		rippleUp(this, e);
+    		hover(this, e, 'leave');
+    	});
+    	$ripplelist[i].addEventListener('pointerenter', function(e) {
+    		hover(this, e, 'enter');
+    	});
+    }
 }
 // This hover effect is needed to replace CSS ':hover' because ':hover' also happens with touchscreens which isn't ideal. Hover effects can only happen with a mouse.
 function hover(element, e, direction) {

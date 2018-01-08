@@ -448,6 +448,7 @@ removeListener = function() {
 	$parallax.removeEventListener('touchstart', parallaxTouch);
 	$parallax.removeEventListener('mousemove', parallaxMousemove);
 	$parallax.removeEventListener('click', parallaxClick);
+	clearTimeout(timer);
 	mousemove = true;
 }
 
