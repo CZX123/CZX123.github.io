@@ -42,12 +42,17 @@ function changePage(url) {
     xhr.send();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
             var $wrapper = document.createElement('div');
             $wrapper.innerHTML = xhr.responseText;
             $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
             $newstyle = $wrapper.getElementsByClassName('ajax-style')[0],
             $newscript = $wrapper.getElementsByClassName('ajax-script')[0];
+            if (!$newcontent) {
+                error();
+                $ajaxcontent.classList.remove('hide');
+                return false;
+            }
+            if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
             filerequested = true;
             if (animationcomplete) changeContent();
         }
@@ -60,11 +65,6 @@ function changePage(url) {
 }
 function changeContent() {
     $body.classList.remove('loading');
-    if (!$newcontent) {
-        error();
-        $ajaxcontent.classList.remove('hide');
-        return false;
-    }
     $ajaxcontent.style.position = 'absolute';
     $ajaxcontent.insertAdjacentElement('afterend', $newcontent);
     $ajaxcontent.parentNode.removeChild($ajaxcontent);
@@ -405,6 +405,7 @@ function rippleCheck() {
     	});
     }
 }
+rippleCheck();
 // This hover effect is needed to replace CSS ':hover' because ':hover' also happens with touchscreens which isn't ideal. Hover effects can only happen with a mouse.
 function hover(element, e, direction) {
 	if (e.pointerType == 'touch') return false;
