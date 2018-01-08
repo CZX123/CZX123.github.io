@@ -88,7 +88,8 @@ function changeContent() {
         $newactive = $navdrawer.querySelector('a[href="' + filename + '"]');
     console.log($currentactive,$newactive);
     for (var c = 0, l = $currentactive.length; c < l; c++) {
-        $currentactive[c].classList.remove('active');
+        $currentactive[0].classList.remove('active');
+        $currentactive = $navdrawer.getElementsByClassName('active');
     }
     $newactive.parentElement.classList.add('active');
     var $activedropdown = $newactive.parentElement.parentElement.parentElement.previousElementSibling;
