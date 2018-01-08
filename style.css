@@ -406,7 +406,7 @@ button > * {
 	opacity: 1;
 	transform: none;
 }
-@keyframes slide-in {
+@keyframes slide-out {
 	90% {
 		opacity: 0;
 	}
