@@ -352,6 +352,7 @@ removeListener = function() {
 	$parallax = null;
 	$prevbutton = null;
 	$nextbutton = null;
+	flkty.off('select', carouselActive);
 	flkty = null;
 	clearTimeout(timer);
 	mousemove = true;
