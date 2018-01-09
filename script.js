@@ -66,6 +66,7 @@ function changePage(url) {
     };
 }
 function changeContent() {
+    removeListener(); // This function is to remove all existing listeners on the current page since AJAX navigation makes the site a single page application and javascript does not change. By default, the function is empty, so redefine it in the script section of the HTML page.
     window.scrollTo(0,0);
     document.title = newtitle;
     $body.classList.remove('loading');
@@ -109,13 +110,13 @@ document.addEventListener('click', function(e) {
 	}
     if (!$elem) return false;
     if ($elem.tagName == 'A' && !$elem.target && $elem.href) {
-        if ($elem.getAttribute('href').substring(0,4) == 'http') return false;
+        var firstfour = $elem.getAttribute('href').substring(0,4);
+        if (firstfour == 'http' || firstfour == 'mail') return false;
         if (navigator.userAgent.indexOf('Mac OS X') != -1) {
             if (e.metaKey) return false;
         }
         else if (e.ctrlKey) return false;
         e.preventDefault();
-        removeListener(); // This function is to remove all existing listeners on the current page since AJAX navigation makes the site a single page application and javascript does not change. By default, the function is empty, so redefine it in the script section of the HTML page.
         $scrim.click(); // To close the nav drawer
         changePage($elem.getAttribute('href'));
     }

@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Lato:400,400i">
 <link rel="stylesheet" type="text/css" href="style.css">
-<style>
+
+<style class="ajax-style">
 section * {
     text-align: center;
 }
@@ -42,108 +43,117 @@ section.main .grid > * {
 	transition: transform .7s cubic-bezier(.4,0,.2,1), opacity .5s;
 }
 </style>
+
 </head>
 
 <body>
-    <div class="nav-detect-hover"></div>
-	<div class="navbar">
-		<button class="menu">
-			<div>
-				<svg viewBox="0 0 24 24">
-    				<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
-				</svg>
-			</div>
-		</button>
-		<img src="https://hcinpcc.files.wordpress.com/2017/07/npcc1.jpg?w=657" alt="HCINPCC Logo">
-	</div>
-	<div class="nav-gradient"></div>
-	<div class="nav-drawer">
-		<div class="scrollbar-animate">
-			<div class="wrapper">
-			<ul>
-				<li>
-					<svg viewBox="0 0 24 24">
-    					<path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
-					</svg>
-					<a href="/">Home</a>
-				</li>
-				<li class="dropdown dropdown-open active">
-					<svg viewBox="0 0 24 24">
-    					<path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
-					</svg>
-					<a>About HCINPCC</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
-							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-                    <ul>
-                        <li><a href="info">NPCC Information</a></li>
-                        <li><a href="roh">Roll Of Honour</a></li>
-                        <li class="active"><a href="officers">Officers</a></li>
-                        <li><a href="exco">Unit Hierarchy</a></li>
-                    </ul>
+
+<div class="progress">
+    <div>
+        <div><span></span></div>
+        <div><span></span></div>
+    </div>
+</div>
+<div class="nav-detect-hover"></div>
+<div class="navbar">
+    <button class="menu">
+        <div>
+            <svg viewBox="0 0 24 24">
+                <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+            </svg>
+        </div>
+    </button>
+    <img src="https://hcinpcc.files.wordpress.com/2017/07/npcc1.jpg?w=657" alt="HCINPCC Logo">
+</div>
+<div class="nav-gradient"></div>
+<div class="nav-drawer">
+    <div class="scrollbar-animate">
+        <div class="wrapper">
+        <ul>
+            <li>
+                <svg viewBox="0 0 24 24">
+                    <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/>
+                </svg>
+                <a href="/">Home</a>
+            </li>
+            <li class="dropdown dropdown-open active">
+                <svg viewBox="0 0 24 24">
+                    <path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                </svg>
+                <a>About HCINPCC</a>
+                <div class="caret">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                    </svg>
                 </div>
-				<li class="dropdown">
-					<svg viewBox="0 0 24 24">
-    					<path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
-					</svg>
-					<a>Publications</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
-							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li>
-							<a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
-							<div class="external">
-								<svg viewBox="0 0 24 24">
-    								<path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-								</svg>
-							</div>
-						</li>
-						<li><a href="ac">Annual Chronicles</a></li>
-					</ul>
-				</div>
-				<li class="dropdown">
-					<svg viewBox="0 0 24 24">
-    					<path d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
-					</svg>
-					<a>Help</a>
-					<div class="caret">
-						<svg viewBox="0 0 24 24">
-							<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-						</svg>
-					</div>
-				</li>
-				<div class="dropdown-content">
-					<ul>
-						<li><a href="contact">Contact Us</a></li>
-						<li><a href="links">Useful Links</a></li>
-					</ul>
-				</div>
-			</ul>
-			<ul class="social-media-icons">
-				<li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
-					<svg viewBox="0 0 408.788 408.788">
-						<path d="M353.701 0H55.087C24.665 0 .002 24.662.002 55.085v298.616c0 30.423 24.662 55.085 55.085 55.085h147.275l.251-146.078h-37.951a8.954 8.954 0 0 1-8.954-8.92l-.182-47.087a8.955 8.955 0 0 1 8.955-8.989h37.882v-45.498c0-52.8 32.247-81.55 79.348-81.55h38.65a8.955 8.955 0 0 1 8.955 8.955v39.704a8.955 8.955 0 0 1-8.95 8.955l-23.719.011c-25.615 0-30.575 12.172-30.575 30.035v39.389h56.285c5.363 0 9.524 4.683 8.892 10.009l-5.581 47.087a8.955 8.955 0 0 1-8.892 7.901h-50.453l-.251 146.078h87.631c30.422 0 55.084-24.662 55.084-55.084V55.085C408.786 24.662 384.124 0 353.701 0z"/>
-					</svg>
-				</a></li>
-				<li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
-					<img src="instagram-black.svg">
-					<img src="instagram-color.svg">
-				</a></li>
-			</ul>
-			</div>
-		</div>
-	</div>
-	<div class="scrim"></div>
-	<div class="drag-nav-drawer"></div>
+            </li>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a href="info">NPCC Information</a></li>
+                    <li><a href="roh">Roll Of Honour</a></li>
+                    <li class="active"><a href="officers">Officers</a></li>
+                    <li><a href="exco">Unit Hierarchy</a></li>
+                </ul>
+            </div>
+            <li class="dropdown">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
+                </svg>
+                <a>Publications</a>
+                <div class="caret">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                    </svg>
+                </div>
+            </li>
+            <div class="dropdown-content">
+                <ul>
+                    <li>
+                        <a href="https://hcinpcc.wordpress.com" target="_blank">Articles</a>
+                        <div class="external">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                        </div>
+                    </li>
+                    <li><a href="ac">Annual Chronicles</a></li>
+                </ul>
+            </div>
+            <li class="dropdown">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
+                </svg>
+                <a>Help</a>
+                <div class="caret">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                    </svg>
+                </div>
+            </li>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a href="contact">Contact Us</a></li>
+                    <li><a href="links">Useful Links</a></li>
+                </ul>
+            </div>
+        </ul>
+        <ul class="social-media-icons">
+            <li class="facebook"><a href="https://www.facebook.com/groups/hcinpcc/" target="_blank">
+                <svg viewBox="0 0 408.788 408.788">
+                    <path d="M353.701 0H55.087C24.665 0 .002 24.662.002 55.085v298.616c0 30.423 24.662 55.085 55.085 55.085h147.275l.251-146.078h-37.951a8.954 8.954 0 0 1-8.954-8.92l-.182-47.087a8.955 8.955 0 0 1 8.955-8.989h37.882v-45.498c0-52.8 32.247-81.55 79.348-81.55h38.65a8.955 8.955 0 0 1 8.955 8.955v39.704a8.955 8.955 0 0 1-8.95 8.955l-23.719.011c-25.615 0-30.575 12.172-30.575 30.035v39.389h56.285c5.363 0 9.524 4.683 8.892 10.009l-5.581 47.087a8.955 8.955 0 0 1-8.892 7.901h-50.453l-.251 146.078h87.631c30.422 0 55.084-24.662 55.084-55.084V55.085C408.786 24.662 384.124 0 353.701 0z"/>
+                </svg>
+            </a></li>
+            <li class="instagram"><a href="https://www.instagram.com/hcinpcc/" target="_blank">
+                <img src="instagram-black.svg">
+                <img src="instagram-color.svg">
+            </a></li>
+        </ul>
+        </div>
+    </div>
+</div>
+<div class="scrim"></div>
+<div class="drag-nav-drawer"></div>
+<div class="ajax-content">
 	<section class="title">
 		<h1>Officers</h1>
 	</section>
@@ -151,14 +161,7 @@ section.main .grid > * {
 		<h1>Teacher Officers</h1>
 		<div class="grid">
             <button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",l=x.length;for(i=l-1;i>=0;i--) {try{o+=x.c" +"harAt(i);}catch(e){}}return o;}f(\")\\\"function f(x,y){var i,o=\\\"\\\\\\\""+"\\\\,l=x.length;for(i=0;i<l;i++){if(i<22)y++;y%=127;o+=String.fromCharCode("+"x.charCodeAt(i)^(y++));}return o;}f(\\\"\\\\svxhrDMQ\\\\\\\\t^YD[T_[\\\\\\\\"+"037\\\\\\\\033\\\\\\\\007\\\\\\\\\\\\\\\\\\\\\\\\037)0&\\\\\\\\\\\"\\\\x\\\\"+"\\\\032e%(#'8\\\\\\\\\\\"\\\\t;1?1$\\\\\\\\024=5>v<>.r.9\\\\\\\\003B_@J_U]\\"+"\"\\\\,22)\\\"(f};)lo,0(rtsbus.o nruter};)i(tArahc.x=+o{)--i;0=>i;1-l=i(rof"+"}}{)e(hctac};l=+l;x=+x{yrt{)64=!)31/l(tAedoCrahc.x(elihw;lo=l,htgnel.x=lo,\\"+"\"\\\"=o,i rav{)x(f noitcnuf\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="WhgN1bWFpbHRvOnRhbmN3QGhjaS5lZHUuc2c=">
                     <img src="officers/officer-tancw.jpg" alt="Mr Tan CW">
                     <div class="desc">DSP (NPCC) Mr Tan Chee Wee</div>
                 </a>
@@ -166,27 +169,13 @@ section.main .grid > * {
 		</div>
 		<div class="grid">
 			<button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!"+"=34){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o"+".substr(0,ol);}f(\")13,\\\"aic~tkv710\\\\5\\\"\\\\~:*(b\\\"\\\\)!010\\\\!* "+"/,.{/KRT]V030\\\\e500\\\\QSG\\\\\\\\320\\\\Sr\\\\220\\\\700\\\\@AI_C[_t\\\\"+"RKANWBO{\\\"(f};o nruter};))++y(^)i(tAedoCrahc.x(edoCrahCmorf.gnirtS=+o;721"+"=%y;2=*y))y+13(>i(fi{)++i;l<i;0=i(rof;htgnel.x=l,\\\"\\\"=o,i rav{)y,x(f no"+"itcnuf\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="BI6ZabWFpbHRvOmxva2VsZkBoY2kuZWR1LnNn">
                     <img src="officers/officer-loke.jpg" alt="Mdm Loke">
                     <div class="desc">ASP (NPCC) Mrs Yeong-Loke Lai Fun</div>
                 </a>
             </button>
 			<button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",l=x.length;for(i=0;i<l;i+=2) {if(i+1<l)o+="+"x.charAt(i+1);try{o+=x.charAt(i);}catch(e){}}return o;}f(\"ufcnitnof x({)av"+" r,i=o\\\"\\\"o,=l.xelgnhtl,o=;lhwli(e.xhcraoCedtAl(1/)3=!11)1t{yrx{=+;x+ll"+"=};acct(h)e}{f}roi(l=1-i;=>;0-i)-o{=+.xhcratAi(;)r}teru n.oussbrt0(o,)l};(f"+")\\\"97\\\\,n\\\"jcofku33\\\\0\\\\\\\\\\\\\\\"0\\\\Jo^Y27\\\\0^\\\\[VNqJA5B"+"03\\\\\\\\WJvMv|K;u(}t+e;h+'2o02\\\\\\\\31\\\\06\\\\01\\\\\\\\21\\\\04\\\\0"+"0\\\\\\\\03\\\\0\\\\\\\\\\\\\\\\4\\\\00\\\\\\\\00\\\\0t\\\\\\\\\\\\07\\\\05"+"\\\\03\\\\\\\\05\\\\03\\\\01\\\\\\\\06\\\\0\\\\\\\\(\\\"}fo;n uret}r);+)y+^"+"(i)t(eAodrCha.c(xdeCoarChomfrg.intr=So+7;12%=;y++)y97i<f({i+)i+l;i<0;i=r(fo"+"h;gten.l=x,l\\\"\\\\\\\"\\\\o=i,r va){,y(x fontincfu)\\\"\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="kGyJfbWFpbHRvOmthbGFAaGNpLmVkdS5zZw==">
                     <img src="officers/officer-kala.jpg" alt="Ms Kala">
                     <div class="desc">ASP (NPCC) Ms G. Kalavathi</div>
                 </a>
@@ -194,27 +183,13 @@ section.main .grid > * {
 		</div>
 		<div class="grid">
 			<button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",l=x.length;for(i=0;i<l;i+=2) {if(i+1<l)o+="+"x.charAt(i+1);try{o+=x.charAt(i);}catch(e){}}return o;}f(\"ufcnitnof x({)av"+" r,i=o\\\"\\\"o,=l.xelgnhtl,o=;lhwli(e.xhcraoCedtAl(1/)3=!79{)rt{y+xx=l;=+;"+"lc}tahce({)}}of(r=i-l;1>i0=i;--{)+ox=c.ahAr(t)i};erutnro s.buts(r,0lo;)f}\\"+"\"(5),8\\\"\\\\ypl|7a17\\\\\\\\35\\\\0a\\\\\\\\\\\\\\\\\\\\1J03\\\\\\\\W@1T"+"00\\\\\\\\HDgAKN~O!icvzybpW/a4q`^i35\\\\0F\\\\^Z32\\\\06\\\\03\\\\\\\\25\\\\"+"02\\\\03\\\\\\\\05\\\\00\\\\03\\\\\\\\37\\\\0H\\\\20\\\\04\\\\01\\\\\\\\05\\"+"\\03\\\\9)27\\\"\\\\f(;} ornture;}))++(y)^(iAtdeCoarchx.e(odrChamCro.fngriS"+"t+=;o27=1y%+;y+5)<8(iif){++;i<l;i=0(ior;fthnglex.l=\\\\,\\\\\\\"=\\\",o iar"+"{vy)x,f(n ioctun\\\"f)\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="qVKNCbWFpbHRvOnRhbmhrQGhjaS5lZHUuc2c=">
                     <img src="officers/officer-tanhk.jpg" alt="Mr Tan HK">
                     <div class="desc">Insp (NPCC) Mr Tan Hui Kuan</div>
                 </a>
             </button>
 			<button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",l=x.length;for(i=l-1;i>=0;i--) {try{o+=x.c"+"harAt(i);}catch(e){}}return o;}f(\")\\\"function f(x,y){var i,o=\\\"\\\\\\\""+"\\\\,l=x.length;for(i=0;i<l;i++){if(i==23)y+=i;y%=127;o+=String.fromCharCod"+"e(x.charCodeAt(i)^(y++));}return o;}f(\\\"\\\\swzovysj1WSKWAIH\\\\\\\\017\\"+"\\\\\\n\\\\\\\\025K\\\\\\\\013D_  z\\\\\\\\024k'*%!: j;=*70\\\\\\\\026?;0t>"+"8(p,\\\\\\\\007=@]FL]WS\\\"\\\\,23)\\\"(f};)lo,0(rtsbus.o nruter};)i(tArahc"+".x=+o{)--i;0=>i;1-l=i(rof}}{)e(hctac};l=+l;x=+x{yrt{)29=!)31/l(tAedoCrahc.x"+"(elihw;lo=l,htgnel.x=lo,\\\"\\\"=o,i rav{)x(f noitcnuf\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="9K9vxbWFpbHRvOmpveWNlQGhjaS5lZHUuc2c=">
                     <img src="officers/officer-joyce.jpg" alt="Ms Tan">
                     <div class="desc">Insp (NPCC) Ms Joyce Tan Yu Hui</div>
                 </a>
@@ -223,14 +198,7 @@ section.main .grid > * {
 		<h1>Honourary Officer</h1>
 		<div class="grid">
 			<button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!"+"=48){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o"+".substr(0,ol);}f(\")17,\\\"<6>-!<#\\\\\\\\130\\\\610\\\\R620\\\\520\\\\230\\"+"\\V030\\\\130\\\\530\\\\520\\\\n\\\\2730\\\\730\\\\000\\\\130\\\\2330\\\\61"+"0\\\\320\\\\S700\\\\320\\\\n\\\\410\\\\500\\\\610\\\\@=]9;/4{;ez771\\\\891'"+";#'a:#)&?*'#\\\"(f};o nruter};))++y(^)i(tAedoCrahc.x(edoCrahCmorf.gnirtS=+o"+";721=%y{)++i;l<i;0=i(rof;htgnel.x=l,\\\"\\\"=o,i rav{)y,x(f noitcnuf\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="SzbdGbWFpbHRvOnlld193b29uQHlhaG9vLmNvbS5zZw==">
 					<img src="officers/officer-chiayw.jpg">
 					<div class="desc">H/ASP (NPCC) Dr Chia Yew Woon</div>
 				</a>
@@ -239,40 +207,19 @@ section.main .grid > * {
 		<h1>Cadet Inspectors</h1>
 		<div class="grid">
             <button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!"+"=92){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o"+".substr(0,ol);}f(\")16,\\\";NFUYD[$230\\\\130\\\\620\\\\Z730\\\\330\\\\020\\"+"\\530\\\\010\\\\.UUR[610\\\\600\\\\200\\\\000\\\\000\\\\r\\\\t\\\\520\\\\61"+"0\\\\410\\\\e1)02;4z310\\\\k31!:q1sle\\\"\\\\'/=!51k0-',5\\\\\\\\QY\\\"(f};"+"o nruter};))++y(^)i(tAedoCrahc.x(edoCrahCmorf.gnirtS=+o;721=%y;2=*y))y+16(>"+"i(fi{)++i;l<i;0=i(rof;htgnel.x=l,\\\"\\\"=o,i rav{)y,x(f noitcnuf\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="VRSAfbWFpbHRvOmxvd2ppZWZlbmcxOTk4QGdtYWlsLmNvbQ==">
                     <img src="officers/ci-jiefeng.jpg">
                     <div class="desc">CI (NPCC) Low Jie Feng </div>
                 </a>
             </button>
 			<button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",l=x.length;for(i=0;i<l;i+=2) {if(i+1<l)o+="+"x.charAt(i+1);try{o+=x.charAt(i);}catch(e){}}return o;}f(\"ufcnitnof x({)av"+" r,i=o\\\"\\\"o,=l.xelgnhtl,o=;lhwli(e.xhcraoCedtAl(1/)3=!24{)rt{y+xx=l;=+;"+"lc}tahce({)}}of(r=i-l;1>i0=i;--{)+ox=c.ahAr(t)i};erutnro s.buts(r,0lo;)f}\\"+"\"(7),1\\\"\\\\~tevti4k02\\\\\\\\)*j&+/- ~X\\\\n6\\\\01\\\\\\\\[UQWX]@T\\\\"+"t]\\\\\\\\E\\\\\\\\F\\\\@O16\\\\0w\\\\27\\\\0O\\\\UM5N00\\\\\\\\7E03\\\\\\\\"+"00\\\\0t\\\\\\\\\\\\sNi{iu7mylxspau}\\\"\\\\f(;} ornture;}))++(y)^(iAtdeCoa"+"rchx.e(odrChamCro.fngriSt+=;o27=1y%){++;i<l;i=0(ior;fthnglex.l=\\\\,\\\\\\\""+"=\\\",o iar{vy)x,f(n ioctun\\\"f)\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="5UPUrbWFpbHRvOnRhbmppbmFuMjdAZ21haWwuY29t">
 					<img src="officers/ci-jinan.jpg">
 					<div class="desc">CI (NPCC) Tan Jin An </div>
 				</a>
 			</button>
 			<button>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    <!--
-                    var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!"+"=48){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o"+".substr(0,ol);}f(\")89,\\\"630\\\\420\\\\030\\\\310\\\\300\\\\630\\\\=Bpsx4"+"uqv{rTc|?waod`jccmbj?kwnha320\\\\_ F430\\\\430\\\\n\\\\730\\\\V420\\\\HQZ73"+"0\\\\430\\\\n\\\\230\\\\400\\\\630\\\\430\\\\D530\\\\600\\\\200\\\\310\\\\0"+"20\\\\700\\\\410\\\\600\\\\\\\"(f};o nruter};))++y(^)i(tAedoCrahc.x(edoCrah"+"Cmorf.gnirtS=+o;721=%y;2=*y))y+89(>i(fi{)++i;l<i;0=i(rof;htgnel.x=l,\\\"\\\""+"=o,i rav{)y,x(f noitcnuf\")";
-                    while(x=eval(x));
-                    //-->
-                    //]]>
-                </script>
+                <a href="aKiqPbWFpbHRvOmxlZWppYWxpYW5nLm5wQGdtYWlsLmNvbQ==">
 					<img src="https://via.placeholder.com/400x600">
 					<div class="desc">CI (NPCC) Lee Jia Liang </div>
 				</a>
@@ -286,9 +233,25 @@ section.main .grid > * {
 			<span>HCINPCC</span>
 		</footer>
 	</section>
-    <div class="error">An error occured. Please try again later.</div>
+</div>
+
+<div class="error">An error occured. Please try again later.</div>
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="https://code.jquery.com/pep/0.4.3/pep.min.js"></script>
 <script src="script.js"></script>
+<script class="ajax-script">
+$ajaxscript = document.getElementsByClassName('ajax-script')[0];
+
+var $mailtolinks = document.querySelectorAll('.grid button a'),
+    linksno = $mailtolinks.length;
+
+for (var m = 0; m < linksno; m++) {
+    var encodedlink = $mailtolinks[m].getAttribute('href').substring(5),
+        decodedlink = window.atob(encodedlink);
+    $mailtolinks[m].setAttribute('href',decodedlink);
+}
+
+removeListener = function() {};
+</script>
 </body>
 </html>
