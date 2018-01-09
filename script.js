@@ -32,6 +32,7 @@ function changePage(url) {
         if (url.substring(0,4) == 'http') history.pushState(null, null, oldUrl);
         return false;
     }
+    oldUrl = window.location.href;
     pageswitching = true;
     filerequested = false;
     animationcomplete = false;
@@ -62,6 +63,7 @@ function changePage(url) {
                 return false;
             }
             if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
+            oldUrl = window.location.href;
             filerequested = true;
             if (animationcomplete) changeContent();
         }
@@ -102,7 +104,6 @@ function changeContent() {
     $newactive.parentElement.classList.add('active');
     var $activedropdown = $newactive.parentElement.parentElement.parentElement.previousElementSibling;
     if ($activedropdown) $activedropdown.classList.add('active');
-    oldUrl = window.location.href;
     dropdownCheck();
     rippleCheck();
     pageswitching = false;
