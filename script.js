@@ -28,7 +28,10 @@ var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.m
     animation;
 
 function changePage(url) {
-    if (pageswitching) return false;
+    if (pageswitching) {
+        if (url.substring(0,4) == 'http') history.pushState(null, null, oldUrl);
+        return false;
+    }
     pageswitching = true;
     filerequested = false;
     animationcomplete = false;
