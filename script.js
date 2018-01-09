@@ -10,7 +10,9 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     $newcontent,
     $newtop,
     $newbottom,
-    newtitle;
+    newtitle,
+    oldUrl = window.location.href,
+    pageswitching; // A boolean to prevent spamming
 
 // Basic Nav Drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
@@ -26,6 +28,18 @@ var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.m
     animation;
 
 function changePage(url) {
+    if (pageswitching) {
+        if (url.substring(0,4) == 'http') {
+            window.history.forward();
+            if (window.location.href != oldUrl) window.history.go(-2);
+            if (window.location.href != oldUrl) {
+                window.history.forward();
+                error();
+            }
+        }
+        return false;
+    }
+    pageswitching = true;
     filerequested = false;
     animationcomplete = false;
     $ajaxcontent.classList.add('hide');
@@ -95,8 +109,10 @@ function changeContent() {
     $newactive.parentElement.classList.add('active');
     var $activedropdown = $newactive.parentElement.parentElement.parentElement.previousElementSibling;
     if ($activedropdown) $activedropdown.classList.add('active');
+    oldUrl = window.location.href;
     dropdownCheck();
     rippleCheck();
+    pageswitching = false;
 }
 window.onpopstate = function() {
     changePage(window.location.href);
