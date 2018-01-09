@@ -387,7 +387,7 @@ button > * {
 
 /* AJAX navigation animation */
 .ajax-content {
-	animation: slide-in .6s cubic-bezier(0,0,.2,1) forwards;
+	animation: slide-in .5s cubic-bezier(0,0,.2,1) forwards;
 	opacity: 0;
 	transform: translateY(100vh);
 }
@@ -401,7 +401,7 @@ button > * {
 	}
 }
 .ajax-content.hide {
-	animation: slide-out .6s cubic-bezier(.4,0,1,1) forwards;
+	animation: slide-out .5s cubic-bezier(.4,0,1,1) forwards;
 	opacity: 1;
 	transform: none;
 }
