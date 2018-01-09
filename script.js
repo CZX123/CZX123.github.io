@@ -31,10 +31,12 @@ function changePage(url) {
     if (pageswitching) {
         if (url.substring(0,4) == 'http') {
             window.history.forward();
-            if (window.location.href != oldUrl) window.history.go(-2);
             if (window.location.href != oldUrl) {
-                window.history.forward();
-                error();
+                window.history.go(-2);
+                if (window.location.href != oldUrl) {
+                    window.history.forward();
+                    error();
+                }
             }
         }
         return false;
