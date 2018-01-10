@@ -45,11 +45,11 @@ function changePage(url) {
         animationcomplete = true;
     }, 500);
     // XMLHttpRequest below to fetch the other page
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.send();
-    xhr.onreadystatechange = function() {
-        try {
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.send();
+        xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var $wrapper = document.createElement('div');
                 $wrapper.innerHTML = xhr.responseText;
@@ -74,14 +74,14 @@ function changePage(url) {
                 $body.classList.remove('loading');
                 pageswitching = false;
             }
-        }
-        catch() {
-            error();
-            $ajaxcontent.classList.remove('hide');
-            $body.classList.remove('loading');
-            pageswitching = false;
-        }
-    };
+        };
+    }
+    catch(e) {
+        error();
+        $ajaxcontent.classList.remove('hide');
+        $body.classList.remove('loading');
+        pageswitching = false;
+    }
 }
 function changeContent() {
     removeListener(); // This function is to remove all existing listeners on the current page since AJAX navigation makes the site a single page application and javascript does not change. By default, the function is empty, so redefine it in the script section of the HTML page.
