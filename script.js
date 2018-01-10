@@ -43,34 +43,43 @@ function changePage(url) {
     setTimeout(function() {
         if (filerequested) changeContent();
         animationcomplete = true;
-    }, 520);
+    }, 500);
     // XMLHttpRequest below to fetch the other page
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     xhr.send();
     xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var $wrapper = document.createElement('div');
-            $wrapper.innerHTML = xhr.responseText;
-            $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
-            $newstyle = $wrapper.getElementsByClassName('ajax-style')[0],
-            $newscript = $wrapper.getElementsByClassName('ajax-script')[0];
-            newtitle = $wrapper.getElementsByTagName('title')[0].innerText;
-            if (!$newcontent) {
-                error();
-                $body.classList.remove('loading');
-                $ajaxcontent.classList.remove('hide');
-                return false;
+        try {
+            if (this.readyState == 4 && this.status == 200) {
+                var $wrapper = document.createElement('div');
+                $wrapper.innerHTML = xhr.responseText;
+                $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
+                $newstyle = $wrapper.getElementsByClassName('ajax-style')[0],
+                $newscript = $wrapper.getElementsByClassName('ajax-script')[0];
+                newtitle = $wrapper.getElementsByTagName('title')[0].innerText;
+                if (!$newcontent) {
+                    error();
+                    $body.classList.remove('loading');
+                    $ajaxcontent.classList.remove('hide');
+                    return false;
+                }
+                if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
+                oldUrl = window.location.href;
+                filerequested = true;
+                if (animationcomplete) changeContent();
             }
-            if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
-            oldUrl = window.location.href;
-            filerequested = true;
-            if (animationcomplete) changeContent();
+            else if (this.readyState == 4) {
+                error();
+                $ajaxcontent.classList.remove('hide');
+                $body.classList.remove('loading');
+                pageswitching = false;
+            }
         }
-        else if (this.readyState == 4) {
+        catch() {
             error();
             $ajaxcontent.classList.remove('hide');
             $body.classList.remove('loading');
+            pageswitching = false;
         }
     };
 }
