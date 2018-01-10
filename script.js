@@ -104,6 +104,10 @@ function changeContent() {
     $ajaxscript.parentNode.removeChild($ajaxscript);
     $ajaxcontent = $newcontent;
     $ajaxstyle = $newstyle;
+    $ajaxcontent.classList.add('show');
+    setTimeout(function() {
+        $ajaxcontent.classList.remove('show');
+    },500);
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
     var split = window.location.href.split('/'),
         filename = split.pop(),

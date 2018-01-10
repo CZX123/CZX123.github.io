@@ -387,6 +387,9 @@ button > * {
 
 /* AJAX navigation animation */
 .ajax-content {
+	transition: all .8s cubic-bezier(.4,0,.2,1);
+}
+.ajax-content.show {
 	animation: slide-in .5s cubic-bezier(0,0,.2,1) forwards;
 	opacity: 0;
 	transform: translateY(100vh);
