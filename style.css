@@ -386,7 +386,7 @@ button > * {
 }
 
 /* AJAX navigation animation */
-.ajax-content.transition {
+.ajax-content {
 	transition: opacity .4s cubic-bezier(.4,0,1,1);
 }
 .ajax-content.show {
