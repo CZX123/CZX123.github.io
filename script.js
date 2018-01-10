@@ -45,7 +45,7 @@ function changePage(url) {
     setTimeout(function() {
         if (filerequested) changeContent();
         animationcomplete = true;
-    }, 500);
+    }, 400);
     // XMLHttpRequest below to fetch the other page
     try {
         var xhr = new XMLHttpRequest();
@@ -107,7 +107,7 @@ function changeContent() {
     $ajaxcontent.classList.add('show');
     setTimeout(function() {
         $ajaxcontent.classList.remove('show');
-    },500);
+    }, 400);
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
     var split = window.location.href.split('/'),
         filename = split.pop(),

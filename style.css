@@ -386,16 +386,13 @@ button > * {
 }
 
 /* AJAX navigation animation */
-.ajax-content {
-	transition: all .8s cubic-bezier(.4,0,.2,1);
-}
 .ajax-content.show {
-	animation: slide-in .5s cubic-bezier(0,0,.2,1) forwards;
+	animation: slide-in .4s cubic-bezier(0,0,.2,1) forwards;
 }
 @keyframes slide-in {
 	0% {
 		opacity: 0;
-		transform: translateY(100vh);
+		transform: translateY(128px);
 	}
 	90% {
 		opacity: 1;
@@ -406,7 +403,7 @@ button > * {
 	}
 }
 .ajax-content.hide {
-	animation: slide-out .5s cubic-bezier(.4,0,1,1) forwards;
+	animation: slide-out .4s cubic-bezier(.4,0,1,1) forwards;
 	opacity: 1;
 	transform: none;
 }
@@ -416,7 +413,7 @@ button > * {
 	}
 	100% {
 		opacity: 0;
-		transform: translateY(-100vh);
+		transform: translateY(-128px);
 	}
 }
 .progress {
