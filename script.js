@@ -99,7 +99,7 @@ function changeContent() {
     $ajaxstyle.parentNode.removeChild($ajaxstyle);
     var script = document.createElement('script');
     script.classList.add('ajax-script');
-    script.innerHTML = $newscript.innerText;
+    script.text = $newscript.innerText;
     $body.appendChild(script);
     $ajaxscript.parentNode.removeChild($ajaxscript);
     $ajaxcontent = $newcontent;
