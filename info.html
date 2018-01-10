@@ -717,6 +717,7 @@ removeListener = function() {
 	$prevbutton = null;
 	$nextbutton = null;
     $yearsbuttons = null;
+    flkty.off('select', checkCell);
 	flkty = null;
     window.removeEventListener('resize', carouselHeight);
 }
