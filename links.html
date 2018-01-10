@@ -78,14 +78,16 @@ section.main .dropdown-grid .dropdown-content button[disabled] a {
 section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
     display: none;
 }
-.grid button a {
-    display: block;
+section.main .grid > a {
+    display: flex;
+    border-radius: 8px;
+    overflow: visible;
 }
-.grid button a img {
+.grid a button img {
     display: block;
     width: 100%;
 }
-.grid button a .desc {
+.grid a button .desc {
     padding: 12px 16px;
     background: #F5F5F5;
     font-size: 16px;
@@ -222,30 +224,38 @@ iframe {
 	<section class="main">
 		<h1>Police Websites</h1>
 		<div class="grid two-column">
-            <button>
-				<a target="_blank" href="https://www.police.gov.sg/">
-                    <img src="links/spf-fb.jpg" alt="SPF">
-                    <div class="desc">Singapore Police Force</div>
-                </a>
-            </button>
-            <button>
-                <a target="_blank" href="https://www.sgsecure.sg">
-                    <img src="links/sgsecure.png" alt="SGSecure">
-                    <div class="desc">SGSecure</div>
-                </a>
-            </button>
-            <button>
-                <a target="_blank" href="http://www.npcc.org.sg">
-                    <img src="links/npccblank.jpg" alt="NPCC Website">
-                    <div class="desc">NPCC Official Website</div>
-                </a>
-            </button>
-    		<button>
-    			<a target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
-                    <img src="links/npccblank.jpg" alt="NPCC Hub">
-                    <div class="desc">NPCC Hub</div>
-                </a>
-    		</button>
+            <a target="_blank" href="https://www.police.gov.sg/">
+                <button>
+                    <div>
+                        <img src="links/spf-fb.jpg" alt="SPF">
+                        <div class="desc">Singapore Police Force</div>
+                    </div>
+                </button>
+            </a>
+            <a target="_blank" href="https://www.sgsecure.sg">
+                <button>
+                    <div>
+                        <img src="links/sgsecure.png" alt="SGSecure">
+                        <div class="desc">SGSecure</div>
+                    </div>
+                </button>
+            </a>
+            <a target="_blank" href="http://www.npcc.org.sg">
+                <button>
+                    <div>
+                        <img src="links/npccblank.jpg" alt="NPCC Website">
+                        <div class="desc">NPCC Official Website</div>
+                    </div>
+                </button>
+            </a>
+            <a target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
+                <button>
+                    <div>
+                        <img src="links/npccblank.jpg" alt="NPCC Hub">
+                        <div class="desc">NPCC Hub</div>
+                    </div>
+                </button>
+            </a>
         </div>
 		<h1>Unit Calendar</h1>
 		<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23FFFFFF&src=561sqnajivfdm927m70mk8pbmg@group.calendar.google.com&color=%235229A3&src=rld57lvh6cjcd21p7qmlqohfn4@group.calendar.google.com&color=%232F6309&src=vjl921toghftiv9hjn0r7vdf80@group.calendar.google.com&color=%23B1365F&src=4ur6hnursm8mqr9ri7hi8kok78@group.calendar.google.com&color=%23B1440E&src=plomulgh1jfnmo6dt70uqii3s8@group.calendar.google.com&color=%23875509&ctz=Asia/Singapore&pli=1" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
