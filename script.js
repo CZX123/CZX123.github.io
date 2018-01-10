@@ -81,6 +81,7 @@ function changePage(url) {
         $ajaxcontent.classList.remove('hide');
         $body.classList.remove('loading');
         pageswitching = false;
+        if (url.substring(0,4) == 'http') history.pushState(null, null, oldUrl);
     }
 }
 function changeContent() {
