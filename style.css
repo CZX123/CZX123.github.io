@@ -391,10 +391,12 @@ button > * {
 }
 .ajax-content.show {
 	animation: slide-in .5s cubic-bezier(0,0,.2,1) forwards;
-	opacity: 0;
-	transform: translateY(100vh);
 }
 @keyframes slide-in {
+	0% {
+		opacity: 0;
+		transform: translateY(100vh);
+	}
 	90% {
 		opacity: 1;
 	}
