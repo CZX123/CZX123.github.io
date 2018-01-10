@@ -12,6 +12,7 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     $newbottom,
     newtitle,
     oldUrl = window.location.href,
+    pageswitchY = window.pageYOffset, // The scroll value which helps prevent jumping when switching pages
     pageswitching; // A boolean to prevent spamming
 
 // Basic Nav Drawer interactions
@@ -32,6 +33,7 @@ function changePage(url) {
         if (url.substring(0,4) == 'http') history.pushState(null, null, oldUrl);
         return false;
     }
+    pageswitchY = latestY;
     oldUrl = window.location.href;
     pageswitching = true;
     filerequested = false;
@@ -51,6 +53,7 @@ function changePage(url) {
         xhr.send();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                window.scrollTo(0,pageswitchY);
                 var $wrapper = document.createElement('div');
                 $wrapper.innerHTML = xhr.responseText;
                 $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
