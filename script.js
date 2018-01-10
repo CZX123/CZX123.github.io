@@ -97,11 +97,12 @@ function changeContent() {
     $ajaxcontent.parentNode.removeChild($ajaxcontent);
     $ajaxstyle.insertAdjacentElement('afterend', $newstyle);
     $ajaxstyle.parentNode.removeChild($ajaxstyle);
+    $ajaxscript.parentNode.removeChild($ajaxscript);
     var script = document.createElement('script');
     script.classList.add('ajax-script');
     script.text = $newscript.innerText;
+    console.log(script.text);
     $body.appendChild(script);
-    $ajaxscript.parentNode.removeChild($ajaxscript);
     $ajaxcontent = $newcontent;
     $ajaxstyle = $newstyle;
     $ajaxcontent.classList.add('show');
