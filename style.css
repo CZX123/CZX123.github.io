@@ -386,6 +386,9 @@ button > * {
 }
 
 /* AJAX navigation animation */
+.ajax-content.transition {
+	transition: opacity .34s cubic-bezier(.4,0,1,1);
+}
 .ajax-content.show {
 	animation: slide-in .4s cubic-bezier(0,0,.2,1) forwards;
 }
@@ -403,18 +406,7 @@ button > * {
 	}
 }
 .ajax-content.hide {
-	animation: slide-out .4s cubic-bezier(.4,0,1,1) forwards;
-	opacity: 1;
-	transform: none;
-}
-@keyframes slide-out {
-	90% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 0;
-		transform: translateY(-128px);
-	}
+	opacity: 0;
 }
 .progress {
     position: fixed;
