@@ -101,7 +101,7 @@ function changeContent() {
     var script = document.createElement('script');
     script.classList.add('ajax-script');
     script.text = $newscript.innerText;
-    console.log(script.text);
+    // IMPORTANT: In Internet Explorer, the script's content (script.text) is all on one line instead of being cleanly formatted like other browsers. Since all of it is on one line, NO SINGLE LINE COMMENTS ARE ALLOWED! (basically this is an example of a single line comment). NO '//' characters are allowed, since anything after this 2 // will be a comment and ignored.
     $body.appendChild(script);
     $ajaxcontent = $newcontent;
     $ajaxstyle = $newstyle;
