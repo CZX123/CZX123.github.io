@@ -46,62 +46,49 @@ section.main .dropdown-grid button.dropdown {
 section.main .dropdown-grid button.dropdown + .dropdown-content .wrapper {
     padding: 0;
 }
-section.main .dropdown-grid .dropdown-content button {
+section.main .dropdown-grid .dropdown-content li a {
     display: block;
     width: 100%;
-    border-radius: 8px;
-    box-shadow: none !important;
-    transition: background .2s;
-}
-section.main .dropdown-grid .dropdown-content button.hover, section.main .dropdown-grid .dropdown-content button:active {
-    background: #F5F5F5;
-}
-@media (max-width: 450px) {
-section.main .dropdown-grid .dropdown-content button {
-    border-radius: 0;
-}
-}
-section.main .dropdown-grid .dropdown-content button a {
-    display: block;
     padding: 10px 24px;
     font-size: 16px;
     line-height: 20px;
     text-align: left;
+    box-shadow: none !important;
+    transition: background .2s;
 }
-section.main .dropdown-grid .dropdown-content button[disabled] {
+section.main .dropdown-grid .dropdown-content li a[disabled] {
     background: transparent !important;
-}
-section.main .dropdown-grid .dropdown-content button[disabled] a {
     color: rgba(0,0,0,.54);
     cursor: default;
 }
-section.main .dropdown-grid .dropdown-content button[disabled] .ripple {
-    display: none;
+section.main .dropdown-grid .dropdown-content li a.button.hover, section.main .dropdown-grid .dropdown-content li a.button:active {
+    background: #F5F5F5;
+}
+@media (max-width: 450px) {
+section.main .dropdown-grid .dropdown-content li a {
+    border-radius: 0;
+}
 }
 section.main .grid > a {
-    display: flex;
-    border-radius: 8px;
-    overflow: visible;
+    display: block;
+    background: #F5F5F5;
 }
-section.main .grid > a button {
-    flex-basis: 100%;
-}
-.grid a button img {
+.grid a img {
     display: block;
     width: 100%;
 }
-.grid a button .desc {
+.grid a .desc {
     padding: 12px 16px;
     background: #F5F5F5;
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
 }
-.grid button .ripple.appear {
-	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .28s;
+.grid a .ripple.appear {
+	transition: transform .64s cubic-bezier(.4,0,.2,1), opacity .28s;
 }
-.grid button .ripple.finish.fade-out {
-	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .5s;
+.grid a .ripple.finish.fade-out {
+	transition: transform .64s cubic-bezier(.4,0,.2,1), opacity .5s;
 }
 iframe {
     width: 100%;
@@ -227,37 +214,21 @@ iframe {
 	<section class="main">
 		<h1>Police Websites</h1>
 		<div class="grid two-column">
-            <a target="_blank" href="https://www.police.gov.sg/">
-                <button>
-                    <div>
-                        <img src="links/spf-fb.jpg" alt="SPF">
-                        <div class="desc">Singapore Police Force</div>
-                    </div>
-                </button>
+            <a class="button" target="_blank" href="https://www.police.gov.sg/">
+                <img src="links/spf-fb.jpg" alt="SPF">
+                <div class="desc">Singapore Police Force</div>
             </a>
-            <a target="_blank" href="https://www.sgsecure.sg">
-                <button>
-                    <div>
-                        <img src="links/sgsecure.png" alt="SGSecure">
-                        <div class="desc">SGSecure</div>
-                    </div>
-                </button>
+            <a class="button" target="_blank" href="https://www.sgsecure.sg">
+                <img src="links/sgsecure.png" alt="SGSecure">
+                <div class="desc">SGSecure</div>
             </a>
-            <a target="_blank" href="http://www.npcc.org.sg">
-                <button>
-                    <div>
-                        <img src="links/npccblank.jpg" alt="NPCC Website">
-                        <div class="desc">NPCC Official Website</div>
-                    </div>
-                </button>
+            <a class="button" target="_blank" href="http://www.npcc.org.sg">
+                <img src="links/npccblank.jpg" alt="NPCC Website">
+                <div class="desc">NPCC Official Website</div>
             </a>
-            <a target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
-                <button>
-                    <div>
-                        <img src="links/npccblank.jpg" alt="NPCC Hub">
-                        <div class="desc">NPCC Hub</div>
-                    </div>
-                </button>
+            <a class="button" target="_blank" href="https://sites.google.com/site/npcchqinfohub/">
+                <img src="links/npccblank.jpg" alt="NPCC Hub">
+                <div class="desc">NPCC Hub</div>
             </a>
         </div>
 		<h1>Unit Calendar</h1>
@@ -276,26 +247,26 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a href="http://chrnpcc.weebly.com/">Christ Church Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Fuchun Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Marsiling Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Woodgrove Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Woodlands Ring Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Woodlands Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -310,29 +281,29 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Chung Cheng High School (Yishun)</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Naval Base Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Northbrooks Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Northland Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Orchid Park Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Yishun Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Yishun Town Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -347,29 +318,29 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Ang Mo Kio Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>CHIJ St. Nicholas Girls' School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Chong Boon Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Deyi Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Mayflower Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Presbyterian High School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Yio Chu Kang Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -384,32 +355,32 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Beatty Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Bishan Park Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Catholic High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Guangyang Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Kuo Chuan Presbyterian Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Peirce Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Raffles Institution</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Whitley Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -424,29 +395,29 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Bartley Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Cedar Girls' Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Maris Stella High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Paya Lebar Methodist Girls' School (Secondary)</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>St. Gabriel's Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Yuying Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Zhonghua Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -461,35 +432,35 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Anderson Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Bowen Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Holy Innocent's High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Hougang Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Montfort Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Peicai Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Serangoon Garden Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Serangoon Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Xinmin Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -504,35 +475,35 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>CHIJ St. Joseph's Convent</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Compassvale Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Edgefield Secondary School [Sea]</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Greendale Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Nan Chiau High School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>North Vista Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Pei Hwa Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Punggol Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Seng Kang Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -547,29 +518,29 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Meridian Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Dunman Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>East View Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Greenview Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Hai Sing Catholic School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Loyang Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Pasir Ris Crest Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -584,32 +555,32 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Changkat Changi Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>East Spring Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Junyuan Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Ngee Ann Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Pasir Ris Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Springfield Secondary School [Sea]</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>St. Hilda's Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Tampines Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -624,29 +595,29 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Anglican High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Bedok Green Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Bedok South Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Bedok View Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Damai Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Ping Yi Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Temasek Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -661,26 +632,26 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Broadrick Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Chung Cheng High School (Main)</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>St. Patrick's Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Tanjong Katong Girls' School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Tanjong Katong Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Victoria School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -695,26 +666,26 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Bedok North Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Bendemeer Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Dunman High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Geylang Methodist School (Secondary)</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Manjusri Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>St. Andrew's Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -729,26 +700,26 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Admiralty Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Ahmad Ibrahim Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Canberra Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Evergreen Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Riverside Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Sembawang Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -763,26 +734,26 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>CHIJ St. Theresa's Convent</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Crescent Girls’ School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Gan Eng Seng School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Bukit Merah Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Outram Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Queenstown Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -797,29 +768,29 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a href="https://sites.google.com/a/acsbr.org/national-police-cadet-corps/">Anglo-Chinese School (Barker Road)</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a href="http://hcinpcc.github.io">Hwa Chong Institution</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a href="http://nynpcc.blogspot.sg/">Nanyang Girls' High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a href="http://queensway-np-peeps.blogspot.sg/">Queensway Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a href="http://rgsnpcc.weebly.com/">Raffles Girs' School (Secondary) [Sea]</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a href="http://sjinpcc.blogspot.sg/">St. Joseph's Institution</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>St. Margaret's Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -834,26 +805,26 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Anglo-Chinese School (Independent)</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Clementi Town Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Kent Ridge Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Nan Hua High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>New Town Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Tanglin Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -868,29 +839,29 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Boon Lay Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Jurong Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Jurong West Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>River Valley High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Westwood Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Yuan Ching Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Yuhua Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -905,32 +876,32 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Bukit Batok Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Bukit View Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Commonwealth Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Fuhua Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Hong Kah Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Hua Yi Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Jurongville Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Shuqun Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -945,29 +916,29 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Assumption English School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Dunearn Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Fajar Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Greenridge Secondary</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Hillgrove Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Swiss Cottage Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Yusof Ishak Secondary School</a>
-                        </button>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -982,31 +953,31 @@ iframe {
                     </div>
                 </button>
             	<div class="dropdown-content">
-                    <div class="wrapper">
-                        <button>
+                    <ul class="wrapper">
+                        <li>
                             <a>Bukit Panjang Government High School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Choa Chu Kang Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Kranji Secondary School</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Regent Secondary School	</a>
-                        </button>
-                        <button>
+                        </li>
+                        <li>
                             <a>Teck Whye Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Unity Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>West Spring Secondary School</a>
-                        </button>
-						<button>
+                        </li>
+						<li>
                             <a>Zhenghua Secondary School</a>
-                        </button>
+                        </li>
                     </div>
                 </div>
             </div>
@@ -1030,8 +1001,10 @@ iframe {
 $ajaxscript = document.getElementsByClassName('ajax-script')[0];
 var $links = document.querySelectorAll('.main .dropdown-content a'), l;
 for (l = 0; l < $links.length; l++) {
-    if (!$links[l].hasAttribute('href')) $links[l].parentElement.setAttribute('disabled','');
+    if (!$links[l].hasAttribute('href')) $links[l].setAttribute('disabled','');
     else $links[l].setAttribute('target','_blank');
+    $links[l].classList.add('button');
+    rippleCheck();
 }
 removeListener = function() {} ;
 </script>

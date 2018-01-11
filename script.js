@@ -423,18 +423,28 @@ var $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button'), // T
 
 // Activate the ripple effect be adding a 'div' with the class of 'ripple' to every element in the $ripplelist. Also adds the event listeners.
 function rippleCheck() {
-    $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button');
+    $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button, a.button');
     for (var i = 0; i < $ripplelist.length; i++) {
-        if ($ripplelist[i].tagName == 'A') var $ripple = $ripplelist[i].parentElement.lastElementChild;
-        else var $ripple = $ripplelist[i].lastElementChild.lastElementChild;
+        var $ripple = $ripplelist[i].parentElement.lastElementChild;
+        if ($ripplelist[i].tagName == 'A' && $ripplelist[i].classList) {
+            if ($ripplelist[i].classList.contains('button')) $ripple = $ripplelist[i].lastElementChild;
+        }
+        else $ripple = $ripplelist[i].lastElementChild.lastElementChild;
         if ($ripple) {
             if ($ripple.classList) {
                 if ($ripple.classList.contains('ripple')) continue;
             }
         }
+        if ($ripplelist[i].hasAttribute('disabled')) continue;
         var $div = document.createElement('DIV');
         $div.className = 'ripple';
-    	if ($ripplelist[i].tagName == 'A') $ripplelist[i].parentElement.appendChild($div);
+    	if ($ripplelist[i].tagName == 'A') {
+            if ($ripplelist[i].classList) {
+                if ($ripplelist[i].classList.contains('button')) $ripplelist[i].appendChild($div);
+                else $ripplelist[i].parentElement.appendChild($div);
+            }
+            else $ripplelist[i].parentElement.appendChild($div);
+        }
     	else $ripplelist[i].lastElementChild.appendChild($div);
     	$ripplelist[i].addEventListener('pointerdown', function(e) {
     		rippleDown(this, e);
@@ -460,8 +470,11 @@ function hover(element, e, direction) {
 }
 function rippleDown(element, e) {
 	rippledown = true;
-	if (element.tagName == 'A') var target = element.parentElement.lastElementChild;
-	else var target = element.lastElementChild.lastElementChild;
+    var target = element.parentElement.lastElementChild;
+    if (element.tagName == 'A' && element.classList) {
+        if (element.classList.contains('button')) target = element.lastElementChild;
+    }
+    else target = element.lastElementChild.lastElementChild;
 	if (rippletimer) {
 		clearTimeout(rippletimer);
 		timer2 = rippletimer;
@@ -486,8 +499,11 @@ function rippleDown(element, e) {
 }
 function rippleUp(element, e) {
 	rippledown = false;
-	if (element.tagName == 'A') var target = element.parentElement.lastElementChild;
-	else var target = element.lastElementChild.lastElementChild;
+    var target = element.parentElement.lastElementChild;
+    if (element.tagName == 'A' && element.classList) {
+        if (element.classList.contains('button')) target = element.lastElementChild;
+    }
+    else target = element.lastElementChild.lastElementChild;
 	target.classList.add('fade-out');
 	if (!rippletimer) target.classList.remove('appear');
 	setTimeout(function() {

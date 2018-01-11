@@ -719,13 +719,15 @@ section.main blockquote .author {
 	margin: 0;
 	text-align: right;
 }
-section.main button {
+section.main button, section.main a.button {
+	position: relative;
 	border-radius: 8px;
 	background: #FFF;
+	text-align: center;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 	transition: box-shadow .2s;
 }
-section.main button.hover, section.main button:active {
+section.main button.hover, section.main button:active, section.main a.button.hover, section.main a.button:active {
 	box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 }
 section.main button.dropdown {
