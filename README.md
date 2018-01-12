@@ -18,4 +18,4 @@ View it at https://czx123.github.io
 
 ### Others
 
-The 'officers.html' page is interesting, as it uses base64 encryption + a 5-character salt at the start in each `href` attribute of each officer. This is to pevent bot spamming by hiding the email addresses and derypting the encryted code when the actual page loads, using JavaScript.
+The 'officers.html' page is interesting, as it uses base64 encryption + a 5-character salt at the start in each `href` attribute of each officer. This is to pevent bot spamming by hiding the email addresses and decrypting the encryted code when the actual page loads, using JavaScript.
