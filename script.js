@@ -6,6 +6,7 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     $ajaxstyle = document.getElementsByClassName('ajax-style')[0],
     $ajaxscript,
     $progress = document.getElementsByClassName('progress')[0],
+    progress,
     animationcomplete = false,
     filerequested = false,
     $newcontent,
@@ -52,7 +53,6 @@ function changePage(url) {
         xhr.open("GET", url);
         xhr.send();
         xhr.onprogress = function(e) {
-            var progress;
             if (e.lengthComputable) {
                 progress = e.loaded/e.total;
             }
@@ -74,6 +74,10 @@ function changePage(url) {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 window.scrollTo(0,pageswitchY);
+                if (progress) {
+                    $progress.children[0].children[0].style.transform = 'scaleX(1)';
+                    progress = 0;
+                }
                 var $wrapper = document.createElement('div');
                 $wrapper.innerHTML = xhr.responseText;
                 $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
@@ -128,6 +132,7 @@ function changeContent() {
     $ajaxcontent.classList.add('show');
     setTimeout(function() {
         $ajaxcontent.classList.remove('show');
+        if (progress) { $progress.children[0].children[0].removeAttribute('style');
     }, 400);
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
     var split = window.location.href.split('/'),
