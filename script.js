@@ -62,7 +62,7 @@ function changePage(url) {
                 if (total && encoding && (encoding.indexOf('gzip') > -1)) {
                     // assuming average gzip compression ratio to be 1/3
                     total *= 3;
-                    progress = Math.min(1, event.loaded/total);
+                    progress = Math.min(1, e.loaded/total);
                 }
                 else {
                     $progress.classList.add('indeterminate');
