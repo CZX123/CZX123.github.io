@@ -132,7 +132,7 @@ function changeContent() {
     $ajaxcontent.classList.add('show');
     setTimeout(function() {
         $ajaxcontent.classList.remove('show');
-        if (progress) { $progress.children[0].children[0].removeAttribute('style');
+        if (progress) $progress.children[0].children[0].removeAttribute('style');
     }, 400);
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
     var split = window.location.href.split('/'),
