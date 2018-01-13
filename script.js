@@ -129,8 +129,10 @@ function changeContent() {
     $ajaxcontent.classList.add('show');
     setTimeout(function() {
         $ajaxcontent.classList.remove('show');
-        if (progress) $progress.children[0].children[0].removeAttribute('style');
-        progress = 0;
+        if (progress) {
+            $progress.children[0].children[0].removeAttribute('style');
+            progress = 0;
+        }
     }, 400);
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
     var split = window.location.href.split('/'),
