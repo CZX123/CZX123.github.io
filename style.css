@@ -432,14 +432,25 @@ body.loading > .progress, .loading > div > .progress {
     position: relative;
     height: 100%;
 }
-.activate-loading > .progress > div > div, .activate-loading > div > .progress > div > div {
+.progress > div > div {
     position: absolute;
     height: 100%;
     width: 100%;
+	transition: transform .1s cubic-bezier(.4,0,1,1);
+}
+.progress > div > div:first-child {
+	transform: scaleX(0);
+}
+.progress > div > div:first-child > span {
+    display: block;
+    height: 100%;
+    background: #3F51B5;
+}
+.progress.indeterminate > div > div, .activate-loading > div > .progress > div > div {
     left: -145.166611%;
     animation: primary-progress 1.6s infinite linear;
 }
-.activate-loading > .progress > div > div:last-child, .activate-loading > div > .progress > div > div:last-child {
+.progress.indeterminate > div > div:last-child, .activate-loading > div > .progress > div > div:last-child {
     left: -54.888891%;
     animation: secondary-progress 1.6s infinite linear;
 }
@@ -476,13 +487,13 @@ body.loading > .progress, .loading > div > .progress {
         transform: translateX(160.27778%);
     }
 }
-.activate-loading > .progress > div > div > span, .activate-loading > div > .progress > div > div > span {
+.progress.indeterminate > div > div > span, .activate-loading > div > .progress > div > div > span {
     display: block;
     height: 100%;
     background: #3F51B5;
     animation: primary-progress-span 1.6s infinite linear;
 }
-.activate-loading > .progress > div > div:last-child > span, .activate-loading > div > .progress > div > div:last-child > span {
+.progress.indeterminate > div > div:last-child > span, .activate-loading > div > .progress > div > div:last-child > span {
     animation: secondary-progress-span 1.6s infinite linear;
 }
 @keyframes primary-progress-span {

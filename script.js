@@ -40,7 +40,6 @@ function changePage(url) {
     filerequested = false;
     animationcomplete = false;
     $ajaxcontent.classList.add('hide');
-    $body.classList.add('activate-loading');
     $body.classList.add('loading');
     // Animation completion code below
     setTimeout(function() {
@@ -54,12 +53,11 @@ function changePage(url) {
         xhr.send();
         xhr.onprogress = function(e) {
             var progress;
-            $progress.classList.add('determinate');
             if (e.lengthComputable) {
                 progress = e.loaded/e.total;
             }
             else {
-                var total = xhr.getResponseHeader('content-length'),
+                var total = +xhr.getResponseHeader('content-length'),
                     encoding = xhr.getResponseHeader('content-encoding');
                 if (total && encoding && (encoding.indexOf('gzip') > -1)) {
                     // assuming average gzip compression ratio to be 1/3
@@ -67,10 +65,10 @@ function changePage(url) {
                     progress = Math.min(1, event.loaded/total);
                 }
                 else {
-                    $progress.classList.remove('determinate');
                     $progress.classList.add('indeterminate');
                 }
             }
+            if (progress) $progress.children[0].children[0].style.transform = 'scaleX(' + progress + ')';
             console.log(e.loaded,e.total,xhr.getResponseHeader('content-length'));
         }
         xhr.onreadystatechange = function() {
