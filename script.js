@@ -5,6 +5,7 @@ var $html = document.getElementsByTagName('html')[0],
 var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     $ajaxstyle = document.getElementsByClassName('ajax-style')[0],
     $ajaxscript,
+    $progress = document.getElementsByClassName('progress')[0],
     animationcomplete = false,
     filerequested = false,
     $newcontent,
@@ -51,6 +52,27 @@ function changePage(url) {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);
         xhr.send();
+        xhr.onprogress = function(e) {
+            var progress;
+            $progress.classList.add('determinate');
+            if (e.lengthComputable) {
+                progress = e.loaded/e.total;
+            }
+            else {
+                var total = xhr.getResponseHeader('content-length'),
+                    encoding = xhr.getResponseHeader('content-encoding');
+                if (total && encoding && (encoding.indexOf('gzip') > -1)) {
+                    // assuming average gzip compression ratio to be 1/3
+                    total *= 3;
+                    progress = Math.min(1, event.loaded/total);
+                }
+                else {
+                    $progress.classList.remove('determinate');
+                    $progress.classList.add('indeterminate');
+                }
+            }
+            console.log(e.loaded,e.total,xhr.getResponseHeader('content-length'));
+        }
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 window.scrollTo(0,pageswitchY);
