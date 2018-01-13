@@ -440,6 +440,7 @@ body.loading > .progress, .loading > div > .progress {
 }
 .progress > div > div:first-child {
 	transform: scaleX(0);
+	transform-origin: left;
 }
 .progress > div > div:first-child > span {
     display: block;
