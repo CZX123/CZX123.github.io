@@ -112,7 +112,6 @@ function changeContent() {
     removeListener(); // This function is to remove all existing listeners on the current page since AJAX navigation makes the site a single page application and javascript does not change. By default, the function is empty, so redefine it in the script section of the HTML page.
     window.scrollTo(0,0);
     document.title = newtitle;
-    $body.classList.remove('loading');
     $ajaxcontent.style.position = 'absolute';
     $ajaxcontent.insertAdjacentElement('afterend', $newcontent);
     $ajaxcontent.parentNode.removeChild($ajaxcontent);
@@ -127,6 +126,9 @@ function changeContent() {
     $ajaxcontent = $newcontent;
     $ajaxstyle = $newstyle;
     $ajaxcontent.classList.add('show');
+    setTimeout(function() {
+        $body.classList.remove('loading');
+    }, 300);
     setTimeout(function() {
         $ajaxcontent.classList.remove('show');
         if (progress) {
