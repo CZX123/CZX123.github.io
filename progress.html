@@ -21,6 +21,6 @@ xhr.onprogress = function(event) {
   li.textContent = JSON.stringify({loaded: event.loaded, total: event.total, lengthComputable: event.lengthComputable, Progress: progress});
   document.body.firstChild.appendChild(li);
 };
-xhr.open("GET", "progress.txt", true);
+xhr.open("GET", "index.html");
 xhr.send();
 </script>
