@@ -3,9 +3,22 @@
 <script>
 var request = new XMLHttpRequest;
 request.onprogress = function(event) {
-  console.log(event);
+  var progress = 0;
+  if (e.lengthComputable) {
+      progress = e.loaded/e.total * 100;
+  }
+  else {
+      var total = +xhr.getResponseHeader('content-length'),
+          encoding = xhr.getResponseHeader('content-encoding');
+      if (total && encoding && (encoding.indexOf('gzip') > -1)) {
+          // assuming average gzip compression ratio to be 1/3
+          total *= 3;
+          progress = Math.min(100, e.loaded/total * 100);
+      }
+  }
+  console.log(progress);
   var li = document.createElement("li");
-  li.textContent = JSON.stringify({loaded: event.loaded, total: event.total, lengthComputable: event.lengthComputable});
+  li.textContent = JSON.stringify({loaded: event.loaded, total: event.total, lengthComputable: event.lengthComputable, Progress: progress});
   document.body.firstChild.appendChild(li);
 };
 request.open("GET", "progress.txt", true);
