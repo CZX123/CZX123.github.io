@@ -50,8 +50,6 @@ function changePage(url) {
     // XMLHttpRequest below to fetch the other page
     try {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.send();
         xhr.onprogress = function(e) {
             if (e.lengthComputable) {
                 progress = e.loaded/e.total;
@@ -99,6 +97,8 @@ function changePage(url) {
                 pageswitching = false;
             }
         };
+        xhr.open("GET", url);
+        xhr.send();
     }
     catch(e) {
         error();
