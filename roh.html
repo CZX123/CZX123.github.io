@@ -308,6 +308,7 @@ if ($preload) {
     };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            $preload.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(1)';
             setTimeout(function() {
                 $preload.classList.remove('loading');
             }, 200);
@@ -350,13 +351,14 @@ function dropdownClick(e) {
                 progress = Math.min(1, e.loaded/total);
             }
             else {
-                $preload.classList.add('indeterminate');
+                $elem.classList.add('indeterminate');
             }
         }
-        if (progress) $preload.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(' + progress + ')';
+        if (progress) $elem.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(' + progress + ')';
     };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            $elem.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(1)';
             setTimeout(function() {
                 $elem.classList.remove('loading');
             }, 200);
