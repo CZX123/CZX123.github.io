@@ -288,6 +288,24 @@ if ($preload) {
     $preload.classList.add('loading');
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
+    $dropdownrequest.onprogress = function(e) {
+        if (e.lengthComputable) {
+            progress = e.loaded/e.total;
+        }
+        else {
+            var total = +$dropdownrequest.getResponseHeader('content-length'),
+                encoding = $dropdownrequest.getResponseHeader('content-encoding');
+            if (total && encoding && (encoding.indexOf('gzip') > -1)) {
+                // assuming average gzip compression ratio to be 1/3
+                total *= 3;
+                progress = Math.min(1, e.loaded/total);
+            }
+            else {
+                $preload.classList.add('indeterminate');
+            }
+        }
+        if (progress) $preload.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(' + progress + ')';
+    };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $preload.classList.remove('loading');
@@ -317,6 +335,24 @@ function dropdownClick(e) {
     $elem.classList.add('loading');
     $dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
+    $dropdownrequest.onprogress = function(e) {
+        if (e.lengthComputable) {
+            progress = e.loaded/e.total;
+        }
+        else {
+            var total = +$dropdownrequest.getResponseHeader('content-length'),
+                encoding = $dropdownrequest.getResponseHeader('content-encoding');
+            if (total && encoding && (encoding.indexOf('gzip') > -1)) {
+                // assuming average gzip compression ratio to be 1/3
+                total *= 3;
+                progress = Math.min(1, e.loaded/total);
+            }
+            else {
+                $preload.classList.add('indeterminate');
+            }
+        }
+        if (progress) $preload.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(' + progress + ')';
+    };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $elem.classList.remove('loading');
