@@ -285,8 +285,6 @@ if ($preload) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $preload.getAttribute('data-fetch');
     $preload.classList.add('loading');
-	$dropdownrequest.open("GET", 'roh/' + filename);
-	$dropdownrequest.send();
     $dropdownrequest.onprogress = function(e) {
         var progress;
         if (e.lengthComputable) {
@@ -306,6 +304,8 @@ if ($preload) {
         }
         if (progress) $preload.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(' + progress + ')';
     };
+	$dropdownrequest.open("GET", 'roh/' + filename);
+	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $preload.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(1)';
@@ -335,8 +335,6 @@ function dropdownClick(e) {
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
     $elem.classList.add('loading');
-    $dropdownrequest.open("GET", 'roh/' + filename);
-	$dropdownrequest.send();
     $dropdownrequest.onprogress = function(e) {
         var progress;
         if (e.lengthComputable) {
@@ -356,6 +354,8 @@ function dropdownClick(e) {
         }
         if (progress) $elem.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(' + progress + ')';
     };
+    $dropdownrequest.open("GET", 'roh/' + filename);
+	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             $elem.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(1)';
