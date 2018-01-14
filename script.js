@@ -68,6 +68,7 @@ function changePage(url) {
                 }
             }
             if (progress) $progress.children[0].children[0].style.transform = 'scaleX(' + progress + ')';
+            console.log(e.loaded,e.total,progress);
         }
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
