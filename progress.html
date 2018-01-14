@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<ol></ol>
+<script>
+var request = new XMLHttpRequest;
+request.onprogress = function(event) {
+  console.log(event);
+  var li = document.createElement("li");
+  li.textContent = JSON.stringify({loaded: event.loaded, total: event.total, lengthComputable: event.lengthComputable});
+  document.body.firstChild.appendChild(li);
+};
+request.open("GET", "progress.txt", true);
+request.send();
+</script>
