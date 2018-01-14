@@ -284,11 +284,11 @@ var $main = document.getElementsByClassName('main')[0],
 if ($preload) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $preload.getAttribute('data-fetch');
-    $preload.classList.add('activate-loading');
     $preload.classList.add('loading');
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
     $dropdownrequest.onprogress = function(e) {
+        var progress;
         if (e.lengthComputable) {
             progress = e.loaded/e.total;
         }
@@ -308,7 +308,9 @@ if ($preload) {
     };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            $preload.classList.remove('loading');
+            setTimeout(function() {
+                $preload.classList.remove('loading');
+            }, 200);
             var $wrapper = $preload.nextElementSibling.children[0];
             $wrapper.innerHTML = $dropdownrequest.responseText;
             $preload.removeAttribute('data-fetch');
@@ -331,11 +333,11 @@ function dropdownClick(e) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
-    $elem.classList.add('activate-loading');
     $elem.classList.add('loading');
     $dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
     $dropdownrequest.onprogress = function(e) {
+        var progress;
         if (e.lengthComputable) {
             progress = e.loaded/e.total;
         }
@@ -355,7 +357,9 @@ function dropdownClick(e) {
     };
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            $elem.classList.remove('loading');
+            setTimeout(function() {
+                $elem.classList.remove('loading');
+            }, 200);
     		var $wrapper = $elem.nextElementSibling.children[0];
             $wrapper.innerHTML = $dropdownrequest.responseText;
             $dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
