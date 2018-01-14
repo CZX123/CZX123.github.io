@@ -73,7 +73,6 @@ function changePage(url) {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 window.scrollTo(0,pageswitchY);
-                clearInterval(progressTimer);
                 if (progress) $progress.children[0].children[0].style.transform = 'scaleX(1)';
                 var $wrapper = document.createElement('div');
                 $wrapper.innerHTML = xhr.responseText;
@@ -101,7 +100,6 @@ function changePage(url) {
         };
         xhr.open("GET", url);
         xhr.send();
-        progressTimer = setInterval(xhr.onprogress,30);
     }
     catch(e) {
         error();
