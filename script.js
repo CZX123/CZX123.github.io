@@ -33,6 +33,7 @@ function changePage(url) {
         if (url.substring(0,4) == 'http') history.pushState(null, null, oldUrl);
         return false;
     }
+    $body.classList.remove('indeterminate');
     pageswitchY = latestY;
     oldUrl = window.location.href;
     pageswitching = true;
