@@ -51,9 +51,9 @@ function changePage(url) {
     // XMLHttpRequest below to fetch the other page
     try {
         var xhr = new XMLHttpRequest();
-        xhr.onprogress = function(e) {
-            if (e.lengthComputable) {
-                progress = e.loaded/e.total;
+        xhr.onprogress = function(event) {
+            if (event.lengthComputable) {
+                progress = event.loaded/e.total;
             }
             else {
                 var total = +xhr.getResponseHeader('content-length'),
@@ -61,14 +61,14 @@ function changePage(url) {
                 if (total && encoding && (encoding.indexOf('gzip') > -1)) {
                     // assuming average gzip compression ratio to be 1/3
                     total *= 3;
-                    progress = Math.min(1, e.loaded/total);
+                    progress = Math.min(1, event.loaded/total);
                 }
                 else {
                     $progress.classList.add('indeterminate');
                 }
             }
             if (progress) $progress.children[0].children[0].style.transform = 'scaleX(' + progress + ')';
-            console.log(e);
+            console.log(event);
         }
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
