@@ -5,9 +5,6 @@ var $html = document.getElementsByTagName('html')[0],
 var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     $ajaxstyle = document.getElementsByClassName('ajax-style')[0],
     $ajaxscript,
-    $progress = document.getElementsByClassName('progress')[0],
-    progress,
-    progressTimer,
     animationcomplete = false,
     filerequested = false,
     $newcontent,
@@ -43,6 +40,7 @@ function changePage(url) {
     animationcomplete = false;
     $ajaxcontent.classList.add('hide');
     $body.classList.add('loading');
+    $body.classList.add('indeterminate');
     // Animation completion code below
     setTimeout(function() {
         if (filerequested) changeContent();
@@ -51,29 +49,9 @@ function changePage(url) {
     // XMLHttpRequest below to fetch the other page
     try {
         var xhr = new XMLHttpRequest();
-        xhr.onprogress = function(event) {
-            if (event.lengthComputable) {
-                progress = event.loaded/e.total;
-            }
-            else {
-                var total = +xhr.getResponseHeader('content-length'),
-                    encoding = xhr.getResponseHeader('content-encoding');
-                if (total && encoding && (encoding.indexOf('gzip') > -1)) {
-                    // assuming average gzip compression ratio to be 1/3
-                    total *= 3;
-                    progress = Math.min(1, event.loaded/total);
-                }
-                else {
-                    $progress.classList.add('indeterminate');
-                }
-            }
-            if (progress) $progress.children[0].children[0].style.transform = 'scaleX(' + progress + ')';
-            console.log(event);
-        }
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 window.scrollTo(0,pageswitchY);
-                if (progress) $progress.children[0].children[0].style.transform = 'scaleX(1)';
                 var $wrapper = document.createElement('div');
                 $wrapper.innerHTML = xhr.responseText;
                 $newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
@@ -132,10 +110,6 @@ function changeContent() {
     }, 300);
     setTimeout(function() {
         $ajaxcontent.classList.remove('show');
-        if (progress) {
-            $progress.children[0].children[0].removeAttribute('style');
-            progress = 0;
-        }
     }, 400);
     $ajaxscript = document.getElementsByClassName('ajax-script')[0];
     var split = window.location.href.split('/'),

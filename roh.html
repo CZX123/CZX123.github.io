@@ -285,30 +285,11 @@ if ($preload) {
 	var $dropdownrequest = new XMLHttpRequest(),
 	    filename = $preload.getAttribute('data-fetch');
     $preload.classList.add('loading');
-    $dropdownrequest.onprogress = function(e) {
-        var progress;
-        if (e.lengthComputable) {
-            progress = e.loaded/e.total;
-        }
-        else {
-            var total = +$dropdownrequest.getResponseHeader('content-length'),
-                encoding = $dropdownrequest.getResponseHeader('content-encoding');
-            if (total && encoding && (encoding.indexOf('gzip') > -1)) {
-                // assuming average gzip compression ratio to be 1/3
-                total *= 3;
-                progress = Math.min(1, e.loaded/total);
-            }
-            else {
-                $preload.classList.add('indeterminate');
-            }
-        }
-        if (progress) $preload.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(' + progress + ')';
-    };
+    $preload.classList.add('indeterminate');
 	$dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            $preload.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(1)';
             setTimeout(function() {
                 $preload.classList.remove('loading');
             }, 200);
@@ -335,30 +316,11 @@ function dropdownClick(e) {
 	    filename = $elem.getAttribute('data-fetch'),
 		$dropdowncontent = $elem.nextElementSibling.children[0];
     $elem.classList.add('loading');
-    $dropdownrequest.onprogress = function(e) {
-        var progress;
-        if (e.lengthComputable) {
-            progress = e.loaded/e.total;
-        }
-        else {
-            var total = +$dropdownrequest.getResponseHeader('content-length'),
-                encoding = $dropdownrequest.getResponseHeader('content-encoding');
-            if (total && encoding && (encoding.indexOf('gzip') > -1)) {
-                // assuming average gzip compression ratio to be 1/3
-                total *= 3;
-                progress = Math.min(1, e.loaded/total);
-            }
-            else {
-                $elem.classList.add('indeterminate');
-            }
-        }
-        if (progress) $elem.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(' + progress + ')';
-    };
+    $elem.classList.add('indeterminate');
     $dropdownrequest.open("GET", 'roh/' + filename);
 	$dropdownrequest.send();
 	$dropdownrequest.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            $elem.getElementsByClassName('progress')[0].children[0].children[0].style.transform = 'scaleX(1)';
             setTimeout(function() {
                 $elem.classList.remove('loading');
             }, 200);
