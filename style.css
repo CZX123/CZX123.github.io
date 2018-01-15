@@ -76,7 +76,21 @@ button > * {
 	right: 0;
 	left: 0;
 	height: 56px;
-	background: linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,0));
+	background: linear-gradient(
+		rgba(0,0,0,.6) 0%,
+		rgba(0,0,0,.4428) 19%,
+		rgba(0,0,0,.3246) 34%,
+		rgba(0,0,0,.2292) 47%,
+		rgba(0,0,0,.1668) 56.5%,
+		rgba(0,0,0,.1164) 65%,
+		rgba(0,0,0,.0756) 73%,
+		rgba(0,0,0,.045) 80.2%,
+		rgba(0,0,0,.0252) 86.1%,
+		rgba(0,0,0,.0126) 91%,
+		rgba(0,0,0,.0048) 95.2%,
+		rgba(0,0,0,.0012) 98.2%,
+		rgba(0,0,0,0) 100%
+	);
 	pointer-events: none;
 	transition: opacity .4s;
 	z-index: 5;
