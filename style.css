@@ -434,16 +434,16 @@ button > * {
     border-radius: 2px;
     padding: 0;
     background: #e6e6e6;
-    opacity: 0;
     pointer-events: none;
+	transform: translateY(-4px);
     visibility: hidden;
-    transition: opacity .3s, visibility 0s .3s;
+    transition: transform .3s, visibility 0s .3s;
 	z-index: 24;
 }
 body.loading > .progress, .loading > div > .progress {
-    opacity: 1;
+	transform: translateY(0);
     visibility: visible;
-    transition: opacity .2s;
+    transition-delay: 0s;
 }
 .progress > div {
     position: relative;
