@@ -127,6 +127,7 @@ function changeContent() {
     if ($activedropdown) $activedropdown.classList.add('active');
     dropdownCheck();
     rippleCheck();
+    $navbar.classList.remove('hide');
     pageswitching = false;
 }
 window.onpopstate = function() {
