@@ -46,7 +46,14 @@ section.main button.dropdown .progress {
     top: auto;
     bottom: 0;
     padding: 0;
-    transform: translateY(4px);
+    transform: none;
+    opacity: 0;
+    transition: opacity .4s, visibility 0s .3s;
+}
+section.main button.dropdown.loading > div > .progress {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .2s;
 }
 section.main button.dropdown .progress > div, section.main button.dropdown .progress > div > div {
     padding: 0;
