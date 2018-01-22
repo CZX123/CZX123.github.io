@@ -25,23 +25,27 @@ section.main .dropdown-content .grid > .list {
     display: flex;
     flex-wrap: wrap;
     flex-basis: 100%;
+    margin: 0;
 }
 section.main .dropdown-content .grid > .list h4 {
     flex-basis: 100%;
 }
+section.main .dropdown-content .grid > .list + p {
+    display: none;
+}
 section.main .dropdown-content .grid > h3:nth-child(odd),
 section.main .dropdown-content .grid > p:nth-child(odd),
-section.main .dropdown-content .grid > .list > p:nth-child(odd) {
+section.main .dropdown-content .grid > .list > p:nth-child(even) {
     flex-basis: calc(100% - 128px);
     margin: 0;
     padding-right: 12px;
 }
-section.main .dropdown-content .grid > .list > p:nth-child(odd) {
-    padding-left: 20px;
+section.main .dropdown-content .grid > .list > p:nth-child(even) {
+    padding-left: 36px;
 }
 section.main .dropdown-content .grid > h3:nth-child(even),
 section.main .dropdown-content .grid > p:nth-child(even),
-section.main .dropdown-content .grid > .list > p:nth-child(even) {
+section.main .dropdown-content .grid > .list > p:nth-child(odd) {
     flex-basis: 128px;
     margin: 0;
     text-align: right;
@@ -62,12 +66,15 @@ section.main .dropdown-content .grid h4 {
 @media (max-width: 450px) {
 section.main .dropdown-content .grid > h3:nth-child(odd),
 section.main .dropdown-content .grid > p:nth-child(odd),
-section.main .dropdown-content .grid > .list > p:nth-child(odd) {
+section.main .dropdown-content .grid > .list > p:nth-child(even) {
     flex-basis: calc(100% - 108px);
+}
+section.main .dropdown-content .grid > .list > p:nth-child(even) {
+    padding-left: 20px;
 }
 section.main .dropdown-content .grid > h3:nth-child(even),
 section.main .dropdown-content .grid > p:nth-child(even),
-section.main .dropdown-content .grid > .list > p:nth-child(even) {
+section.main .dropdown-content .grid > .list > p:nth-child(odd) {
     flex-basis: 108px;
 }
 section.main .dropdown-content .grid h3 {
