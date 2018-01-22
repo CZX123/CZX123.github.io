@@ -22,11 +22,30 @@ section.main .dropdown-content .grid:last-of-type {
     margin-bottom: 16px;
 }
 section.main .dropdown-content .grid > :nth-child(odd) {
-    flex-basis: calc(100% - 72px);
+    flex-basis: calc(100% - 108px);
     margin: 0;
 }
 section.main .dropdown-content .grid > :nth-child(even) {
+    flex-basis: 108px;
+    margin: 0;
+    text-align: right;
+}
+@media (max-width: 450px) {
+section.main .dropdown-content .grid > :nth-child(odd) {
+    flex-basis: calc(100% - 72px);
+    font-size: 16px;
+}
+section.main .dropdown-content .grid > :nth-child(even) {
     flex-basis: 72px;
+    font-size: 16px;
+}
+}
+section.main .dropdown-content .grid > :nth-child(odd) {
+    flex-basis: calc(100% - 108px);
+    margin: 0;
+}
+section.main .dropdown-content .grid > :nth-child(even) {
+    flex-basis: 108px;
     margin: 0;
 }
 section.main .dropdown-content .grid > h3 {
@@ -305,6 +324,9 @@ section.main button.dropdown .progress > div, section.main button.dropdown .prog
                 </div>
             </div>
         </button>
+		<div class="dropdown-content">
+            <div class="wrapper"></div>
+        </div>
 	</section>
 	<section class="footer">
 		<footer>
