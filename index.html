@@ -18,18 +18,29 @@ section.parallax-wrapper {
 	background: #000;
 }
 section.parallax-wrapper .carousel {
+	display: flex;
+	align-items: center;
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
 }
+.carousel .flickity-viewport {
+	overflow: visible;
+}
 .carousel .flickity-slider {
+	display: flex;
+	align-items: center;
 	overflow: visible;
 }
 .carousel img {
 	display: block;
 	height: 100vh;
+}
+.carousel.resize img {
+	height: auto;
+	width: 100vw;
 }
 .flickity-page-dots {
 	display: inline-block;
@@ -41,7 +52,7 @@ section.parallax-wrapper .carousel {
 	opacity: 0;
 	transition: opacity .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
 }
-.mousemove .flickity-page-dots {
+.mousemove .flickity-page-dots, .flickity-page-dots.active {
 	visibility: visible;
 	opacity: 1;
 	transition-delay: 0s;
@@ -85,6 +96,19 @@ section.parallax-wrapper .carousel {
 }
 .flickity-custom-button .ripple {
     background: rgba(0,0,0,.2);
+}
+.flickity-custom-button.resize-button {
+	top: auto;
+	bottom: 60px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.flickity-custom-button.resize-button svg {
+	transform: rotate(45deg);
+	transition: transform .3s;
+}
+.resize ~ .flickity-custom-button.resize-button svg {
+	transform: rotate(-225deg);
 }
 .mousemove ~ .flickity-custom-button {
 	visibility: visible;
@@ -244,6 +268,13 @@ section.parallax-wrapper .carousel {
 				</svg>
 			</div>
 		</button>
+		<button class="flickity-custom-button resize-button">
+			<div>
+				<svg viewBox="0 0 24 24">
+					<path d="M10,21V19H6.41L10.91,14.5L9.5,13.09L5,17.59V14H3V21H10M14.5,10.91L19,6.41V10H21V3H14V5H17.59L13.09,9.5L14.5,10.91Z"/>
+				</svg>
+			</div>
+		</button>
 	</section>
 	<section class="main">
 		<h1>2017 Chairperson's Message</h1>
@@ -326,24 +357,35 @@ $parallax.addEventListener('click', function() {
 		mousemove = false;
 	}
 });
-flkty.on('select', carouselActive);
+var activetimer;
+flkty.on('select', function() {
+	clearTimeout(activetimer);
+	$hoverlist[0].classList.add('active');
+	activetimer = setTimeout(function(){$hoverlist[0].classList.remove('active');}, 1200);
+});
 
 function carouselActive() {
 	if (carouselhover) return false;
 	mousemove = true;
 	clearTimeout(timer);
-	timer = setTimeout(function(){mousemove = false;}, 1500);
+	timer = setTimeout(function(){mousemove = false;$hoverlist[0].classList.remove('active');}, 1500);
 }
 
 var $prevbutton = document.getElementsByClassName('flickity-prev')[0],
 	$nextbutton = document.getElementsByClassName('flickity-next')[0];
 
-$prevbutton.addEventListener('click', function(){
+$prevbutton.addEventListener('click', function() {
 	flkty.previous(true);
 });
-$nextbutton.addEventListener('click', function(){
+$nextbutton.addEventListener('click', function() {
 	flkty.next(true);
 });
+
+document.getElementsByClassName('resize-button')[0].addEventListener('click', carouselResize);
+function carouselResize() {
+	$parallax.classList.toggle('resize');
+	flkty.resize();
+}
 
 if (isIE) {
 	$parallax.style.position = 'fixed';
