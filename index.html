@@ -27,11 +27,9 @@ section.parallax-wrapper .carousel {
 	left: 0;
 }
 .carousel .flickity-viewport {
-	overflow: visible;
+	width: 100%;
 }
 .carousel .flickity-slider {
-	display: flex;
-	align-items: center;
 	overflow: visible;
 }
 .carousel img {
@@ -40,7 +38,9 @@ section.parallax-wrapper .carousel {
 }
 .carousel.resize img {
 	height: auto;
-	width: 100vw;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
 }
 .flickity-page-dots {
 	display: inline-block;
@@ -105,10 +105,56 @@ section.parallax-wrapper .carousel {
 }
 .flickity-custom-button.resize-button svg {
 	transform: rotate(45deg);
+	transform-origin: center;
 	transition: transform .3s;
 }
+.resize-back ~ .flickity-custom-button.resize-button svg {
+	/* transform: rotate(-225deg); */
+	animation: resize-back .55s forwards;
+}
+@keyframes resize-back {
+0% {
+	opacity: 1;
+	transform: scale(1,1) rotate(-45deg);
+	animation-timing-function: cubic-bezier(.4,0,1,1);
+}
+45% {
+	opacity: 0;
+	transform: scale(1.1,1.4) rotate(-45deg);
+}
+55% {
+	opacity: 0;
+	transform: scale(.8) rotate(45deg);
+	animation-timing-function: cubic-bezier(0,0,.2,1);
+}
+100% {
+	opacity: 1;
+	transform: scale(1) rotate(45deg);
+}
+}
 .resize ~ .flickity-custom-button.resize-button svg {
-	transform: rotate(-225deg);
+	/* transform: rotate(-225deg); */
+	animation: resize .55s forwards;
+}
+@keyframes resize {
+0% {
+	opacity: 1;
+	transform: scale(1,1) rotate(45deg);
+	animation-timing-function: cubic-bezier(.4,0,1,1);
+}
+45% {
+	opacity: 0;
+	transform: scale(1.4,1.1) rotate(45deg);
+}
+55% {
+	opacity: 0;
+	transform: scale(.8) rotate(-45deg);
+	animation-timing-function: cubic-bezier(0,0,.2,1);
+}
+100% {
+	opacity: 1;
+	transform: scale(1) rotate(-45deg);
+}
 }
 .mousemove ~ .flickity-custom-button {
 	visibility: visible;
@@ -384,6 +430,7 @@ $nextbutton.addEventListener('click', function() {
 document.getElementsByClassName('resize-button')[0].addEventListener('click', carouselResize);
 function carouselResize() {
 	$parallax.classList.toggle('resize');
+	$parallax.classList.add('resize-back');
 	flkty.resize();
 }
 
