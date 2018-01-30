@@ -31,12 +31,29 @@ section.parallax-wrapper .carousel {
 }
 .carousel .flickity-slider {
 	overflow: visible;
+	transition: opacity .2s;
+}
+.carousel.resize-back .flickity-slider {
+	opacity: 1;
+	transition-timing-function: cubic-bezier(0,0,.2,1);
+}
+.carousel.actual-resize .flickity-slider {
+	opacity: 0;
+	transition-timing-function: cubic-bezier(.4,0,1,1);
+}
+.carousel.resize .flickity-slider {
+	opacity: 0;
+	transition-timing-function: cubic-bezier(.4,0,1,1);
+}
+.carousel.resize.actual-resize .flickity-slider {
+	opacity: 1;
+	transition-timing-function: cubic-bezier(0,0,.2,1);
 }
 .carousel img {
 	display: block;
 	height: 100vh;
 }
-.carousel.resize img {
+.carousel.actual-resize img {
 	height: auto;
 	width: 100%;
 	top: 50%;
@@ -110,7 +127,7 @@ section.parallax-wrapper .carousel {
 }
 .resize-back ~ .flickity-custom-button.resize-button svg {
 	/* transform: rotate(-225deg); */
-	animation: resize-back .55s forwards;
+	animation: resize-back .4s forwards;
 }
 @keyframes resize-back {
 0% {
@@ -118,11 +135,11 @@ section.parallax-wrapper .carousel {
 	transform: scale(1,1) rotate(-45deg);
 	animation-timing-function: cubic-bezier(.4,0,1,1);
 }
-45% {
+35% {
 	opacity: 0;
-	transform: scale(1.1,1.4) rotate(-45deg);
+	transform: scale(1.1,1.8) rotate(-45deg);
 }
-55% {
+50% {
 	opacity: 0;
 	transform: scale(.8) rotate(45deg);
 	animation-timing-function: cubic-bezier(0,0,.2,1);
@@ -134,7 +151,7 @@ section.parallax-wrapper .carousel {
 }
 .resize ~ .flickity-custom-button.resize-button svg {
 	/* transform: rotate(-225deg); */
-	animation: resize .55s forwards;
+	animation: resize .4s forwards;
 }
 @keyframes resize {
 0% {
@@ -142,11 +159,11 @@ section.parallax-wrapper .carousel {
 	transform: scale(1,1) rotate(45deg);
 	animation-timing-function: cubic-bezier(.4,0,1,1);
 }
-45% {
+35% {
 	opacity: 0;
-	transform: scale(1.4,1.1) rotate(45deg);
+	transform: scale(1.8,1.1) rotate(45deg);
 }
-55% {
+50% {
 	opacity: 0;
 	transform: scale(.8) rotate(-45deg);
 	animation-timing-function: cubic-bezier(0,0,.2,1);
@@ -427,11 +444,17 @@ $nextbutton.addEventListener('click', function() {
 	flkty.next(true);
 });
 
+var resizetimer;
 document.getElementsByClassName('resize-button')[0].addEventListener('click', carouselResize);
 function carouselResize() {
+	clearTimeout(resizetimer);
 	$parallax.classList.toggle('resize');
 	$parallax.classList.add('resize-back');
-	flkty.resize();
+	resizetimer = setTimeout(function() {
+		if ($parallax.classList.contains('resize')) $parallax.classList.add('actual-resize');
+		else $parallax.classList.remove('actual-resize');
+		flkty.resize();
+	}, 200);
 }
 
 if (isIE) {
