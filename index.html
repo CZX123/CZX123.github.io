@@ -25,6 +25,7 @@ section.parallax-wrapper .carousel {
 	right: 0;
 	bottom: 0;
 	left: 0;
+	transform-origin: top;
 }
 .carousel .flickity-viewport {
 	width: 100%;
@@ -457,9 +458,6 @@ function carouselResize() {
 	}, 200);
 }
 
-if (isIE) {
-	$parallax.style.position = 'fixed';
-}
 removeListener = function() {
 	$parallax = null;
 	$prevbutton = null;

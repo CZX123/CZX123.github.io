@@ -26,6 +26,7 @@ section.parallax-wrapper .parallax {
 	bottom: 0;
 	left: 0;
 	height: 100vh;
+	transform-origin: top;
 }
 section.parallax-wrapper .exco-image, section.parallax-wrapper .exco-background {
 	position: absolute;
@@ -407,14 +408,6 @@ if (!filterFeatureDetect()) document.getElementsByClassName('exco-background')[0
 var $parallax = document.getElementsByClassName('parallax')[0],
     timer,
 	touch;
-
-$parallax.style.opacity = 1 - latestY/windowHeight;
-if (isIE) {
-	$parallax.style.position = 'fixed';
-}
-else {
-	$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
-}
 
 $parallax.addEventListener('touchstart', function() {
 	touch = true;
