@@ -440,15 +440,18 @@ var $prevbutton = document.getElementsByClassName('flickity-prev')[0],
 
 $prevbutton.addEventListener('click', function() {
 	flkty.previous(true);
+	$parallax.focus();
 });
 $nextbutton.addEventListener('click', function() {
 	flkty.next(true);
+	$parallax.focus();
 });
 
 var resizetimer;
 document.getElementsByClassName('resize-button')[0].addEventListener('click', carouselResize);
 function carouselResize() {
 	clearTimeout(resizetimer);
+	$parallax.focus();
 	$parallax.classList.toggle('resize');
 	$parallax.classList.add('resize-back');
 	resizetimer = setTimeout(function() {
