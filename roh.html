@@ -13,46 +13,47 @@
 
 <style class="ajax-style">
 section.main .grid {
-    align-items: center;
-    margin: 0;
+	align-items: center;
+	margin: 0;
 }
 section.main button.dropdown + .dropdown-content .wrapper {
 	padding: 0;
 }
 section.main .dropdown-content .grid:last-of-type {
-    margin-bottom: 16px;
+	margin-bottom: 16px;
 }
 section.main .dropdown-content .grid > .list {
-    display: flex;
-    flex-wrap: wrap;
-    flex-basis: 100%;
-    margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	flex-basis: 100%;
+	margin: 0;
 }
 section.main .dropdown-content .grid > .list h4 {
-    flex-basis: 100%;
+	flex-basis: 100%;
 }
 section.main .dropdown-content .grid > .list p {
-    font-size: 17px;
+	font-size: 17px;
 }
 section.main .dropdown-content .grid > .list + p {
-    display: none;
+	display: none;
 }
 section.main .dropdown-content .grid > h3:nth-child(odd),
 section.main .dropdown-content .grid > p:nth-child(odd),
 section.main .dropdown-content .grid > .list > p:nth-child(even) {
-    flex-basis: calc(100% - 128px);
-    margin: 0;
-    padding-right: 12px;
+	flex-basis: auto;
+	width: calc(100% - 128px);
+	margin: 0;
+	padding-right: 12px;
 }
 section.main .dropdown-content .grid > .list > p:nth-child(even) {
-    padding-left: 28px;
+	padding-left: 28px;
 }
 section.main .dropdown-content .grid > h3:nth-child(even),
 section.main .dropdown-content .grid > p:nth-child(even),
 section.main .dropdown-content .grid > .list > p:nth-child(odd) {
-    flex-basis: 128px;
-    margin: 0;
-    text-align: right;
+	flex-basis: 128px;
+	margin: 0;
+	text-align: right;
 }
 section.main .dropdown-content .grid h3 {
 	padding: 16px 0 8px 0;
@@ -63,23 +64,23 @@ section.main .dropdown-content .grid h3 {
 section.main .dropdown-content .grid p,
 section.main .dropdown-content .grid h4 {
 	padding: 8px 0;
-    font-family: Roboto, sans-serif;
-    font-size: 18px;
-    line-height: 24px;
+	font-family: Roboto, sans-serif;
+	font-size: 18px;
+	line-height: 24px;
 }
 @media (max-width: 450px) {
 section.main .dropdown-content .grid > h3:nth-child(odd),
 section.main .dropdown-content .grid > p:nth-child(odd),
 section.main .dropdown-content .grid > .list > p:nth-child(even) {
-    flex-basis: calc(100% - 108px);
+	flex-basis: calc(100% - 108px);
 }
 section.main .dropdown-content .grid > .list > p:nth-child(even) {
-    padding-left: 20px;
+	padding-left: 20px;
 }
 section.main .dropdown-content .grid > h3:nth-child(even),
 section.main .dropdown-content .grid > p:nth-child(even),
 section.main .dropdown-content .grid > .list > p:nth-child(odd) {
-    flex-basis: 108px;
+	flex-basis: 108px;
 }
 section.main .dropdown-content .grid h3 {
 	font-size: 18px;
@@ -89,25 +90,25 @@ section.main .dropdown-content .grid h4 {
 	font-size: 16px;
 }
 section.main .dropdown-content .grid > .list p {
-    font-size: 15px;
+	font-size: 15px;
 }
 }
 section.main button.dropdown .progress {
-    position: absolute;
-    top: auto;
-    bottom: 0;
-    padding: 0;
-    transform: none;
-    opacity: 0;
-    transition: opacity .4s, visibility 0s .3s;
+	position: absolute;
+	top: auto;
+	bottom: 0;
+	padding: 0;
+	transform: none;
+	opacity: 0;
+	transition: opacity .4s, visibility 0s .3s;
 }
 section.main button.dropdown.loading > div > .progress {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity .2s;
+	opacity: 1;
+	visibility: visible;
+	transition: opacity .2s;
 }
 section.main button.dropdown .progress > div, section.main button.dropdown .progress > div > div {
-    padding: 0;
+	padding: 0;
 }
 </style>
 
