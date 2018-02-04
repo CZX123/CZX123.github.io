@@ -394,7 +394,7 @@ button > * {
 .ripple.appear {
 	opacity: 1;
 	transform: translate(-50%,-50%) scale(1);
-	transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .2s;
+	transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .4s;
 }
 .ripple.finish.fade-out {
 	opacity: 0;
@@ -790,7 +790,7 @@ section.main button.dropdown .caret svg {
 	fill: rgba(0,0,0,.54);
 }
 section.main button.dropdown .ripple.appear {
-	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .28s;
+	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .48s;
 }
 section.main button.dropdown .ripple.finish.fade-out {
 	transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .5s;
