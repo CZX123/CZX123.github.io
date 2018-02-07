@@ -109,7 +109,6 @@ button > * {
 .navbar .menu {
 	height: 64px;
 	width: 64px;
-	outline: 0;
 	border: 0;
 	border-radius: 50%;
 	vertical-align: top;
@@ -227,6 +226,8 @@ button > * {
 	line-height: 20px;
 	font-weight: 500;
 	text-decoration: none;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	transition: background .4s, color .2s;
 }
 .nav-drawer ul li a.hover, .nav-drawer ul li a:active,
@@ -249,7 +250,7 @@ button > * {
 	color: rgba(0,0,0,.87);
 }
 .nav-drawer ul li.dropdown a {
-	padding: 14px 72px;
+	padding: 14px 56px 14px 72px;
 }
 .nav-drawer ul li.dropdown .caret, .nav-drawer ul li .external {
 	position: absolute;

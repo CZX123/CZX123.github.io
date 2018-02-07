@@ -156,11 +156,13 @@ document.addEventListener('click', function(e) {
     else if ($elem.classList) {
         // Click the menu to open the nav drawer
         if ($elem.classList.contains('menu')) {
-            navAppear = true;
-            $navdrawer.classList.add('active');
+            if (navAppear) navAppear = false;
+            else navAppear = true;
+            $navdrawer.classList.toggle('active');
         	$navdrawer.removeAttribute('style');
         	$scrim.removeAttribute('style');
-        	$html.style.overflow = 'hidden';
+        	if (navAppear) $html.style.overflow = 'hidden';
+            else $html.removeAttribute('style');
         }
         // Click the scrim to close the nav drawer
         else if ($elem.classList.contains('scrim')) {
@@ -245,7 +247,7 @@ function navEnter(e) {
 $navbar.addEventListener('pointerleave', navLeave);
 $navdetecthover.addEventListener('pointerleave', navLeave);
 function navLeave(e) {
-    if (e.pointerType == 'touch' && document.getElementsByClassName('carousel')[0]) $parallax.click();
+    if (e.pointerType == 'touch' && document.getElementsByClassName('carousel')[0] && $parallax) $parallax.click();
     navhover = false;
 }
 // The scrolling function that gets called 60 times a second to ensure smooth performance. The $parallax refers to the top element which would have a parallax effect when scrolling down. $parallax needs to be initialised separately for each individual page which needs it
