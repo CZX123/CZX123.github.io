@@ -1,4 +1,4 @@
-// General Global Variables
+// General global variables
 var $html = document.getElementsByTagName('html')[0],
     $body = document.getElementsByTagName('body')[0];
 
@@ -15,7 +15,7 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
     pageswitchY = window.pageYOffset, // The scroll value which helps prevent jumping when switching pages
     pageswitching; // A boolean to prevent spamming
 
-// Basic Nav Drawer interactions
+// Basic nav drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
     $scrim = document.getElementsByClassName('scrim')[0],
     navAppear = false; // check if nav drawer is currently in view
@@ -133,9 +133,9 @@ function changeContent() {
 window.onpopstate = function() {
     changePage(window.location.href);
 };
-function removeListener() {} // Empty function to be changed int the page itselt
+function removeListener() {} // Empty function to be changed in the page itself
 
-// All click listeners combined into one single one
+// All click listeners combined into a single one
 document.addEventListener('click', function(e) {
 	var $elem = e.target;
 	while ($elem && !$elem.classList.contains('dropdown') && !$elem.classList.contains('menu') && !$elem.classList.contains('scrim') && (!$elem.tagName == 'A' || $elem.target || !$elem.href)) {
@@ -180,7 +180,7 @@ document.addEventListener('click', function(e) {
         }
     }
 });
-// An easing function for use in the dropdown transition and opening or closing the navdrawer after the user lifts off his finger after dragging
+// An easing function for use in the dropdown transition and opening or closing the nav drawer after the user lifts off his finger after dragging
 function easeOutCubic(t, b, c, d) {
 	return Math.round((-c*((t=t/d-1)*t*t*t - 1) + b)*10)/10;
 }
@@ -196,7 +196,7 @@ function dropdownCheck() {
         }
     }
 }
-function dropdownTransition(iterations,$elem,start,end) {
+function dropdownTransition(iterations, $elem, start, end) {
     var dropdowntotal = 36,
         diff = end - start;
     if ($elem.tagName == 'UL') dropdowntotal = 24;
@@ -286,11 +286,11 @@ scrolling();
 var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
     initialX = 0, // The starting x-coordinate
     actualX = 0, // The actual x-coordinate of the finger when dragging
-    navX = 0, // Similar to above but maximum can only be the nav drawer's width (most of the ime 300px), while actualX can go beyond that. This is to prevent the nav drawer from being dragged to far right and creating an obvious gap on the left
+    navX = 0, // Similar to above but maximum can only be the nav drawer's width (most of the time 300px), while actualX can go beyond that. This is to prevent the nav drawer from being dragged to far right and creating an obvious gap on the left
     previousNavX = 0, // The previous value of navX. It is carried over to check for the direction of movement
     diffX = 0, // The diference between previousNavX and current NavX
-    dragging = false, // check if user is draggging or not
-    navdrawerwidth = $navdrawer.offsetWidth, // Nav Drawer's width. It may change at narrow screen sizes.
+    dragging = false, // Check if user is draggging or not
+    navdrawerwidth = $navdrawer.offsetWidth, // Nav drawer's width. It may change at narrow screen sizes.
     navTranslate, // The x-coordinate to be used for the nav drawer itself
     iterations = 0, // Variables below are used for the transition for the navdrawer (whether it opens or closes) after the user removes finger from the screen
     start,
@@ -418,9 +418,9 @@ function endDrag(e) {
 }
 
 
-// Mouse hover effect + Ripple Effect
+// Mouse hover effect + ripple effect
 var $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button'), // The elements to which a ripple effect is added to
-    rippledown = false, // a boolean which states if the button is creatly being held and the ripple is activ
+    rippledown = false, // A boolean which states if the button is creatly being held and the ripple is active
     x, // x-coordinate of ripple circle's centre
     y, // y-coordinate of ripple circle's centre
     rippletimer = 0; // To prevent the ripple from disappearing to fast if the click was very fast
