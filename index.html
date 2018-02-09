@@ -18,18 +18,47 @@ section.parallax-wrapper {
 	background: #000;
 }
 section.parallax-wrapper .carousel {
+	display: flex;
+	align-items: center;
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
+	transform-origin: top;
+}
+.carousel .flickity-viewport {
+	width: 100%;
 }
 .carousel .flickity-slider {
 	overflow: visible;
+	transition: opacity .2s;
+}
+.carousel.resize-back .flickity-slider {
+	opacity: 1;
+	transition-timing-function: cubic-bezier(0,0,.2,1);
+}
+.carousel.actual-resize .flickity-slider {
+	opacity: 0;
+	transition-timing-function: cubic-bezier(.4,0,1,1);
+}
+.carousel.resize .flickity-slider {
+	opacity: 0;
+	transition-timing-function: cubic-bezier(.4,0,1,1);
+}
+.carousel.resize.actual-resize .flickity-slider {
+	opacity: 1;
+	transition-timing-function: cubic-bezier(0,0,.2,1);
 }
 .carousel img {
 	display: block;
 	height: 100vh;
+}
+.carousel.actual-resize img {
+	height: auto;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
 }
 .flickity-page-dots {
 	display: inline-block;
@@ -41,7 +70,7 @@ section.parallax-wrapper .carousel {
 	opacity: 0;
 	transition: opacity .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
 }
-.mousemove .flickity-page-dots {
+.mousemove .flickity-page-dots, .flickity-page-dots.active {
 	visibility: visible;
 	opacity: 1;
 	transition-delay: 0s;
@@ -84,7 +113,66 @@ section.parallax-wrapper .carousel {
 	transition: all .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
 }
 .flickity-custom-button .ripple {
-    background: rgba(0,0,0,.2);
+    background: rgba(0,0,0,.3);
+}
+.flickity-custom-button.resize-button {
+	top: auto;
+	bottom: 60px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.flickity-custom-button.resize-button svg {
+	transform: rotate(45deg);
+	transform-origin: center;
+	transition: transform .3s;
+}
+.resize-back ~ .flickity-custom-button.resize-button svg {
+	/* transform: rotate(-225deg); */
+	animation: resize-back .4s forwards;
+}
+@keyframes resize-back {
+0% {
+	opacity: 1;
+	transform: scale(1,1) rotate(-45deg);
+	animation-timing-function: cubic-bezier(.4,0,1,1);
+}
+35% {
+	opacity: 0;
+	transform: scale(1.1,1.8) rotate(-45deg);
+}
+50% {
+	opacity: 0;
+	transform: scale(.8) rotate(45deg);
+	animation-timing-function: cubic-bezier(0,0,.2,1);
+}
+100% {
+	opacity: 1;
+	transform: scale(1) rotate(45deg);
+}
+}
+.resize ~ .flickity-custom-button.resize-button svg {
+	/* transform: rotate(-225deg); */
+	animation: resize .4s forwards;
+}
+@keyframes resize {
+0% {
+	opacity: 1;
+	transform: scale(1,1) rotate(45deg);
+	animation-timing-function: cubic-bezier(.4,0,1,1);
+}
+35% {
+	opacity: 0;
+	transform: scale(1.8,1.1) rotate(45deg);
+}
+50% {
+	opacity: 0;
+	transform: scale(.8) rotate(-45deg);
+	animation-timing-function: cubic-bezier(0,0,.2,1);
+}
+100% {
+	opacity: 1;
+	transform: scale(1) rotate(-45deg);
+}
 }
 .mousemove ~ .flickity-custom-button {
 	visibility: visible;
@@ -244,6 +332,13 @@ section.parallax-wrapper .carousel {
 				</svg>
 			</div>
 		</button>
+		<button class="flickity-custom-button resize-button">
+			<div>
+				<svg viewBox="0 0 24 24">
+					<path d="M10,21V19H6.41L10.91,14.5L9.5,13.09L5,17.59V14H3V21H10M14.5,10.91L19,6.41V10H21V3H14V5H17.59L13.09,9.5L14.5,10.91Z"/>
+				</svg>
+			</div>
+		</button>
 	</section>
 	<section class="main">
 		<h1>2017 Chairperson's Message</h1>
@@ -287,7 +382,8 @@ var flkty = new Flickity($parallax, {
 	prevNextButtons: false,
 	imagesLoaded: true,
 	dragThreshold: 10,
-	percentPosition: false
+	percentPosition: false,
+	setGallerySize: false
 });
 
 var $hoverlist = document.querySelectorAll('.flickity-custom-button, .flickity-page-dots'),
@@ -326,28 +422,46 @@ $parallax.addEventListener('click', function() {
 		mousemove = false;
 	}
 });
-flkty.on('select', carouselActive);
+var activetimer;
+flkty.on('select', function() {
+	clearTimeout(activetimer);
+	$hoverlist[0].classList.add('active');
+	activetimer = setTimeout(function(){$hoverlist[0].classList.remove('active');}, 1200);
+});
 
 function carouselActive() {
 	if (carouselhover) return false;
 	mousemove = true;
 	clearTimeout(timer);
-	timer = setTimeout(function(){mousemove = false;}, 1500);
+	timer = setTimeout(function(){mousemove = false;$hoverlist[0].classList.remove('active');}, 1500);
 }
 
 var $prevbutton = document.getElementsByClassName('flickity-prev')[0],
 	$nextbutton = document.getElementsByClassName('flickity-next')[0];
 
-$prevbutton.addEventListener('click', function(){
+$prevbutton.addEventListener('click', function() {
 	flkty.previous(true);
+	$parallax.focus();
 });
-$nextbutton.addEventListener('click', function(){
+$nextbutton.addEventListener('click', function() {
 	flkty.next(true);
+	$parallax.focus();
 });
 
-if (isIE) {
-	$parallax.style.position = 'fixed';
+var resizetimer;
+document.getElementsByClassName('resize-button')[0].addEventListener('click', carouselResize);
+function carouselResize() {
+	clearTimeout(resizetimer);
+	$parallax.focus();
+	$parallax.classList.toggle('resize');
+	$parallax.classList.add('resize-back');
+	resizetimer = setTimeout(function() {
+		if ($parallax.classList.contains('resize')) $parallax.classList.add('actual-resize');
+		else $parallax.classList.remove('actual-resize');
+		flkty.resize();
+	}, 200);
 }
+
 removeListener = function() {
 	$parallax = null;
 	$prevbutton = null;

@@ -708,9 +708,11 @@ var $prevbutton = document.getElementsByClassName('flickity-prev')[0],
 
 $prevbutton.addEventListener('click', function(){
 	flkty.previous();
+    $carousel.focus();
 });
 $nextbutton.addEventListener('click', function(){
 	flkty.next();
+    $carousel.focus();
 });
 
 removeListener = function() {

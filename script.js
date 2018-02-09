@@ -156,11 +156,13 @@ document.addEventListener('click', function(e) {
     else if ($elem.classList) {
         // Click the menu to open the nav drawer
         if ($elem.classList.contains('menu')) {
-            navAppear = true;
-            $navdrawer.classList.add('active');
+            if (navAppear) navAppear = false;
+            else navAppear = true;
+            $navdrawer.classList.toggle('active');
         	$navdrawer.removeAttribute('style');
         	$scrim.removeAttribute('style');
-        	$html.style.overflow = 'hidden';
+        	if (navAppear) $html.style.overflow = 'hidden';
+            else $html.removeAttribute('style');
         }
         // Click the scrim to close the nav drawer
         else if ($elem.classList.contains('scrim')) {
@@ -223,7 +225,8 @@ var $navbar = document.getElementsByClassName('navbar')[0],
     resize,
     isIE = navigator.userAgent.indexOf("Edge") > -1 || navigator.userAgent.indexOf("Trident/7.0") > -1,
     mousemove = true,
-    $parallax = false; // By default there is no $parallax element and mousemove variable for the carousel. Add the $parallax element in the script tag on pages with the element. There is no need to define mousemove though.
+    $parallax = false, // By default there is no $parallax element and mousemove variable for the carousel. Add the $parallax element in the script tag on pages with the element. There is no need to define mousemove though.
+    parallaxY;
 
 // Resize listener to detect window size changes
 window.addEventListener('resize', function() {
@@ -244,7 +247,7 @@ function navEnter(e) {
 $navbar.addEventListener('pointerleave', navLeave);
 $navdetecthover.addEventListener('pointerleave', navLeave);
 function navLeave(e) {
-    if (e.pointerType == 'touch' && document.getElementsByClassName('carousel')[0]) $parallax.click();
+    if (e.pointerType == 'touch' && document.getElementsByClassName('carousel')[0] && $parallax) $parallax.click();
     navhover = false;
 }
 // The scrolling function that gets called 60 times a second to ensure smooth performance. The $parallax refers to the top element which would have a parallax effect when scrolling down. $parallax needs to be initialised separately for each individual page which needs it
@@ -257,6 +260,9 @@ function scrolling() {
         }
 		if ($parallax && latestY <= windowHeight && isIE == false) {
 			$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
+		}
+        if ($parallax && latestY <= windowHeight && isIE) {
+			$parallax.style.transform = 'scale(' + (1 + latestY/windowHeight/4) + ')';
 		}
         if ($parallax && latestY <= windowHeight) {
 			$parallax.style.opacity = 1 - latestY/windowHeight;
