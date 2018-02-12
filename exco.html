@@ -44,38 +44,6 @@ section.parallax-wrapper .exco-background {
 	filter: blur(15px);
 	transform: scale(1.2);
 }
-section.main .grid {
-	justify-content: center;
-	align-items: stretch;
-}
-section.main .grid > * {
-	flex-basis: calc(50% - 24px);
-	padding: 24px 0;
-	background: #F5F5F5;
-	border-radius: 12px;
-}
-section.main .grid.fi > * {
-	flex-basis: calc((100% - 72px) / 3);
-}
-section.main .grid > * {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-section.main .grid h2 {
-	margin: 0 0 10px;
-	padding: 0 16px;
-	color: rgba(0,0,0,.87);
-	font-family: 'Roboto', sans-serif;
-	font-size: 18px;
-	font-weight: 500;
-	line-height: 1.3;
-}
-section.main .grid p {
-	margin: 0;
-	padding: 0 16px;
-	font-family: 'Roboto', sans-serif;
-}
 section.main a {
     display: block;
 	margin: 40px 0 20px;
@@ -93,41 +61,6 @@ section.main a .desc {
 }
 section.main a .ripple.appear, section.main a .ripple.finish.fade-out {
 	transition: transform .8s cubic-bezier(.4,0,.2,1), opacity .5s;
-}
-@media (max-width: 1084px) {
-section.main {
-	padding-left: 10%;
-	padding-right: 10%;
-}
-}
-@media (max-width: 816px) {
-section.main {
-	padding-left: 3.6%;
-	padding-right: 3.6%;
-}
-}
-@media (max-width: 638px) {
-section.main .grid > * {
-	flex-basis: 100%;
-	max-width: 310px;
-}
-section.main .grid.fi > * {
-	flex-basis: calc(50% - 24px);
-}
-}
-@media (max-width: 450px) {
-section.main {
-	padding-left: 16px;
-	padding-right: 16px;
-}
-section.main .grid > * {
-	max-width: 100%;
-}
-}
-@media (max-width: 410px) {
-section.main .grid.fi > * {
-	flex-basis: 100%;
-}
 }
 </style>
 
@@ -250,130 +183,8 @@ section.main .grid.fi > * {
 	</section>
 	<section class="main">
 		<h1>Unit Hierarchy</h1>
-		<h2>ExCo</h2>
-		<div class="grid">
-			<div>
-				<h2>Executive Committee Chairman</h2>
-				<p>Pang Ren Jie, Adriale</p>
-			</div>
-		</div>
-		<div class="grid">
-			<div>
-				<h2>Support Services Division Chairman</h2>
-				<p>Xiang Yang</p>
-			</div>
-		</div>
-		<div class="grid">
-			<div>
-				<h2>Publications Department</h2>
-				<p>Head: Soh Wei Kiat</p>
-				<p>Cai Zhouxuan</p>
-				<p>Lim Yik Jin</p>
-			</div>
-			<div>
-				<h2>Logistics Department</h2>
-				<p>Head: Ong Zong Jun</p>
-				<p>Zhang Zelin</p>
-			</div>
-		</div>
-		<div class="grid">
-			<div>
-				<h2>Unit Policies Division Chairman</h2>
-				<p>Yeo Choon Wee</p>
-			</div>
-		</div>
-		<div class="grid">
-			<div>
-				<h2>Training Department</h2>
-				<p>Head (Development): Woi Youyang</p>
-				<p>Head (Training): Dominic Yeo Kian</p>
-			</div>
-			<div>
-				<h2>Assessments and Awards Department</h2>
-				<p>Head: Koh Jun Wei</p>
-				<p>Leong Sze Wei, Joseph</p>
-				<p>Loh Jay Hon, Giggs</p>
-			</div>
-		</div>
-		<div class="grid">
-			<div>
-				<h2>External Affairs Division Chairman</h2>
-				<p>Chan Yu Cher</p>
-			</div>
-		</div>
-		<div class="grid">
-			<div>
-				<h2>Operations Department</h2>
-				<p>Head: Tan Yu Hang</p>
-				<p>Wei Kai Zhe, Joshua</p>
-				<p>Yiow Meng Loong</p>
-			</div>
-			<div>
-				<h2>Community Service and Skills Development Department</h2>
-				<p>Head: Lim Kong Kiat</p>
-				<p>Ho Xu Wen</p>
-				<p>Yau Chun En</p>
-			</div>
-		</div>
-		<h2>Field Instructors</h2>
-		<div class="grid fi">
-			<div>
-				<h2>Weapons Training</h2>
-				<p>Lim Yik Jin</p>
-				<p>Soh Wei Kiat</p>
-			</div>
-			<div>
-				<h2>Physical Training</h2>
-				<p>Yau Chun En</p>
-				<p>Yiow Meng Loong</p>
-			</div>
-			<div>
-				<h2>Drill</h2>
-				<p>Chan Yu Cher</p>
-				<p>Pang Ren Jie, Adriale</p>
-			</div>
-			<div>
-				<h2>Campcraft</h2>
-				<p>Xiang Yang</p>
-				<p>Yeo Choon Wee</p>
-			</div>
-			<div>
-				<h2>Survival</h2>
-				<p>Dominic Yeo Kian</p>
-				<p>Koh Jun Wei</p>
-			</div>
-		</div>
-		<h2>Squad NCOs</h2>
-		<div class="grid">
-			<div>
-				<h2>Secondary 1</h2>
-				<p>Lim Kong Kiat</p>
-				<p>Woi Youyang</p>
-				<p>Yau Chun En</p>
-				<p>Yeo Choon Wee</p>
-			</div>
-			<div>
-				<h2>Secondary 2</h2>
-				<p>Chan Yu Cher</p>
-				<p>Leong Sze Wei, Joseph</p>
-				<p>Low Jay Hon, Giggs</p>
-				<p>Yiow Meng Loong</p>
-			</div>
-			<div>
-				<h2>Secondary 3</h2>
-				<p>Dominic Yeo Kian</p>
-				<p>Koh Jun Wei</p>
-				<p>Pang Ren Jie, Adriale</p>
-				<p>Xiang Yang</p>
-			</div>
-			<div>
-				<h2>Secondary 4</h2>
-				<p>Ho Xu Wen</p>
-				<p>Soh Wei Kiat</p>
-			</div>
-		</div>
 		<a class="button" target="_blank" href="exco/exco-chart.jpg">
-			<img src="exco/exco-chart.jpg" alt="ExCo Chart">
+			<img src="exco/SS18_ExCoChart.pdf" alt="ExCo Chart">
 			<div class="desc">ExCo Chart</div>
 		</a>
 	</section>
