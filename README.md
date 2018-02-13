@@ -4,10 +4,10 @@ View it at https://czx123.github.io
 
 ## IMPORTANT
 
-Do not copy the README.md and robots.txt files to the official unit website GitHub repository!
+Do not copy the `README.md` and `robots.txt` files to the official unit website GitHub repository!
 Here's why:
-The README.md file is the description of the repository which is also what you are looking at right now. We do not want this description to appear in the official repository.
-The robots.txt file here prevents any search engine bots like Google and Bing to crawl this site. This is necessary for here since we do not want this development website to appear on Google, but we want the official one to! So don't copy the file to the official one! If you do, then revert the files back to the previous versions.
+The `README.md` file is the description of the repository which is also what you are looking at right now. We do not want this description to appear in the official repository.
+The `robots.txt` file here prevents any search engine bots like Google and Bing to crawl this site. This is necessary for here since we do not want this development website to appear on Google, but we want the official one to! So don't copy the file to the official one! If you do, then revert the files back to the previous versions.
 
 ## Instructions
 
