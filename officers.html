@@ -232,6 +232,7 @@ for (var m = 0; m < linksno; m++) {
     var encodedlink = $mailtolinks[m].getAttribute('href').substring(5),
         decodedlink = window.atob(encodedlink);
     $mailtolinks[m].setAttribute('href',decodedlink);
+    $mailtolinks[m].setAttribute('target','_blank');
 }
 
 removeListener = function() {};
