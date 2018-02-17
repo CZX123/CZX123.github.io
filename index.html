@@ -37,6 +37,15 @@ section.parallax-wrapper::after {
 	left: 0;
 	background: #000;
 	pointer-events: none;
+	animation: loading 1s alternate;
+}
+@keyframes loading {
+from {
+	background: #000;
+}
+to {
+	background: #424242;
+}
 }
 .loaded section.parallax-wrapper::after {
 	opacity: 0;
