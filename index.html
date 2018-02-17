@@ -487,9 +487,9 @@ function carouselResize() {
 	}, 200);
 }
 
-window.addEventListener('load', function() {
+window.onload = function() {
 	$body.classList.add('loaded');
-});
+};
 
 removeListener = function() {
 	$parallax = null;
