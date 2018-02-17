@@ -499,6 +499,8 @@ removeListener = function() {
 	flkty = null;
 	clearTimeout(timer);
 	mousemove = true;
+	window.onload = null;
+	$body.classList.remove('loaded');
 }
 </script>
 </body>

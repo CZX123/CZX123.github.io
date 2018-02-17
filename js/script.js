@@ -129,7 +129,7 @@ function changeContent() {
 	rippleCheck();
 	$navbar.classList.remove('hide');
 	pageswitching = false;
-	window.onload();
+	if (window.onload) window.onload();
 }
 window.onpopstate = function() {
 	changePage(window.location.href);
