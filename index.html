@@ -28,6 +28,21 @@ section.parallax-wrapper .carousel {
 	left: 0;
 	transform-origin: top;
 }
+section.parallax-wrapper::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	pointer-events: none;
+}
+.loaded section.parallax-wrapper::after {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity .3s, visibility 0s .3s;
+}
 .carousel .flickity-viewport {
 	width: 100%;
 }
@@ -462,6 +477,10 @@ function carouselResize() {
 		flkty.resize();
 	}, 200);
 }
+
+window.addEventListener('load', function() {
+	$body.classList.add('loaded');
+});
 
 removeListener = function() {
 	$parallax = null;
