@@ -15,6 +15,20 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
 	pageswitchY = window.pageYOffset, // The scroll value which helps prevent jumping when switching pages
 	pageswitching; // A boolean to prevent spamming
 
+var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
+if (!imgcount) var imgcount = 0;
+function checkImgLoad() {
+	carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
+	if (!imgcount) imgcount = 0;
+}
+function imgLoad() {
+	imgcount += 1;
+	if (imgcount == carouselimg.length) {
+		imgcount = 0;
+		$body.classList.add("loaded");
+	}
+}
+
 // Basic nav drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
 	$scrim = document.getElementsByClassName('scrim')[0],
@@ -103,6 +117,7 @@ function changeContent() {
 	script.text = $newscript.innerText;
 	// IMPORTANT: In Internet Explorer, the script's content (script.text) is all on one line instead of being cleanly formatted like other browsers. Since all of it is on one line, NO SINGLE LINE COMMENTS ARE ALLOWED! (basically this is an example of a single line comment). NO '//' characters are allowed, since anything after this 2 // will be a comment and ignored.
 	$body.appendChild(script);
+	checkImgLoad();
 	$ajaxcontent = $newcontent;
 	$ajaxstyle = $newstyle;
 	$ajaxcontent.classList.add('show');

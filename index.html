@@ -336,12 +336,23 @@ to {
 <div class="ajax-content">
 	<section class="parallax-wrapper">
 		<div class="carousel">
-			<img src="images/2017-13th-uniformed-groups-bowling-championships.jpg">
-			<img src="images/2017-cca-open-house.jpg">
-			<img src="images/2017-22-revolver-shooting-competition.jpg">
-			<img src="images/2017-hcinpcc-unit-photo.png">
-			<img src="images/2017-drill-competition-arena-drills.jpg">
-			<img src="images/2017-drill-competition-awards-presentation.jpg">
+			<script>
+				var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
+				if (!imgcount) var imgcount = 0;
+				function imgLoad() {
+					imgcount += 1;
+					if (imgcount == carouselimg.length) {
+						imgcount = 0;
+						$body.classList.add("loaded");
+					}
+				}
+			</script>
+			<img onload="imgLoad()" src="images/2017-13th-uniformed-groups-bowling-championships.jpg">
+			<img onload="imgLoad()" src="images/2017-cca-open-house.jpg">
+			<img onload="imgLoad()" src="images/2017-22-revolver-shooting-competition.jpg">
+			<img onload="imgLoad()" src="images/2017-hcinpcc-unit-photo.png">
+			<img onload="imgLoad()" src="images/2017-drill-competition-arena-drills.jpg">
+			<img onload="imgLoad()" src="images/2017-drill-competition-awards-presentation.jpg">
 		</div>
 		<button class="flickity-custom-button flickity-prev">
 			<div>
@@ -398,7 +409,6 @@ to {
 <script src="js/script.js"></script>
 <script class="ajax-script">
 $ajaxscript = document.getElementsByClassName('ajax-script')[0];
-
 var $parallax = document.getElementsByClassName('carousel')[0],
 	timer;
 
@@ -408,7 +418,8 @@ var flkty = new Flickity($parallax, {
 	imagesLoaded: true,
 	dragThreshold: 10,
 	percentPosition: false,
-	setGallerySize: false
+	setGallerySize: false,
+	cellSelector: 'img'
 });
 
 var $hoverlist = document.querySelectorAll('.flickity-custom-button, .flickity-page-dots'),
@@ -486,11 +497,6 @@ function carouselResize() {
 		flkty.resize();
 	}, 200);
 }
-
-window.onload = function() {
-	$body.classList.add('loaded');
-	console.log('loaded');
-};
 
 removeListener = function() {
 	$parallax = null;
