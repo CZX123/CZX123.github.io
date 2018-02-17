@@ -17,10 +17,6 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
 
 var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
 if (!imgcount) var imgcount = 0;
-function checkImgLoad() {
-	carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
-	if (!imgcount) imgcount = 0;
-}
 function imgLoad() {
 	imgcount += 1;
 	if (imgcount == carouselimg.length) {
@@ -104,6 +100,7 @@ function changePage(url) {
 }
 function changeContent() {
 	removeListener(); // This function is to remove all existing listeners on the current page since AJAX navigation makes the site a single page application and javascript does not change. By default, the function is empty, so redefine it in the script section of the HTML page.
+	imgcount = 0;
 	window.scrollTo(0,0);
 	document.title = newtitle;
 	$ajaxcontent.style.position = 'absolute';
@@ -111,13 +108,13 @@ function changeContent() {
 	$ajaxcontent.parentNode.removeChild($ajaxcontent);
 	$ajaxstyle.insertAdjacentElement('afterend', $newstyle);
 	$ajaxstyle.parentNode.removeChild($ajaxstyle);
+	carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
 	$ajaxscript.parentNode.removeChild($ajaxscript);
 	var script = document.createElement('script');
 	script.classList.add('ajax-script');
 	script.text = $newscript.innerText;
 	// IMPORTANT: In Internet Explorer, the script's content (script.text) is all on one line instead of being cleanly formatted like other browsers. Since all of it is on one line, NO SINGLE LINE COMMENTS ARE ALLOWED! (basically this is an example of a single line comment). NO '//' characters are allowed, since anything after this 2 // will be a comment and ignored.
 	$body.appendChild(script);
-	checkImgLoad();
 	$ajaxcontent = $newcontent;
 	$ajaxstyle = $newstyle;
 	$ajaxcontent.classList.add('show');

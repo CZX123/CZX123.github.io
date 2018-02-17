@@ -337,8 +337,7 @@ to {
 	<section class="parallax-wrapper">
 		<div class="carousel">
 			<script>
-				var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
-				if (!imgcount) var imgcount = 0;
+				var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0;
 				function imgLoad() {
 					imgcount += 1;
 					if (imgcount == carouselimg.length) {
@@ -506,7 +505,6 @@ removeListener = function() {
 	flkty = null;
 	clearTimeout(timer);
 	mousemove = true;
-	window.onload = null;
 	$body.classList.remove('loaded');
 }
 </script>
