@@ -46,19 +46,19 @@ section.parallax-wrapper .exco-background {
 	transform: scale(1.2);
 }
 section.main a {
-    display: block;
+	display: block;
 	margin: 40px 0 20px;
 }
 section.main a img {
-    display: block;
-    width: 100%;
+	display: block;
+	width: 100%;
 }
 section.main a .desc {
-    padding: 12px 16px;
-    background: #F5F5F5;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
+	padding: 12px 16px;
+	background: #F5F5F5;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 24px;
 }
 section.main a .ripple.appear, section.main a .ripple.finish.fade-out {
 	transition: transform .8s cubic-bezier(.4,0,.2,1), opacity .5s;
@@ -70,10 +70,10 @@ section.main a .ripple.appear, section.main a .ripple.finish.fade-out {
 <body>
 
 <div class="progress">
-    <div>
-        <div><span></span></div>
-        <div><span></span></div>
-    </div>
+	<div>
+		<div><span></span></div>
+		<div><span></span></div>
+	</div>
 </div>
 <div class="nav-detect-hover"></div>
 <div class="navbar">
@@ -215,7 +215,7 @@ function filterFeatureDetect(enableWebkit) {
 if (!filterFeatureDetect()) document.getElementsByClassName('exco-background')[0].style.backgroundImage = 'url(exco/exco-blurred.jpg)';
 
 var $parallax = document.getElementsByClassName('parallax')[0],
-    timer,
+	timer,
 	touch;
 
 $parallax.addEventListener('touchstart', function() {

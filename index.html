@@ -109,12 +109,12 @@ section.parallax-wrapper .carousel {
 	border-radius: 50%;
 	padding: 0;
 	background: rgba(0,0,0,0);
-    transform: translateY(-50%);
+	transform: translateY(-50%);
 	opacity: 0;
 	transition: all .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
 }
 .flickity-custom-button .ripple {
-    background: rgba(0,0,0,.3);
+	background: rgba(0,0,0,.3);
 }
 .flickity-custom-button.resize-button {
 	top: auto;
@@ -204,10 +204,10 @@ section.parallax-wrapper .carousel {
 <body>
 
 <div class="progress">
-    <div>
-        <div><span></span></div>
-        <div><span></span></div>
-    </div>
+	<div>
+		<div><span></span></div>
+		<div><span></span></div>
+	</div>
 </div>
 <div class="nav-detect-hover"></div>
 <div class="navbar">
@@ -351,7 +351,7 @@ section.parallax-wrapper .carousel {
 		<p>I would like to leave you with a quote:</p>
 		<blockquote>
 			<svg class="quote-symbol" viewBox="0 0 24 24">
-    			<path d="M10,7L8,11H11V17H5V11L7,7H10M18,7L16,11H19V17H13V11L15,7H18Z" />
+				<path d="M10,7L8,11H11V17H5V11L7,7H10M18,7L16,11H19V17H13V11L15,7H18Z" />
 			</svg>
 			<p class="quote">‘Try’ is a little word but big things – victory and glory – can be found within it.</p>
 			<p class="author">~ Daisaku Ikeda</p>
@@ -388,10 +388,10 @@ var flkty = new Flickity($parallax, {
 });
 
 var $hoverlist = document.querySelectorAll('.flickity-custom-button, .flickity-page-dots'),
-    carouselhover = false,
+	carouselhover = false,
 	touch = false,
 	touchtimer,
-    h;
+	h;
 
 for (h = 0; h < $hoverlist.length; h++) {
 	$hoverlist[h].addEventListener('pointerenter', function() {
