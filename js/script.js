@@ -109,11 +109,6 @@ function changeContent() {
 	$ajaxcontent.parentNode.removeChild($ajaxcontent);
 	$ajaxstyle.insertAdjacentElement('afterend', $newstyle);
 	$ajaxstyle.parentNode.removeChild($ajaxstyle);
-	carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
-	if (imgcount == carouselimg.length) {
-		imgcount = 0;
-		$body.classList.add("loaded");
-	}
 	$ajaxscript.parentNode.removeChild($ajaxscript);
 	var script = document.createElement('script');
 	script.classList.add('ajax-script');
