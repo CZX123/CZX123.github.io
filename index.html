@@ -355,13 +355,6 @@ to {
 			<img onload="imgLoad()" src="images/2017-drill-competition-arena-drills.jpg">
 			<img onload="imgLoad()" src="images/2017-drill-competition-awards-presentation.jpg">
 		</div>
-		<script>
-			if (imgcount == carouselimg.length) {
-				imgcount = 0;
-				$body.classList.add("loaded");
-				console.log('all images loaded');
-			}
-		</script>
 		<button class="flickity-custom-button flickity-prev">
 			<div>
 				<svg viewBox="0 0 24 24">
@@ -505,6 +498,13 @@ function carouselResize() {
 		flkty.resize();
 	}, 200);
 }
+
+if (imgcount == carouselimg.length) {
+	imgcount = 0;
+	$body.classList.add("loaded");
+	console.log('all images loaded');
+}
+
 
 removeListener = function() {
 	$parallax = null;
