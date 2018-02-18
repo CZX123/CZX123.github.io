@@ -223,7 +223,7 @@ to {
 }
 </style>
 <script>
-	var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0;
+	var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0, $body = document.getElementsByTagName('body')[0];
 	function imgLoad() {
 		imgcount += 1;
 		if (imgcount == carouselimg.length) {
