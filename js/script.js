@@ -19,9 +19,11 @@ var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
 if (!imgcount) var imgcount = 0;
 function imgLoad() {
 	imgcount += 1;
+	console.log('loaded');
 	if (imgcount == carouselimg.length) {
 		imgcount = 0;
 		$body.classList.add("loaded");
+		console.log('all images loaded');
 	}
 }
 
