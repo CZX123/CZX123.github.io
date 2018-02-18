@@ -100,7 +100,6 @@ function changePage(url) {
 }
 function changeContent() {
 	removeListener(); // This function is to remove all existing listeners on the current page since AJAX navigation makes the site a single page application and javascript does not change. By default, the function is empty, so redefine it in the script section of the HTML page.
-	imgcount = 0;
 	window.scrollTo(0,0);
 	document.title = newtitle;
 	$ajaxcontent.style.position = 'absolute';
