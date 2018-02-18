@@ -342,16 +342,6 @@ to {
 			<img onload="imgLoad()" src="images/2017-hcinpcc-unit-photo.png">
 			<img onload="imgLoad()" src="images/2017-drill-competition-arena-drills.jpg">
 			<img onload="imgLoad()" src="images/2017-drill-competition-awards-presentation.jpg">
-			<script>
-				var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0;
-				function imgLoad() {
-					imgcount += 1;
-					if (imgcount == carouselimg.length) {
-						imgcount = 0;
-						$body.classList.add("loaded");
-					}
-				}
-			</script>
 		</div>
 		<button class="flickity-custom-button flickity-prev">
 			<div>
@@ -374,6 +364,16 @@ to {
 				</svg>
 			</div>
 		</button>
+		<script>
+			var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0;
+			function imgLoad() {
+				imgcount += 1;
+				if (imgcount == carouselimg.length) {
+					imgcount = 0;
+					$body.classList.add("loaded");
+				}
+			}
+		</script>
 	</section>
 	<section class="main">
 		<h1>2017 Chairperson's Message</h1>
