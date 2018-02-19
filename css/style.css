@@ -432,7 +432,6 @@ button > * {
 	top: 0;
 	right: 0;
 	left: 0;
-	border-radius: 2px;
 	padding: 0;
 	background: #e6e6e6;
 	pointer-events: none;
