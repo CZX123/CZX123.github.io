@@ -440,7 +440,7 @@ button > * {
 	transition: transform .3s, visibility 0s .3s;
 	z-index: 24;
 }
-body.loading > .progress, .loading > div > .progress {
+body.img-loading > .progress, body.loading > .progress, .loading > div > .progress {
 	transform: translateY(0);
 	visibility: visible;
 	transition-delay: 0s;
@@ -449,7 +449,7 @@ body.loading > .progress, .loading > div > .progress {
 	position: relative;
 	height: 100%;
 }
-body.indeterminate > .progress > div > div, .indeterminate > div > .progress > div > div {
+body.img-loading > .progress > div > div, body.indeterminate > .progress > div > div, .indeterminate > div > .progress > div > div {
 	position: absolute;
 	height: 100%;
 	width: 100%;
@@ -457,7 +457,7 @@ body.indeterminate > .progress > div > div, .indeterminate > div > .progress > d
 	left: -145.166611%;
 	animation: primary-progress 2s infinite linear;
 }
-body.indeterminate > .progress > div > div:last-child, .indeterminate > div > .progress > div > div:last-child {
+body.img-loading > .progress > div > div:last-child, body.indeterminate > .progress > div > div:last-child, .indeterminate > div > .progress > div > div:last-child {
 	left: -54.888891%;
 	animation: secondary-progress 2s infinite linear;
 }
@@ -494,13 +494,13 @@ body.indeterminate > .progress > div > div:last-child, .indeterminate > div > .p
 		transform: translateX(160.27778%);
 	}
 }
-body.indeterminate > .progress > div > div > span, .indeterminate > div > .progress > div > div > span {
+body.img-loading > .progress > div > div > span, body.indeterminate > .progress > div > div > span, .indeterminate > div > .progress > div > div > span {
 	display: block;
 	height: 100%;
 	background: #3F51B5;
 	animation: primary-progress-span 2s infinite linear;
 }
-body.indeterminate > .progress > div > div:last-child > span, .indeterminate > div > .progress > div > div:last-child > span {
+body.img-loading > .progress > div > div:last-child > span, body.indeterminate > .progress > div > div:last-child > span, .indeterminate > div > .progress > div > div:last-child > span {
 	animation: secondary-progress-span 2s infinite linear;
 }
 @keyframes primary-progress-span {

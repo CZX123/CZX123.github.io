@@ -13,11 +13,6 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style class="ajax-style">
-body > .progress {
-	transform: translateY(0);
-	visibility: visible;
-	transition-delay: 0s;
-}
 body.loaded > .progress {
 	transform: translateY(-4px);
 	visibility: hidden;
@@ -238,7 +233,7 @@ section.parallax-wrapper::after {
 
 </head>
 
-<body>
+<body class="img-loading">
 
 <div class="progress">
 	<div>
