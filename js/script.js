@@ -129,7 +129,10 @@ function changeContent() {
 		filename = split.pop(),
 		$currentactive = $navdrawer.getElementsByClassName('active'),
 		$newactive = $navdrawer.querySelector('a[href="' + filename + '"]');
-	if (!filename) $newactive = $navdrawer.querySelector('a[href="/"]');
+	if (!filename) {
+		$body.classList.add('img-loading');
+		$newactive = $navdrawer.querySelector('a[href="/"]');
+	}
 	for (var c = 0, l = $currentactive.length; c < l; c++) {
 		$currentactive[0].classList.remove('active');
 		$currentactive = $navdrawer.getElementsByClassName('active');
