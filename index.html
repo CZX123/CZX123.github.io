@@ -48,6 +48,11 @@ section.parallax-wrapper::after {
 	background: #000;
 	pointer-events: none;
 }
+.loaded section.parallax-wrapper::after {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity .3s, visibility 0s .3s;
+}
 .carousel .flickity-viewport {
 	width: 100%;
 }
