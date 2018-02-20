@@ -217,6 +217,52 @@ section.parallax-wrapper::after {
 	width: 28px;
 	fill: #FFF;
 }
+.tip {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	left: 50%;
+	bottom: 10px;
+	opacity: 0;
+	transform: translateX(-50%);
+	transform-origin: bottom;
+	transition: opacity .3s cubic-bezier(.4,0,.2,1);
+	pointer-events: none;
+	z-index: 1;
+}
+.tip span {
+	margin-bottom: -4px;
+	color: rgba(255,255,255,.8);
+	font-size: 14px;
+	font-weight: 500;
+	transform: translateY(8px);
+	transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.tip svg {
+	height: 24px;
+	width: 24px;
+	fill: rgba(255,255,255,.8);
+	transform: translateY(4px);
+	transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.tip-appear ~ .tip {
+	opacity: 1;
+}
+.tip-appear ~ .tip span, .tip-appear ~ .tip svg {
+	transform: translateY(0);
+}
+.hide-dots .flickity-page-dots {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
+}
+
+@media (min-aspect-ratio: 4/3) {
+.flickity-custom-button.resize-button {
+	display: none;
+}
+}
 </style>
 <script>
 	var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0, $body = document.getElementsByTagName('body')[0];
@@ -372,6 +418,12 @@ section.parallax-wrapper::after {
 				</svg>
 			</div>
 		</button>
+		<div class="tip">
+			<span>Scroll down for more</span>
+			<svg viewBox="0 0 24 24">
+				<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+			</svg>
+		</div>
 	</section>
 	<section class="main">
 		<h1>2017 Chairperson's Message</h1>
@@ -501,6 +553,14 @@ if (imgcount == carouselimg.length) {
 	console.log('all images loaded');
 }
 
+$parallax.classList.add('tip-appear');
+$parallax.classList.add('hide-dots');
+setTimeout(function(){
+	$parallax.classList.remove('tip-appear');
+}, 2800);
+setTimeout(function(){
+	$parallax.classList.remove('hide-dots');
+}, 3000);
 
 removeListener = function() {
 	$parallax = null;
