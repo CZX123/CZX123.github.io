@@ -55,31 +55,9 @@ section.parallax-wrapper::after {
 	overflow: visible;
 	transition: opacity .2s;
 }
-.carousel.resize-back .flickity-slider {
-	opacity: 1;
-	transition-timing-function: cubic-bezier(0,0,.2,1);
-}
-.carousel.actual-resize .flickity-slider {
-	opacity: 0;
-	transition-timing-function: cubic-bezier(.4,0,1,1);
-}
-.carousel.resize .flickity-slider {
-	opacity: 0;
-	transition-timing-function: cubic-bezier(.4,0,1,1);
-}
-.carousel.resize.actual-resize .flickity-slider {
-	opacity: 1;
-	transition-timing-function: cubic-bezier(0,0,.2,1);
-}
 .carousel img {
 	display: block;
 	height: 100vh;
-}
-.carousel.actual-resize img {
-	height: auto;
-	width: 100%;
-	top: 50%;
-	transform: translateY(-50%);
 }
 .flickity-page-dots {
 	display: inline-block;
@@ -137,6 +115,7 @@ section.parallax-wrapper::after {
 	background: rgba(0,0,0,.3);
 }
 .flickity-custom-button.resize-button {
+	display: none;
 	top: auto;
 	bottom: 60px;
 	left: 50%;
@@ -195,6 +174,35 @@ section.parallax-wrapper::after {
 	transform: scale(1) rotate(-45deg);
 }
 }
+
+@media (max-aspect-ratio: 4/3) {
+.carousel.resize-back .flickity-slider {
+	opacity: 1;
+	transition-timing-function: cubic-bezier(0,0,.2,1);
+}
+.carousel.actual-resize .flickity-slider {
+	opacity: 0;
+	transition-timing-function: cubic-bezier(.4,0,1,1);
+}
+.carousel.resize .flickity-slider {
+	opacity: 0;
+	transition-timing-function: cubic-bezier(.4,0,1,1);
+}
+.carousel.resize.actual-resize .flickity-slider {
+	opacity: 1;
+	transition-timing-function: cubic-bezier(0,0,.2,1);
+}
+.carousel.actual-resize img {
+	height: auto;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.flickity-custom-button.resize-button {
+	display: block;
+}
+}
+
 .mousemove ~ .flickity-custom-button {
 	visibility: visible;
 	opacity: 1;
@@ -256,12 +264,6 @@ section.parallax-wrapper::after {
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
-}
-
-@media (min-aspect-ratio: 4/3) {
-.flickity-custom-button.resize-button {
-	display: none;
-}
 }
 </style>
 <script>
