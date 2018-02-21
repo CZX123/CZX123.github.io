@@ -19,11 +19,9 @@ var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
 if (!imgcount) var imgcount = 0;
 function imgLoad() {
 	imgcount += 1;
-	console.log('loaded');
 	if (imgcount == carouselimg.length) {
 		imgcount = 0;
 		$body.classList.add("loaded");
-		console.log('all images loaded');
 	}
 }
 
@@ -316,7 +314,13 @@ var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
 	iterations = 0, // Variables below are used for the transition for the navdrawer (whether it opens or closes) after the user removes finger from the screen
 	start,
 	total,
-	ripplebug; // This is a variable to help in solving a bug where clicking a link in the nav drawer closes the nav drawer
+	ripplebug, // This is a variable to help in solving a bug where clicking a link in the nav drawer closes the nav drawer
+	navdrawerscrolling;
+
+// A listener to detect whether navdrawer is being scrolled so as to prevent dragging of navdrawer
+$navdrawer.children[0].addEventListener('scroll', function() {
+	navdrawerscrolling = true;
+});
 
 // First checks if passive event listeners are supported. Passive event listeners help to improve touch latency and overall performance.
 var supportsPassive = false;
@@ -332,6 +336,17 @@ document.addEventListener('touchend', endDrag, supportsPassive ? {passive: true}
 document.addEventListener('touchcancel', endDrag, supportsPassive ? {passive: true} : false);
 // The dragging function. Runs 60 times a second
 function navDragging() {
+	if (navdrawerscrolling) {
+		dragging = false;
+		navAppear = true;
+		iterations = 0;
+		$navdrawer.style.transform = '';
+		$scrim.style.opacity = '';
+		$navdrawer.classList.remove('dragging');
+		diffX = 3;
+		requestAnimationFrame(navDragging);
+		return false;
+	}
 	if (dragging == 'started') {
 		requestAnimationFrame(navDragging);
 		return false;
@@ -345,6 +360,7 @@ function navDragging() {
 	}
 	// When dragging the nav drawer into view but force is not enough OR dragging it out of view and force is enough
 	else if (diffX <= -2 || -2 < diffX && diffX < 2 && navX < navdrawerwidth/2) {
+		navAppear = false;
 		start = navTranslate;
 		total = 220;
 		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
@@ -362,6 +378,7 @@ function navDragging() {
 	}
 	// When dragging the nav drawer into view and force is enough OR dragging it out of view but force is not enough
 	else {
+		navAppear = true;
 		start = navTranslate;
 		total = 220;
 		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
@@ -428,13 +445,13 @@ function endDrag(e) {
 	if (e.target == $dragnavdrawer) {
 		dragging = false;
 		$navdrawer.classList.remove('dragging');
-		if (diffX >= 2 || -2 < diffX && diffX < 2 && navX > navdrawerwidth/2) navAppear = true;
+		navdrawerscrolling = false;
 	}
 	if (navAppear) {
 		if (dragging = 'started') ripplebug = true;
 		dragging = false;
 		$navdrawer.classList.remove('dragging');
-		if (diffX < -2 || -2 < diffX && diffX < 2 && navX <= navdrawerwidth/2) navAppear = false;
+		navdrawerscrolling = false;
 	}
 }
 

@@ -273,9 +273,7 @@ section.parallax-wrapper::after {
 	var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0, $body = document.getElementsByTagName('body')[0];
 	function imgLoad() {
 		imgcount += 1;
-		console.log('loaded');
 		if (imgcount == carouselimg.length) {
-			console.log('all images loaded');
 			imgcount = 0;
 			$body.classList.add("loaded");
 		}
@@ -555,7 +553,6 @@ carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
 if (imgcount == carouselimg.length) {
 	imgcount = 0;
 	$body.classList.add("loaded");
-	console.log('all images loaded');
 }
 
 $parallax.classList.add('tip-appear');
