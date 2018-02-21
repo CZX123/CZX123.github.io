@@ -9,13 +9,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	outline: 0;
 	padding: 0;
 	border: 0;
-	color: rgba(0,0,0,.87);
 	font: inherit;
-	font-size: 14px;
-	font-family: Roboto, sans-serif;
-	line-height: 1.8;
-	text-decoration: none;
-	vertical-align: baseline;
 	overflow: hidden;
 }
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -30,6 +24,12 @@ html {
 body {
 	position: relative;
 	min-height: 100vh;
+	color: rgba(0,0,0,.87);
+	font-size: 14px;
+	font-family: Roboto, sans-serif;
+	line-height: 1.8;
+	text-decoration: none;
+	vertical-align: baseline;
 }
 ol, ul {
 	list-style: none;
@@ -549,8 +549,8 @@ section.title h1 {
 	padding: 160px 20% 96px;
 	color: #FFF;
 	font-family: 'Roboto Slab', serif;
-	font-size: 64px;
-	line-height: 1.5;
+	font-size: 4.5em;
+	line-height: 1.2;
 }
 section.title::after {
 	content: '';
@@ -589,9 +589,12 @@ section.footer {
 section.footer footer, section.footer span {
 	display: block;
 	color: rgba(255,255,255,.38);
-	font-size: 16px;
+	font-size: 1.15em;
 	line-height: 24px;
 	text-align: center;
+}
+section.footer span {
+	font-size: 1em;
 }
 section.footer footer::before {
 	content: '';
@@ -621,13 +624,13 @@ section.main h1 {
 	margin: 48px 0;
 	color: rgba(0,0,0,.54);
 	font-family: 'Roboto Slab', serif;
-	font-size: 48px;
+	font-size: 3.5em;
 	line-height: 1.5;
 }
 section.main h2 {
 	margin: 24px 0 12px;
 	font-family: 'Roboto Slab', serif;
-	font-size: 28px;
+	font-size: 2em;
 	line-height: 1.5;
 }
 .error {
@@ -639,7 +642,6 @@ section.main h2 {
 	padding: 16px 24px;
 	background: #323232;
 	color: transparent;
-	font-size: 14px;
 	line-height: 24px;
 	white-space: nowrap;
 	box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
@@ -665,10 +667,10 @@ section.title h1, section.main, section.footer {
 	padding-right: 72px;
 }
 section.title h1 {
-	font-size: 56px;
+	font-size: 4em;
 }
 section.main h1 {
-	font-size: 44px;
+	font-size: 3.15em;
 }
 }
 @media (max-width: 520px) {
@@ -685,10 +687,10 @@ section.title h1, section.main, section.footer {
 	padding-right: 16px;
 }
 section.title h1 {
-	font-size: 48px;
+	font-size: 3.5em;
 }
 section.main h1 {
-	font-size: 40px;
+	font-size: 2.85em;
 }
 section.main button.dropdown {
 	border-radius: 0;
@@ -716,7 +718,7 @@ section.main .grid > * {
 section.main p {
 	margin: 24px 0;
 	font-family: Lato, Roboto, sans-serif;
-	font-size: 19px;
+	font-size: 1.35em;
 }
 section.main blockquote {
 	position: relative;
@@ -766,7 +768,7 @@ section.main button.dropdown div {
 	padding: 12px 56px 12px 16px;
 }
 section.main button.dropdown a {
-	font-size: 20px;
+	font-size: 1.45em;
 	font-weight: 500;
 	line-height: 24px;
 }
