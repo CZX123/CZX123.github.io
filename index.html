@@ -232,10 +232,11 @@ section.parallax-wrapper::after {
 	position: absolute;
 	left: 50%;
 	bottom: 10px;
+	visibility: hidden;
 	opacity: 0;
 	transform: translateX(-50%);
 	transform-origin: bottom;
-	transition: opacity .3s cubic-bezier(.4,0,.2,1);
+	transition: opacity .3s cubic-bezier(.4,0,.2,1), visibility 0s .3s;
 	pointer-events: none;
 	z-index: 1;
 }
@@ -255,7 +256,9 @@ section.parallax-wrapper::after {
 	transition: transform .3s cubic-bezier(.4,0,.2,1);
 }
 .tip-appear ~ .tip {
+	visibility: visible;
 	opacity: 1;
+	transition-delay: 0s;
 }
 .tip-appear ~ .tip span, .tip-appear ~ .tip svg {
 	transform: translateY(0);
