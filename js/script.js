@@ -315,11 +315,18 @@ var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
 	start,
 	total,
 	ripplebug, // This is a variable to help in solving a bug where clicking a link in the nav drawer closes the nav drawer
-	navdrawerscrolling;
+	navdrawerscrolling,
+	navdrawerscrollingtimer;
 
 // A listener to detect whether navdrawer is being scrolled so as to prevent dragging of navdrawer
 $navdrawer.children[0].addEventListener('scroll', function() {
+	clearTimeout(navdrawerscrollingtimer);
 	navdrawerscrolling = true;
+	if (!dragging) {
+		navdrawerscrollingtimer = setTimeout(function() {
+			navdrawerscrolling = false;
+		}, 100);
+	}
 });
 
 // First checks if passive event listeners are supported. Passive event listeners help to improve touch latency and overall performance.
