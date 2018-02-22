@@ -272,9 +272,6 @@ function scrolling() {
 		if ($parallax && latestY <= windowHeight && isIE == false) {
 			$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
 		}
-		if ($parallax && latestY <= windowHeight && isIE) {
-			$parallax.style.transform = 'scale(' + (1 + latestY/windowHeight/4) + ')';
-		}
 		if ($parallax && latestY <= windowHeight) {
 			$parallax.style.opacity = 1 - latestY/windowHeight;
 		}
