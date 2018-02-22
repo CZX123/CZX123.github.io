@@ -9,7 +9,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	outline: 0;
 	padding: 0;
 	border: 0;
+	color: inherit;
+	font-size: inherit;
+	font-family: inherit;
 	font: inherit;
+	text-decoration: none;
+	vertical-align: baseline;
 	overflow: hidden;
 }
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -28,8 +33,6 @@ body {
 	font-size: 14px;
 	font-family: Roboto, sans-serif;
 	line-height: 1.8;
-	text-decoration: none;
-	vertical-align: baseline;
 }
 ol, ul {
 	list-style: none;

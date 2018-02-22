@@ -687,12 +687,12 @@ function checkCell() {
 			$prevactivebutton.classList.remove('active');
 			$activebutton.classList.add('active');
 			var left = $activebutton.offsetLeft,
-				width = 123,
+				width = 125,
 				divwidth = $years.offsetWidth;
 			prevelement = $activebutton.previousElementSibling;
 			while (prevelement) {
 				if (prevelement == $prevactivebutton) {
-					left = left - 12;
+					left = left - 15;
 					break;
 				}
 				prevelement = prevelement.previousElementSibling;

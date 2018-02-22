@@ -60,32 +60,30 @@ function changePage(url) {
 	// XMLHttpRequest below to fetch the other page
 	try {
 		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				window.scrollTo(0,pageswitchY);
-				var $wrapper = document.createElement('div');
-				$wrapper.innerHTML = xhr.responseText;
-				$newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
+		xhr.onload = function() {
+			window.scrollTo(0, pageswitchY);
+			var $wrapper = document.createElement('div');
+			$wrapper.innerHTML = xhr.responseText;
+			$newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
 				$newstyle = $wrapper.getElementsByClassName('ajax-style')[0],
 				$newscript = $wrapper.getElementsByClassName('ajax-script')[0];
-				newtitle = $wrapper.getElementsByTagName('title')[0].innerText;
-				if (!$newcontent) {
-					error();
-					$body.classList.remove('loading');
-					$ajaxcontent.classList.remove('hide');
-					return false;
-				}
-				if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
-				oldUrl = window.location.href;
-				filerequested = true;
-				if (animationcomplete) changeContent();
-			}
-			else if (this.readyState == 4) {
+			newtitle = $wrapper.getElementsByTagName('title')[0].innerText;
+			if (!$newcontent) {
 				error();
-				$ajaxcontent.classList.remove('hide');
 				$body.classList.remove('loading');
-				pageswitching = false;
+				$ajaxcontent.classList.remove('hide');
+				return false;
 			}
+			if (url.substring(0, 4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
+			oldUrl = window.location.href;
+			filerequested = true;
+			if (animationcomplete) changeContent();
+		};
+		xhr.onerror = xhr.onabort = function() {
+			error();
+			$ajaxcontent.classList.remove('hide');
+			$body.classList.remove('loading');
+			pageswitching = false;
 		};
 		xhr.open("GET", url);
 		xhr.send();
@@ -211,6 +209,7 @@ function dropdownCheck() {
 		}
 	}
 }
+dropdownCheck();
 function dropdownTransition(iterations, $elem, start, end) {
 	var dropdowntotal = 36,
 		diff = end - start;
@@ -224,7 +223,6 @@ function dropdownTransition(iterations, $elem, start, end) {
 		$currentelement = $elem;
 	}
 	else {
-		if (end != 0) $dropdowncontent.style.visibility = 'hidden';
 		$currentelement = false;
 		animation = false;
 	}
@@ -324,8 +322,8 @@ $navdrawer.children[0].addEventListener('scroll', function() {
 	navdrawerscrolling = true;
 	if (!dragging) {
 		navdrawerscrollingtimer = setTimeout(function() {
-			navdrawerscrolling = false;
-		}, 100);
+			if (!dragging) navdrawerscrolling = false;
+		}, 300);
 	}
 });
 
@@ -354,11 +352,11 @@ function navDragging() {
 		requestAnimationFrame(navDragging);
 		return false;
 	}
-	if (dragging == 'started') {
+	else if (dragging == 'started') {
 		requestAnimationFrame(navDragging);
 		return false;
 	}
-	if (dragging) navTranslate = navX - navdrawerwidth;
+	else if (dragging) navTranslate = navX - navdrawerwidth;
 	$navdrawer.style.transform = 'translate3d(' + navTranslate + 'px,0,0)';
 	$scrim.style.opacity = Math.round((navTranslate + navdrawerwidth)/navdrawerwidth*1e2)/1e2;
 	if (dragging) {
@@ -440,11 +438,13 @@ function mainDrag(e) {
 		dragging = true;
 		$navdrawer.style.transition = 'none';
 		$scrim.style.transition = 'none';
-		actualX = Math.round(e.touches[0].clientX*10)/10;
-		if (actualX >= initialX) navX = navdrawerwidth;
-		else navX = Math.round(e.touches[0].clientX*10)/10 - initialX + navdrawerwidth;
-		diffX = navX - previousNavX;
-		previousNavX = navX;
+		if (!navdrawerscrolling) {
+			actualX = Math.round(e.touches[0].clientX*10)/10;
+			if (actualX >= initialX) navX = navdrawerwidth;
+			else navX = Math.round(e.touches[0].clientX*10)/10 - initialX + navdrawerwidth;
+			diffX = navX - previousNavX;
+			previousNavX = navX;
+		}
 	}
 }
 // Finger leaves the screen
@@ -468,7 +468,9 @@ var $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button'), // T
 	rippledown = false, // A boolean which states if the button is creatly being held and the ripple is active
 	x, // x-coordinate of ripple circle's centre
 	y, // y-coordinate of ripple circle's centre
-	rippletimer = 0; // To prevent the ripple from disappearing to fast if the click was very fast
+	ripplecount = -1,
+	rippletimerarray = [], // To prevent the ripple from disappearing to fast if the click was very fast
+	$rippleelementsarray = [];
 
 // Activate the ripple effect be adding a 'div' with the class of 'ripple' to every element in the $ripplelist. Also adds the event listeners.
 function rippleCheck() {
@@ -524,12 +526,23 @@ function rippleDown(element, e) {
 		if (element.classList.contains('button')) target = element.lastElementChild;
 	}
 	else target = element.lastElementChild.lastElementChild;
-	if (rippletimer) {
-		clearTimeout(rippletimer);
-		timer2 = rippletimer;
-		target.classList.remove('appear');
+	for (var i = ripplecount; i > -1; i--) {
+		if ($rippleelementsarray[i] == element) {
+			rippletimerarray[ripplecount] = 0;
+			target.classList.remove('appear');
+			break;
+		}
+		else if (!$rippleelementsarray[i]) {
+			if (i == ripplecount) { // Empty both arrays and reset count when no ripples are happening
+				ripplecount = -1;
+				rippletimerarray = [];
+				$rippleelementsarray = [];
+			}
+			break;
+		}
 	}
-	target.classList.remove('fade-out', 'finish');
+	target.classList.remove('fade-out');
+	target.classList.remove('finish');
 	x = Math.round(e.clientX - element.getBoundingClientRect().left);
 	y = Math.round(e.clientY - element.getBoundingClientRect().top);
 	var radius = Math.max(Math.sqrt(x*x + y*y),
@@ -540,10 +553,13 @@ function rippleDown(element, e) {
 	target.style.top = y + 'px';
 	target.style.left = x + 'px';
 	target.classList.add('appear');
-	rippletimer = setTimeout(function() {
+	ripplecount += 1;
+	var pastripplecount = ripplecount;
+	rippletimerarray[ripplecount] = setTimeout(function() {
 		target.classList.add('finish');
 		if (target.classList.contains('fade-out')) target.classList.remove('appear');
-		rippletimer = 0;
+		$rippleelementsarray[pastripplecount] = 0;
+		rippletimerarray[pastripplecount] = 0;
 	}, 400);
 }
 function rippleUp(element, e) {
@@ -554,13 +570,12 @@ function rippleUp(element, e) {
 	}
 	else target = element.lastElementChild.lastElementChild;
 	target.classList.add('fade-out');
-	if (!rippletimer) target.classList.remove('appear');
-	setTimeout(function() {
-		if (rippledown == false && target.classList.contains('appear')) {
-			target.classList.add('finish');
-			target.classList.remove('appear');
-		}
-	}, 400);
+	if (!rippletimerarray[ripplecount]) {
+		target.classList.remove('appear');
+		$rippleelementsarray[ripplecount] = 0; // Just in case
+		rippletimerarray[ripplecount] = 0; // Just in case
+	}
+	else rippletimerarray[ripplecount] = element;
 }
 
 var $error = document.getElementsByClassName('error')[0],
