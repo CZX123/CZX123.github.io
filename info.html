@@ -687,8 +687,9 @@ function checkCell() {
 			$prevactivebutton.classList.remove('active');
 			$activebutton.classList.add('active');
 			var left = $activebutton.offsetLeft,
-				width = 125,
+				width = 125, // Exact width of an expanded button of the period of years
 				divwidth = $years.offsetWidth;
+			if (!$activebutton.nextElementSibling) width = 149; // Special case when the button is the last and the width is a little bit higher than the rest due to the word "Present"
 			prevelement = $activebutton.previousElementSibling;
 			while (prevelement) {
 				if (prevelement == $prevactivebutton) {
