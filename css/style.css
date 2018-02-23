@@ -12,7 +12,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	color: inherit;
 	font-size: inherit;
 	font-family: inherit;
-	font: inherit;
+	font-weight: 400;
+	line-height: 1.8;
 	text-decoration: none;
 	vertical-align: baseline;
 	overflow: hidden;
@@ -32,7 +33,6 @@ body {
 	color: rgba(0,0,0,.87);
 	font-size: 14px;
 	font-family: Roboto, sans-serif;
-	line-height: 1.8;
 }
 ol, ul {
 	list-style: none;
@@ -720,8 +720,9 @@ section.main .grid > * {
 }
 section.main p {
 	margin: 24px 0;
-	font-family: Lato, Roboto, sans-serif;
-	font-size: 1.35em;
+	font-family: Mukta, Roboto, sans-serif;
+	font-size: 1.4em;
+	line-height: 1.9;
 }
 section.main blockquote {
 	position: relative;
