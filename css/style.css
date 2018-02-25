@@ -398,7 +398,7 @@ button > * {
 	left: 50%;
 	background: rgba(0,0,0,.08);
 	opacity: 0;
-	transform: translate(-50%,-50%) scale(0);
+	transform: translate(-50%,-50%) scale(.01);
 	pointer-events: none;
 }
 .ripple.appear {
