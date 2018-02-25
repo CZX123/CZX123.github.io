@@ -597,7 +597,7 @@ function rippleDown(element, e) {
 						  Math.sqrt(x*x + (element.offsetHeight-y)*(element.offsetHeight-y)),
 						  Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + y*y),
 				 		  Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + (element.offsetHeight-y)*(element.offsetHeight-y)));
-	target.style.height = target.style.width = radius * 2 + 'px';
+	target.style.height = target.style.width = Math.ceil(radius*10)/10 * 2 + 'px';
 	target.style.top = y + 'px';
 	target.style.left = x + 'px';
 	target.classList.add('appear');
