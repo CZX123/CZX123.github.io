@@ -467,7 +467,9 @@ var $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button'), // T
 	y, // y-coordinate of ripple circle's centre
 	ripplecount = -1,
 	rippletimerarray = [], // To prevent the ripple from disappearing to fast if the click was very fast
-	$rippleelementsarray = [];
+	$rippleelementsarray = [],
+	touch,
+	touchtimer;
 
 // Activate the ripple effect be adding a 'div' with the class of 'ripple' to every element in the $ripplelist. Also adds the event listeners.
 function rippleCheck() {
@@ -494,34 +496,83 @@ function rippleCheck() {
 			else $ripplelist[i].parentElement.appendChild($div);
 		}
 		else $ripplelist[i].lastElementChild.appendChild($div);
-		$ripplelist[i].addEventListener('pointerdown', function(e) {
-			rippleDown(this, e);
-		});
-		$ripplelist[i].addEventListener('pointerup', function(e) {
-			rippleUp(this, e);
-		});
-		$ripplelist[i].addEventListener('pointerleave', function(e) {
-			rippleUp(this, e);
-			hover(this, e, 'leave');
-		});
-		$ripplelist[i].addEventListener('pointerenter', function(e) {
-			hover(this, e, 'enter');
-		});
+		if ('PointerEvent' in window) {
+			$ripplelist[i].addEventListener('pointerdown', function(e) {
+				rippleDown(this, [e.clientX - this.getBoundingClientRect().left,
+				                  e.clientY - this.getBoundingClientRect().top]);
+			});
+			$ripplelist[i].addEventListener('pointerup', function(e) {
+				rippleUp(this);
+			});
+			$ripplelist[i].addEventListener('pointerleave', function(e) {
+				rippleUp(this);
+				hover(this, e, 'leave');
+			});
+			$ripplelist[i].addEventListener('pointerenter', function(e) {
+				hover(this, e, 'enter');
+			});
+		}
+		else {
+			$ripplelist[i].addEventListener('mousedown', function(e) {
+				if (!touch) rippleDown(this, [e.clientX - this.getBoundingClientRect().left,
+				                              e.clientY - this.getBoundingClientRect().top]);
+			});
+			$ripplelist[i].addEventListener('mouseup', function(e) {
+				if (!touch) rippleUp(this);
+			});
+			$ripplelist[i].addEventListener('mouseleave', function(e) {
+				if (!touch) {
+					rippleUp(this);
+					hover(this, e, 'leave');
+				}
+			});
+			$ripplelist[i].addEventListener('mouseenter', function(e) {
+				if (!touch) hover(this, e, 'enter');
+			});
+			$ripplelist[i].addEventListener('touchstart', function(e) {
+				clearTimeout(touchtimer);
+				touch = true;
+				rippleDown(this, [e.touches[0].clientX - this.getBoundingClientRect().left,
+				                  e.touches[0].clientY - this.getBoundingClientRect().top]);
+			}, supportsPassive ? { passive: true } : false);
+			$ripplelist[i].addEventListener('touchend', function(e) {
+				rippleUp(this);
+				touchtimer = setTimeout(function() {
+					touch = false;
+				}, 400);
+			}, supportsPassive ? { passive: true } : false);
+			$ripplelist[i].addEventListener('touchmove', function(e) {
+				rippleUp(this);
+				touchtimer = setTimeout(function() {
+					touch = false;
+				}, 400);
+			}, supportsPassive ? { passive: true } : false);
+			$ripplelist[i].addEventListener('touchcancel', function(e) {
+				rippleUp(this);
+				touchtimer = setTimeout(function() {
+					touch = false;
+				}, 400);
+			}, supportsPassive ? { passive: true } : false);
+		}
 	}
 }
 rippleCheck();
 // This hover effect is needed to replace CSS ':hover' because ':hover' also happens with touchscreens which isn't ideal. Hover effects can only happen with a mouse.
 function hover(element, e, direction) {
-	if (e.pointerType == 'touch') return false;
+	if (e.pointerType) if (e.pointerType == 'touch') return false;
 	if (direction == 'enter') element.classList.add('hover');
 	else element.classList.remove('hover');
 }
 function rippleDown(element, e) {
 	rippledown = true;
+	// The target refers to the ripple element found inside (or beside) the element
+	// 1st case: element is a link element <a> and it does not have a class of 'button'
 	var target = element.parentElement.lastElementChild;
+	// 2nd case: element is a link element <a> and it does have a class named 'button'
 	if (element.tagName == 'A' && element.classList) {
 		if (element.classList.contains('button')) target = element.lastElementChild;
 	}
+	// 3rd case: element is a button
 	else target = element.lastElementChild.lastElementChild;
 	for (var i = ripplecount; i > -1; i--) {
 		if ($rippleelementsarray[i] == element) {
@@ -540,8 +591,8 @@ function rippleDown(element, e) {
 	}
 	target.classList.remove('fade-out');
 	target.classList.remove('finish');
-	x = Math.round(e.clientX - element.getBoundingClientRect().left);
-	y = Math.round(e.clientY - element.getBoundingClientRect().top);
+	x = Math.round(e[0]);
+	y = Math.round(e[1]);
 	var radius = Math.max(Math.sqrt(x*x + y*y),
 						  Math.sqrt(x*x + (element.offsetHeight-y)*(element.offsetHeight-y)),
 						  Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + y*y),
@@ -559,7 +610,7 @@ function rippleDown(element, e) {
 		rippletimerarray[pastripplecount] = 0;
 	}, 400);
 }
-function rippleUp(element, e) {
+function rippleUp(element) {
 	rippledown = false;
 	var target = element.parentElement.lastElementChild;
 	if (element.tagName == 'A' && element.classList) {
