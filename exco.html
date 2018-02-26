@@ -17,18 +17,16 @@ section {
 	text-align: center;
 }
 section.parallax-wrapper {
-	position: relative;
+	position: fixed;
 	height: 100vh;
+	top: 0;
+	right: 0;
+	left: 0;
 	background: #000;
 }
 section.parallax-wrapper .parallax {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	position: relative;
 	height: 100vh;
-	transform-origin: top;
 }
 section.parallax-wrapper .exco-image, section.parallax-wrapper .exco-background {
 	position: relative;
@@ -44,6 +42,9 @@ section.parallax-wrapper .exco-background {
 	-webkit-filter: blur(15px);
 	filter: blur(15px);
 	transform: scale(1.2);
+}
+section.main {
+	margin-top: 100vh;
 }
 section.main a {
 	display: block;

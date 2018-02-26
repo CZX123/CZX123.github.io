@@ -150,11 +150,12 @@ button > * {
 	overflow: hidden;
 	touch-action: pan-x;
 	opacity: 0;
-	transform: translate3d(-100%,0,0);
-	transition: visibility 0s .9s, opacity .2s .4s, transform .4s;
+	/* Translate3d to force use of GPU (may not work, but good to leave it like this) */
+	transform: translate3d(-100%,0,0) translate3d(-10px,0,0); /* Separate translate3d due to IE not supporting calc() in transforms */
+	transition: visibility 0s .4s, opacity 0s .4s, transform .4s;
 	transition-timing-function: cubic-bezier(.3,.3,0,1);
-	visibility: hidden;
 	box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+	visibility: hidden;
 	z-index: 16;
 }
 .nav-drawer.active {
@@ -571,8 +572,11 @@ section.main {
 	min-height: calc(100vh - 300px);
 	padding: 16px 20% 220px;
 	background: #FFF;
-	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
+	transition: box-shadow .3s ease;
+}
+.shadow ~ section.main {
+	box-shadow: 0 -8px 10px -5px rgba(0,0,0,.4), 0 -16px 24px 2px rgba(0,0,0,.28), 0 -6px 30px 5px rgba(0,0,0,.24);
 }
 section.title + section.main {
 	padding-top: 48px;

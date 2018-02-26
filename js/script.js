@@ -25,6 +25,15 @@ function imgLoad() {
 	}
 }
 
+// First checks if passive event listeners are supported. Passive event listeners help to improve touch latency and overall performance.
+var supportsPassive = false;
+document.createElement("div").addEventListener("test", function () { }, {
+	get passive() {
+		supportsPassive = true;
+		return false;
+	}
+});
+
 // Basic nav drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
 	$scrim = document.getElementsByClassName('scrim')[0],
@@ -247,20 +256,47 @@ window.addEventListener('resize', function() {
 
 // Detect if mouse is hovering above the navbar or if mouse is aroung the spot of the navbar if navbar is hidden
 var $navdetecthover = document.getElementsByClassName('nav-detect-hover')[0],
-	navhover = false;
-$navbar.addEventListener('pointerenter', navEnter);
-$navdetecthover.addEventListener('pointerenter', navEnter);
+	navhover = false,
+	navtouch,
+	navtouchtimer;
+
+$navbar.addEventListener('mouseenter', navEnter);
+$navdetecthover.addEventListener('mouseenter', navEnter);
+
+$navbar.addEventListener('touchstart', function() {
+	clearTimeout(navtouchtimer);
+	navtouch = true;
+}, supportsPassive ? { passive: true } : false);
+$navdetecthover.addEventListener('touchstart', function() {
+	clearTimeout(navtouchtimer);
+	navtouch = true;
+}, supportsPassive ? { passive: true } : false);
+
 function navEnter(e) {
-	if (e.pointerType == 'touch') return false;
+	if (navtouch) return false;
 	navhover = true;
 	$navbar.classList.remove('hide');
 }
-$navbar.addEventListener('pointerleave', navLeave);
-$navdetecthover.addEventListener('pointerleave', navLeave);
+
+$navbar.addEventListener('mouseleave', navLeave);
+$navdetecthover.addEventListener('mouseleave', navLeave);
+
+$navbar.addEventListener('touchend', function() {
+	navtouchtimer = setTimeout(function() {
+		navtouch = false;
+	}, 400);
+}, supportsPassive ? { passive: true } : false);
+$navdetecthover.addEventListener('touchend', function() {
+	navtouchtimer = setTimeout(function() {
+		navtouch = false;
+	}, 400);
+}, supportsPassive ? { passive: true } : false);
+
 function navLeave(e) {
-	if (e.pointerType == 'touch' && document.getElementsByClassName('carousel')[0] && $parallax) $parallax.click();
+	if (navtouch && document.getElementsByClassName('carousel')[0] && $parallax) $parallax.click();
 	navhover = false;
 }
+
 // The scrolling function that gets called 60 times a second to ensure smooth performance. The $parallax refers to the top element which would have a parallax effect when scrolling down. $parallax needs to be initialised separately for each individual page which needs it
 function scrolling() {
 	latestY = window.pageYOffset;
@@ -274,20 +310,22 @@ function scrolling() {
 			$parallax.style.opacity = 1 - latestY / windowHeight;
 		}
 	}
-	if (mousemove && latestY < 10 && $parallax) {
+	if (mousemove && latestY < 20 && $parallax) {
 		$navbar.classList.remove('hide');
 		$parallax.classList.add('mousemove');
 	}
 	else if ($parallax) {
-		if (!mousemove && latestY < 10 && !navhover) $navbar.classList.add('hide');
+		if (!mousemove && latestY < 20 && !navhover) $navbar.classList.add('hide');
 		$parallax.classList.remove('mousemove');
 	}
-	if (latestY > previousY && latestY >= 10 && !navhover) {
+	if (latestY > previousY && latestY >= 20 && !navhover) {
 		$navbar.classList.add('hide');
 	}
-	if (latestY >= 10 && latestY < previousY || latestY != previousY && previousY == null) {
+	if (latestY >= 5 && latestY < previousY || latestY != previousY && previousY == null) {
 		$navbar.classList.remove('hide');
 	}
+	if ($parallax && latestY < 5) $parallax.parentElement.classList.remove('shadow');
+	else if ($parallax) $parallax.parentElement.classList.add('shadow');
 	previousY = latestY;
 	requestAnimationFrame(scrolling);
 }
@@ -322,14 +360,6 @@ $navdrawer.children[0].addEventListener('scroll', function() {
 	}
 });
 
-// First checks if passive event listeners are supported. Passive event listeners help to improve touch latency and overall performance.
-var supportsPassive = false;
-document.createElement("div").addEventListener("test", function() {}, {
-	get passive() {
-		supportsPassive = true;
-		return false;
-	}
-});
 document.addEventListener('touchstart', startDrag, supportsPassive ? {passive: true} : false);
 document.addEventListener('touchmove', mainDrag, supportsPassive ? {passive: true} : false);
 document.addEventListener('touchend', endDrag, supportsPassive ? {passive: true} : false);

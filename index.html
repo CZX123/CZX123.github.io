@@ -19,27 +19,25 @@ body.loaded > .progress {
 	transition: transform .3s, visibility 0s .3s;
 }
 section.parallax-wrapper {
-	position: relative;
+	position: fixed;
 	height: 100vh;
+	top: 0;
+	right: 0;
+	left: 0;
 	background: #000;
 }
 section.parallax-wrapper .carousel {
 	display: flex;
 	align-items: center;
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	transform-origin: top;
+	position: relative;
+	height: 100vh;
 }
 section.parallax-wrapper::after {
 	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	display: block;
+	position: relative;
+	height: 100vh;
+	top: -100vh;
 	background: #000;
 	pointer-events: none;
 }
@@ -267,6 +265,9 @@ section.parallax-wrapper::after {
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
+}
+section.main {
+	margin-top: 100vh;
 }
 </style>
 <script>
