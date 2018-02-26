@@ -243,7 +243,6 @@ var $navbar = document.getElementsByClassName('navbar')[0],
 	previousY,
 	windowHeight = window.innerHeight,
 	resize,
-	isIE = navigator.userAgent.indexOf("Edge") > -1 || navigator.userAgent.indexOf("Trident/7.0") > -1,
 	mousemove = true,
 	$parallax = false, // By default there is no $parallax element and mousemove variable for the carousel. Add the $parallax element in the script tag on pages with the element. There is no need to define mousemove though.
 	parallaxY;
@@ -307,7 +306,7 @@ function scrolling() {
 		}
 		if ($parallax && latestY <= windowHeight) {
 			$parallax.style.transform = 'translate3d(0,' + Math.round(-latestY / 2 * 100) / 100 + 'px,0)';
-			$parallax.style.opacity = 1 - latestY / windowHeight;
+			$parallax.style.opacity = Math.round((1 - latestY / windowHeight) * 100) / 100;
 		}
 	}
 	if (mousemove && latestY < 20 && $parallax) {
