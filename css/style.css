@@ -43,6 +43,9 @@ button > * {
 	height: 100%;
 	overflow: visible; /* Needed for ripple effect to work */
 }
+::-moz-focus-inner { /* Make the dashed border go away in Firefox */
+	border: 0;
+}
 
 /* Navbar styles */
 .navbar, .nav-detect-hover {
