@@ -574,6 +574,13 @@ removeListener = function() {
 	mousemove = true;
 	$body.classList.remove('img-loading');
 	$body.classList.remove('loaded');
+	var split = window.location.href.split('/'),
+		filename = split.pop();
+	if (!filename) {
+		$body.classList.add('img-loading');
+		$body.classList.add('loaded');
+		imgcount = 0;
+	}
 }
 </script>
 </body>
