@@ -8,20 +8,20 @@
 <link rel="icon" href="images/hci.png">
 <link rel="shortcut icon" href="images/hci.png">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Lato:400,400i">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Mukta">
 <link rel="stylesheet" href="css/flickity.min.css">
 <link rel="stylesheet" href="css/style.css">
 
 <style class="ajax-style">
 b {
 	display: block;
-	font-size: 19px;
+	font-size: 1em;
 	font-family: Roboto, sans-serif;
 	font-weight: 500;
 }
 section.main h1 {
 	margin: 44px 0 28px;
-	font-size: 40px;
+	font-size: 2.85em;
 }
 section.main p {
 	line-height: 1.8;
@@ -87,12 +87,12 @@ section.main p {
 }
 .carousel .carousel-cell h3, .carousel .carousel-image h3 {
 	padding: 20px 16px 8px;
-	font-size: 18px;
+	font-size: 1.28em;
 	font-weight: 500;
 }
 .carousel .carousel-cell p, .carousel .carousel-image p {
 	padding: 0 32px;
-	font-size: 16px;
+	font-size: 1.15em;
 	line-height: 28px;
 	text-align: justify;
 	text-align-last: center;
@@ -104,7 +104,7 @@ section.main p {
 }
 .carousel .carousel-cell .year, .carousel .carousel-image .year {
 	padding: 10px 16px 20px;
-	font-size: 20px;
+	font-size: 1.45em;
 	font-weight: 500;
 }
 .years {
@@ -133,12 +133,12 @@ section.main p {
 .main .years button > div {
 	padding: 4px 8px;
 	color: rgba(0,0,0,.54);
-	font-size: 18px;
+	font-size: 1.28em;
 	transition: all .36s;
 }
 .main .years button.active > div {
 	color: rgba(0,0,0,.87);
-	font-size: 20px;
+	font-size: 1.45em;
 	font-weight: 500;
 }
 .main .years.image-selected button.hover, .main .years.image-selected button:active {
@@ -606,7 +606,6 @@ section.main .first-cell ~ .flickity-prev, section.main .last-cell ~ .flickity-n
 
 <div class="error">An error occured. Please try again later.</div>
 <script src="js/flickity.pkgd.min.js"></script>
-<script src="js/pep.min.js"></script>
 <script src="js/script.js"></script>
 <script class="ajax-script">
 $ajaxscript = document.getElementsByClassName('ajax-script')[0];
@@ -687,12 +686,13 @@ function checkCell() {
 			$prevactivebutton.classList.remove('active');
 			$activebutton.classList.add('active');
 			var left = $activebutton.offsetLeft,
-				width = 123,
+				width = 125, /* Exact width of an expanded button of the period of years */
 				divwidth = $years.offsetWidth;
+			if (!$activebutton.nextElementSibling) width = 149; /* Special case when the button is the last and the width is a little bit higher than the rest due to the word "Present" */
 			prevelement = $activebutton.previousElementSibling;
 			while (prevelement) {
 				if (prevelement == $prevactivebutton) {
-					left = left - 12;
+					left = left - 15;
 					break;
 				}
 				prevelement = prevelement.previousElementSibling;

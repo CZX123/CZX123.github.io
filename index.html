@@ -8,7 +8,7 @@
 <link rel="icon" href="images/hci.png">
 <link rel="shortcut icon" href="images/hci.png">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Lato:400,400i">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Mukta">
 <link rel="stylesheet" href="css/flickity.min.css">
 <link rel="stylesheet" href="css/style.css">
 
@@ -19,27 +19,25 @@ body.loaded > .progress {
 	transition: transform .3s, visibility 0s .3s;
 }
 section.parallax-wrapper {
-	position: relative;
+	position: fixed;
 	height: 100vh;
+	top: 0;
+	right: 0;
+	left: 0;
 	background: #000;
 }
 section.parallax-wrapper .carousel {
 	display: flex;
 	align-items: center;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	transform-origin: top;
+	position: relative;
+	height: 100vh;
 }
 section.parallax-wrapper::after {
 	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	display: block;
+	position: relative;
+	height: 100vh;
+	top: -100vh;
 	background: #000;
 	pointer-events: none;
 }
@@ -232,17 +230,18 @@ section.parallax-wrapper::after {
 	position: absolute;
 	left: 50%;
 	bottom: 10px;
+	visibility: hidden;
 	opacity: 0;
 	transform: translateX(-50%);
 	transform-origin: bottom;
-	transition: opacity .3s cubic-bezier(.4,0,.2,1);
+	transition: opacity .3s cubic-bezier(.4,0,.2,1), visibility 0s .3s;
 	pointer-events: none;
 	z-index: 1;
 }
 .tip span {
 	margin-bottom: -4px;
 	color: rgba(255,255,255,.8);
-	font-size: 15px;
+	font-size: 1.1em;
 	font-weight: 500;
 	transform: translateY(8px);
 	transition: transform .3s cubic-bezier(.4,0,.2,1);
@@ -255,7 +254,9 @@ section.parallax-wrapper::after {
 	transition: transform .3s cubic-bezier(.4,0,.2,1);
 }
 .tip-appear ~ .tip {
+	visibility: visible;
 	opacity: 1;
+	transition-delay: 0s;
 }
 .tip-appear ~ .tip span, .tip-appear ~ .tip svg {
 	transform: translateY(0);
@@ -265,14 +266,15 @@ section.parallax-wrapper::after {
 	opacity: 0;
 	transition: opacity .3s cubic-bezier(0,0,.2,1), visibility 0s .3s;
 }
+section.main {
+	margin-top: 100vh;
+}
 </style>
 <script>
 	var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0, $body = document.getElementsByTagName('body')[0];
 	function imgLoad() {
 		imgcount += 1;
-		console.log('loaded');
 		if (imgcount == carouselimg.length) {
-			console.log('all images loaded');
 			imgcount = 0;
 			$body.classList.add("loaded");
 		}
@@ -456,7 +458,6 @@ section.parallax-wrapper::after {
 
 <div class="error">An error occured. Please try again later.</div>
 <script src="js/flickity.pkgd.min.js"></script>
-<script src="js/pep.min.js"></script>
 <script src="js/script.js"></script>
 <script class="ajax-script">
 $ajaxscript = document.getElementsByClassName('ajax-script')[0];
@@ -552,7 +553,6 @@ carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
 if (imgcount == carouselimg.length) {
 	imgcount = 0;
 	$body.classList.add("loaded");
-	console.log('all images loaded');
 }
 
 $parallax.classList.add('tip-appear');

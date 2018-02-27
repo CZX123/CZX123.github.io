@@ -8,7 +8,7 @@
 <link rel="icon" href="images/hci.png">
 <link rel="shortcut icon" href="images/hci.png">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Lato:400,400i">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500|Roboto+Slab|Mukta">
 <link rel="stylesheet" href="css/flickity.min.css">
 <link rel="stylesheet" href="css/style.css">
 
@@ -17,33 +17,34 @@ section {
 	text-align: center;
 }
 section.parallax-wrapper {
+	position: fixed;
 	height: 100vh;
+	top: 0;
+	right: 0;
+	left: 0;
 	background: #000;
 }
 section.parallax-wrapper .parallax {
 	position: relative;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
 	height: 100vh;
-	transform-origin: top;
 }
 section.parallax-wrapper .exco-image, section.parallax-wrapper .exco-background {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	position: relative;
+	height: 100vh;
+	top: -100vh;
 	background: url(exco/exco-image.jpg) center no-repeat;
 	background-size: contain;
 	z-index: 1;
 }
 section.parallax-wrapper .exco-background {
+	top: 0;
 	background-size: cover;
 	-webkit-filter: blur(15px);
 	filter: blur(15px);
 	transform: scale(1.2);
+}
+section.main {
+	margin-top: 100vh;
 }
 section.main a {
 	display: block;
@@ -56,7 +57,7 @@ section.main a img {
 section.main a .desc {
 	padding: 12px 16px;
 	background: #F5F5F5;
-	font-size: 16px;
+	font-size: 1.15em;
 	font-weight: 500;
 	line-height: 24px;
 }
@@ -199,7 +200,6 @@ section.main a .ripple.appear, section.main a .ripple.finish.fade-out {
 </div>
 <div class="error">An error occured. Please try again later.</div>
 <script src="js/flickity.pkgd.min.js"></script>
-<script src="js/pep.min.js"></script>
 <script src="js/script.js"></script>
 <script class="ajax-script">
 $ajaxscript = document.getElementsByClassName('ajax-script')[0];

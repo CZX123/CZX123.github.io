@@ -19,13 +19,20 @@ var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
 if (!imgcount) var imgcount = 0;
 function imgLoad() {
 	imgcount += 1;
-	console.log('loaded');
 	if (imgcount == carouselimg.length) {
 		imgcount = 0;
 		$body.classList.add("loaded");
-		console.log('all images loaded');
 	}
 }
+
+// First checks if passive event listeners are supported. Passive event listeners help to improve touch latency and overall performance.
+var supportsPassive = false;
+document.createElement("div").addEventListener("test", function () { }, {
+	get passive() {
+		supportsPassive = true;
+		return false;
+	}
+});
 
 // Basic nav drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
@@ -62,32 +69,30 @@ function changePage(url) {
 	// XMLHttpRequest below to fetch the other page
 	try {
 		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				window.scrollTo(0,pageswitchY);
-				var $wrapper = document.createElement('div');
-				$wrapper.innerHTML = xhr.responseText;
-				$newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
+		xhr.onload = function() {
+			window.scrollTo(0, pageswitchY);
+			var $wrapper = document.createElement('div');
+			$wrapper.innerHTML = xhr.responseText;
+			$newcontent = $wrapper.getElementsByClassName('ajax-content')[0],
 				$newstyle = $wrapper.getElementsByClassName('ajax-style')[0],
 				$newscript = $wrapper.getElementsByClassName('ajax-script')[0];
-				newtitle = $wrapper.getElementsByTagName('title')[0].innerText;
-				if (!$newcontent) {
-					error();
-					$body.classList.remove('loading');
-					$ajaxcontent.classList.remove('hide');
-					return false;
-				}
-				if (url.substring(0,4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
-				oldUrl = window.location.href;
-				filerequested = true;
-				if (animationcomplete) changeContent();
-			}
-			else if (this.readyState == 4) {
+			newtitle = $wrapper.getElementsByTagName('title')[0].innerText;
+			if (!$newcontent) {
 				error();
-				$ajaxcontent.classList.remove('hide');
 				$body.classList.remove('loading');
-				pageswitching = false;
+				$ajaxcontent.classList.remove('hide');
+				return false;
 			}
+			if (url.substring(0, 4) != 'http') history.pushState(null, null, url); // Checking if user pressed back or not
+			oldUrl = window.location.href;
+			filerequested = true;
+			if (animationcomplete) changeContent();
+		};
+		xhr.onerror = xhr.onabort = function() {
+			error();
+			$ajaxcontent.classList.remove('hide');
+			$body.classList.remove('loading');
+			pageswitching = false;
 		};
 		xhr.open("GET", url);
 		xhr.send();
@@ -213,6 +218,7 @@ function dropdownCheck() {
 		}
 	}
 }
+dropdownCheck();
 function dropdownTransition(iterations, $elem, start, end) {
 	var dropdowntotal = 36,
 		diff = end - start;
@@ -226,7 +232,6 @@ function dropdownTransition(iterations, $elem, start, end) {
 		$currentelement = $elem;
 	}
 	else {
-		if (end != 0) $dropdowncontent.style.visibility = 'hidden';
 		$currentelement = false;
 		animation = false;
 	}
@@ -238,7 +243,6 @@ var $navbar = document.getElementsByClassName('navbar')[0],
 	previousY,
 	windowHeight = window.innerHeight,
 	resize,
-	isIE = navigator.userAgent.indexOf("Edge") > -1 || navigator.userAgent.indexOf("Trident/7.0") > -1,
 	mousemove = true,
 	$parallax = false, // By default there is no $parallax element and mousemove variable for the carousel. Add the $parallax element in the script tag on pages with the element. There is no need to define mousemove though.
 	parallaxY;
@@ -251,20 +255,47 @@ window.addEventListener('resize', function() {
 
 // Detect if mouse is hovering above the navbar or if mouse is aroung the spot of the navbar if navbar is hidden
 var $navdetecthover = document.getElementsByClassName('nav-detect-hover')[0],
-	navhover = false;
-$navbar.addEventListener('pointerenter', navEnter);
-$navdetecthover.addEventListener('pointerenter', navEnter);
+	navhover = false,
+	navtouch,
+	navtouchtimer;
+
+$navbar.addEventListener('mouseenter', navEnter);
+$navdetecthover.addEventListener('mouseenter', navEnter);
+
+$navbar.addEventListener('touchstart', function() {
+	clearTimeout(navtouchtimer);
+	navtouch = true;
+}, supportsPassive ? { passive: true } : false);
+$navdetecthover.addEventListener('touchstart', function() {
+	clearTimeout(navtouchtimer);
+	navtouch = true;
+}, supportsPassive ? { passive: true } : false);
+
 function navEnter(e) {
-	if (e.pointerType == 'touch') return false;
+	if (navtouch) return false;
 	navhover = true;
 	$navbar.classList.remove('hide');
 }
-$navbar.addEventListener('pointerleave', navLeave);
-$navdetecthover.addEventListener('pointerleave', navLeave);
+
+$navbar.addEventListener('mouseleave', navLeave);
+$navdetecthover.addEventListener('mouseleave', navLeave);
+
+$navbar.addEventListener('touchend', function() {
+	navtouchtimer = setTimeout(function() {
+		navtouch = false;
+	}, 400);
+}, supportsPassive ? { passive: true } : false);
+$navdetecthover.addEventListener('touchend', function() {
+	navtouchtimer = setTimeout(function() {
+		navtouch = false;
+	}, 400);
+}, supportsPassive ? { passive: true } : false);
+
 function navLeave(e) {
-	if (e.pointerType == 'touch' && document.getElementsByClassName('carousel')[0] && $parallax) $parallax.click();
+	if (navtouch && document.getElementsByClassName('carousel')[0] && $parallax) $parallax.click();
 	navhover = false;
 }
+
 // The scrolling function that gets called 60 times a second to ensure smooth performance. The $parallax refers to the top element which would have a parallax effect when scrolling down. $parallax needs to be initialised separately for each individual page which needs it
 function scrolling() {
 	latestY = window.pageYOffset;
@@ -273,30 +304,27 @@ function scrolling() {
 			resize = false;
 			dropdownCheck();
 		}
-		if ($parallax && latestY <= windowHeight && isIE == false) {
-			$parallax.style.transform = 'translate3d(0,' + Math.round(Math.pow(latestY,.85)/(2*Math.pow(windowHeight,-.15))*1e2)/1e2 + 'px,0)';
-		}
-		if ($parallax && latestY <= windowHeight && isIE) {
-			$parallax.style.transform = 'scale(' + (1 + latestY/windowHeight/4) + ')';
-		}
 		if ($parallax && latestY <= windowHeight) {
-			$parallax.style.opacity = 1 - latestY/windowHeight;
+			$parallax.style.transform = 'translate3d(0,' + Math.round(-latestY / 2 * 100) / 100 + 'px,0)';
+			$parallax.style.opacity = Math.round((1 - latestY / windowHeight) * 100) / 100;
 		}
 	}
-	if (mousemove && latestY < 10 && $parallax) {
+	if (mousemove && latestY < 20 && $parallax) {
 		$navbar.classList.remove('hide');
 		$parallax.classList.add('mousemove');
 	}
 	else if ($parallax) {
-		if (!mousemove && latestY < 10 && !navhover) $navbar.classList.add('hide');
+		if (!mousemove && latestY < 20 && !navhover) $navbar.classList.add('hide');
 		$parallax.classList.remove('mousemove');
 	}
-	if (latestY > previousY && latestY >= 10 && !navhover) {
+	if (latestY > previousY && latestY >= 20 && !navhover) {
 		$navbar.classList.add('hide');
 	}
-	if (latestY >= 10 && latestY < previousY || latestY != previousY && previousY == null) {
+	if (latestY >= 5 && latestY < previousY || latestY != previousY && previousY == null) {
 		$navbar.classList.remove('hide');
 	}
+	if ($parallax && latestY < 5) $parallax.parentElement.classList.remove('shadow');
+	else if ($parallax) $parallax.parentElement.classList.add('shadow');
 	previousY = latestY;
 	requestAnimationFrame(scrolling);
 }
@@ -316,27 +344,43 @@ var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
 	iterations = 0, // Variables below are used for the transition for the navdrawer (whether it opens or closes) after the user removes finger from the screen
 	start,
 	total,
-	ripplebug; // This is a variable to help in solving a bug where clicking a link in the nav drawer closes the nav drawer
+	ripplebug, // This is a variable to help in solving a bug where clicking a link in the nav drawer closes the nav drawer
+	navdrawerscrolling,
+	navdrawerscrollingtimer;
 
-// First checks if passive event listeners are supported. Passive event listeners help to improve touch latency and overall performance.
-var supportsPassive = false;
-document.createElement("div").addEventListener("test", function() {}, {
-	get passive() {
-		supportsPassive = true;
-		return false;
+// A listener to detect whether navdrawer is being scrolled so as to prevent dragging of navdrawer
+$navdrawer.children[0].addEventListener('scroll', function() {
+	clearTimeout(navdrawerscrollingtimer);
+	navdrawerscrolling = true;
+	if (!dragging) {
+		navdrawerscrollingtimer = setTimeout(function() {
+			if (!dragging) navdrawerscrolling = false;
+		}, 300);
 	}
 });
+
 document.addEventListener('touchstart', startDrag, supportsPassive ? {passive: true} : false);
 document.addEventListener('touchmove', mainDrag, supportsPassive ? {passive: true} : false);
 document.addEventListener('touchend', endDrag, supportsPassive ? {passive: true} : false);
 document.addEventListener('touchcancel', endDrag, supportsPassive ? {passive: true} : false);
 // The dragging function. Runs 60 times a second
 function navDragging() {
-	if (dragging == 'started') {
+	if (navdrawerscrolling) {
+		dragging = false;
+		navAppear = true;
+		iterations = 0;
+		$navdrawer.style.transform = '';
+		$scrim.style.opacity = '';
+		$navdrawer.classList.remove('dragging');
+		diffX = 3;
 		requestAnimationFrame(navDragging);
 		return false;
 	}
-	if (dragging) navTranslate = navX - navdrawerwidth;
+	else if (dragging == 'started') {
+		requestAnimationFrame(navDragging);
+		return false;
+	}
+	else if (dragging) navTranslate = navX - navdrawerwidth;
 	$navdrawer.style.transform = 'translate3d(' + navTranslate + 'px,0,0)';
 	$scrim.style.opacity = Math.round((navTranslate + navdrawerwidth)/navdrawerwidth*1e2)/1e2;
 	if (dragging) {
@@ -345,6 +389,7 @@ function navDragging() {
 	}
 	// When dragging the nav drawer into view but force is not enough OR dragging it out of view and force is enough
 	else if (diffX <= -2 || -2 < diffX && diffX < 2 && navX < navdrawerwidth/2) {
+		navAppear = false;
 		start = navTranslate;
 		total = 220;
 		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
@@ -362,6 +407,7 @@ function navDragging() {
 	}
 	// When dragging the nav drawer into view and force is enough OR dragging it out of view but force is not enough
 	else {
+		navAppear = true;
 		start = navTranslate;
 		total = 220;
 		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
@@ -416,11 +462,13 @@ function mainDrag(e) {
 		dragging = true;
 		$navdrawer.style.transition = 'none';
 		$scrim.style.transition = 'none';
-		actualX = Math.round(e.touches[0].clientX*10)/10;
-		if (actualX >= initialX) navX = navdrawerwidth;
-		else navX = Math.round(e.touches[0].clientX*10)/10 - initialX + navdrawerwidth;
-		diffX = navX - previousNavX;
-		previousNavX = navX;
+		if (!navdrawerscrolling) {
+			actualX = Math.round(e.touches[0].clientX*10)/10;
+			if (actualX >= initialX) navX = navdrawerwidth;
+			else navX = Math.round(e.touches[0].clientX*10)/10 - initialX + navdrawerwidth;
+			diffX = navX - previousNavX;
+			previousNavX = navX;
+		}
 	}
 }
 // Finger leaves the screen
@@ -428,13 +476,13 @@ function endDrag(e) {
 	if (e.target == $dragnavdrawer) {
 		dragging = false;
 		$navdrawer.classList.remove('dragging');
-		if (diffX >= 2 || -2 < diffX && diffX < 2 && navX > navdrawerwidth/2) navAppear = true;
+		navdrawerscrolling = false;
 	}
 	if (navAppear) {
 		if (dragging = 'started') ripplebug = true;
 		dragging = false;
 		$navdrawer.classList.remove('dragging');
-		if (diffX < -2 || -2 < diffX && diffX < 2 && navX <= navdrawerwidth/2) navAppear = false;
+		navdrawerscrolling = false;
 	}
 }
 
@@ -444,7 +492,11 @@ var $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button'), // T
 	rippledown = false, // A boolean which states if the button is creatly being held and the ripple is active
 	x, // x-coordinate of ripple circle's centre
 	y, // y-coordinate of ripple circle's centre
-	rippletimer = 0; // To prevent the ripple from disappearing to fast if the click was very fast
+	ripplecount = -1,
+	rippletimerarray = [], // To prevent the ripple from disappearing to fast if the click was very fast
+	$rippleelementsarray = [],
+	touch,
+	touchtimer;
 
 // Activate the ripple effect be adding a 'div' with the class of 'ripple' to every element in the $ripplelist. Also adds the event listeners.
 function rippleCheck() {
@@ -471,58 +523,123 @@ function rippleCheck() {
 			else $ripplelist[i].parentElement.appendChild($div);
 		}
 		else $ripplelist[i].lastElementChild.appendChild($div);
-		$ripplelist[i].addEventListener('pointerdown', function(e) {
-			rippleDown(this, e);
-		});
-		$ripplelist[i].addEventListener('pointerup', function(e) {
-			rippleUp(this, e);
-		});
-		$ripplelist[i].addEventListener('pointerleave', function(e) {
-			rippleUp(this, e);
-			hover(this, e, 'leave');
-		});
-		$ripplelist[i].addEventListener('pointerenter', function(e) {
-			hover(this, e, 'enter');
-		});
+		if ('PointerEvent' in window) {
+			$ripplelist[i].addEventListener('pointerdown', function(e) {
+				rippleDown(this, [e.clientX - this.getBoundingClientRect().left,
+				                  e.clientY - this.getBoundingClientRect().top]);
+			});
+			$ripplelist[i].addEventListener('pointerup', function(e) {
+				rippleUp(this);
+			});
+			$ripplelist[i].addEventListener('pointerleave', function(e) {
+				rippleUp(this);
+				hover(this, e, 'leave');
+			});
+			$ripplelist[i].addEventListener('pointerenter', function(e) {
+				hover(this, e, 'enter');
+			});
+		}
+		else {
+			$ripplelist[i].addEventListener('mousedown', function(e) {
+				if (!touch) rippleDown(this, [e.clientX - this.getBoundingClientRect().left,
+				                              e.clientY - this.getBoundingClientRect().top]);
+			});
+			$ripplelist[i].addEventListener('mouseup', function(e) {
+				if (!touch) rippleUp(this);
+			});
+			$ripplelist[i].addEventListener('mouseleave', function(e) {
+				if (!touch) {
+					rippleUp(this);
+					hover(this, e, 'leave');
+				}
+			});
+			$ripplelist[i].addEventListener('mouseenter', function(e) {
+				if (!touch) hover(this, e, 'enter');
+			});
+			$ripplelist[i].addEventListener('touchstart', function(e) {
+				clearTimeout(touchtimer);
+				touch = true;
+				rippleDown(this, [e.touches[0].clientX - this.getBoundingClientRect().left,
+				                  e.touches[0].clientY - this.getBoundingClientRect().top]);
+			}, supportsPassive ? { passive: true } : false);
+			$ripplelist[i].addEventListener('touchend', function(e) {
+				rippleUp(this);
+				touchtimer = setTimeout(function() {
+					touch = false;
+				}, 400);
+			}, supportsPassive ? { passive: true } : false);
+			$ripplelist[i].addEventListener('touchmove', function(e) {
+				rippleUp(this);
+				touchtimer = setTimeout(function() {
+					touch = false;
+				}, 400);
+			}, supportsPassive ? { passive: true } : false);
+			$ripplelist[i].addEventListener('touchcancel', function(e) {
+				rippleUp(this);
+				touchtimer = setTimeout(function() {
+					touch = false;
+				}, 400);
+			}, supportsPassive ? { passive: true } : false);
+		}
 	}
 }
 rippleCheck();
 // This hover effect is needed to replace CSS ':hover' because ':hover' also happens with touchscreens which isn't ideal. Hover effects can only happen with a mouse.
 function hover(element, e, direction) {
-	if (e.pointerType == 'touch') return false;
+	if (e.pointerType) if (e.pointerType == 'touch') return false;
 	if (direction == 'enter') element.classList.add('hover');
 	else element.classList.remove('hover');
 }
 function rippleDown(element, e) {
 	rippledown = true;
+	// The target refers to the ripple element found inside (or beside) the element
+	// 1st case: element is a link element <a> and it does not have a class of 'button'
 	var target = element.parentElement.lastElementChild;
+	// 2nd case: element is a link element <a> and it does have a class named 'button'
 	if (element.tagName == 'A' && element.classList) {
 		if (element.classList.contains('button')) target = element.lastElementChild;
 	}
+	// 3rd case: element is a button
 	else target = element.lastElementChild.lastElementChild;
-	if (rippletimer) {
-		clearTimeout(rippletimer);
-		timer2 = rippletimer;
-		target.classList.remove('appear');
+	for (var i = ripplecount; i > -1; i--) {
+		if ($rippleelementsarray[i] == element) {
+			rippletimerarray[ripplecount] = 0;
+			target.classList.remove('appear');
+			break;
+		}
+		else if (!$rippleelementsarray[i]) {
+			if (i == ripplecount) { // Empty both arrays and reset count when no ripples are happening
+				ripplecount = -1;
+				rippletimerarray = [];
+				$rippleelementsarray = [];
+			}
+			break;
+		}
 	}
-	target.classList.remove('fade-out', 'finish');
-	x = Math.round(e.clientX - element.getBoundingClientRect().left);
-	y = Math.round(e.clientY - element.getBoundingClientRect().top);
-	var radius = Math.max(Math.sqrt(x*x + y*y),
-						  Math.sqrt(x*x + (element.offsetHeight-y)*(element.offsetHeight-y)),
-						  Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + y*y),
-				 		  Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + (element.offsetHeight-y)*(element.offsetHeight-y)));
+	target.classList.remove('fade-out');
+	target.classList.remove('finish');
+	x = Math.round(e[0]);
+	y = Math.round(e[1]);
+	var radius = Math.ceil(Math.max(Math.sqrt(x*x + y*y),
+	                                Math.sqrt(x*x + (element.offsetHeight-y)*(element.offsetHeight-y)),
+	                                Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + y*y),
+	                                Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + (element.offsetHeight-y)*(element.offsetHeight-y))
+	                                ) * 10
+                          ) / 10;
 	target.style.height = target.style.width = radius * 2 + 'px';
-	target.style.top = y + 'px';
-	target.style.left = x + 'px';
+	target.style.top = y - radius + 'px';
+	target.style.left = x - radius + 'px';
 	target.classList.add('appear');
-	rippletimer = setTimeout(function() {
+	ripplecount += 1;
+	var pastripplecount = ripplecount;
+	rippletimerarray[ripplecount] = setTimeout(function() {
 		target.classList.add('finish');
 		if (target.classList.contains('fade-out')) target.classList.remove('appear');
-		rippletimer = 0;
+		$rippleelementsarray[pastripplecount] = 0;
+		rippletimerarray[pastripplecount] = 0;
 	}, 400);
 }
-function rippleUp(element, e) {
+function rippleUp(element) {
 	rippledown = false;
 	var target = element.parentElement.lastElementChild;
 	if (element.tagName == 'A' && element.classList) {
@@ -530,13 +647,12 @@ function rippleUp(element, e) {
 	}
 	else target = element.lastElementChild.lastElementChild;
 	target.classList.add('fade-out');
-	if (!rippletimer) target.classList.remove('appear');
-	setTimeout(function() {
-		if (rippledown == false && target.classList.contains('appear')) {
-			target.classList.add('finish');
-			target.classList.remove('appear');
-		}
-	}, 400);
+	if (!rippletimerarray[ripplecount]) {
+		target.classList.remove('appear');
+		$rippleelementsarray[ripplecount] = 0; // Just in case
+		rippletimerarray[ripplecount] = 0; // Just in case
+	}
+	else rippletimerarray[ripplecount] = element;
 }
 
 var $error = document.getElementsByClassName('error')[0],

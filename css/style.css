@@ -1,7 +1,9 @@
 /* Main Styles for common components on each webpage */
 
 /* Reset all styles and General styling */
-* {
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
 }
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button {
@@ -9,10 +11,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	outline: 0;
 	padding: 0;
 	border: 0;
-	color: rgba(0,0,0,.87);
-	font: inherit;
-	font-size: 14px;
-	font-family: Roboto, sans-serif;
+	color: inherit;
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: 400;
 	line-height: 1.8;
 	text-decoration: none;
 	vertical-align: baseline;
@@ -30,6 +32,9 @@ html {
 body {
 	position: relative;
 	min-height: 100vh;
+	color: rgba(0,0,0,.87);
+	font-size: 14px;
+	font-family: Roboto, sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -43,8 +48,9 @@ button > * {
 	height: 100%;
 	overflow: visible; /* Needed for ripple effect to work */
 }
-::-moz-focus-inner { /* Make the dashed border go away in Firefox */
-	border: 0;
+::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
 }
 
 /* Navbar styles */
@@ -148,12 +154,14 @@ button > * {
 	left: 0;
 	background: #FFF;
 	overflow: hidden;
+	touch-action: pan-x;
 	opacity: 0;
-	transform: translate3d(-100%,0,0);
-	transition: visibility 0s .9s, opacity .2s .4s, transform .4s;
+	/* Translate3d to force use of GPU (may not work, but good to leave it like this) */
+	transform: translate3d(-100%,0,0) translate3d(-10px,0,0); /* Separate translate3d due to IE not supporting calc() in transforms */
+	transition: visibility 0s .4s, opacity 0s .4s, transform .4s;
 	transition-timing-function: cubic-bezier(.3,.3,0,1);
-	visibility: hidden;
 	box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+	visibility: hidden;
 	z-index: 16;
 }
 .nav-drawer.active {
@@ -364,6 +372,7 @@ button > * {
 	bottom: 0;
 	left: 0;
 	background: rgba(0,0,0,.5);
+	touch-action: pan-x;
 	opacity: 0;
 	transition: opacity .4s, visibility 0s .4s;
 	transition-timing-function: cubic-bezier(.3,.3,0,1);
@@ -392,17 +401,17 @@ button > * {
 	border-radius: 50%;
 	background: rgba(0,0,0,.08);
 	opacity: 0;
-	transform: translate(-50%,-50%) scale(0);
+	transform: scale(.01);
 	pointer-events: none;
 }
 .ripple.appear {
 	opacity: 1;
-	transform: translate(-50%,-50%) scale(1);
+	transform: scale(1);
 	transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .4s;
 }
 .ripple.finish.fade-out {
 	opacity: 0;
-	transform: translate(-50%,-50%) scale(1);
+	transform: scale(1);
 	transition: transform .5s cubic-bezier(.4,0,.2,1), opacity .5s;
 }
 
@@ -550,8 +559,8 @@ section.title h1 {
 	padding: 160px 20% 96px;
 	color: #FFF;
 	font-family: 'Roboto Slab', serif;
-	font-size: 64px;
-	line-height: 1.5;
+	font-size: 4.5em;
+	line-height: 1.2;
 }
 section.title::after {
 	content: '';
@@ -569,8 +578,11 @@ section.main {
 	min-height: calc(100vh - 300px);
 	padding: 16px 20% 220px;
 	background: #FFF;
-	box-shadow: 0 0 60px rgba(0,0,0,.2);
 	z-index: 1;
+	transition: box-shadow .3s ease;
+}
+.shadow ~ section.main {
+	box-shadow: 0 -8px 10px -5px rgba(0,0,0,.4), 0 -16px 24px 2px rgba(0,0,0,.28), 0 -6px 30px 5px rgba(0,0,0,.24);
 }
 section.title + section.main {
 	padding-top: 48px;
@@ -590,9 +602,12 @@ section.footer {
 section.footer footer, section.footer span {
 	display: block;
 	color: rgba(255,255,255,.38);
-	font-size: 16px;
+	font-size: 1.15em;
 	line-height: 24px;
 	text-align: center;
+}
+section.footer span {
+	font-size: 1em;
 }
 section.footer footer::before {
 	content: '';
@@ -622,13 +637,13 @@ section.main h1 {
 	margin: 48px 0;
 	color: rgba(0,0,0,.54);
 	font-family: 'Roboto Slab', serif;
-	font-size: 48px;
+	font-size: 3.5em;
 	line-height: 1.5;
 }
 section.main h2 {
 	margin: 24px 0 12px;
 	font-family: 'Roboto Slab', serif;
-	font-size: 28px;
+	font-size: 2em;
 	line-height: 1.5;
 }
 .error {
@@ -640,7 +655,6 @@ section.main h2 {
 	padding: 16px 24px;
 	background: #323232;
 	color: transparent;
-	font-size: 14px;
 	line-height: 24px;
 	white-space: nowrap;
 	box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
@@ -666,10 +680,10 @@ section.title h1, section.main, section.footer {
 	padding-right: 72px;
 }
 section.title h1 {
-	font-size: 56px;
+	font-size: 4em;
 }
 section.main h1 {
-	font-size: 44px;
+	font-size: 3.15em;
 }
 }
 @media (max-width: 520px) {
@@ -686,10 +700,10 @@ section.title h1, section.main, section.footer {
 	padding-right: 16px;
 }
 section.title h1 {
-	font-size: 48px;
+	font-size: 3.5em;
 }
 section.main h1 {
-	font-size: 40px;
+	font-size: 2.85em;
 }
 section.main button.dropdown {
 	border-radius: 0;
@@ -716,8 +730,9 @@ section.main .grid > * {
 }
 section.main p {
 	margin: 24px 0;
-	font-family: Lato, Roboto, sans-serif;
-	font-size: 19px;
+	font-family: Mukta, Roboto, sans-serif;
+	font-size: 1.4em;
+	line-height: 1.9;
 }
 section.main blockquote {
 	position: relative;
@@ -767,7 +782,7 @@ section.main button.dropdown div {
 	padding: 12px 56px 12px 16px;
 }
 section.main button.dropdown a {
-	font-size: 20px;
+	font-size: 1.45em;
 	font-weight: 500;
 	line-height: 24px;
 }
