@@ -228,7 +228,7 @@ section.main button.dropdown .progress > div, section.main button.dropdown .prog
 		<h1>Roll of Honour</h1>
 	</section>
 	<section class="main">
-		<button class="dropdown dropdown-open" data-fetch="2017">
+		<button class="dropdown" data-fetch="2017">
 			<div>
 				<a>2017</a>
 				<div class="caret">
@@ -373,42 +373,13 @@ section.main button.dropdown .progress > div, section.main button.dropdown .prog
 
 <div class="error">An error occured. Please try again later.</div>
 <script src="js/flickity.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/plugins/CSSPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenLite.min.js"></script>
 <script src="js/script.js"></script>
 <script class="ajax-script">
 $ajaxscript = document.getElementsByClassName('ajax-script')[0];
 var $main = document.getElementsByClassName('main')[0],
-	$preload = document.querySelector('.dropdown-open[data-fetch]');
-
-if ($preload) {
-	try {
-		var $dropdownrequest = new XMLHttpRequest(),
-			filename = $preload.getAttribute('data-fetch');
-		$preload.classList.add('loading');
-		$preload.classList.add('indeterminate');
-		$dropdownrequest.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				setTimeout(function() {
-					$preload.classList.remove('loading');
-				}, 200);
-				var $wrapper = $preload.nextElementSibling.children[0];
-				$wrapper.innerHTML = $dropdownrequest.responseText;
-				$preload.removeAttribute('data-fetch');
-			}
-			else if (this.readyState == 4) {
-				$preload.classList.remove('loading');
-				error();
-				$preload.classList.remove('dropdown-open');
-			}
-		};
-		$dropdownrequest.open("GET", 'roh/' + filename);
-		$dropdownrequest.send();
-	}
-	catch(e) {
-		$preload.classList.remove('loading');
-		error();
-		$preload.classList.remove('dropdown-open');
-	}
-}
+	$preload = document.querySelector('.dropdown[data-fetch]');
 
 $main.addEventListener('click', dropdownClick);
 function dropdownClick(e) {
@@ -447,6 +418,8 @@ function dropdownClick(e) {
 		error();
 	}
 }
+
+$preload.click();
 removeListener = function() {
 	$main.removeEventListener('click', dropdownClick);
 }

@@ -205,8 +205,8 @@ document.addEventListener('click', function(e) {
 			if ($elem.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
 			$elem.classList.toggle('dropdown-open');
 			$dropdowncontent.style.visibility = '';
-			if ($elem.classList.contains('dropdown-open')) dropdownTransition(0,$dropdowncontent,-$dropdowncontent.offsetHeight,0);
-			else dropdownTransition(0,$dropdowncontent,0,-$dropdowncontent.offsetHeight);
+			if ($elem.classList.contains('dropdown-open')) dropdownTransition($dropdowncontent,0);
+			else dropdownTransition($dropdowncontent,-$dropdowncontent.offsetHeight);
 		}
 	}
 });
@@ -227,26 +227,9 @@ function dropdownCheck() {
 	}
 }
 dropdownCheck();
-function dropdownTransition(iterations, $elem, start, end) {
-	/*
-	var dropdowntotal = 36,
-		diff = end - start;
-	if ($elem.tagName == 'UL') dropdowntotal = 24;
-	iterations++;
-	$elem.style.marginTop = easeOutCubic(iterations, start, diff, dropdowntotal) + 'px';
-	if (iterations < dropdowntotal) {
-		animation = requestAnimationFrame(function() {
-			dropdownTransition(iterations,$elem,start,end);
-		});
-		$currentelement = $elem;
-	}
-	else {
-		$currentelement = false;
-		animation = false;
-	}
-	*/
+function dropdownTransition($elem, end) {
 	if ($elem.tagName == 'UL') TweenLite.to($elem, .5, { marginTop: end, ease: Strong.easeOut });
-	else TweenLite.to($elem, .8, { marginTop: end, ease: Strong.easeOut });
+	else TweenLite.to($elem, .9, { marginTop: end, ease: Strong.easeOut });
 }
 
 // Scrolling listener for stuff like the navbar hide action and parallax effect (if have)
@@ -406,9 +389,9 @@ function navDragging() {
 		total = 220;
 		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
 		if (diffX >= 100 || diffX <= -100) total = 20;
-		navTranslate = easeOutCubic(iterations, start, 0 - navdrawerwidth - start, total);
+		navTranslate = easeOutCubic(iterations, start, 0 - navdrawerwidth - start - 16, total);
 		iterations++;
-		if (iterations < total && start != -navdrawerwidth) requestAnimationFrame(navDragging);
+		if (iterations < total && start != -navdrawerwidth - 16) requestAnimationFrame(navDragging);
 		else {
 			iterations = 0;
 			$navdrawer.removeAttribute('style');
@@ -416,6 +399,21 @@ function navDragging() {
 			$navdrawer.classList.remove('active');
 			$html.removeAttribute('style');
 		}
+		/*
+		total = 1;
+		if (diffX >= 4 || diffX < -4) total = Math.round(-0.008 * Math.abs(diffX) + 1);
+		if (diffX >= 100 || diffX <= -100) total = .2;
+		TweenLite.to($navdrawer, total/60, { xPercent: -100, x: -16, ease: Strong.easeOut,
+		onStart: function() {
+			$navdrawer.style.transform = '';
+		},
+		onComplete: function() {
+			$navdrawer.removeAttribute('style');
+			$scrim.removeAttribute('style');
+			$navdrawer.classList.remove('active');
+			$html.removeAttribute('style');
+		} });
+		*/
 	}
 	// When dragging the nav drawer into view and force is enough OR dragging it out of view but force is not enough
 	else {
@@ -433,6 +431,17 @@ function navDragging() {
 			$scrim.removeAttribute('style');
 		}
 		if (ripplebug) ripplebug = false;
+		/*
+		TweenLite.to($navdrawer, total, { x: 0, ease: Strong.easeOut,
+		onStart: function() {
+			$navdrawer.style.transform = '';
+		},
+		onComplete: function() {
+			$navdrawer.removeAttribute('style');
+			$scrim.removeAttribute('style');
+		} });
+		if (ripplebug) ripplebug = false;
+		*/
 	}
 }
 // The initial touch
