@@ -228,6 +228,7 @@ function dropdownCheck() {
 }
 dropdownCheck();
 function dropdownTransition(iterations, $elem, start, end) {
+	/*
 	var dropdowntotal = 36,
 		diff = end - start;
 	if ($elem.tagName == 'UL') dropdowntotal = 24;
@@ -243,6 +244,9 @@ function dropdownTransition(iterations, $elem, start, end) {
 		$currentelement = false;
 		animation = false;
 	}
+	*/
+	if ($elem.tagName == 'UL') TweenLite.to($elem, .4, { marginTop: end, ease: Strong.easeOut });
+	else TweenLite.to($elem, .6, { marginTop: end, ease: Strong.easeOut });
 }
 
 // Scrolling listener for stuff like the navbar hide action and parallax effect (if have)
