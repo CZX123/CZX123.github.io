@@ -1,27 +1,16 @@
 /* Main Styles for common components on each webpage */
 
 /* Reset all styles and General styling */
+:root {
+	-moz-tab-size: 4;
+	tab-size: 4;
+}
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
-}
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button {
-	margin: 0;
 	outline: 0;
-	padding: 0;
-	border: 0;
-	color: inherit;
-	font-size: inherit;
-	font-family: inherit;
-	font-weight: 400;
-	line-height: 1.8;
-	text-decoration: none;
-	vertical-align: baseline;
 	overflow: hidden;
-}
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block;
 }
 html {
 	overflow-x: hidden;
@@ -32,12 +21,41 @@ html {
 body {
 	position: relative;
 	min-height: 100vh;
+	margin: 0;
 	color: rgba(0,0,0,.87);
 	font-size: 14px;
 	font-family: Roboto, sans-serif;
+	font-weight: 400;
+	line-height: 1.8;
+	vertical-align: baseline;
+}
+h1, h2, h3, h4, h5, h6, p, a, ol, ul, li, blockquote {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	color: inherit;
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	text-decoration: none;
+	vertical-align: inherit;
 }
 ol, ul {
 	list-style: none;
+}
+button {
+	-webkit-appearance: button;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	background: none;
+	font-family: inherit;
+	font-size: 100%;
+	font-weight: inherit;
+	line-height: inherit;
+	text-transform: none;
+	margin: 0;
 }
 button, a {
 	cursor: pointer;
@@ -51,6 +69,12 @@ button > * {
 ::-moz-focus-inner {
 	border-style: none;
 	padding: 0;
+}
+:-moz-focusring {
+	outline: 1px dotted ButtonText;
+}
+b, strong {
+	font-weight: bolder;
 }
 
 /* Navbar styles */
@@ -133,7 +157,7 @@ button > * {
 	width: 24px;
 	fill: rgba(0,0,0,.54);
 }
-.navbar .menu.hover {
+.navbar .menu.hover, .tabbing .navbar .menu:focus {
 	background: #F5F5F5;
 }
 .navbar .menu:active {
@@ -153,6 +177,12 @@ button > * {
 	top: 0;
 	left: 0;
 	background: #FFF;
+	color: rgba(0,0,0,.87);
+	line-height: 20px;
+	font-weight: 500;
+	text-decoration: none;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	overflow: hidden;
 	touch-action: pan-x;
 	opacity: 0;
@@ -216,7 +246,6 @@ button > * {
 	display: block;
 	position: relative;
 	height: 48px;
-	overflow: hidden;
 }
 .nav-drawer ul li svg {
 	position: absolute;
@@ -230,37 +259,40 @@ button > * {
 	z-index: 1;
 	pointer-events: none;
 }
-.nav-drawer ul li a {
+.nav-drawer ul li a, .nav-drawer ul li button {
 	display: block;
 	padding: 14px 16px 14px 72px;
-	color: rgba(0,0,0,.87);
-	line-height: 20px;
-	font-weight: 500;
-	text-decoration: none;
-	white-space: nowrap;
-	text-overflow: ellipsis;
 	transition: background .4s, color .2s;
 }
-.nav-drawer ul li a.hover, .nav-drawer ul li a:active,
-.nav-drawer ul li.dropdown.dropdown-open.active a.hover, .nav-drawer ul li.dropdown.dropdown-open.active a:active {
+.nav-drawer ul li a.hover, .nav-drawer ul li a:active, .tabbing .nav-drawer ul li a:focus,
+.nav-drawer ul li button.hover, .nav-drawer ul li button:active, .tabbing .nav-drawer ul li button:focus,
+.nav-drawer ul li.dropdown.dropdown-open.active button.hover, .nav-drawer ul li.dropdown.dropdown-open.active button:active, .tabbing .nav-drawer ul li.dropdown.dropdown-open.active button:focus {
 	background: #F5F5F5;
 	transition: background .2s, color .2s;
 }
 .nav-drawer ul li.active svg {
 	fill: #3F51B5;
 }
-.nav-drawer ul li.active a {
+.nav-drawer ul li.active a, .nav-drawer ul li.active button {
 	background: #EEE;
 	color: #3F51B5;
+}
+.nav-drawer ul li.active a.hover, .nav-drawer ul li.active a:active, .tabbing .nav-drawer ul li.active a:focus, .nav-drawer ul li.active a.hover, .nav-drawer ul li.active button:active, .tabbing .nav-drawer ul li.active button:focus {
+	background: #E0E0E0;
 }
 .nav-drawer ul li.dropdown.dropdown-open.active svg {
 	fill: rgba(0,0,0,.54);
 }
-.nav-drawer ul li.dropdown.dropdown-open.active a {
+.nav-drawer ul li.dropdown.dropdown-open.active button {
 	background: transparent;
 	color: rgba(0,0,0,.87);
 }
-.nav-drawer ul li.dropdown a {
+.nav-drawer ul li.dropdown button {
+	width: 100%;
+	padding: 0;
+	text-align: left;
+}
+.nav-drawer ul li.dropdown button > div {
 	padding: 14px 56px 14px 72px;
 }
 .nav-drawer ul li.dropdown .caret, .nav-drawer ul li .external {
@@ -329,7 +361,7 @@ button > * {
 	width: 64px;
 	padding: 0;
 }
-.nav-drawer .social-media-icons li a.hover, .nav-drawer .social-media-icons li a:active {
+.nav-drawer .social-media-icons li a.hover, .nav-drawer .social-media-icons li a:active, .nav-drawer .tabbing .social-media-icons li a:focus {
 	background: none;
 }
 .nav-drawer .social-media-icons .facebook svg {
@@ -339,7 +371,7 @@ button > * {
 	fill: rgba(0,0,0,.54);
 	transition: fill .3s;
 }
-.nav-drawer .social-media-icons .facebook .hover svg, .nav-drawer .social-media-icons .facebook :active svg {
+.nav-drawer .social-media-icons .facebook .hover svg, .nav-drawer .social-media-icons .facebook :active svg, .tabbing .nav-drawer .social-media-icons .facebook :focus svg {
 	fill: #475993;
 }
 .nav-drawer .social-media-icons .instagram {
@@ -356,7 +388,7 @@ button > * {
 	opacity: 0;
 	transition: opacity .3s;
 }
-.nav-drawer .social-media-icons .instagram .hover > img:last-child, .nav-drawer .social-media-icons .instagram :active > img:last-child {
+.nav-drawer .social-media-icons .instagram .hover > img:last-child, .nav-drawer .social-media-icons .instagram :active > img:last-child, .tabbing .nav-drawer .social-media-icons .instagram :focus > img:last-child {
 	opacity: 1;
 }
 .nav-drawer .social-media-icons .ripple {
@@ -763,7 +795,7 @@ section.main button, section.main a.button {
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 	transition: box-shadow .2s;
 }
-section.main button.hover, section.main button:active, section.main a.button.hover, section.main a.button:active {
+section.main button.hover, section.main button:active, .tabbing section.main button:focus, section.main a.button.hover, section.main a.button:active, .tabbing section.main a.button:focus {
 	box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 }
 section.main button.dropdown {
@@ -775,7 +807,7 @@ section.main button.dropdown {
 	box-shadow: none;
 	transition: background .2s;
 }
-section.main button.dropdown.hover, section.main button.dropdown:active {
+section.main button.dropdown.hover, section.main button.dropdown:active, .tabbing section.main button.dropdown:focus {
 	background: #F5F5F5;
 }
 section.main button.dropdown div {

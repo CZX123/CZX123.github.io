@@ -34,6 +34,14 @@ document.createElement("div").addEventListener("test", function () { }, {
 	}
 });
 
+// Support for tabbing
+window.onkeyup = function(e) {
+	if (e.keyCode == 9) $body.classList.add('tabbing');
+}
+window.addEventListener('mousedown', function() {
+	$body.classList.remove('tabbing');
+}, supportsPassive ? { passive: true } : false);
+
 // Basic nav drawer interactions
 var $navdrawer = document.getElementsByClassName('nav-drawer')[0],
 	$scrim = document.getElementsByClassName('scrim')[0],

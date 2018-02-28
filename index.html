@@ -46,6 +46,27 @@ section.parallax-wrapper::after {
 	visibility: hidden;
 	transition: opacity .3s, visibility 0s .3s;
 }
+.tabbing .carousel:focus::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	animation: focused .6s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes focused {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: .5;
+	}
+	100% {
+		opacity: 0;
+	}
+}
 .carousel .flickity-viewport {
 	width: 100%;
 }
@@ -201,13 +222,16 @@ section.parallax-wrapper::after {
 }
 }
 
-.mousemove ~ .flickity-custom-button {
+.tabbing .carousel:focus ~ .flickity-custom-button, .mousemove ~ .flickity-custom-button {
 	visibility: visible;
 	opacity: 1;
 	transition-delay: 0s;
 }
-.flickity-custom-button.hover, .flickity-custom-button:active {
+.flickity-custom-button.hover, .flickity-custom-button:active, .tabbing .flickity-custom-button:focus {
 	background: rgba(0,0,0,.2);
+}
+.tabbing .flickity-custom-button:focus {
+	outline: 5px auto #2196F3;
 }
 .flickity-custom-button.flickity-prev {
 	left: 12px;
@@ -317,7 +341,7 @@ section.main {
 				<svg viewBox="0 0 24 24">
 					<path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
 				</svg>
-				<a>About HCINPCC</a>
+				<button><div>About HCINPCC</div></button>
 				<div class="caret">
 					<svg viewBox="0 0 24 24">
 						<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
@@ -336,7 +360,7 @@ section.main {
 				<svg viewBox="0 0 24 24">
 					<path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z"/>
 				</svg>
-				<a>Publications</a>
+				<button><div>Publications</div></button>
 				<div class="caret">
 					<svg viewBox="0 0 24 24">
 						<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
@@ -360,7 +384,7 @@ section.main {
 				<svg viewBox="0 0 24 24">
 					<path d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
 				</svg>
-				<a>Help</a>
+				<button><div>Help</div></button>
 				<div class="caret">
 					<svg viewBox="0 0 24 24">
 						<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
@@ -475,23 +499,37 @@ var flkty = new Flickity($parallax, {
 
 var $hoverlist = document.querySelectorAll('.flickity-custom-button, .flickity-page-dots'),
 	carouselhover = false,
-	touch = false,
-	touchtimer,
+	carouseltouch = false,
+	carouseltouchtimer,
 	h;
 
 for (h = 0; h < $hoverlist.length; h++) {
-	$hoverlist[h].addEventListener('pointerenter', function() {
-		carouselhover = true;
-		clearTimeout(timer);
-		clearTimeout(touchtimer);
-		mousemove = true;
+	$hoverlist[h].addEventListener('touchstart', function() {
+		carouseltouch = true;
 	});
-	$hoverlist[h].addEventListener('pointerleave', function(e) {
-		if (e.pointerType == 'touch') {
-			touchtimer = setTimeout(function(){carouselhover = false;}, 300);
-			timer = setTimeout(function(){mousemove = false;}, 1500);
+	$hoverlist[h].addEventListener('touchend', function() {
+		carouseltouch = true;
+		carouseltouchtimer = setTimeout(function () { carouseltouch = false; }, 400);
+		timer = setTimeout(function () { mousemove = false; }, 1500);
+	});
+	$hoverlist[h].addEventListener('mouseenter', function() {
+		if (!carouseltouch) {
+			carouselhover = true;
+			clearTimeout(timer);
+			clearTimeout(carouseltouchtimer);
+			mousemove = true;
 		}
-		else carouselhover = false;
+	});
+	$hoverlist[h].addEventListener('focus', function () {
+		if ($body.classList.contains('tabbing')) {
+			carouselhover = true;
+			clearTimeout(timer);
+			clearTimeout(carouseltouchtimer);
+			mousemove = true;
+		}
+	});
+	$hoverlist[h].addEventListener('mouseleave', function(e) {
+		carouselhover = false;
 	});
 }
 
@@ -528,11 +566,11 @@ var $prevbutton = document.getElementsByClassName('flickity-prev')[0],
 
 $prevbutton.addEventListener('click', function() {
 	flkty.previous(true);
-	$parallax.focus();
+	if (!$body.classList.contains('tabbing')) $parallax.focus();
 });
 $nextbutton.addEventListener('click', function() {
 	flkty.next(true);
-	$parallax.focus();
+	if (!$body.classList.contains('tabbing')) $parallax.focus();
 });
 
 var resizetimer;
