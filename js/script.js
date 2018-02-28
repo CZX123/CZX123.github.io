@@ -245,8 +245,8 @@ function dropdownTransition(iterations, $elem, start, end) {
 		animation = false;
 	}
 	*/
-	if ($elem.tagName == 'UL') TweenLite.to($elem, .4, { marginTop: end, ease: Strong.easeOut });
-	else TweenLite.to($elem, .6, { marginTop: end, ease: Strong.easeOut });
+	if ($elem.tagName == 'UL') TweenLite.to($elem, .5, { marginTop: end, ease: Strong.easeOut });
+	else TweenLite.to($elem, .8, { marginTop: end, ease: Strong.easeOut });
 }
 
 // Scrolling listener for stuff like the navbar hide action and parallax effect (if have)

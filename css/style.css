@@ -29,7 +29,7 @@ body {
 	line-height: 1.8;
 	vertical-align: baseline;
 }
-h1, h2, h3, h4, h5, h6, p, a, ol, ul, li, blockquote {
+h1, h2, h3, h4, h5, h6, p, a, ol, ul, li, blockquote, iframe {
 	margin: 0;
 	border: 0;
 	padding: 0;
