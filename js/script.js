@@ -228,8 +228,10 @@ function dropdownCheck() {
 }
 dropdownCheck();
 function dropdownTransition($elem, end) {
-	if ($elem.tagName == 'UL') TweenLite.to($elem, .5, { marginTop: end, ease: Strong.easeOut });
-	else TweenLite.to($elem, .9, { marginTop: end, ease: Strong.easeOut });
+	$elem.style.visibility = '';
+	TweenLite.to($elem, $elem.tagName == 'UL' ? .5 : .9, { marginTop: end, ease: Strong.easeOut, onComplete: function() {
+		if (end != 0) $elem.style.visibility = 'hidden';
+	} });
 }
 
 // Scrolling listener for stuff like the navbar hide action and parallax effect (if have)
@@ -250,7 +252,9 @@ window.addEventListener('resize', function() {
 
 // Detect if mouse is hovering above the navbar or if mouse is aroung the spot of the navbar if navbar is hidden
 var $navdetecthover = document.getElementsByClassName('nav-detect-hover')[0],
+	$menu = document.getElementsByClassName('menu')[0],
 	navhover = false,
+	navfocus = false,
 	navtouch,
 	navtouchtimer;
 
@@ -286,6 +290,13 @@ $navdetecthover.addEventListener('touchend', function() {
 	}, 400);
 }, supportsPassive ? { passive: true } : false);
 
+$menu.addEventListener('focus', function () {
+	navfocus = true;
+})
+$menu.addEventListener('blur', function () {
+	navfocus = false;
+})
+
 function navLeave(e) {
 	if (navtouch && document.getElementsByClassName('carousel')[0] && $parallax) $parallax.click();
 	navhover = false;
@@ -312,10 +323,10 @@ function scrolling() {
 		if (!mousemove && latestY < 20 && !navhover) $navbar.classList.add('hide');
 		$parallax.classList.remove('mousemove');
 	}
-	if (latestY > previousY && latestY >= 20 && !navhover) {
+	if (latestY > previousY && latestY >= 20 && !navhover && (!navfocus || !$body.classList.contains('tabbing'))) {
 		$navbar.classList.add('hide');
 	}
-	if (latestY >= 5 && latestY < previousY || latestY != previousY && previousY == null) {
+	if (latestY >= 5 && latestY < previousY || latestY != previousY && previousY == null || navfocus && $body.classList.contains('tabbing')) {
 		$navbar.classList.remove('hide');
 	}
 	if ($parallax && latestY < 5) $parallax.parentElement.classList.remove('shadow');

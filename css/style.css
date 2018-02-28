@@ -809,6 +809,7 @@ section.main button.dropdown {
 }
 section.main button.dropdown.hover, section.main button.dropdown:active, .tabbing section.main button.dropdown:focus {
 	background: #F5F5F5;
+	box-shadow: none;
 }
 section.main button.dropdown div {
 	padding: 12px 56px 12px 16px;
