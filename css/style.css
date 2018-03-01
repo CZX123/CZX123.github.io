@@ -361,7 +361,7 @@ b, strong {
 	width: 64px;
 	padding: 0;
 }
-.nav-drawer .social-media-icons li a.hover, .nav-drawer .social-media-icons li a:active, .nav-drawer .tabbing .social-media-icons li a:focus {
+.nav-drawer .social-media-icons li a.hover, .nav-drawer .social-media-icons li a:active, .tabbing .nav-drawer .social-media-icons li a:focus {
 	background: none;
 }
 .nav-drawer .social-media-icons .facebook svg {
