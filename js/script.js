@@ -402,7 +402,6 @@ function navDragging() {
 		navAppear = false;
 		total = -0.0075 * Math.abs(diffX) + .7;
 		if (diffX >= 80 || diffX <= -80) total = .1;
-		console.log(total, diffX);
 		TweenLite.to($scrim, total, { opacity: 0 });
 		TweenLite.to($navdrawer, total, { x: -navdrawerwidth - 16, ease: Strong.easeOut,
 		onComplete: function() {
@@ -418,7 +417,6 @@ function navDragging() {
 		if (!ripplebug) {
 			total = -0.0075 * Math.abs(diffX) + .7;
 			if (diffX >= 80 || diffX <= -80) total = .1;
-			console.log(total, diffX);
 			TweenLite.to($scrim, total, { opacity: 1 });
 			TweenLite.to($navdrawer, total, { x: 0, ease: Strong.easeOut,
 			onComplete: function() {
