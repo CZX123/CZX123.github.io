@@ -225,7 +225,8 @@ function dropdownCheck() {
 dropdownCheck();
 function dropdownTransition($elem, end) {
 	$elem.style.visibility = '';
-	TweenLite.to($elem, $elem.tagName == 'UL' ? .5 : .9, { marginTop: end, ease: Strong.easeOut, onComplete: function() {
+	console.log($elem.classList.contains('wrapper') ? .7 : .5);
+	TweenLite.to($elem, $elem.classList.contains('wrapper') ? .7 : .5, { marginTop: end, ease: Strong.easeOut, onComplete: function() {
 		if (end != 0) $elem.style.visibility = 'hidden';
 	} });
 }
