@@ -277,7 +277,7 @@ b, strong {
 	background: #EEE;
 	color: #3F51B5;
 }
-.nav-drawer ul li.active a.hover, .nav-drawer ul li.active a:active, .tabbing .nav-drawer ul li.active a:focus, .nav-drawer ul li.active a.hover, .nav-drawer ul li.active button:active, .tabbing .nav-drawer ul li.active button:focus {
+.nav-drawer ul li.active a.hover, .nav-drawer ul li.active a:active, .tabbing .nav-drawer ul li.active a:focus, .nav-drawer ul li.active button.hover, .nav-drawer ul li.active button:active, .tabbing .nav-drawer ul li.active button:focus {
 	background: #E0E0E0;
 }
 .nav-drawer ul li.dropdown.dropdown-open.active svg {
