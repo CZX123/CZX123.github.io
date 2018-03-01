@@ -210,10 +210,6 @@ document.addEventListener('click', function(e) {
 		}
 	}
 });
-// An easing function for use in the dropdown transition and opening or closing the nav drawer after the user lifts off his finger after dragging
-function easeOutCubic(t, b, c, d) {
-	return Math.round((-c*((t=t/d-1)*t*t*t - 1) + b)*10)/10;
-}
 // Selects all dropdowns and checks for class of dropdown-open, then adds the respective styles
 function dropdownCheck() {
 	$dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.main button.dropdown');
@@ -313,6 +309,7 @@ function scrolling() {
 		if ($parallax && latestY <= windowHeight) {
 			$parallax.style.transform = 'translate3d(0,' + Math.round(-latestY / 2 * 100) / 100 + 'px,0)';
 			$parallax.style.opacity = Math.round((1 - latestY / windowHeight) * 100) / 100;
+			// TweenLite.to($parallax, 0, { y: Math.round(-latestY / 2 * 100) / 100, opacity: Math.round((1 - latestY / windowHeight) * 100) / 100 });
 		}
 	}
 	if (mousemove && latestY < 20 && $parallax) {
@@ -345,6 +342,7 @@ var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
 	previousNavX = 0, // The previous value of navX. It is carried over to check for the direction of movement
 	diffX = 0, // The diference between previousNavX and current NavX
 	dragging = false, // Check if user is draggging or not
+	draggingtimer,
 	navdrawerwidth = $navdrawer.offsetWidth, // Nav drawer's width. It may change at narrow screen sizes.
 	navTranslate, // The x-coordinate to be used for the nav drawer itself
 	iterations = 0, // Variables below are used for the transition for the navdrawer (whether it opens or closes) after the user removes finger from the screen
@@ -387,72 +385,52 @@ function navDragging() {
 		return false;
 	}
 	else if (dragging) navTranslate = navX - navdrawerwidth;
-	$navdrawer.style.transform = 'translate3d(' + navTranslate + 'px,0,0)';
+	/*
+	$navdrawer.style.transform = 'translateX(' + navTranslate + 'px)';
 	$scrim.style.opacity = Math.round((navTranslate + navdrawerwidth)/navdrawerwidth*1e2)/1e2;
+	*/
+	if (!ripplebug) {
+		TweenLite.to($navdrawer, 0, { x: navTranslate });
+		TweenLite.to($scrim, 0, { opacity: Math.round((navTranslate + navdrawerwidth) / navdrawerwidth * 100) / 100 });
+	}
 	if (dragging) {
 		iterations = 0;
 		requestAnimationFrame(navDragging);
 	}
 	// When dragging the nav drawer into view but force is not enough OR dragging it out of view and force is enough
-	else if (diffX <= -2 || -2 < diffX && diffX < 2 && navX < navdrawerwidth/2) {
+	else if (diffX <= -1.2 || -1.2 < diffX && diffX < 1.2 && navX < navdrawerwidth / 2) {
 		navAppear = false;
-		start = navTranslate;
-		total = 220;
-		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
-		if (diffX >= 100 || diffX <= -100) total = 20;
-		navTranslate = easeOutCubic(iterations, start, 0 - navdrawerwidth - start - 16, total);
-		iterations++;
-		if (iterations < total && start != -navdrawerwidth - 16) requestAnimationFrame(navDragging);
-		else {
-			iterations = 0;
-			$navdrawer.removeAttribute('style');
-			$scrim.removeAttribute('style');
-			$navdrawer.classList.remove('active');
-			$html.removeAttribute('style');
-		}
-		/*
-		total = 1;
-		if (diffX >= 4 || diffX < -4) total = Math.round(-0.008 * Math.abs(diffX) + 1);
-		if (diffX >= 100 || diffX <= -100) total = .2;
-		TweenLite.to($navdrawer, total/60, { xPercent: -100, x: -16, ease: Strong.easeOut,
-		onStart: function() {
-			$navdrawer.style.transform = '';
-		},
+		total = -0.0075 * Math.abs(diffX) + .7;
+		if (diffX >= 80 || diffX <= -80) total = .1;
+		console.log(total, diffX);
+		TweenLite.to($scrim, total, { opacity: 0 });
+		TweenLite.to($navdrawer, total, { x: -navdrawerwidth - 16, ease: Strong.easeOut,
 		onComplete: function() {
 			$navdrawer.removeAttribute('style');
 			$scrim.removeAttribute('style');
 			$navdrawer.classList.remove('active');
 			$html.removeAttribute('style');
 		} });
-		*/
 	}
 	// When dragging the nav drawer into view and force is enough OR dragging it out of view but force is not enough
 	else {
 		navAppear = true;
-		start = navTranslate;
-		total = 220;
-		if (diffX >= 4 || diffX < -4) total = Math.round(-2 * Math.abs(diffX) + 220);
-		if (diffX >= 100 || diffX <= -100) total = 20;
-		navTranslate = easeOutCubic(iterations, start, -start, total);
-		iterations++;
-		if (iterations < total && start != 0 && !ripplebug) requestAnimationFrame(navDragging);
+		if (!ripplebug) {
+			total = -0.0075 * Math.abs(diffX) + .7;
+			if (diffX >= 80 || diffX <= -80) total = .1;
+			console.log(total, diffX);
+			TweenLite.to($scrim, total, { opacity: 1 });
+			TweenLite.to($navdrawer, total, { x: 0, ease: Strong.easeOut,
+			onComplete: function() {
+				$navdrawer.removeAttribute('style');
+				$scrim.removeAttribute('style');
+			} });
+		}
 		else {
-			iterations = 0;
+			ripplebug = false;
 			$navdrawer.removeAttribute('style');
 			$scrim.removeAttribute('style');
 		}
-		if (ripplebug) ripplebug = false;
-		/*
-		TweenLite.to($navdrawer, total, { x: 0, ease: Strong.easeOut,
-		onStart: function() {
-			$navdrawer.style.transform = '';
-		},
-		onComplete: function() {
-			$navdrawer.removeAttribute('style');
-			$scrim.removeAttribute('style');
-		} });
-		if (ripplebug) ripplebug = false;
-		*/
 	}
 }
 // The initial touch
@@ -481,6 +459,7 @@ function startDrag(e) {
 // Dragging
 function mainDrag(e) {
 	if (e.target == $dragnavdrawer) {
+		clearTimeout(draggingtimer);
 		$navdrawer.style.transition = 'none';
 		$scrim.style.transition = 'none';
 		actualX = Math.round(e.touches[0].clientX*10)/10;
@@ -489,8 +468,12 @@ function mainDrag(e) {
 		diffX = navX - previousNavX;
 		previousNavX = navX;
 		$html.style.overflow = 'hidden';
+		draggingtimer = setTimeout(function() {
+			diffX = 0;
+		}, 200);
 	}
 	if (navAppear) {
+		clearTimeout(draggingtimer);
 		dragging = true;
 		$navdrawer.style.transition = 'none';
 		$scrim.style.transition = 'none';
@@ -501,6 +484,9 @@ function mainDrag(e) {
 			diffX = navX - previousNavX;
 			previousNavX = navX;
 		}
+		draggingtimer = setTimeout(function () {
+			diffX = 0;
+		}, 200);
 	}
 }
 // Finger leaves the screen
@@ -511,7 +497,7 @@ function endDrag(e) {
 		navdrawerscrolling = false;
 	}
 	if (navAppear) {
-		if (dragging = 'started') ripplebug = true;
+		if (dragging == 'started') ripplebug = true;
 		dragging = false;
 		$navdrawer.classList.remove('dragging');
 		navdrawerscrolling = false;
