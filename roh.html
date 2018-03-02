@@ -389,7 +389,7 @@ function dropdownClick(e) {
 	}
 	if (!$elem || !$elem.hasAttribute('data-fetch')) return false;
 	try {
-		var $dropdownrequest = new XMLHttpRequest(),
+		var xhr = new XMLHttpRequest(),
 			filename = $elem.getAttribute('data-fetch'),
 			$dropdowncontent = $elem.nextElementSibling.children[0];
 		$elem.classList.add('loading');
