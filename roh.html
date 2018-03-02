@@ -408,8 +408,8 @@ function dropdownClick(e) {
 			$elem.classList.remove('loading');
 			error();
 		};
-		$dropdownrequest.open("GET", 'roh/' + filename);
-		$dropdownrequest.send();
+		xhr.open("GET", 'roh/' + filename);
+		xhr.send();
 	}
 	catch(e) {
 		$elem.classList.remove('loading');
