@@ -402,7 +402,7 @@ function dropdownClick(e) {
 			$wrapper.innerHTML = $dropdownrequest.responseText;
 			$dropdowncontent.style.marginTop = (-$dropdowncontent.offsetHeight) + 'px';
 			$elem.removeAttribute('data-fetch');
-			$elem.children[0].click();
+			$elem.click();
 		};
 		xhr.onerror = xhr.onabort = function() {
 			$elem.classList.remove('loading');
