@@ -13,11 +13,6 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style class="ajax-style">
-body.loaded > .progress {
-	transform: translateY(-4px);
-	visibility: hidden;
-	transition: transform .3s, visibility 0s .3s;
-}
 section.parallax-wrapper {
 	position: fixed;
 	height: 100vh;
@@ -31,20 +26,6 @@ section.parallax-wrapper .carousel {
 	align-items: center;
 	position: relative;
 	height: 100vh;
-}
-section.parallax-wrapper::after {
-	content: '';
-	display: block;
-	position: relative;
-	height: 100vh;
-	top: -100vh;
-	background: #000;
-	pointer-events: none;
-}
-.loaded section.parallax-wrapper::after {
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity .3s, visibility 0s .3s;
 }
 .tabbing .carousel:focus::after {
 	content: '';
@@ -77,6 +58,11 @@ section.parallax-wrapper::after {
 .carousel img {
 	display: block;
 	height: 100vh;
+	opacity: 0;
+	transition: opacity .4s;
+}
+.carousel img.flickity-lazyloaded, .carousel img.flickity-lazyerror {
+	opacity: 1;
 }
 .flickity-page-dots {
 	display: inline-block;
@@ -146,7 +132,6 @@ section.parallax-wrapper::after {
 	transition: transform .3s;
 }
 .resize-back ~ .flickity-custom-button.resize-button svg {
-	/* transform: rotate(-225deg); */
 	animation: resize-back .4s forwards;
 }
 @keyframes resize-back {
@@ -170,7 +155,6 @@ section.parallax-wrapper::after {
 }
 }
 .resize ~ .flickity-custom-button.resize-button svg {
-	/* transform: rotate(-225deg); */
 	animation: resize .4s forwards;
 }
 @keyframes resize {
@@ -294,20 +278,10 @@ section.main {
 	margin-top: 100vh;
 }
 </style>
-<script>
-	var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img"), imgcount = 0, $body = document.getElementsByTagName('body')[0];
-	function imgLoad() {
-		imgcount += 1;
-		if (imgcount == carouselimg.length) {
-			imgcount = 0;
-			$body.classList.add("loaded");
-		}
-	}
-</script>
 
 </head>
 
-<body class="img-loading">
+<body>
 
 <div class="progress">
 	<div>
@@ -418,12 +392,13 @@ section.main {
 <div class="ajax-content">
 	<section class="parallax-wrapper">
 		<div class="carousel">
-			<img onload="imgLoad()" src="images/2017-13th-uniformed-groups-bowling-championships.jpg">
-			<img onload="imgLoad()" src="images/2017-cca-open-house.jpg">
-			<img onload="imgLoad()" src="images/2017-22-revolver-shooting-competition.jpg">
-			<img onload="imgLoad()" src="images/2017-hcinpcc-unit-photo.png">
-			<img onload="imgLoad()" src="images/2017-drill-competition-arena-drills.jpg">
-			<img onload="imgLoad()" src="images/2017-drill-competition-awards-presentation.jpg">
+			<!-- Remember the width styles! They are the widths when the images have not loaded. Ensure the the width follows the correct aspect ratio of the image. The height of the image is 100vh -->
+			<img data-flickity-lazyload="images/2017-13th-uniformed-groups-bowling-championships.jpg" style="width:133.33vh">
+			<img data-flickity-lazyload="images/2017-cca-open-house.jpg" style="width:133.33vh">
+			<img data-flickity-lazyload="images/2017-22-revolver-shooting-competition.jpg" style="width:133.33vh">
+			<img data-flickity-lazyload="images/2017-hcinpcc-unit-photo.png" style="width:150vh">
+			<img data-flickity-lazyload="images/2017-drill-competition-arena-drills.jpg" style="width:150vh">
+			<img data-flickity-lazyload="images/2017-drill-competition-awards-presentation.jpg" style="width:150vh">
 		</div>
 		<button class="flickity-custom-button flickity-prev">
 			<div>
@@ -493,7 +468,8 @@ var $parallax = document.getElementsByClassName('carousel')[0],
 var flkty = new Flickity($parallax, {
 	wrapAround: true,
 	prevNextButtons: false,
-	imagesLoaded: true,
+	lazyLoad: true,
+	lazyLoad: 20,
 	dragThreshold: 10,
 	percentPosition: false,
 	setGallerySize: false
@@ -587,12 +563,6 @@ function carouselResize() {
 		else $parallax.classList.remove('actual-resize');
 		flkty.resize();
 	}, 200);
-}
-
-carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
-if (imgcount == carouselimg.length) {
-	imgcount = 0;
-	$body.classList.add("loaded");
 }
 
 $parallax.classList.add('tip-appear');

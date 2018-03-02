@@ -15,19 +15,9 @@ var $ajaxcontent = document.getElementsByClassName('ajax-content')[0],
 	pageswitchY = window.pageYOffset, // The scroll value which helps prevent jumping when switching pages
 	pageswitching; // A boolean to prevent spamming
 
-var carouselimg = document.querySelectorAll(".parallax-wrapper .carousel img");
-if (!imgcount) var imgcount = 0;
-function imgLoad() {
-	imgcount += 1;
-	if (imgcount == carouselimg.length) {
-		imgcount = 0;
-		$body.classList.add("loaded");
-	}
-}
-
 // First checks if passive event listeners are supported. Passive event listeners help to improve touch latency and overall performance.
 var supportsPassive = false;
-document.createElement("div").addEventListener("test", function () { }, {
+document.createElement('div').addEventListener('test', function () { }, {
 	get passive() {
 		supportsPassive = true;
 		return false;
@@ -102,7 +92,7 @@ function changePage(url) {
 			$body.classList.remove('loading');
 			pageswitching = false;
 		};
-		xhr.open("GET", url);
+		xhr.open('GET', url);
 		xhr.send();
 	}
 	catch(e) {
