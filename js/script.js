@@ -132,10 +132,7 @@ function changeContent() {
 		filename = split.pop(),
 		$currentactive = $navdrawer.getElementsByClassName('active'),
 		$newactive = $navdrawer.querySelector('a[href="' + filename + '"]');
-	if (!filename) {
-		$body.classList.add('img-loading');
-		$newactive = $navdrawer.querySelector('a[href="/"]');
-	}
+	if (!filename) $newactive = $navdrawer.querySelector('a[href="/"]');
 	for (var c = 0, l = $currentactive.length; c < l; c++) {
 		$currentactive[0].classList.remove('active');
 		$currentactive = $navdrawer.getElementsByClassName('active');
@@ -340,7 +337,8 @@ var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
 	total,
 	ripplebug, // This is a variable to help in solving a bug where clicking a link in the nav drawer closes the nav drawer
 	navdrawerscrolling,
-	navdrawerscrollingtimer;
+	navdrawerscrollingtimer,
+	draggingiterations = 0;
 
 // A listener to detect whether navdrawer is being scrolled so as to prevent dragging of navdrawer
 $navdrawer.children[0].addEventListener('scroll', function() {
@@ -379,9 +377,15 @@ function navDragging() {
 	$navdrawer.style.transform = 'translateX(' + navTranslate + 'px)';
 	$scrim.style.opacity = Math.round((navTranslate + navdrawerwidth)/navdrawerwidth*1e2)/1e2;
 	*/
-	if (!ripplebug) {
+	if (!ripplebug && draggingiterations == 0) {
 		TweenLite.to($navdrawer, 0, { x: navTranslate });
 		TweenLite.to($scrim, 0, { opacity: Math.round((navTranslate + navdrawerwidth) / navdrawerwidth * 100) / 100 });
+	}
+	draggingiterations++;
+	if (!ripplebug && draggingiterations % 4 == 0) {
+		draggingiterations = 1;
+		TweenLite.to($navdrawer, .14, { x: navTranslate });
+		TweenLite.to($scrim, .14, { opacity: Math.round((navTranslate + navdrawerwidth) / navdrawerwidth * 100) / 100 });
 	}
 	if (dragging) {
 		iterations = 0;
@@ -399,6 +403,7 @@ function navDragging() {
 			$scrim.removeAttribute('style');
 			$navdrawer.classList.remove('active');
 			$html.removeAttribute('style');
+			draggingiterations = 0;
 		} });
 	}
 	// When dragging the nav drawer into view and force is enough OR dragging it out of view but force is not enough
@@ -412,12 +417,14 @@ function navDragging() {
 			onComplete: function() {
 				$navdrawer.removeAttribute('style');
 				$scrim.removeAttribute('style');
+				draggingiterations = 0;
 			} });
 		}
 		else {
 			ripplebug = false;
 			$navdrawer.removeAttribute('style');
 			$scrim.removeAttribute('style');
+			draggingiterations = 0;
 		}
 	}
 }

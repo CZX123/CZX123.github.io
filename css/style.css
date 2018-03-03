@@ -484,7 +484,7 @@ b, strong {
 	transition: transform .3s, visibility 0s .3s;
 	z-index: 24;
 }
-body.img-loading > .progress, body.loading > .progress, .loading > div > .progress {
+body.loading > .progress, .loading > div > .progress {
 	transform: translateY(0);
 	visibility: visible;
 	transition-delay: 0s;
