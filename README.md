@@ -2,6 +2,10 @@
 
 View it at https://czx123.github.io
 
+## Updates
+
+This testing repository contains countless of improvements and new improved features. But with these improvements comes also some quirks, especially to the carousel, which is now a lot laggier. I cannot pinpoint the problem specifically, so for now **do not copy any files from the czx123 repository to the hcinpcc repository**. I will be updating the hcinpcc repository gradually, feature by feature, one at a time, until I can find what exactly caused the carousel to lag so much.
+
 ## IMPORTANT
 
 Do not copy the `README.md` and `robots.txt` files to the official unit website GitHub repository!
