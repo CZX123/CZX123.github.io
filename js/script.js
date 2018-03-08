@@ -273,10 +273,10 @@ $navdetecthover.addEventListener('touchend', function() {
 	}, 400);
 }, supportsPassive ? { passive: true } : false);
 
-$menu.addEventListener('focus', function () {
+$menu.addEventListener('focus', function() {
 	navfocus = true;
 })
-$menu.addEventListener('blur', function () {
+$menu.addEventListener('blur', function() {
 	navfocus = false;
 })
 

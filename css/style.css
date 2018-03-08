@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6, p, a, ol, ul, li, blockquote, iframe {
 	border: 0;
 	padding: 0;
 	color: inherit;
-	font-size: inherit;
+	font-size: 100%;
 	font-family: inherit;
 	font-weight: inherit;
 	line-height: inherit;
@@ -69,12 +69,6 @@ button > * {
 ::-moz-focus-inner {
 	border-style: none;
 	padding: 0;
-}
-:-moz-focusring {
-	outline: 1px dotted ButtonText;
-}
-b, strong {
-	font-weight: bolder;
 }
 
 /* Navbar styles */
@@ -183,7 +177,6 @@ b, strong {
 	text-decoration: none;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	overflow: hidden;
 	touch-action: pan-x;
 	opacity: 0;
 	/* Translate3d to force use of GPU (may not work, but good to leave it like this) */
@@ -493,7 +486,7 @@ body.loading > .progress, .loading > div > .progress {
 	position: relative;
 	height: 100%;
 }
-body.img-loading > .progress > div > div, body.indeterminate > .progress > div > div, .indeterminate > div > .progress > div > div {
+body.indeterminate > .progress > div > div, .indeterminate > div > .progress > div > div {
 	position: absolute;
 	height: 100%;
 	width: 100%;
@@ -501,7 +494,7 @@ body.img-loading > .progress > div > div, body.indeterminate > .progress > div >
 	left: -145.166611%;
 	animation: primary-progress 2s infinite linear;
 }
-body.img-loading > .progress > div > div:last-child, body.indeterminate > .progress > div > div:last-child, .indeterminate > div > .progress > div > div:last-child {
+body.indeterminate > .progress > div > div:last-child, .indeterminate > div > .progress > div > div:last-child {
 	left: -54.888891%;
 	animation: secondary-progress 2s infinite linear;
 }
@@ -538,13 +531,13 @@ body.img-loading > .progress > div > div:last-child, body.indeterminate > .progr
 		transform: translateX(160.27778%);
 	}
 }
-body.img-loading > .progress > div > div > span, body.indeterminate > .progress > div > div > span, .indeterminate > div > .progress > div > div > span {
+body.indeterminate > .progress > div > div > span, .indeterminate > div > .progress > div > div > span {
 	display: block;
 	height: 100%;
 	background: #3F51B5;
 	animation: primary-progress-span 2s infinite linear;
 }
-body.img-loading > .progress > div > div:last-child > span, body.indeterminate > .progress > div > div:last-child > span, .indeterminate > div > .progress > div > div:last-child > span {
+body.indeterminate > .progress > div > div:last-child > span, .indeterminate > div > .progress > div > div:last-child > span {
 	animation: secondary-progress-span 2s infinite linear;
 }
 @keyframes primary-progress-span {
