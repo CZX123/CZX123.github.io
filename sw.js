@@ -18,7 +18,7 @@ var pagesToCache = [
   'links.html',
   'officers.html',
   'roh.html'
-]
+];
 
 // Install stage sets up the cache-array to configure pre-cache content
 self.addEventListener('install', function (evt) {

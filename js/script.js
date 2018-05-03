@@ -697,7 +697,7 @@ if ('serviceWorker' in navigator) {
 	if (navigator.serviceWorker.controller) {
 		console.info('Active service worker found, no need to register');
 	} else {
-		navigator.serviceWorker.register('sw.js')
+		navigator.serviceWorker.register('../sw.js')
 			.then(function (reg) {
 				console.info('Service worker registered for scope: ' + reg.scope);
 			})
