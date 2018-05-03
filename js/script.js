@@ -25,10 +25,10 @@ document.createElement('div').addEventListener('test', function () { }, {
 });
 
 // Support for tabbing
-window.onkeyup = function(e) {
+window.onkeyup = function (e) {
 	if (e.keyCode == 9) $body.classList.add('tabbing');
 }
-window.addEventListener('mousedown', function() {
+window.addEventListener('mousedown', function () {
 	$body.classList.remove('tabbing');
 }, supportsPassive ? { passive: true } : false);
 
@@ -47,7 +47,7 @@ var $dropdown = document.querySelectorAll('.nav-drawer ul li.dropdown, section.m
 
 function changePage(url) {
 	if (pageswitching) {
-		if (url.substring(0,4) == 'http') history.pushState(null, null, oldUrl);
+		if (url.substring(0, 4) == 'http') history.pushState(null, null, oldUrl);
 		return false;
 	}
 	$body.classList.remove('indeterminate');
@@ -60,14 +60,14 @@ function changePage(url) {
 	$body.classList.add('loading');
 	$body.classList.add('indeterminate');
 	// Animation completion code below
-	setTimeout(function() {
+	setTimeout(function () {
 		if (filerequested) changeContent();
 		animationcomplete = true;
 	}, 280);
 	// XMLHttpRequest below to fetch the other page
 	try {
 		var xhr = new XMLHttpRequest();
-		xhr.onload = function() {
+		xhr.onload = function () {
 			window.scrollTo(0, pageswitchY);
 			var $wrapper = document.createElement('div');
 			$wrapper.innerHTML = xhr.responseText;
@@ -86,7 +86,7 @@ function changePage(url) {
 			filerequested = true;
 			if (animationcomplete) changeContent();
 		};
-		xhr.onerror = xhr.onabort = function() {
+		xhr.onerror = xhr.onabort = function () {
 			error();
 			$ajaxcontent.classList.remove('hide');
 			$body.classList.remove('loading');
@@ -95,17 +95,17 @@ function changePage(url) {
 		xhr.open('GET', url);
 		xhr.send();
 	}
-	catch(e) {
+	catch (e) {
 		error();
 		$ajaxcontent.classList.remove('hide');
 		$body.classList.remove('loading');
 		pageswitching = false;
-		if (url.substring(0,4) == 'http') history.pushState(null, null, oldUrl);
+		if (url.substring(0, 4) == 'http') history.pushState(null, null, oldUrl);
 	}
 }
 function changeContent() {
 	removeListener(); // This function is to remove all existing listeners on the current page since AJAX navigation makes the site a single page application and javascript does not change. By default, the function is empty, so redefine it in the script section of the HTML page.
-	window.scrollTo(0,0);
+	window.scrollTo(0, 0);
 	document.title = newtitle;
 	$ajaxcontent.style.position = 'absolute';
 	$ajaxcontent.insertAdjacentElement('afterend', $newcontent);
@@ -121,10 +121,10 @@ function changeContent() {
 	$ajaxcontent = $newcontent;
 	$ajaxstyle = $newstyle;
 	$ajaxcontent.classList.add('show');
-	setTimeout(function() {
+	setTimeout(function () {
 		$body.classList.remove('loading');
 	}, 300);
-	setTimeout(function() {
+	setTimeout(function () {
 		$ajaxcontent.classList.remove('show');
 	}, 400);
 	$ajaxscript = document.getElementsByClassName('ajax-script')[0];
@@ -145,20 +145,20 @@ function changeContent() {
 	$navbar.classList.remove('hide');
 	pageswitching = false;
 }
-window.onpopstate = function() {
+window.onpopstate = function () {
 	changePage(window.location.href);
 };
-function removeListener() {} // Empty function to be changed in the page itself
+function removeListener() { } // Empty function to be changed in the page itself
 
 // All click listeners combined into a single one
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
 	var $elem = e.target;
 	while ($elem && !$elem.classList.contains('dropdown') && !$elem.classList.contains('menu') && !$elem.classList.contains('scrim') && (!$elem.tagName == 'A' || $elem.target || !$elem.href)) {
 		$elem = $elem.parentElement;
 	}
 	if (!$elem) return false;
 	if ($elem.tagName == 'A' && !$elem.target && $elem.href) {
-		var firstfour = $elem.getAttribute('href').substring(0,4);
+		var firstfour = $elem.getAttribute('href').substring(0, 4);
 		if (firstfour == 'http' || firstfour == 'mail') return false;
 		if (navigator.userAgent.indexOf('Mac OS X') != -1) {
 			if (e.metaKey) return false;
@@ -192,8 +192,8 @@ document.addEventListener('click', function(e) {
 			if ($elem.hasAttribute('data-fetch') || $dropdowncontent == $currentelement && animation) return false;
 			$elem.classList.toggle('dropdown-open');
 			$dropdowncontent.style.visibility = '';
-			if ($elem.classList.contains('dropdown-open')) dropdownTransition($dropdowncontent,0);
-			else dropdownTransition($dropdowncontent,-$dropdowncontent.offsetHeight);
+			if ($elem.classList.contains('dropdown-open')) dropdownTransition($dropdowncontent, 0);
+			else dropdownTransition($dropdowncontent, -$dropdowncontent.offsetHeight);
 		}
 	}
 });
@@ -212,9 +212,11 @@ function dropdownCheck() {
 dropdownCheck();
 function dropdownTransition($elem, end) {
 	$elem.style.visibility = '';
-	TweenLite.to($elem, $elem.classList.contains('wrapper') ? .7 : .5, { marginTop: end, ease: Strong.easeOut, onComplete: function() {
-		if (end != 0) $elem.style.visibility = 'hidden';
-	} });
+	TweenLite.to($elem, $elem.classList.contains('wrapper') ? .7 : .5, {
+		marginTop: end, ease: Strong.easeOut, onComplete: function () {
+			if (end != 0) $elem.style.visibility = 'hidden';
+		}
+	});
 }
 
 // Scrolling listener for stuff like the navbar hide action and parallax effect (if have)
@@ -228,7 +230,7 @@ var $navbar = document.getElementsByClassName('navbar')[0],
 	parallaxY;
 
 // Resize listener to detect window size changes
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
 	resize = true;
 	windowHeight = window.innerHeight;
 });
@@ -244,11 +246,11 @@ var $navdetecthover = document.getElementsByClassName('nav-detect-hover')[0],
 $navbar.addEventListener('mouseenter', navEnter);
 $navdetecthover.addEventListener('mouseenter', navEnter);
 
-$navbar.addEventListener('touchstart', function() {
+$navbar.addEventListener('touchstart', function () {
 	clearTimeout(navtouchtimer);
 	navtouch = true;
 }, supportsPassive ? { passive: true } : false);
-$navdetecthover.addEventListener('touchstart', function() {
+$navdetecthover.addEventListener('touchstart', function () {
 	clearTimeout(navtouchtimer);
 	navtouch = true;
 }, supportsPassive ? { passive: true } : false);
@@ -262,21 +264,21 @@ function navEnter(e) {
 $navbar.addEventListener('mouseleave', navLeave);
 $navdetecthover.addEventListener('mouseleave', navLeave);
 
-$navbar.addEventListener('touchend', function() {
-	navtouchtimer = setTimeout(function() {
+$navbar.addEventListener('touchend', function () {
+	navtouchtimer = setTimeout(function () {
 		navtouch = false;
 	}, 400);
 }, supportsPassive ? { passive: true } : false);
-$navdetecthover.addEventListener('touchend', function() {
-	navtouchtimer = setTimeout(function() {
+$navdetecthover.addEventListener('touchend', function () {
+	navtouchtimer = setTimeout(function () {
 		navtouch = false;
 	}, 400);
 }, supportsPassive ? { passive: true } : false);
 
-$menu.addEventListener('focus', function() {
+$menu.addEventListener('focus', function () {
 	navfocus = true;
 })
-$menu.addEventListener('blur', function() {
+$menu.addEventListener('blur', function () {
 	navfocus = false;
 })
 
@@ -341,20 +343,20 @@ var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
 	draggingiterations = 0;
 
 // A listener to detect whether navdrawer is being scrolled so as to prevent dragging of navdrawer
-$navdrawer.children[0].addEventListener('scroll', function() {
+$navdrawer.children[0].addEventListener('scroll', function () {
 	clearTimeout(navdrawerscrollingtimer);
 	navdrawerscrolling = true;
 	if (!dragging) {
-		navdrawerscrollingtimer = setTimeout(function() {
+		navdrawerscrollingtimer = setTimeout(function () {
 			if (!dragging) navdrawerscrolling = false;
 		}, 300);
 	}
 });
 
-document.addEventListener('touchstart', startDrag, supportsPassive ? {passive: true} : false);
-document.addEventListener('touchmove', mainDrag, supportsPassive ? {passive: true} : false);
-document.addEventListener('touchend', endDrag, supportsPassive ? {passive: true} : false);
-document.addEventListener('touchcancel', endDrag, supportsPassive ? {passive: true} : false);
+document.addEventListener('touchstart', startDrag, supportsPassive ? { passive: true } : false);
+document.addEventListener('touchmove', mainDrag, supportsPassive ? { passive: true } : false);
+document.addEventListener('touchend', endDrag, supportsPassive ? { passive: true } : false);
+document.addEventListener('touchcancel', endDrag, supportsPassive ? { passive: true } : false);
 // The dragging function. Runs 60 times a second
 function navDragging() {
 	if (navdrawerscrolling) {
@@ -397,14 +399,16 @@ function navDragging() {
 		total = -0.0075 * Math.abs(diffX) + .7;
 		if (diffX >= 80 || diffX <= -80) total = .1;
 		TweenLite.to($scrim, total, { opacity: 0 });
-		TweenLite.to($navdrawer, total, { x: -navdrawerwidth - 16, ease: Strong.easeOut,
-		onComplete: function() {
-			$navdrawer.removeAttribute('style');
-			$scrim.removeAttribute('style');
-			$navdrawer.classList.remove('active');
-			$html.removeAttribute('style');
-			draggingiterations = 0;
-		} });
+		TweenLite.to($navdrawer, total, {
+			x: -navdrawerwidth - 16, ease: Strong.easeOut,
+			onComplete: function () {
+				$navdrawer.removeAttribute('style');
+				$scrim.removeAttribute('style');
+				$navdrawer.classList.remove('active');
+				$html.removeAttribute('style');
+				draggingiterations = 0;
+			}
+		});
 	}
 	// When dragging the nav drawer into view and force is enough OR dragging it out of view but force is not enough
 	else {
@@ -413,12 +417,14 @@ function navDragging() {
 			total = -0.0075 * Math.abs(diffX) + .7;
 			if (diffX >= 80 || diffX <= -80) total = .1;
 			TweenLite.to($scrim, total, { opacity: 1 });
-			TweenLite.to($navdrawer, total, { x: 0, ease: Strong.easeOut,
-			onComplete: function() {
-				$navdrawer.removeAttribute('style');
-				$scrim.removeAttribute('style');
-				draggingiterations = 0;
-			} });
+			TweenLite.to($navdrawer, total, {
+				x: 0, ease: Strong.easeOut,
+				onComplete: function () {
+					$navdrawer.removeAttribute('style');
+					$scrim.removeAttribute('style');
+					draggingiterations = 0;
+				}
+			});
 		}
 		else {
 			ripplebug = false;
@@ -435,7 +441,7 @@ function startDrag(e) {
 		dragging = true;
 		$navdrawer.classList.add('dragging'); // This class is to enable the CSS to create an element that covers the links in the nav drawer to prevent accidental touches
 		navdrawerwidth = $navdrawer.offsetWidth;
-		actualX = previousNavX = navX = Math.round(e.touches[0].clientX*10)/10;
+		actualX = previousNavX = navX = Math.round(e.touches[0].clientX * 10) / 10;
 		requestAnimationFrame(navDragging);
 		$navdrawer.classList.add('active');
 	}
@@ -443,7 +449,7 @@ function startDrag(e) {
 	if (navAppear) {
 		dragging = 'started';
 		navdrawerwidth = $navdrawer.offsetWidth;
-		actualX = initialX = Math.round(e.touches[0].clientX*10)/10;
+		actualX = initialX = Math.round(e.touches[0].clientX * 10) / 10;
 		// previousNavX = navX = Math.round(e.touches[0].clientX*10)/10 - initialX + navdrawerwidth; Simplified
 		previousNavX = navX = navdrawerwidth;
 		diffX = 0;
@@ -457,13 +463,13 @@ function mainDrag(e) {
 		clearTimeout(draggingtimer);
 		$navdrawer.style.transition = 'none';
 		$scrim.style.transition = 'none';
-		actualX = Math.round(e.touches[0].clientX*10)/10;
+		actualX = Math.round(e.touches[0].clientX * 10) / 10;
 		if (actualX >= navdrawerwidth) navX = navdrawerwidth;
 		else navX = actualX;
 		diffX = navX - previousNavX;
 		previousNavX = navX;
 		$html.style.overflow = 'hidden';
-		draggingtimer = setTimeout(function() {
+		draggingtimer = setTimeout(function () {
 			diffX = 0;
 		}, 200);
 	}
@@ -473,9 +479,9 @@ function mainDrag(e) {
 		$navdrawer.style.transition = 'none';
 		$scrim.style.transition = 'none';
 		if (!navdrawerscrolling) {
-			actualX = Math.round(e.touches[0].clientX*10)/10;
+			actualX = Math.round(e.touches[0].clientX * 10) / 10;
 			if (actualX >= initialX) navX = navdrawerwidth;
-			else navX = Math.round(e.touches[0].clientX*10)/10 - initialX + navdrawerwidth;
+			else navX = Math.round(e.touches[0].clientX * 10) / 10 - initialX + navdrawerwidth;
 			diffX = navX - previousNavX;
 			previousNavX = navX;
 		}
@@ -537,59 +543,59 @@ function rippleCheck() {
 		}
 		else $ripplelist[i].lastElementChild.appendChild($div);
 		if ('PointerEvent' in window) {
-			$ripplelist[i].addEventListener('pointerdown', function(e) {
+			$ripplelist[i].addEventListener('pointerdown', function (e) {
 				rippleDown(this, [e.clientX - this.getBoundingClientRect().left,
-				                  e.clientY - this.getBoundingClientRect().top]);
+				e.clientY - this.getBoundingClientRect().top]);
 			});
-			$ripplelist[i].addEventListener('pointerup', function(e) {
+			$ripplelist[i].addEventListener('pointerup', function (e) {
 				rippleUp(this);
 			});
-			$ripplelist[i].addEventListener('pointerleave', function(e) {
+			$ripplelist[i].addEventListener('pointerleave', function (e) {
 				rippleUp(this);
 				hover(this, e, 'leave');
 			});
-			$ripplelist[i].addEventListener('pointerenter', function(e) {
+			$ripplelist[i].addEventListener('pointerenter', function (e) {
 				hover(this, e, 'enter');
 			});
 		}
 		else {
-			$ripplelist[i].addEventListener('mousedown', function(e) {
+			$ripplelist[i].addEventListener('mousedown', function (e) {
 				if (!touch) rippleDown(this, [e.clientX - this.getBoundingClientRect().left,
-				                              e.clientY - this.getBoundingClientRect().top]);
+				e.clientY - this.getBoundingClientRect().top]);
 			});
-			$ripplelist[i].addEventListener('mouseup', function(e) {
+			$ripplelist[i].addEventListener('mouseup', function (e) {
 				if (!touch) rippleUp(this);
 			});
-			$ripplelist[i].addEventListener('mouseleave', function(e) {
+			$ripplelist[i].addEventListener('mouseleave', function (e) {
 				if (!touch) {
 					rippleUp(this);
 					hover(this, e, 'leave');
 				}
 			});
-			$ripplelist[i].addEventListener('mouseenter', function(e) {
+			$ripplelist[i].addEventListener('mouseenter', function (e) {
 				if (!touch) hover(this, e, 'enter');
 			});
-			$ripplelist[i].addEventListener('touchstart', function(e) {
+			$ripplelist[i].addEventListener('touchstart', function (e) {
 				clearTimeout(touchtimer);
 				touch = true;
 				rippleDown(this, [e.touches[0].clientX - this.getBoundingClientRect().left,
-				                  e.touches[0].clientY - this.getBoundingClientRect().top]);
+				e.touches[0].clientY - this.getBoundingClientRect().top]);
 			}, supportsPassive ? { passive: true } : false);
-			$ripplelist[i].addEventListener('touchend', function(e) {
+			$ripplelist[i].addEventListener('touchend', function (e) {
 				rippleUp(this);
-				touchtimer = setTimeout(function() {
+				touchtimer = setTimeout(function () {
 					touch = false;
 				}, 400);
 			}, supportsPassive ? { passive: true } : false);
-			$ripplelist[i].addEventListener('touchmove', function(e) {
+			$ripplelist[i].addEventListener('touchmove', function (e) {
 				rippleUp(this);
-				touchtimer = setTimeout(function() {
+				touchtimer = setTimeout(function () {
 					touch = false;
 				}, 400);
 			}, supportsPassive ? { passive: true } : false);
-			$ripplelist[i].addEventListener('touchcancel', function(e) {
+			$ripplelist[i].addEventListener('touchcancel', function (e) {
 				rippleUp(this);
-				touchtimer = setTimeout(function() {
+				touchtimer = setTimeout(function () {
 					touch = false;
 				}, 400);
 			}, supportsPassive ? { passive: true } : false);
@@ -633,19 +639,19 @@ function rippleDown(element, e) {
 	target.classList.remove('finish');
 	x = Math.round(e[0]);
 	y = Math.round(e[1]);
-	var radius = Math.ceil(Math.max(Math.sqrt(x*x + y*y),
-	                                Math.sqrt(x*x + (element.offsetHeight-y)*(element.offsetHeight-y)),
-	                                Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + y*y),
-	                                Math.sqrt((element.offsetWidth-x)*(element.offsetWidth-x) + (element.offsetHeight-y)*(element.offsetHeight-y))
-	                                ) * 10
-                          ) / 10;
+	var radius = Math.ceil(Math.max(Math.sqrt(x * x + y * y),
+		Math.sqrt(x * x + (element.offsetHeight - y) * (element.offsetHeight - y)),
+		Math.sqrt((element.offsetWidth - x) * (element.offsetWidth - x) + y * y),
+		Math.sqrt((element.offsetWidth - x) * (element.offsetWidth - x) + (element.offsetHeight - y) * (element.offsetHeight - y))
+	) * 10
+	) / 10;
 	target.style.height = target.style.width = radius * 2 + 'px';
 	target.style.top = y - radius + 'px';
 	target.style.left = x - radius + 'px';
 	target.classList.add('appear');
 	ripplecount += 1;
 	var pastripplecount = ripplecount;
-	rippletimerarray[ripplecount] = setTimeout(function() {
+	rippletimerarray[ripplecount] = setTimeout(function () {
 		target.classList.add('finish');
 		if (target.classList.contains('fade-out')) target.classList.remove('appear');
 		$rippleelementsarray[pastripplecount] = 0;
@@ -674,14 +680,31 @@ var $error = document.getElementsByClassName('error')[0],
 function error() {
 	if (errortimer) {
 		$error.classList.remove('show');
-		setTimeout(function() {
+		setTimeout(function () {
 			$error.classList.add('show');
 		}, 240);
 	}
 	else $error.classList.add('show');
 	clearTimeout(errortimer);
-	errortimer = setTimeout(function() {
+	errortimer = setTimeout(function () {
 		$error.classList.remove('show');
 		errortimer = 0;
 	}, 3000);
+}
+
+// Service worker registration
+if ('serviceWorker' in navigator) {
+	if (navigator.serviceWorker.controller) {
+		console.info('Active service worker found, no need to register');
+	} else {
+		navigator.serviceWorker.register('sw.js')
+			.then(function (reg) {
+				console.info('Service worker registered for scope: ' + reg.scope);
+			})
+			.catch(function (err) {
+				console.error('Service worker failed to register:\n' + err);
+			});
+	}
+} else {
+	console.warn('Service worker is not supported in this browser');
 }
