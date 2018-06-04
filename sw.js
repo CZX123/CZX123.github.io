@@ -1,6 +1,6 @@
 /*
  * Service worker for web application
- * 
+ *
  * This file has to be in root directory -
  * Do not shift into 'js' folder
  */
@@ -58,7 +58,7 @@ function fromCache(request) {
 }
 
 function update(request) {
-  // This is where we call the server to get the newest version of the 
+  // This is where we call the server to get the newest version of the
   // file to use the next time we show view
   return caches.open(_cache).then(function (cache) {
     return fetch(request).then(function (response) {
