@@ -343,11 +343,11 @@ var $dragnavdrawer = document.getElementsByClassName('drag-nav-drawer')[0],
 	draggingiterations = 0;
 
 // A listener to detect whether navdrawer is being scrolled so as to prevent dragging of navdrawer
-$navdrawer.children[0].addEventListener('scroll', function () {
+$navdrawer.children[0].addEventListener('scroll', function() {
 	clearTimeout(navdrawerscrollingtimer);
 	navdrawerscrolling = true;
 	if (!dragging) {
-		navdrawerscrollingtimer = setTimeout(function () {
+		navdrawerscrollingtimer = setTimeout(function() {
 			if (!dragging) navdrawerscrolling = false;
 		}, 300);
 	}
@@ -512,7 +512,7 @@ var $ripplelist = document.querySelectorAll('.nav-drawer ul li a, button'), // T
 	x, // x-coordinate of ripple circle's centre
 	y, // y-coordinate of ripple circle's centre
 	ripplecount = -1,
-	rippletimerarray = [], // To prevent the ripple from disappearing to fast if the click was very fast
+	rippletimerarray = [], // To prevent the ripple from disappearing too fast if the click was very fast
 	$rippleelementsarray = [],
 	touch,
 	touchtimer;

@@ -1,0 +1,19 @@
+html, body {
+	color: #FFF;
+	background: #020c13;
+	font-family: Roboto, sans-serif;
+}
+h1, h2, h3 {
+	font-family: Nunito, Roboto, sans-serif;
+	font-weight: normal;
+}
+h1 {
+	font-size: 3em;
+}
+h2 {
+	font-size: 2em;
+}
+h3 {
+	font-size: 1em;
+	font-weight: 500;
+}
