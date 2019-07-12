@@ -1,38 +1,37 @@
 html, body {
 	margin: 0 auto;
 	color: #FFF;
-	background: #020c13;
+	background: #161d20;
 	font-family: Roboto, sans-serif;
 	line-height: 1.5;
 }
 body {
 	width: 720px;
 	max-width: calc(100% - 32px);
+	padding-bottom: 32px;
 }
 h1, h2, h3, h4 {
 	font-family: Roboto, sans-serif;
 	font-weight: normal;
 }
 h1 {
-	margin: .6em 0 .4em 0;
-	font-size: 4em;
+	margin: .8em 0 .6em 0;
+	font-size: 3em;
 }
 h2 {
 	margin: .9em 0 .7em 0;
-	font-size: 2em;
+	font-size: 1.8em;
 }
 h3 {
 	margin: .9em 0 .7em 0;
-	font-size: 1.2em;
+	font-size: 1.3em;
 	font-weight: 500;
 }
 h4 {
 	margin: .9em 0 .7em 0;
 	font-size: 1em;
+	font-weight: 500;
 	text-decoration: underline;
-}
-code {
-	font-family: Inconsolata, monospace !important;
 }
 ol {
 	padding-left: 4px;
@@ -41,7 +40,7 @@ ol {
 }
 ol > li {
 	counter-increment: number;
-	margin: 4px 0;
+	margin: 8px 0;
 }
 ol > li::before {
 	content: counter(number) ') ';
@@ -53,7 +52,7 @@ ol > li > ol {
 	counter-reset: none;
 }
 ol > li > ol > li {
-	margin: 4px 0;
+	counter-increment: none;
 	padding-left: 4px;
 }
 ol > li > ol > li::before {
@@ -67,6 +66,9 @@ s, .de-emphasis {
 	color: rgba(255,255,255,.5);
 }
 img {
+	display: block;
 	width: 100%;
 	max-width: 400px;
+	margin: 6px 0;
+	border-radius: 8px;
 }

@@ -25,34 +25,103 @@
 				class="de-emphasis">(YourUsername)</span>\</li>
 		<li>Copy the path of the bin folder in the flutter folder, e.g. C:\Users\<span
 				class="de-emphasis">(YourUsername)</span>\flutter\bin\</li>
-		<li>Add this folder to your path.
+		<li>Add this folder to your path
 			<ol>
 				<li>Search for path in Windows Search. ‘Edit the system environment variables’ will come up. Click on it.
-					<img alt="Search for Path" src="/images/lesson1/path-search.png">
+					<img src="images/lesson1/path-search.png">
 				</li>
-				<li>Go to ‘Environment Variables’.</li>
-				<li>Double click on ‘PATH’</li>
-				<li>Click ‘New’, and paste the previous path copied (C:\Users\<span class="de-emphasis">(YourUsername)</span>\flutter\bin\) into the field.</li>
+				<li>Go to ‘Environment Variables’.
+					<img src="images/lesson1/env-var.png">
+				</li>
+				<li>Double click on ‘PATH’
+					<img src="images/lesson1/path-click.png">
+				</li>
+				<li>Click ‘New’, and paste the previous path copied (C:\Users\<span
+						class="de-emphasis">(YourUsername)</span>\flutter\bin\) into the field.
+					<img src="images/lesson1/path-add.png">
+				</li>
 			</ol>
 		</li>
+		<li>Open Command Prompt and just type ‘flutter’ and run it
+			<ol>
+				<li>Flutter will proceed to download lots of stuff, just wait</li>
+			</ol>
+		</li>
+		<li>Once done, run ‘flutter doctor -v’ to see the other components needed to be installed.</li>
+		<li>For simplicity sake, download the <a target="_blank" href="https://developer.android.com/studio">entire Android
+				Studio</a>. (Only the Android SDK, Android SDK Platform-Tools and Android SDK Build-Tools are required)</li>
+		<li>Run flutter doctor again to check if everything is correct</li>
 	</ol>
 	<h4>MacOS / Linux</h4>
-	<h3>Hello World</h3>
-	<pre class="lang-dart">
+	<ol>
+		<li>Download zip from <a target="_blank"
+				href="https://flutter.dev/docs/get-started/install/macos">https://flutter.dev/docs/get-started/install/macos</a>
+			or <a target="_blank"
+				href="https://flutter.dev/docs/get-started/install/linux">https://flutter.dev/docs/get-started/install/linux</a>
+		</li>
+		<li>Extract it into <s>any folder, preferably in</s> your own user folder, i.e. /Users/<span
+				class="de-emphasis">(YourUsername)</span>/</li>
+		<li>Copy the path of the bin folder in the flutter folder, e.g. /Users/<span
+				class="de-emphasis">(YourUsername)</span>/flutter/bin/</li>
+		<li><a target="_blank" href="https://flutter.dev/docs/get-started/install/macos#update-your-path">Add this folder to
+				your path</a>
+			<!-- <ol>
+				<li>Search for path in Windows Search. ‘Edit the system environment variables’ will come up. Click on it.
+					<img src="images/lesson1/path-search.png">
+				</li>
+				<li>Go to ‘Environment Variables’.
+					<img src="images/lesson1/env-var.png">
+				</li>
+				<li>Double click on ‘PATH’
+					<img src="images/lesson1/path-click.png">
+				</li>
+				<li>Click ‘New’, and paste the previous path copied (C:\Users\<span
+						class="de-emphasis">(YourUsername)</span>\flutter\bin\) into the field.
+					<img src="images/lesson1/path-add.png">
+				</li>
+			</ol> -->
+		</li>
+		<li>Open Terminal and just type ‘flutter’ and run it
+			<ol>
+				<li>Flutter will proceed to download lots of stuff, just wait</li>
+			</ol>
+		</li>
+		<li>Once done, run ‘flutter doctor -v’ to see the other components needed to be installed.</li>
+		<li>If you want to test on Android, download the <a target="_blank"
+				href="https://developer.android.com/studio">entire Android
+				Studio</a></li>
+		<li>Download any <a target="_blank"
+				href="https://flutter.dev/docs/get-started/install/macos#set-up-the-android-emulator">emulators</a> if you lack
+			a physical Android device.</li>
+		<li>For testing on iOS in MacOS, follow instructions here: <a target="_blank"
+				href="https://flutter.dev/docs/get-started/install/macos#ios-setup">https://flutter.dev/docs/get-started/install/macos#ios-setup</a>
+		</li>
+		<li>Run flutter doctor again to check if everything is correct</li>
+		<h3>Hello World</h3>
+		<p>If your are too eager to create an app, then try out the code below:</p>
+		<pre class="lang-dart">
 			<code>
 				import 'package:flutter/material.dart';
+				// Importing the <a target="_blank"
+				href="https://flutter.dev/docs/get-started/install/macos#set-up-the-android-emulator">material library</a> which has a
+				// wide collection of material widgets to use
 
+				// Every Flutter App/Dart program starts with a main function
 				void main() {
+					// runApp is an inbuilt function in Flutter,
+					// and you pass a widget to it to display on screen
 					runApp(MyApp());
 				}
 
 				class MyApp extends StatelessWidget {
 					@override
 					Widget build(BuildContext context) {
-						return Scaffold(
-							body: Center(
-								child: Text(
-									'Hello World!',
+						return MaterialApp(
+							home: Scaffold(
+								body: Center(
+									child: Text(
+										'Hello World!',
+									),
 								),
 							),
 						);
@@ -60,7 +129,7 @@
 				}
 			</code>
 		</pre>
-	<script src="prism.js"></script>
+		<script src="prism.js"></script>
 </body>
 
 </html>
