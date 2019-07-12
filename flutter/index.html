@@ -1,32 +1,66 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="theme-color" content="#075b9a">
-		<title>Getting Started with Flutter</title>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,600|Roboto:300,400,500|Roboto+Mono:400,700|Material+Icons">
-		<link rel="stylesheet" href="prism.css">
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<h1>Sample Flutter Code</h1>
-		<pre class="lang-dart">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#075b9a">
+	<title>Getting Started with Flutter</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Inconsolata&display=swap">
+	<link rel="stylesheet" href="prism.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<h1>Flutter</h1>
+	<h2>Lesson 1</h2>
+	<h3>Installation</h3>
+	<h4>Windows</h4>
+	<ol>
+		<li>Download zip from <a target="_blank"
+				href="https://flutter.dev/docs/get-started/install/windows">https://flutter.dev/docs/get-started/install/windows</a>
+		</li>
+		<li>Extract it into <s>any folder, preferably in</s> your own user folder, i.e. C:\Users\<span
+				class="de-emphasis">(YourUsername)</span>\</li>
+		<li>Copy the path of the bin folder in the flutter folder, e.g. C:\Users\<span
+				class="de-emphasis">(YourUsername)</span>\flutter\bin\</li>
+		<li>Add this folder to your path.
+			<ol>
+				<li>Search for path in Windows Search. ‘Edit the system environment variables’ will come up. Click on it.
+					<img alt="Search for Path" src="/images/lesson1/path-search.png">
+				</li>
+				<li>Go to ‘Environment Variables’.</li>
+				<li>Double click on ‘PATH’</li>
+				<li>Click ‘New’, and paste the previous path copied (C:\Users\<span class="de-emphasis">(YourUsername)</span>\flutter\bin\) into the field.</li>
+			</ol>
+		</li>
+	</ol>
+	<h4>MacOS / Linux</h4>
+	<h3>Hello World</h3>
+	<pre class="lang-dart">
 			<code>
 				import 'package:flutter/material.dart';
+
 				void main() {
-					runApp(
-						Center(
-							child: Text(
-								'Hello, world!',
-								textDirection: TextDirection.ltr,
+					runApp(MyApp());
+				}
+
+				class MyApp extends StatelessWidget {
+					@override
+					Widget build(BuildContext context) {
+						return Scaffold(
+							body: Center(
+								child: Text(
+									'Hello World!',
+								),
 							),
-						),
-					);
+						);
+					}
 				}
 			</code>
 		</pre>
-		<script src="prism.js"></script>
-	</body>
+	<script src="prism.js"></script>
+</body>
+
 </html>
