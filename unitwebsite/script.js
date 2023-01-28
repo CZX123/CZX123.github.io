@@ -167,7 +167,7 @@ var Ajax = {
 			filename = split.pop(), // Take the last rightmost chunk
 			currentActive = navdrawer.getElementsByClassName('active'), // Get currently highlighted element
 			newActive = navdrawer.querySelector('a[href="' + filename + '"]'); // Get the element that is to be highlighted
-		if (!filename) newActive = navdrawer.querySelector('a[href="/"]'); // Special case for homepage
+		if (!filename) newActive = navdrawer.querySelector('a[href="./"]'); // Special case for homepage
 		// Remove all currently highlighted links
 		for (var c = 0, l = currentActive.length; c < l; c++) {
 			currentActive[0].classList.remove('active'); // Note the [0], and not [c], because once the 'active' class is removed, the element is removed from the currentActive array, so the next element would be currentActive[0] also
