@@ -1,1 +1,0 @@
-import{_ as n,o,c as t,a as e}from"./index-f7ce5d0b.js";const c={},s=e("section",null,[e("h1",null,"Here are my projects:"),e("p",null,"Bolt"),e("p",null,"HC Garden")],-1),r=[s];function a(l,_){return o(),t("main",null,r)}const u=n(c,[["render",a]]);export{u as default};
