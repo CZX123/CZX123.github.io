@@ -1,0 +1,271 @@
+/* CSS Reset */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+body {
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+	display: block;
+	max-width: 100%;
+}
+input, button, textarea, select {
+	font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+	overflow-wrap: break-word;
+}
+/* Fonts */
+@font-face {
+	font-family: "Lexend Deca";
+	src: url("/_app/immutable/assets/LexendDeca-Bold.76bcaafc.woff2") format("woff2"),
+			 url("/_app/immutable/assets/LexendDeca-Bold.26ad8250.ttf") format("truetype");
+	font-weight: 700;
+}
+@font-face {
+	font-family: Geomanist;
+	src: url("/_app/immutable/assets/geomanist-regular-webfont.bd3bb3f7.woff2") format("woff2"),
+			 url("/_app/immutable/assets/geomanist-regular-webfont.852c8dd9.ttf") format("truetype");
+	font-weight: 400;
+}
+@font-face {
+	font-family: Geomanist;
+	src: url("/_app/immutable/assets/Geomanist-Bold.6b6ade1c.woff2") format("woff2"),
+			 url("/_app/immutable/assets/Geomanist-Bold.04474bbc.ttf") format("truetype");
+	font-weight: 700;
+}
+.text-button, .filled-button  {
+	position: relative;
+	display: inline-flex;
+	margin: 0 8px;
+  -webkit-tap-highlight-color: transparent !important;
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;
+	transition: color 0.2s, filter 0.2s, opacity 0.1s;
+	filter: drop-shadow(0 0 0 transparent);
+}
+.text-button {
+	color: var(--link-color);
+	height: 32px;
+	line-height: 32px;
+}
+.filled-button {
+	border-radius: 27px;
+	padding: 0 12px;
+	height: 54px;
+	background-color: var(--color-darkgrey-light);
+	align-items: center;
+	color: inherit;
+	box-shadow: var(--shadow-elevation-low);
+	transition: box-shadow 0.2s;
+}
+@media (hover: hover) {
+	.text-button:hover {
+		color: var(--link-hover-color);
+		filter: drop-shadow(0 0 3px var(--link-hover-color));
+  }
+	.filled-button:hover {
+		box-shadow: var(--shadow-elevation-medium);
+	}
+}
+.text-button:focus-visible {
+	outline: 0;
+	color: var(--link-hover-color);
+	filter: drop-shadow(0 0 3px var(--link-hover-color));
+}
+.filled-button:focus-visible {
+	box-shadow: var(--shadow-elevation-medium);
+}
+.text-button:focus-visible::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -6px;
+  right: -6px;
+  bottom: 0;
+  border: 2px dotted var(--link-hover-color);
+  border-radius: 8px;
+}
+.text-button:active {
+	opacity: 0.5;
+	filter: drop-shadow(0 0 0 transparent);
+}
+.filled-button:active {
+	box-shadow: none;
+}
+.text-button:first-child, .filled-button:first-child {
+	margin-left: 0;
+}
+.text-button svg, .filled-button svg {
+	display: inline-block;
+	margin-right: 8px;
+	pointer-events: none;
+}
+.text-button svg {
+	fill: var(--link-color);
+	transition: fill 0.1s;
+}
+.filled-button svg {
+	height: 32px;
+}
+@media (hover: hover) {
+	.text-button:hover svg {
+		fill: var(--link-hover-color);
+  }
+}
+.text-button:focus-visible svg {
+	fill: var(--link-hover-color);
+}
+/* Colors */
+:root {
+	--color-yellow: #efcc12;
+	--color-yellow-light: #ffef5b;
+	--color-yellow-dark: #7f7852;
+	--color-mint: #3ab795;
+
+	--color-white: #fff;
+	--color-white87: rgba(255, 255, 255, 0.87);
+	--color-white70: rgba(255, 255, 255, 0.7);
+	--color-white54: rgba(255, 255, 255, 0.54);
+	--color-white24: rgba(255, 255, 255, 0.24);
+	--color-white12: rgba(255, 255, 255, 0.12);
+	--color-white0: rgba(255, 255, 255, 0);
+
+	--color-black: #000;
+	--color-black87: rgba(0, 0, 0, 0.87);
+	--color-black54: rgba(0, 0, 0, 0.54);
+	--color-black38: rgba(0, 0, 0, 0.38);
+	--color-black12: rgba(0, 0, 0, 0.12);
+	--color-black0: rgba(0, 0, 0, 0);
+
+	--color-darkgrey: #2c3133;
+	--color-darkgrey-light: #3e4446;
+	--color-darkgrey-translucent: rgba(44, 49, 51, 0.9);
+}
+/* Default Color Styles */
+:root {
+	--primary-color: var(--color-yellow);
+	--primary-color-light: var(--color-yellow-light);
+	--primary-color-dark: var(--color-yellow-dark);
+	--accent-color: var(--color-mint);
+
+	--background-color: var(--color-darkgrey);
+	--background-color-translucent: var(--color-darkgrey-translucent);
+
+	--text-color: var(--color-white87);
+	--link-color: var(--primary-color);
+	--link-hover-color: var(--primary-color-light);
+	--link-active-color: var(--primary-color-dark);
+
+	--divider-color: var(--color-white24);
+}
+/* Others */
+:root {
+	--content-width: 900px;
+	--mockup-device-border-width: 3px;
+	--shadow-elevation-low: 0px 0.3px 0.4px rgba(0, 0, 0, 0.03),
+		0px 0.7px 1px -0.2px rgba(0, 0, 0, 0.11), 0px 1.6px 2.3px -0.5px rgba(0, 0, 0, 0.2);
+	--shadow-elevation-medium: 0px 0.3px 0.4px rgba(0, 0, 0, 0.03),
+		0px 1.8px 2.6px -0.2px rgba(0, 0, 0, 0.1), 0px 3.7px 5.3px -0.3px rgba(0, 0, 0, 0.16),
+		0px 8px 11.4px -0.5px rgba(0, 0, 0, 0.23);
+	--shadow-elevation-high: 0px 0.3px 0.4px rgba(0, 0, 0, 0.03),
+		0px 4.4px 6.3px -0.1px rgba(0, 0, 0, 0.06), 0px 8px 11.4px -0.1px rgba(0, 0, 0, 0.09),
+		-0.1px 11.9px 17px -0.2px rgba(0, 0, 0, 0.12), -0.1px 17.1px 24.4px -0.3px rgba(0, 0, 0, 0.15),
+		-0.1px 24.2px 34.5px -0.4px rgba(0, 0, 0, 0.18), -0.2px 34.2px 48.7px -0.4px rgba(0, 0, 0, 0.21),
+		-0.3px 47.9px 68.3px -0.5px rgba(0, 0, 0, 0.24);
+}
+@media (max-width: 960px) {
+	:root {
+		--content-width: 700px;
+		--mockup-device-border-width: 2.8px;
+	}
+}
+@media (max-width: 767px) {
+	:root {
+		--content-width: 700px;
+		--mockup-device-border-width: 2.8px;
+	}
+}
+* {
+	line-height: calc(1em + 0.6rem);
+}
+html,
+body {
+	color-scheme: dark;
+	color: var(--text-color);
+	font-family: Geomanist, Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	letter-spacing: 0.03em;
+	/* Default font size of 16px, use rem units for all subsequent font sizes */
+	/* TODO: have this respect user's font size choices, or add different font scaling */
+	font-size: 16px;
+}
+html {
+	overflow-y: scroll;
+}
+/* Background is set as follows, so overscroll still shows the correct color. */
+body > div::before {
+	content: '';
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: var(--background-color);
+}
+body > div > * {
+	isolation: isolate;
+}
+section {
+	height: 100vh;
+	height: 100svh;
+}
+h1 {
+	margin: 16px 0;
+	font-family: 'Lexend Deca';
+	font-size: 5rem;
+}
+h1:first-child,
+h2:first-child,
+h3:first-child {
+	margin-top: 0;
+}
+h2 {
+	margin: 16px 0;
+	font-size: 2rem;
+}
+h3 {
+	margin: 16px 0;
+	font-size: 1.4rem;
+}
+p {
+	margin: 16px 0;
+}
+.nobreak {
+	white-space: nowrap;
+}
+section > .wrapper {
+	display: flex;
+	height: 100%;
+	max-width: var(--content-width);
+	margin: 0 auto;
+	padding: 64px 32px;
+}
+@media (max-width: 767px) {
+	h1 {
+		font-size: 3.6rem;
+	}
+
+	h2 {
+		font-size: 1.6rem;
+	}
+}
+/* ins element used as an empty wrapper element */
+ins {
+	display: contents;
+}main.svelte-1p26bku{display:grid}main.svelte-1p26bku>*{grid-column-start:1;grid-row-start:1}.back-button.svelte-1p26bku{position:fixed;bottom:32px;left:32px;visibility:hidden;opacity:0;transform:scale(0.9);transition:opacity 0.2s, transform 0.1s, visibility 0.2s}.back-button.visible.svelte-1p26bku{visibility:visible;opacity:1;transform:scale(1)}
