@@ -37,7 +37,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 @font-face {
 	font-family: Geomanist;
-	src: url("../fonts/geomanist-bold.woff2") format("woff2");
+	src: url("/_app/immutable/assets/geomanist-bold.278a1fe7.woff2") format("woff2");
 	font-weight: 700;
 	font-display: swap;
 }
